@@ -1,0 +1,16 @@
+{
+    "development" : {
+        "host" : "localhost",
+        "database" : "sesac_test",
+        "username" : "user",
+        "password" : "qwer1234!",
+        "dialect" : "mysql"
+    },
+    "production" : {
+        "host" : "",
+        "database" : "",
+        "username" : "",
+        "password" : "",
+        "dialect" : "mysql"
+    }
+}
