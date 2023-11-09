@@ -41,7 +41,8 @@ exports.profile = (req, res) => {
   } else {
     res.send({ result: false })
   }
-=======
+}
+
 // 마이페이지 랜더
 exports.profile = (req, res) => {
   res.render("/profile")
