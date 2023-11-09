@@ -7,8 +7,8 @@ app.use(express.json());
 app.use( "/static", express.static( "static" ) );
 app.use(express.urlencoded({ extended: true }));
 
-const router = require("./routes");
-app.use("/", router);
+const homeRouter = require("./routes/home");
+app.use("/home", homeRouter);
 
 const userRouter = require("./routes/user");
 app.use("/user", userRouter);
