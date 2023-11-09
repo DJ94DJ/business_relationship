@@ -21,8 +21,21 @@ exports.signup = (req, res) => {
 // '가입하기' 버튼 클릭 시
 exports.signupUser = (req, res) => {}
 
+// 개인 정원(롤링페이퍼) 페이지 랜더
+exports.garden = (req, res) => {
+  res.render("/garden")
+}
 
-// '랜덤 방문' 버튼 클릭 시
-exports.randomGarden= (req, res) => {
+// 롤링페이퍼 '작성' 버튼 클릭 시
+exports.writeMsg = (req, res) => {
+  
+}
+
+// 롤링페이퍼 '삭제' 버튼 클릭 시
+exports.deleteMsg = (req, res) => {
 
 }
+
+
+// '랜덤 방문' 버튼 클릭 시
+// exports.randomGarden= (req, res) => {}
