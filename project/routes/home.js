@@ -6,16 +6,16 @@ const router = express.Router()
 router.get("/", controller.home)
 
 // 로그인 페이지
-router.get("/login", controller.login)
+router.get("/signin", controller.signIn)
 
 // 회원 로그인
-router.post("/login", controller.loginUser)
+router.post("/signin", controller.signInUser)
 
 // 회원 가입 페이지
-router.get("/signup", controller.signup)
+router.get("/signup", controller.signUp)
 
 // 회원 가입
-router.post("/signup", controller.signupUser)
+router.post("/signup", controller.signUpUser)
 
 // 개인 정원(롤링페이퍼) 페이지
 router.get("/garden/:user_id", controller.garden)

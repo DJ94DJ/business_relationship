@@ -29,7 +29,6 @@ function Message(Sequelize, DataTypes) {
           type: DataTypes.STRING(10),
           allowNull: false,
         },
-        // 외래 키 참조 정의
         id: {
           type: DataTypes.BIGINT,
           allowNull: false,
