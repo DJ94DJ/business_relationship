@@ -4,10 +4,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>signup(회원가입 페이지)</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <title>signup (회원가입 페이지)</title>
 </head>
 
 <body>
+    <h3>회원가입 페이지</h3>
+    <form class="" name="user_upload">
+        <div>
+            ID <input type="text" name="user_id">
+            <button type="button" onclick="userIdCheck()">아이디 중복 확인</button>
+        </div>
+        <div>
+            비밀번호 <input type="text" name="user_pw">
+        </div>
+        <div>
+            비밀번호 중복확인 <input type="text" name="user_pw_check">
+            <button type="button" onclick="pwCheck()">비밀번호 일치 확인</button>
+        </div>
+        <div>
+            닉네임 <input type="text" name="user_name">
+        </div>
+        <div>
+            <input type="file" name="user_img">
+        </div>
+        <div>
+            자기소개 <input type="text" name="user_intro_self">
+        </div>
+        <div>
+            내 MBTI <input type="text" name="user_mbti">
+        </div>
+        <div>
+            <button type="button" onclick="userSignUp()">회원가입</button>
+        </div>
+    </form>
+
+    <script>
+        //회원가입 버튼 클릭 시 user 데이터를 db로 넘김
+        function userSignUp() {
+            const form = document.forms["user_upload"]
+
+            let user = {
+                user_id: form.user_id.value,
+                user_pw: form.user_pw.value,
+                user_name: form.user_name.value,
+                user_intro_self: form.user_intro_self.value,
+                user_mbti: form.user_mbti.value,
+                // user_img: form.user_img.files[0]  multer은 잠시 보류
+            }
+
+            console.log(user)
+
+            axios({
+                method: 'post',
+                url: '/home/signup',
+                data: user
+                // headers: {
+                //     "Content-type": "multipart/form-data"
+                // }
+            }).then((res) => {
+                if (res.data) {
+                    alert("회원가입 성공 !")
+                } else {
+                    alert("회원가입 실패 !")
+                }
+            })
+        }
+
+        // 아이디 중복 확인
+        function userIdCheck() {
+            const form = document.forms["user_upload"]
+
+            let userId = form.user_id.value
+
+            axios({
+                method: "POST",
+                url: "home/signup/idCheck",
+                data: userId
+            }).then((res) => {
+                if (res.data.result) {
+                    alert("사용 가능한 아이디입니다.")
+                } else alert("중복된 아이디입니다.")
+            })
+        }
+
+
+        // 비밀번호 일치 확인
+        function pwCheck() {
+            const form = document.forms["user_upload"]
+
+            let pwData = {
+                user_pw: form.user_pw.value,
+                user_pw_check: form.user_pw_check.value
+            }
+
+            if (pwData[0] == pwData[1]) {
+                alert("")
+            }
+        }
+
+
+    </script>
 
 </body>
 
