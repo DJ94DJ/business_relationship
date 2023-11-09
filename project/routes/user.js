@@ -2,7 +2,7 @@ const express = require("express");
 const controller = require("../controller/Cuser")
 const router = express.Router()
 
-// 개인 정원(롤링페이퍼) 페이지
+// 개인 정원(롤링페이퍼) 페이지임
 router.get("/garden/:user_id", controller.garden)
 
 // 롤링페이퍼 작성
