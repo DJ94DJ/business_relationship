@@ -1,4 +1,5 @@
-const { User, Message } = require("../model")
+const { User, Message } = require('../model')
+
 
 // 메인 페이지 랜더
 exports.home = (req, res) => {
@@ -28,6 +29,14 @@ exports.signup = (req, res) => {
   res.render("signup")
 }
 
+// '회원가입' 버튼 클릭 시
+exports.signupUser = (req, res) => {
+  User.create(req.body).then((result) => {
+    console.log("signupUser : ", result)
+    res.send({result : true})
+  })
+}
+
 // '가입하기' 버튼 클릭 시
 // 아이디 중복 검사는 별도 메소드로 추가 예정
 // user_pw_salt는 model 단에서
@@ -48,6 +57,7 @@ exports.signupUser = (req, res) => {
     else res.send({result: false})
   })
  }
+
 
 // 개인 정원(롤링페이퍼) 페이지 랜더
 exports.garden = (req, res) => {

@@ -4,6 +4,7 @@ function Message(Sequelize, DataTypes) {
       {
         message_id: {
           type: DataTypes.UUID,
+          autoIncrement: true,
           primaryKey: true,
           defaultValue: Sequelize.UUIDV4,
         },
@@ -20,10 +21,10 @@ function Message(Sequelize, DataTypes) {
           allowNull: false,
           defaultValue: true, // 메시지를 기본적으로 공개로 만들기
         },
-        message_at: {
-          type: DataTypes.DATETIME,
-          allowNull: false,
-        },
+        // message_at: {
+        //   type: DataTypes.DATETIME,
+        //   allowNull: false,
+        // },
         flower_color: {
           type: DataTypes.STRING(10),
           allowNull: false,
