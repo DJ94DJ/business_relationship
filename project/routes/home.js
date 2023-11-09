@@ -17,7 +17,7 @@ router.get("/signup", controller.signup)
 // 회원 가입
 router.post("/signup", controller.signupUser)
 
-// 개인 정원(롤링페이퍼) 페이지임
+// 개인 정원(롤링페이퍼) 페이지
 router.get("/garden/:user_id", controller.garden)
 
 // 롤링페이퍼 작성
