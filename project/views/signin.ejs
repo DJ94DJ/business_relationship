@@ -4,11 +4,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <title>signin(로그인 페이지)</title>
 </head>
+<style>
+    /* 간단하게 만든 style 코드입니다. 후에 수정해주시면 됩니다. */
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    div {
+        margin-bottom: 15px;
+    }
+
+    input {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+
+    button {
+        padding: 10px;
+        cursor: pointer;
+    }
+</style>
 
 <body>
+    <form class="" name="user_login">
+        <h3>로그인 페이지</h3>
+        <div>
+            ID <input type="text" name="user_id">
+        </div>
+        <div>
+            비밀번호 <input type="password" name="user_pw">
+        </div>
+        <button type="button" onclick="userLogin()">로그인</button>
+    </form>
 
 </body>
+<script>
+    // 로그인 버튼 클릭 시
+    function userLogin() {
+        const form = document.forms["user_login"]
+
+        let user = {
+            user_id: form.user_id.value,
+            user_pw: form.user_pw.value
+        }
+
+        axios({
+            method: "POST",
+            url: "/home/signin",
+            data: user
+        }).then((res) => {
+            if (res.data.result) {
+                alert("로그인 성공");
+                // 성공 시 유저의 id(PK)의 맞는 garden으로 이동하는 코드 작성 필요
+            } else {
+                // 실패 시 해당 페이지 초기화
+                alert("로그인 실패");
+                form.reset();
+            }
+        })
+    }
+</script>
 
 </html>

@@ -7,11 +7,24 @@ exports.home = (req, res) => {
 }
 
 // 로그인 페이지 랜더
-exports.login = (req, res) => {
+exports.signIn = (req, res) => {
   res.render("signin")
 }
 
 // '로그인' 버튼 클릭 시
+exports.signInUser = (req, res) => {
+  User.findOne({
+    where: {
+      user_id: req.body.user_id, 
+      user_pw: req.body.user_pw
+    }
+  }).then((result) => {
+    console.log(result)
+    if(result) {
+      res.send({result: true})
+    } else res.send({result: false})
+  })
+
 exports.loginUser = (req, res) => {
  User.findOne({
   where: {
@@ -25,12 +38,12 @@ exports.loginUser = (req, res) => {
 }
 
 // 회원 가입 페이지 랜더
-exports.signup = (req, res) => {
+exports.signUp = (req, res) => {
   res.render("signup")
 }
 
 // '회원가입' 버튼 클릭 시
-exports.signupUser = (req, res) => {
+exports.signUpUser = (req, res) => {
   User.create(req.body).then((result) => {
     console.log("signupUser : ", result)
     res.send({result : true})

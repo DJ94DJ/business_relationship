@@ -18,7 +18,7 @@ function User(Sequelize, DataTypes) {
         },
         user_pw_salt: {
           type: DataTypes.STRING(100),
-          allowNull: false,
+          allowNull: true,
         },
         user_name: {
           type: DataTypes.STRING(100),
