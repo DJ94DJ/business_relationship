@@ -1,5 +1,5 @@
-const express = require('express');
-const session = require('express-session');
+const express = require("express");
+const session = require("express-session");
 
 const app = express();
 const PORT = 8000;
@@ -15,17 +15,15 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      maxAge: 24 * 60 * 60 * 1000, // 세션 유효 시간 1일
+      maxAge: 30 * 60 * 1000, // 세션 유효 시간 1일 -> 30분으로 변경
     },
   }),
 );
 
 const homeRouter = require('./routes/home');
-
 app.use('/home', homeRouter);
 
 const userRouter = require('./routes/user');
-
 app.use('/user', userRouter);
 
 app.get('*', (req, res) => {
