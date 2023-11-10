@@ -9,9 +9,41 @@
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <title>garden(내 정원)</title>
 </head>
+<style>
+    /* 간단하게 만든 style 코드입니다. 후에 수정해주시면 됩니다. */
+    .container {
+        background-color: #fff;
+        padding: 20px;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .container div {
+        margin: 10px 0;
+    }
+
+    .container div span {
+        font-weight: bold;
+        margin-right: 10px;
+    }
+</style>
 
 <body>
-    <h3>나의 정원입니다</h3>
+    <div class="container">
+        <h3>나의 새싹가든</h3>
+        <div>
+            <span>닉네임:</span>
+            <%= data.user_name %>
+        </div>
+        <div>
+            <span>자기소개:</span>
+            <%= data.user_intro_self %>
+        </div>
+        <div>
+            <span>내 MBTI:</span>
+            <%= data.user_mbti %>
+        </div>
+    </div>
 
 </body>
 

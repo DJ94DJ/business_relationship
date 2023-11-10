@@ -62,7 +62,8 @@
         }).then((res) => {
             if (res.data.result) {
                 alert("로그인 성공");
-                // 성공 시 유저의 id(PK)의 맞는 garden으로 이동하는 코드 작성 필요
+                location.href = "/home"
+                // 성공 시 유저의 id(PK)의 맞는 garden으로 이동하는 코드 작성 필요 (보류)
             } else {
                 // 실패 시 해당 페이지 초기화
                 alert("로그인 실패");
