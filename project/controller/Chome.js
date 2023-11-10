@@ -1,6 +1,8 @@
-const { User, Message } = require("../model")
-const pwSalt = require("../model/pwSalt")
-
+/* eslint-disable no-undef */
+/* eslint-disable camelcase */
+/* eslint-disable object-shorthand */
+const { User, Message } = require('../model');
+const pwSalt = require('../model/pwSalt');
 
 // 메인 페이지 랜더
 exports.home = (req, res) => {
@@ -16,33 +18,40 @@ exports.signIn = (req, res) => {
 exports.signInUser = (req, res) => {
   User.findOne({
     where: {
-      user_id: req.body.user_id
-    }
-  }).then((result) => {
-    if(result) {
-      pwSalt.comparePassword(req.body.user_pw, result.user_pw_salt, result.user_pw)
-      .then((pwCorrect) => {
-        if(pwCorrect) {
-          req.session.user = result.id;
-          console.log("signInUser : ", result)
-          console.log('session', req.session);
-          res.send({ result: true })
-        } else {
-          res.send({ result: false })
-        }
-      })
-      .catch(error => {
-        console.error("pw error : ", error);
-        res.send({ result: false })
-      })
-    } else {
-      res.send({ result: false })
-    }
-  }).catch(error => {
-    console.error("no user : ", error)
-    res.send({ result: false })
+      user_id: req.body.user_id,
+    },
   })
-}
+    .then((result) => {
+      if (result) {
+        pwSalt
+          .comparePassword(
+            req.body.user_pw,
+            result.user_pw_salt,
+            result.user_pw,
+          )
+          .then((pwCorrect) => {
+            if (pwCorrect) {
+              req.session.user = result.id;
+              console.log('signInUser : ', result);
+              console.log('session', req.session);
+              res.send({ result: true });
+            } else {
+              res.send({ result: false });
+            }
+          })
+          .catch((error) => {
+            console.error('pw error : ', error);
+            res.send({ result: false });
+          });
+      } else {
+        res.send({ result: false });
+      }
+    })
+    .catch((error) => {
+      console.error('no user : ', error);
+      res.send({ result: false });
+    });
+};
 
 // 로그인한 사용자의 고유 id값(pk)을 session에 저장, 응답으로 보냄
 exports.signInUser = (req, res) => {
@@ -61,15 +70,14 @@ exports.signInUser = (req, res) => {
   });
 };
 
-
 // '로그아웃' 버튼 클릭 시
 exports.signOut = (req, res) => {
   // 접속중인 사용자 세션 삭제 후 요청을 보낼 코드
   req.session.destroy((err) => {
-    if(err) throw err;
-    res.send({result : true})
-  })
-}
+    if (err) throw err;
+    res.send({ result: true });
+  });
+};
 
 // 회원 가입 페이지 랜더
 exports.signUp = (req, res) => {
@@ -94,28 +102,30 @@ exports.idCheck = (req, res) => {
 exports.signUpUser = (req, res) => {
   const { user_id, user_pw, user_name, user_intro_self, user_mbti } = req.body;
 
-  pwSalt.hashPassword(user_pw)
-  .then(({ hashedPw, salt }) => {
-    User.create({
-      user_id: user_id,
-      user_pw: hashedPw,
-      user_pw_salt: salt,
-      user_name: user_name,
-      user_intro_self: user_intro_self,
-      user_mbti: user_mbti
-    }).then((result) => {
-      console.log("signUpUser", result);
-      res.send({ result: true })
-    }).catch((error) => {
-      console.error("user 생성 에러", error)
-      res.send({ result: false })
+  pwSalt
+    .hashPassword(user_pw)
+    .then(({ hashedPw, salt }) => {
+      User.create({
+        user_id: user_id,
+        user_pw: hashedPw,
+        user_pw_salt: salt,
+        user_name: user_name,
+        user_intro_self: user_intro_self,
+        user_mbti: user_mbti,
+      })
+        .then((result) => {
+          console.log('signUpUser', result);
+          res.send({ result: true });
+        })
+        .catch((error) => {
+          console.error('user 생성 에러', error);
+          res.send({ result: false });
+        });
     })
-  })
-  .catch((error) => {
-    console.error("암호화 에러", error)
-    res.send({ result: false })
-  })
-}
+    .catch((error) => {
+      console.error('암호화 에러', error);
+      res.send({ result: false });
+    });
 
   User.create(req.body).then((result) => {
     console.log('signupUser : ', result);
@@ -143,7 +153,6 @@ exports.signupUser = (req, res) => {
     else res.send({ result: false });
   });
 };
-
 
 // 개인 정원(롤링페이퍼) 페이지 랜더
 exports.garden = (req, res) => {
