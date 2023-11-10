@@ -10,7 +10,7 @@
 ## 👥팀원 소개
 | 이도준 | 정세은 | 이예찬 | 정우성 |
 | :---: | :---: | :---: | :---: |
-| <img alt="이도준" src="" height="150" width="150"> | <img alt="정세은" src="" height="150" width="150"> | <img alt="이예찬" src="" height="150" width="150"> | <img alt="정우성" src="https://github.com/dntjd129/SeSAC/assets/101249011/17da9f8a-c029-408f-9011-72da08457bae" height="150" width="150"> |
+| <img alt="이도준" src="https://github.com/DJ94DJ/business_relationship/assets/101249011/1b491a34-d848-4a88-a12d-b3033198f454" height="150" width="150"> | <img alt="정세은" src="https://github.com/DJ94DJ/business_relationship/assets/101249011/6550ee3b-4ec7-4c9a-ad10-0b49ea658d68" height="150" width="150"> | <img alt="이예찬" src="https://github.com/DJ94DJ/business_relationship/assets/101249011/3433d88a-792b-4d9f-83d6-2bed2cdac700" height="150" width="150"> | <img alt="정우성" src="https://github.com/dntjd129/SeSAC/assets/101249011/17da9f8a-c029-408f-9011-72da08457bae" height="150" width="150"> |
 | **FE** (조장) | **FE** | **BE** | **BE** | 
 
 <br>
