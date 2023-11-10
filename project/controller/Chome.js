@@ -11,15 +11,45 @@ exports.home = (req, res) => {
 
 // 로그인 페이지 랜더
 exports.signIn = (req, res) => {
-  res.render('signin');
+  res.render("signin")
+  console.log("로그인 페이지 이동")
 };
+
+
+
 
 // 로그인 버튼 클릭 시 (암호화 추가 버전)
 exports.signInUser = (req, res) => {
   User.findOne({
     where: {
-      user_id: req.body.user_id,
+      user_id: req.body.user_id
+    }
+  }).then((result) => {
+    if(result) {
+      pwSalt.comparePassword(req.body.user_pw, result.user_pw_salt, result.user_pw)
+      .then((pwCorrect) => {
+        if(pwCorrect) {
+          req.session.user_id = result.user_id; // user_id도 세션에 저장 (개인 가든으로 이동하기 위함)
+          req.session.user = result.id;
+          console.log("signInUser : ", result)
+          console.log('session', req.session);
+          res.send({ result: true })
+        } else {
+          res.send({ result: false })
+        }
+      })
+      .catch(error => {
+        console.error("pw error : ", error);
+        res.send({ result: false })
+      })
+    } else {
+      res.send({ result: false })
+    }
+  }).catch(error => {
+    console.error("no user : ", error)
+    res.send({ result: false })
     },
+
   })
     .then((result) => {
       if (result) {
@@ -154,10 +184,26 @@ exports.signupUser = (req, res) => {
   });
 };
 
+// user_id 가져오기
+exports.getUserId = (req, res) => {
+  const userId = req.session.user_id
+  res.send({user_id: userId})
+}
+
 // 개인 정원(롤링페이퍼) 페이지 랜더
 exports.garden = (req, res) => {
-  res.render('garden');
-};
+
+  const userId = req.session.user_id
+  User.findOne({
+    where: {
+      user_id: userId
+    }
+  }).then((result) => {
+    res.render("garden", {data: result})
+  })
+  
+}
+
 
 // 롤링페이퍼 '작성' 버튼 클릭 시
 exports.writeMsg = (req, res) => {
@@ -181,5 +227,6 @@ exports.deleteMsg = (req, res) => {
   });
 };
 
-// '랜덤 방문' 버튼 클릭 시
+// '산책하기' 버튼 클릭 시
 // exports.randomGarden= (req, res) => {}
+

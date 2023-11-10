@@ -48,10 +48,24 @@
   // 로그인 버튼 클릭 시
   function userLogin() {
     const form = document.forms["user_login"]
-
     let user = {
       user_id: form.user_id.value,
       user_pw: form.user_pw.value
+        axios({
+            method: "POST",
+            url: "/home/signin",
+            data: user
+        }).then((res) => {
+            if (res.data.result) {
+                alert("로그인 성공");
+                location.href = "/home"
+                // 성공 시 유저의 id(PK)의 맞는 garden으로 이동하는 코드 작성 필요 (보류)
+            } else {
+                // 실패 시 해당 페이지 초기화
+                alert("로그인 실패");
+                form.reset();
+            }
+        })
     }
 
     axios({
