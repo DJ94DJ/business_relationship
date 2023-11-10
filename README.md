@@ -1,14 +1,24 @@
-# business_relationship
-청년취업사관학교 프로젝트 5조 business_relationship
+# 청년취업사관학교 프로젝트 5조 business_relationship
+## 🌱자라나라 새싹가든
 
-# 자라나라 새싹가든
+## 프로젝트 개요
+* **프로젝트 명** : 자라나라 새싹가든
+* **진행 기간** : 23.11.07 ~ 23.11.27
 
-# 커밋 컨벤션 가이드라인
+<br>
 
-## 커밋 타입 및 설명
+## 👥팀원 소개
+| 이도준 | 정세은 | 이예찬 | 정우성 |
+| :---: | :---: | :---: | :---: |
+| <img alt="이도준" src="" height="150" width="150"> | <img alt="정세은" src="" height="150" width="150"> | <img alt="이예찬" src="" height="150" width="150"> | <img alt="정우성" src="https://github.com/dntjd129/SeSAC/assets/101249011/17da9f8a-c029-408f-9011-72da08457bae" height="150" width="150"> |
+| **FE** (조장) | **FE** | **BE** | **BE** | 
+
+<br>
+
+## 커밋 컨벤션 타입 및 설명
 
 - **feat**: 새로운 기능 추가
-- **fix**: 버그 수정 또는 typo
+- **fix**: 버그 수정
 - **refactor**: 코드 리팩토링
 - **design**: 사용자 UI 디자인 변경
 - **comment**: 필요한 주석 추가 및 변경
