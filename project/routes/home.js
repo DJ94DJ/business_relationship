@@ -12,7 +12,7 @@ router.get("/signin", controller.signIn)
 router.post("/signin", controller.signInUser)
 
 // 회원 로그아웃
-router.post("signout", controller.singOut)
+router.post("/signout", controller.signOut)
 
 // 회원 가입 페이지
 router.get("/signup", controller.signUp)

@@ -11,33 +11,20 @@ exports.signIn = (req, res) => {
   res.render("signin")
 }
 
-// '로그인' 버튼 클릭 시
-// exports.signInUser = (req, res) => {
-//   User.findOne({
-//     where: {
-//       user_id: req.body.user_id, 
-//       user_pw: req.body.user_pw
-//     }
-//   }).then((result) => {
-//     console.log("signInUser : ", result)
-//     if(result) {
-//       res.send({result: true})
-//     } else res.send({result: false})
-//   })
-// }
-
-// 로그인 버튼 클릭 시 (crypto 추가 버전)
-exports.singInUser = (req, res) => {
+// 로그인 버튼 클릭 시 (암호화 추가 버전)
+exports.signInUser = (req, res) => {
   User.findOne({
     where: {
       user_id: req.body.user_id
     }
   }).then((result) => {
     if(result) {
-      pwSalt.comparePassword(req.body.user_pw, user.pwsalt, user.pw)
-      .then(isPasswordCorrect => {
-        if(isPasswordCorrect) {
+      pwSalt.comparePassword(req.body.user_pw, result.user_pw_salt, result.user_pw)
+      .then((pwCorrect) => {
+        if(pwCorrect) {
+          req.session.user = result.id;
           console.log("signInUser : ", result)
+          console.log('session', req.session);
           res.send({ result: true })
         } else {
           res.send({ result: false })
@@ -58,7 +45,11 @@ exports.singInUser = (req, res) => {
 
 // '로그아웃' 버튼 클릭 시
 exports.signOut = (req, res) => {
-  // 접속중인 사용자 세션 삭제 후 요청을 보낼 코드 작성
+  // 접속중인 사용자 세션 삭제 후 요청을 보낼 코드
+  req.session.destroy((err) => {
+    if(err) throw err;
+    res.send({result : true})
+  })
 }
 
 // 회원 가입 페이지 랜더
@@ -80,15 +71,7 @@ exports.idCheck = (req, res) => {
   })
 }
 
-// '회원가입' 버튼 클릭 시
-// exports.signUpUser = (req, res) => {
-//   User.create(req.body).then((result) => {
-//     console.log("signupUser : ", result)
-//     res.send({result : true})
-//   })
-// }
-
-// 회원가입 버튼 클릭 시
+// 회원가입 버튼 클릭 시 (암호화 비교 추가)
 exports.signUpUser = (req, res) => {
   const { user_id, user_pw, user_name, user_intro_self, user_mbti } = req.body;
 
