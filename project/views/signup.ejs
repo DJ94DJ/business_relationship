@@ -2,136 +2,132 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <title>signup (회원가입 페이지)</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <title>signup (회원가입 페이지)</title>
 </head>
 <style>
-    /* 간단하게 만든 style 코드입니다. 후에 수정해주시면 됩니다. */
-    form {
-        max-width: 400px;
-        margin: 0 auto;
-    }
+  /* 간단하게 만든 style 코드입니다. 후에 수정해주시면 됩니다. */
+  form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
 
-    div {
-        margin-bottom: 15px;
-    }
+  div {
+    margin-bottom: 15px;
+  }
 
-    input {
-        width: 100%;
-        padding: 8px;
-        box-sizing: border-box;
-    }
+  input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
 
-    button {
-        padding: 10px;
-        cursor: pointer;
-    }
+  button {
+    padding: 10px;
+    cursor: pointer;
+  }
 </style>
 
 <body>
-    <form class="" name="user_upload">
-        <h3>회원가입 페이지</h3>
-        <div>
-            ID <input type="text" name="user_id">
-            <button type="button" onclick="userIdCheck()">아이디 중복 확인</button>
-        </div>
-        <div>
-            비밀번호 <input type="password" name="user_pw">
-        </div>
-        <div>
-            비밀번호 확인 <input type="password" name="user_pw_check">
-            <button type="button" onclick="pwCheck()">비밀번호 일치 확인</button>
-        </div>
-        <div>
-            닉네임 <input type="text" name="user_name">
-        </div>
-        <div>
-            사용자 이미지 설정<input type="file" name="user_img">
-        </div>
-        <div>
-            자기소개 <input type="text" name="user_intro_self">
-        </div>
-        <div>
-            내 MBTI <input type="text" name="user_mbti">
-        </div>
-        <div>
-            <button type="button" onclick="userSignUp()">회원가입</button>
-        </div>
-    </form>
+  <form class="" name="user_upload">
+    <h3>회원가입 페이지</h3>
+    <div>
+      ID <input type="text" name="user_id">
+      <button type="button" onclick="userIdCheck()">아이디 중복 확인</button>
+    </div>
+    <div>
+      비밀번호 <input type="password" name="user_pw">
+    </div>
+    <div>
+      비밀번호 확인 <input type="password" name="user_pw_check">
+      <button type="button" onclick="pwCheck()">비밀번호 일치 확인</button>
+    </div>
+    <div>
+      닉네임 <input type="text" name="user_name">
+    </div>
+    <div>
+      사용자 이미지 설정<input type="file" name="user_img">
+    </div>
+    <div>
+      자기소개 <input type="text" name="user_intro_self">
+    </div>
+    <div>
+      내 MBTI <input type="text" name="user_mbti">
+    </div>
+    <div>
+      <button type="button" onclick="userSignUp()">회원가입</button>
+    </div>
+  </form>
 
-    <script>
+  <script>
+    //회원가입 버튼 클릭 시 user 데이터를 db로 넘김
+    function userSignUp() {
+      const form = document.forms["user_upload"]
 
-        //회원가입 버튼 클릭 시 user 데이터를 db로 넘김
-        function userSignUp() {
-            const form = document.forms["user_upload"]
+      let user = {
+        user_id: form.user_id.value,
+        user_pw: form.user_pw.value,
+        user_name: form.user_name.value,
+        user_intro_self: form.user_intro_self.value,
+        user_mbti: form.user_mbti.value,
+        // user_img: form.user_img.files[0]  multer은 잠시 보류
+      }
 
-            let user = {
-                user_id: form.user_id.value,
-                user_pw: form.user_pw.value,
-                user_name: form.user_name.value,
-                user_intro_self: form.user_intro_self.value,
-                user_mbti: form.user_mbti.value,
-                // user_img: form.user_img.files[0]  multer은 잠시 보류
-            }
-
-            axios({
-                method: "POST",
-                url: "/home/signup",
-                data: user
-                // headers: {
-                //     "Content-type": "multipart/form-data"
-                // }
-            }).then((res) => {
-                if (res.data.result) {
-                    alert("회원가입 성공 !")
-                } else {
-                    alert("알 수 없는 오류가 발생했습니다.")
-                }
-            })
+      axios({
+        method: "POST",
+        url: "/home/signup",
+        data: user
+        // headers: {
+        //     "Content-type": "multipart/form-data"
+        // }
+      }).then((res) => {
+        if (res.data.result) {
+          alert("회원가입 성공 !")
+        } else {
+          alert("알 수 없는 오류가 발생했습니다.")
         }
+      })
+    }
 
-        // 아이디 중복 확인 버튼 클릭 시
-        function userIdCheck() {
-            const form = document.forms["user_upload"]
+    // 아이디 중복 확인 버튼 클릭 시 (에러 체크 필요)
+    function userIdCheck() {
+      const form = document.forms["user_upload"]
 
-            let user_id = form.user_id.value
+      let user_id = form.user_id.value
 
-            axios({
-                method: "POST",
-                url: "/home/signup/idCheck",
-                data: user_id
-            }).then((res) => {
-                // true 값이 들어오면 아이디가 존재하지 않는다는 뜻
-                if (res.data.result) {
-                    alert("사용 가능한 아이디입니다.") // 회원가입 버튼 활성화
-                } else alert("중복된 아이디입니다.") // 중복된 아이디일 경우 회원가입 버튼이 활성화 되지 않음 = 회원가입 버튼은 default 값 = false(비활성화)
-            })
-        }
-
-
-        // 비밀번호 일치 확인 버튼 클릭 시
-        // 일단은 버튼으로 만들었으나 후에는 작성시 바로 메시지형식? 으로 뜨면 좋을 것 같음
-        function pwCheck() {
-            const form = document.forms["user_upload"]
-
-            let pwData = {
-                user_pw: form.user_pw.value,
-                user_pw_check: form.user_pw_check.value
-            }
-
-            if (pwData[0] == pwData[1]) {
-                alert("일치")
-            } else {
-                alert("불일치")
-            }
-        }
+      axios({
+        method: "POST",
+        url: "/home/signup/idCheck",
+        data: user_id
+      }).then((res) => {
+        // true 값이 들어오면 아이디가 존재하지 않는다는 뜻
+        if (res.data.result) {
+          alert("사용 가능한 아이디입니다.") // 회원가입 버튼 활성화
+        } else alert("중복된 아이디입니다.") // 중복된 아이디일 경우 회원가입 버튼이 활성화 되지 않음 = 회원가입 버튼은 default 값 = false(비활성화)
+      })
+    }
 
 
-    </script>
+    // 비밀번호 일치 확인 버튼 클릭 시
+    // 일단은 버튼으로 만들었으나 후에는 작성시 바로 메시지형식? 으로 뜨면 좋을 것 같음
+    function pwCheck() {
+      const form = document.forms["user_upload"]
+
+      let pwData = {
+        user_pw: form.user_pw.value,
+        user_pw_check: form.user_pw_check.value
+      }
+
+      if (pwData[0] == pwData[1]) {
+        alert("일치")
+      } else {
+        alert("불일치")
+      }
+    }
+  </script>
 
 </body>
 
