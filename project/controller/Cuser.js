@@ -36,21 +36,13 @@ exports.profile = (req, res) => {
       console.log("profile : ", result)
 
       if(result) res.render("profile", { data: result })
-      else res.send({result: false})
+      else res.render("profile")
     }) 
-  } else {
-    res.send({ result: false })
   }
-}
-
-// 마이페이지 랜더
-exports.profile = (req, res) => {
-  res.render("profile")
 }
 
 // 마이페이지 회원 정보 '수정' 버튼 클릭 시
 exports.editUser = (req, res) => {
-
   User.update(req.body, {
     where: { id: req.session.user_p_id }
   }).then((result) => {
@@ -66,10 +58,10 @@ exports.deleteUser = (req, res) => {
   User.destroy({
     where: { id: req.session.user_p_id },
   }).then((result) => {
-    console.log("deleteUser : ", result) // 1 or 0
+    console.log("deleteUser : ", result) // 1 or 0 == true or false
 
     if (result) res.send({ result: true })
     else res.send({ result: false })
-  })
+  }) // 탈퇴 버튼을 클릭시 세션 destroy(삭제) 코드 추가
 
 }

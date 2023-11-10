@@ -11,6 +11,7 @@ exports.signIn = (req, res) => {
 };
 
 // '로그인' 버튼 클릭 시
+// 로그인한 사용자의 고유 id값(pk)을 session에 저장, 응답으로 보냄
 exports.signInUser = (req, res) => {
   User.findOne({
     where: {
@@ -18,7 +19,7 @@ exports.signInUser = (req, res) => {
       user_pw: req.body.user_pw,
     },
   }).then((result) => {
-    console.log('login result', result);
+    console.log('signInUser result', result);
     if (result) {
       req.session.user = result.id;
       console.log('req.session', req.session);
@@ -26,6 +27,10 @@ exports.signInUser = (req, res) => {
     } else res.send({ result: false });
   });
 };
+
+// '로그아웃' 버튼 클릭 시
+exports.signOut = (req, res) => {};
+// 접속중인 사용자 세션 삭제 후 요청을 보낼 코드 작성
 
 exports.loginUser = (req, res) => {
   User.findOne({
@@ -42,6 +47,20 @@ exports.loginUser = (req, res) => {
 // 회원 가입 페이지 랜더
 exports.signUp = (req, res) => {
   res.render('signup');
+};
+
+// 회원가입 -> 아이디 중복체크 버튼 클릭 시
+exports.idCheck = (req, res) => {
+  User.findOne({
+    where: {
+      user_id: req.body.user_id,
+    },
+  }).then((result) => {
+    console.log('idCheck : ', result);
+    if (result) {
+      res.send({ result: false }); // 아이디가 존재할 시 false를 보냄
+    } else res.send({ result: true }); // 아이디가 존재하지 않을 시 true ''
+  });
 };
 
 // '회원가입' 버튼 클릭 시
