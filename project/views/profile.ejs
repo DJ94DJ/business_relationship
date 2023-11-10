@@ -11,7 +11,79 @@
 </head>
 
 <body>
+    <style>
+        /* 간단하게 만든 style 코드입니다. 후에 수정해주시면 됩니다. */
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
 
-</body>
+        div {
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+
+    <body>
+        <form class="" name="userProfile">
+            <h3>마이(프로필) 페이지</h3>
+            <div>
+                <!-- 아이디는 변경 불가능 -->
+                ID <input type="text" name="user_id" value="<%=user_id%>">
+            </div>
+            <div>
+                <!-- 후에 비밀번호 변경 방법은 따로 만들 예정 -->
+                비밀번호 <input type="password" name="user_pw" value="<%=user_pw%>">
+            </div>
+            <div>
+                닉네임 <input type="text" name="user_name" value="<%=user_name%>">
+            </div>
+            <!-- 이미지는 잠시 보류 -->
+            <!-- <div>
+                사용자 이미지 설정<input type="file" name="user_img" value="사진링크">
+            </div> -->
+            <div>
+                자기소개 <input type="text" name="user_intro_self" value="<%=user_intro_self%>">
+            </div>
+            <div>
+                내 MBTI <input type="text" name="user_mbti" value="<%=user_mbti%>">
+            </div>
+            <button type="button" onclick="editUser()">프로필 수정</button>
+        </form>
+
+    </body>
+    <script>
+        function editUser() {
+            const form = document.forms["userProfile"]
+
+            let user = {
+                user_pw: form.value.user_pw,
+                user_name: form.value.user_name,
+                user_intro_self: form.value.user_intro_self,
+                user_mbti: form.value.user_mbti
+            }
+
+            axios({
+                method: "PATCH",
+                url: "/user/profile",
+                data: user
+            }).then((res) => {
+                if (res.data.result) {
+                    alert("수정 성공")
+                    lcoation.reload()
+                } else alert("수정 실패")
+            })
+        }
+    </script>
 
 </html>

@@ -98,22 +98,23 @@
         function userIdCheck() {
             const form = document.forms["user_upload"]
 
-            let userId = form.user_id.value
+            let user_id = form.user_id.value
 
             axios({
                 method: "POST",
                 url: "/home/signup/idCheck",
-                data: userId
+                data: user_id
             }).then((res) => {
+                // true 값이 들어오면 아이디가 존재하지 않는다는 뜻
                 if (res.data.result) {
-                    alert("사용 가능한 아이디입니다.")
-                } else alert("중복된 아이디입니다.")
+                    alert("사용 가능한 아이디입니다.") // 회원가입 버튼 활성화
+                } else alert("중복된 아이디입니다.") // 중복된 아이디일 경우 회원가입 버튼이 활성화 되지 않음 = 회원가입 버튼은 default 값 = false(비활성화)
             })
         }
 
 
         // 비밀번호 일치 확인 버튼 클릭 시
-        // 일단은 버튼으로 만들었으나 후에는 작성시 바로 동작하도록 하면 좋을 것 같음
+        // 일단은 버튼으로 만들었으나 후에는 작성시 바로 메시지형식? 으로 뜨면 좋을 것 같음
         function pwCheck() {
             const form = document.forms["user_upload"]
 

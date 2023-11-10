@@ -11,11 +11,17 @@ router.get("/signin", controller.signIn)
 // 회원 로그인
 router.post("/signin", controller.signInUser)
 
+// 회원 로그아웃
+router.post("signout", controller.singOut)
+
 // 회원 가입 페이지
 router.get("/signup", controller.signUp)
 
 // 회원 가입
 router.post("/signup", controller.signUpUser)
+
+// 아이디 중복 체크
+router.post("/singup/idCheck", controller.idCheck)
 
 // 개인 정원(롤링페이퍼) 페이지
 router.get("/garden/:user_id", controller.garden)
