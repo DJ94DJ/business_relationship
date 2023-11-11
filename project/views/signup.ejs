@@ -96,9 +96,6 @@
     function userIdCheck() {
       const form = document.forms["user_upload"]
 
-      // let user_id = form.user_id.value
-      // console.log("user_id 값 확인: ", user_id)
-
       axios({
         method: "POST",
         url: "/home/signup/idCheck",
