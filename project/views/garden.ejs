@@ -1,50 +1,121 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>garden</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background-color: #87cefa;
+      }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <title>garden(내 정원)</title>
-</head>
-<style>
-    /* 간단하게 만든 style 코드입니다. 후에 수정해주시면 됩니다. */
-    .container {
-        background-color: #fff;
-        padding: 20px;
-        max-width: 400px;
-        margin: 0 auto;
-    }
+      .write-container {
+        text-align: center;
+        position: relative;
+        top: 150px;
+      }
 
-    .container div {
-        margin: 10px 0;
-    }
-
-    .container div span {
+      .write-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 26px;
         font-weight: bold;
-        margin-right: 10px;
-    }
-</style>
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border: 3px solid #3498db;
+        color: #3498db;
+        background-color: #ffffff;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+      }
 
-<body>
-    <div class="container">
-        <h3>나의 새싹가든</h3>
-        <div>
-            <span>닉네임:</span>
-            <%= data.user_name %>
-        </div>
-        <div>
-            <span>자기소개:</span>
-            <%= data.user_intro_self %>
-        </div>
-        <div>
-            <span>내 MBTI:</span>
-            <%= data.user_mbti %>
-        </div>
+      .write-btn:hover {
+        background-color: #3498db;
+        color: #ffffff;
+      }
+
+      .garden {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 40%;
+        background-color: #a0522d;
+      }
+
+      .sprout-container {
+        position: absolute;
+        bottom: 15%;
+        left: 5%;
+        right: 5%;
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+      }
+
+      .sprout-btn {
+        width: 60px;
+        height: 60px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+        animation: float 2s infinite ease-in-out;
+      }
+
+      .sprout-btn img {
+        width: 130%;
+        height: 120%;
+      }
+
+      .sprout-btn:nth-child(even) {
+        transform: translateY(50px);
+      }
+
+      .sprout-btn:hover {
+        transform: scale(1.2);
+        animation: none;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 롤링페이퍼 작성하기 버튼 -->
+    <div class="write-container">
+      <button class="write-btn">작성하기</button>
     </div>
 
-</body>
-
+    <!-- 텃밭, 새싹 부분 -->
+    <!-- sprout-btn은 사용자가 롤링페이퍼 게시하면 하나씩 추가되는 걸로 짜야댐-->
+    <div class="garden"></div>
+    <div class="sprout-container">
+      <button class="sprout-btn">
+        <img src="../static/img/sesac.png" alt="Sprout 1" />
+      </button>
+      <button class="sprout-btn">
+        <img src="../static/img/sesac.png" alt="Sprout 2" />
+      </button>
+      <button class="sprout-btn">
+        <img src="../static/img/sesac.png" alt="Sprout 3" />
+      </button>
+      <button class="sprout-btn">
+        <img src="../static/img/sesac.png" alt="Sprout 4" />
+      </button>
+      <button class="sprout-btn">
+        <img src="../static/img/sesac.png" alt="Sprout 5" />
+      </button>
+    </div>
+  </body>
 </html>
