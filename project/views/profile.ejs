@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <title>profile(마이페이지)</title>
 </head>
 
@@ -38,24 +39,19 @@
       <h3>마이(프로필) 페이지</h3>
       <div>
         <!-- 아이디는 변경 불가능 -->
-        ID <input type="text" name="user_id" value="<%=user_id%>">
       </div>
       <div>
-        <!-- 후에 비밀번호 변경 방법은 따로 만들 예정 -->
-        비밀번호 <input type="password" name="user_pw" value="<%=user_pw%>">
-      </div>
-      <div>
-        닉네임 <input type="text" name="user_name" value="<%=user_name%>">
+        닉네임 <input type="text" name="user_name" value="<%=data.user_name%>">
       </div>
       <!-- 이미지는 잠시 보류 -->
       <!-- <div>
                 사용자 이미지 설정<input type="file" name="user_img" value="사진링크">
             </div> -->
       <div>
-        자기소개 <input type="text" name="user_intro_self" value="<%=user_intro_self%>">
+        자기소개 <input type="text" name="user_intro_self" value="<%=data.user_intro_self%>">
       </div>
       <div>
-        내 MBTI <input type="text" name="user_mbti" value="<%=user_mbti%>">
+        내 MBTI <input type="text" name="user_mbti" value="<%=data.user_mbti%>">
       </div>
       <button type="button" onclick="editUser()">프로필 수정</button>
       <button type="button" onclick="deleteUser()">회원 탈퇴</button>
@@ -87,7 +83,7 @@
 
       axios({
         method: "PATCH",
-        url: `/user/profile/${userid}`,
+        url: `/user/profile/`,
         data: user
       }).then((res) => {
         if (res.data.result) {
