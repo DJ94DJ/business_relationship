@@ -142,7 +142,6 @@ exports.deleteMsg = (req, res) => {};
 // '산책하기' 버튼 클릭 시 (필수필수필수)
 exports.randomGarden = (req, res) => {
   User.count({
-    distinct: true,
     col: 'id',
   }).then((result) => {
     console.log(result);
