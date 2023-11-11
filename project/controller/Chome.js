@@ -184,7 +184,7 @@ exports.signupUser = (req, res) => {
   });
 };
 
-// user_id 가져오기
+// user_id 가져오기 테스트
 exports.getUserId = (req, res) => {
   const userId = req.session.user_id
   res.send({user_id: userId})
