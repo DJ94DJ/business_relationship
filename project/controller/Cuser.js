@@ -29,9 +29,9 @@ exports.deleteMsg = (req, res) => {
 
 // 마이페이지 랜더
 exports.profile = (req, res) => {
-  if(req.session.user_p_id) {
+  if(req.session.user) {
     User.fineOne({
-      where: { id: req.session.user_p_id }
+      where: { id: req.session.user }
     }).then((result) => {
       console.log("profile : ", result)
 
@@ -44,7 +44,7 @@ exports.profile = (req, res) => {
 // 마이페이지 회원 정보 '수정' 버튼 클릭 시
 exports.editUser = (req, res) => {
   User.update(req.body, {
-    where: { id: req.session.user_p_id }
+    where: { id: req.session.user }
   }).then((result) => {
     console.log("editUser : ", result) // update의 결과는 [1] or [0] 배열?로 담겨서 나온다.
     if (result[0]) res.send({ result: true })
@@ -56,7 +56,7 @@ exports.editUser = (req, res) => {
 exports.deleteUser = (req, res) => {
 
   User.destroy({
-    where: { id: req.session.user_p_id },
+    where: { id: req.session.user },
   }).then((result) => {
     console.log("deleteUser : ", result) // 1 or 0 == true or false
 

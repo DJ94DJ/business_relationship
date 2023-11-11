@@ -87,7 +87,7 @@
 
       axios({
         method: "PATCH",
-        url: "/user/profile",
+        url: `/user/profile/${userid}`,
         data: user
       }).then((res) => {
         if (res.data.result) {

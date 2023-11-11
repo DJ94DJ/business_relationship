@@ -1,17 +1,17 @@
 {
-    "development" : {
-        "host" : "localhost",
-        "database" : "db_business",
-        "username" : "user",
-        "password" : "qwer1234!",
-        "dialect" : "mysql"
-    },
-    
-    "production" : {
-        "host" : "",
-        "database" : "",
-        "username" : "",
-        "password" : "",
-        "dialect" : "mysql"
-    }
+  "development": {
+    "host": "localhost",
+    "database": "db_business",
+    "username": "user",
+    "password": "12345dpcks!",
+    "dialect": "mysql"
+  },
+
+  "production": {
+    "host": "",
+    "database": "",
+    "username": "",
+    "password": "",
+    "dialect": "mysql"
+  }
 }
