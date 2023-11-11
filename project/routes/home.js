@@ -13,7 +13,7 @@ router.get('/signin', controller.signIn);
 router.post('/signin', controller.signInUser);
 
 // 회원 로그아웃
-router.post("/signout", controller.signOut)
+router.post('/signout', controller.signOut);
 
 // 회원 가입 페이지
 router.get('/signup', controller.signUp);
@@ -22,19 +22,19 @@ router.get('/signup', controller.signUp);
 router.post('/signup', controller.signUpUser);
 
 // 아이디 중복 체크
-router.post("/signup/idCheck", controller.idCheck)
+router.post('/signup/idCheck', controller.idCheck);
 
 // user_id를 가져오기 위한 get 요청
-router.get("/getUserId", controller.getUserId)
+router.get('/getUserId', controller.getUserId);
 
 // 개인 정원(롤링페이퍼) 페이지
-router.get('/garden/:user_id', controller.garden);
+router.get('/garden', controller.garden);
 
 // 롤링페이퍼 작성
-router.post('/garden/:user_id', controller.writeMsg);
+router.post('/garden', controller.writeMsg);
 
 // 롤링페이퍼 삭제
-router.delete('/garden/:user_id', controller.deleteMsg);
+router.delete('/garden', controller.deleteMsg);
 
 // 랜덤 페이지(users 테이블에 존재하는 user_id 중 랜덤 반환)
 // router.get("/garden/:user_id", controller.randomGarden)

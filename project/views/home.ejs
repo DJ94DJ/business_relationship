@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <title>home</title>
   <style>
     body {
@@ -82,37 +83,38 @@
   <div class="container">
     <h1>자라나라 새싹가든</h1>
   </div>
-  <a href="./home/signup" class="button" id="signupButton">회원가입</a>
-  <a href="./home/signin" class="button" id="signinButton">로그인</a>
+
+  <a href="/home/signup" class="button" id="signupButton">회원가입</a>
+  <a href="/home/signin" class="button" id="signinButton">로그인</a>
   <a class="button" id="signoutButton">로그아웃</a>
   <div class="rolling">
-    <button type="button" class="button" id="startButton" onclick="getUserId()">롤링페이퍼 시작</button>
+    <button type="button" class="button" id="startButton" onclick="mvUserGarden()">롤링페이퍼 시작</button>
+    <button type="button" class="button" onclick="mvUserProfile()">이동</button>
   </div>
   <script>
-    function getUserId() {
+    function mvUserGarden() {
+      console.log("mvUserGarden 실행")
       axios({
         method: "GET",
-        url: "/home/getUserId"
+        url: "/home/garden"
       }).then((res) => {
-        console.log("웋하ㅏ하", res.data.user_id)
-        const userId = res.data.user_id
-        mvUserGarden(userId)
+        if (res.data) {
+          location.href = "/home/garden/"
+        }
       }).catch((error) => {
         console.error(error)
       })
     }
 
-    function mvUserGarden(user_id) {
-      console.log("mvUserGarden 실행")
+    function mvUserProfile() {
+      console.log("프로필 페이지 이동")
       axios({
         method: "GET",
-        url: `/home/garden/${user_id}`
+        url: "/user/profile"
       }).then((res) => {
         if (res.data) {
-          location.href = `/home/garden/${user_id}`
-        }
-      }).catch((error) => {
-        console.error(error)
+          location.href = "/user/profile/"
+        } else alert("마이페이지 이동 에러 발생")
       })
     }
   </script>
