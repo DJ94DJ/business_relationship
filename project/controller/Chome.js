@@ -139,5 +139,18 @@ exports.writeMsg = (req, res) => {};
 // 롤링페이퍼 '삭제' 버튼 클릭 시
 exports.deleteMsg = (req, res) => {};
 
-// '산책하기' 버튼 클릭 시
-// exports.randomGarden= (req, res) => {}
+// '산책하기' 버튼 클릭 시 (필수필수필수)
+exports.randomGarden = (req, res) => {
+  User.count({
+    distinct: true,
+    col: 'id',
+  }).then((result) => {
+    console.log(result);
+    randomNum(1, result);
+  });
+};
+
+function randomNum(min, max) {
+  var randNum = Math.floor(Math.random() * (max - min + 1)) + min;
+  return randNum;
+}

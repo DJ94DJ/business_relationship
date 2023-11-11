@@ -1,134 +1,185 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>garden</title>
-    <style>
-      body {
-        margin: 0;
-        overflow: hidden;
-        background-color: #87cefa;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>garden</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #87cefa;
+    }
+
+    .write-container {
+      text-align: center;
+      position: relative;
+      top: 150px;
+    }
+
+    .write-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 26px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      border: 3px solid #3498db;
+      color: #3498db;
+      background-color: #ffffff;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .write-btn:hover {
+      background-color: #3498db;
+      color: #ffffff;
+    }
+
+    .garden {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      background-color: #a0522d;
+    }
+
+    .sprout-container {
+      position: absolute;
+      bottom: 15%;
+      left: 5%;
+      right: 5%;
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+    }
+
+    .sprout-btn {
+      width: 60px;
+      height: 60px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+      animation: float 2s infinite ease-in-out;
+    }
+
+    .sprout-btn img {
+      width: 130%;
+      height: 120%;
+    }
+
+    .sprout-btn:nth-child(even) {
+      transform: translateY(50px);
+    }
+
+    .sprout-btn:hover {
+      transform: scale(1.2);
+      animation: none;
+    }
+
+    .sprout-btn img {
+      width: 130%;
+      height: 120%;
+    }
+
+    .sprout-btn:nth-child(even) {
+      transform: translateY(50px);
+    }
+
+    .sprout-btn:hover {
+      transform: scale(1.2);
+      animation: none;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
       }
 
-      .write-container {
-        text-align: center;
-        position: relative;
-        top: 150px;
+      50% {
+        transform: translateY(-10px);
       }
+    }
+  </style>
+</head>
 
-      .write-btn {
-        display: inline-block;
-        padding: 10px 20px;
-        font-size: 26px;
-        font-weight: bold;
-        text-align: center;
-        text-decoration: none;
-        cursor: pointer;
-        border: 3px solid #3498db;
-        color: #3498db;
-        background-color: #ffffff;
-        border-radius: 5px;
-        transition: background-color 0.3s, color 0.3s;
-      }
-
-      .write-btn:hover {
-        background-color: #3498db;
-        color: #ffffff;
-      }
-
-      .garden {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 40%;
-        background-color: #a0522d;
-      }
-
-      .sprout-container {
-        position: absolute;
-        bottom: 15%;
-        left: 5%;
-        right: 5%;
-        display: flex;
-        gap: 10px;
-        justify-content: space-between;
-      }
-
-      .sprout-btn {
-        width: 60px;
-        height: 60px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        transition: transform 0.3s ease-in-out;
-        animation: float 2s infinite ease-in-out;
-      }
-
-      .sprout-btn img {
-        width: 130%;
-        height: 120%;
-      }
-
-      .sprout-btn:nth-child(even) {
-        transform: translateY(50px);
-      }
-
-      .sprout-btn:hover {
-        transform: scale(1.2);
-        animation: none;
-      }
-
-      .sprout-btn img {
-        width: 130%;
-        height: 120%;
-      }
-
-      .sprout-btn:nth-child(even) {
-        transform: translateY(50px);
-      }
-
-      .sprout-btn:hover {
-        transform: scale(1.2);
-        animation: none;
-      }
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- 롤링페이퍼 작성하기 버튼 -->
+<body>
+  <!-- 롤링페이퍼 작성하기 버튼 -->
+  <form name="writeMsg">
     <div class="write-container">
-      <button class="write-btn">작성하기</button>
+      <div>
+        제목<input type="text" name="title">
+      </div>
+      <div>
+        메시지 내용<input type="text" name="content">
+      </div>
+      <div>
+        <input type="radio" name="isPublic" value="true" id="public">
+        <label for="public">메시지 공개 </label>
+        //
+        <input type="radio" name="isPublic" value="false" id="private">
+        <label for="private">메시지 비공개 </label>
+      </div>
+      <div>
+        컬러<input type="color" name="flowerColor">
+      </div>
+      <br />
+      <button type="button" class="write-btn" onclick="writeMsg()">작성하기</button>
     </div>
+  </form>
 
-    <!-- 텃밭, 새싹 부분 -->
-    <!-- sprout-btn은 사용자가 롤링페이퍼 게시하면 하나씩 추가되는 걸로 짜야댐-->
-    <div class="garden"></div>
-    <div class="sprout-container">
-      <button class="sprout-btn">
-        <img src="../static/img/sesac.png" alt="Sprout 1" />
-      </button>
-      <button class="sprout-btn">
-        <img src="../static/img/sesac.png" alt="Sprout 2" />
-      </button>
-      <button class="sprout-btn">
-        <img src="../static/img/sesac.png" alt="Sprout 3" />
-      </button>
-      <button class="sprout-btn">
-        <img src="../static/img/sesac.png" alt="Sprout 4" />
-      </button>
-      <button class="sprout-btn">
-        <img src="../static/img/sesac.png" alt="Sprout 5" />
-      </button>
-    </div>
-  </body>
+  <!-- 텃밭, 새싹 부분 -->
+  <!-- sprout-btn은 사용자가 롤링페이퍼 게시하면 하나씩 추가되는 걸로 짜야댐-->
+  <div class="garden"></div>
+  <div class="sprout-container">
+    <button class="sprout-btn">
+      <img src="../static/img/sesac.png" alt="Sprout 1" />
+    </button>
+    <button class="sprout-btn">
+      <img src="../static/img/sesac.png" alt="Sprout 2" />
+    </button>
+    <button class="sprout-btn">
+      <img src="../static/img/sesac.png" alt="Sprout 3" />
+    </button>
+    <button class="sprout-btn">
+      <img src="../static/img/sesac.png" alt="Sprout 4" />
+    </button>
+    <button class="sprout-btn">
+      <img src="../static/img/sesac.png" alt="Sprout 5" />
+    </button>
+  </div>
+  <script>
+    function writeMsg() {
+      const form = document.forms["writeMsg"]
+
+
+      let msg = {
+        title: form.value.title,
+        content: form.value.content,
+        is_public: form.value.isPublic,
+        color: form.value.flowerColor
+      }
+
+      axios({
+        method: "POST",
+        url: "/home/garden",
+        data: msg
+      }).then((res) => {
+        if (res.result) {
+          alert("메시지 작성 완료")
+        } else {
+          alert("메시지 작성 실패 ㅜㅜ")
+        }
+      })
+    }
+
+  </script>
+</body>
+
 </html>
