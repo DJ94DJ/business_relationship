@@ -1,0 +1,43 @@
+body {
+  height: 100%;
+  width: 100%;
+  background-attachment: fixed;
+}
+
+.sky {
+  background-attachment: fixed;
+  position: fixed;
+  background: linear-gradient(#0072b4, #ffffff);
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.container {
+  text-align: center;
+  position: relative;
+  top: 25px;
+  z-index: 1;
+}
+
+.green {
+  background-attachment: fixed;
+  background: linear-gradient(#01552c, #019252);
+  height: 60%;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-top-left-radius: 50% 40px;
+  border-top-right-radius: 50% 40px;
+}
+
+#signinButton,
+#signupButton,
+#infoButton {
+  text-align: center;
+  position: relative;
+  top: 100px;
+  margin-top: 20px;
+}
