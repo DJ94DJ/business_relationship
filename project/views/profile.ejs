@@ -5,8 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <title>profile(마이페이지)</title>
 </head>
 
@@ -61,8 +60,8 @@
   <script>
     function deleteUser() {
       axios({
-        method: 'DELETE',
-        url: "/user/delete",
+        method: "DELETE",
+        url: "/user/profile",
       }).then((res) => {
         if (res.data.result) {
           alert("탈퇴 완료")
@@ -74,13 +73,12 @@
     function editUser() {
       const form = document.forms["userProfile"]
 
+      // name으로 값을 제대로 받아오지 못해서 elements로 수정
       let user = {
-        user_pw: form.value.user_pw,
-        user_name: form.value.user_name,
-        user_intro_self: form.value.user_intro_self,
-        user_mbti: form.value.user_mbti
+        user_name: form.elements.user_name.value,
+        user_intro_self: form.elements.user_intro_self.value,
+        user_mbti: form.elements.user_mbti.value
       }
-
       axios({
         method: "PATCH",
         url: `/user/profile/`,
