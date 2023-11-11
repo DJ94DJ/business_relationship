@@ -1,122 +1,78 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <title>home</title>
+    <link rel="stylesheet" href="../static/css/home.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <title>home</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #e0f7d5;
-    }
+  <body>
+    <div class="sky"></div>
 
-    .container {
-      text-align: center;
-      position: relative;
-      top: 250px;
-    }
+    <div class="container">
+      <a href="/home">
+        <img src="../static/img/zaranara.png" alt="자라나라새싹나라" />
+      </a>
+    </div>
+    <div class="green"></div>
 
-    h1 {
-      color: #228b22;
-    }
+    <div id="signinButton">
+      <a href="/home/signin">
+        <img width="200px" src="../static/img/signin.png" alt="로그인" />
+      </a>
+    </div>
 
-    .button {
-      display: inline-block;
-      padding: 10px 20px;
-      margin: 10px;
-      font-size: 16px;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+    <div id="signupButton">
+      <a href="/home/signup">
+        <img width="200px" src="../static/img/signup.png" alt="회원가입" />
+      </a>
+    </div>
 
-    #signupButton,
-    #signinButton,
-    #signoutButton {
-      background-color: #4caf50;
-      color: white;
-      position: absolute;
-      top: 10px;
-    }
+    <div id="infoButton">
+      <a href="#">
+        <!-- 아직 안 만든 페이지라... 추후... -->
+        <img width="100px" src="../static/img/info.png" alt="인포" />
+      </a>
+    </div>
 
-    #signupButton {
-      right: 10px;
-    }
+    <script>
+      function getUserId() {
+        axios({
+          method: 'GET',
+          url: '/home/getUserId',
+        })
+          .then((res) => {
+            console.log('웋하ㅏ하', res.data.user_id);
+            const userId = res.data.user_id;
+            mvUserGarden(userId);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
 
-    #signinButton {
-      right: 130px;
-    }
-
-    #signoutButton {
-      right: 20px;
-      display: none;
-    }
-
-    #startButton {
-      padding: 20px 40px;
-      background-color: #008cba;
-      color: white;
-      margin-top: 20px;
-    }
-
-    .rolling {
-      text-align: center;
-      position: relative;
-      top: 350px;
-    }
-  </style>
-</head>
-
-<body>
-  <!-- 링크는 편의를 위해 걸어두었으며, -->
-  <!-- 로그인 여부 서버에서 확인 뒤 -->
-  <!-- 비로그인 시 : 시작하기 버튼 누르면 로그인 페이지로 render -->
-  <!-- 로그인 시 : 회원가입, 로그인 버튼 hide 하고 로그아웃 버튼 나타남. 시작하기 버튼 누르면 garden render -->
-  <!-- 되는 코드 작성 필요 -->
-  <div class="container">
-    <h1>자라나라 새싹가든</h1>
-  </div>
-  <a href="./home/signup" class="button" id="signupButton">회원가입</a>
-  <a href="./home/signin" class="button" id="signinButton">로그인</a>
-  <a class="button" id="signoutButton">로그아웃</a>
-  <div class="rolling">
-    <button type="button" class="button" id="startButton" onclick="getUserId()">롤링페이퍼 시작</button>
-  </div>
-  <script>
-    function getUserId() {
-      axios({
-        method: "GET",
-        url: "/home/getUserId"
-      }).then((res) => {
-        console.log("웋하ㅏ하", res.data.user_id)
-        const userId = res.data.user_id
-        mvUserGarden(userId)
-      }).catch((error) => {
-        console.error(error)
-      })
-    }
-
-    function mvUserGarden(user_id) {
-      console.log("mvUserGarden 실행")
-      axios({
-        method: "GET",
-        url: `/home/garden/${user_id}`
-      }).then((res) => {
-        if (res.data) {
-          location.href = `/home/garden/${user_id}`
-        }
-      }).catch((error) => {
-        console.error(error)
-      })
-    }
-  </script>
-
-</body>
-
+      function mvUserGarden(user_id) {
+        console.log('mvUserGarden 실행');
+        axios({
+          method: 'GET',
+          url: `/home/garden/${user_id}`,
+        })
+          .then((res) => {
+            if (res.data) {
+              location.href = `/home/garden/${user_id}`;
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    </script>
+  </body>
 </html>
