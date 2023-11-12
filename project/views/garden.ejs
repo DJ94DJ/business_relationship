@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <title>garden</title>
   <style>
     body {
@@ -111,27 +112,25 @@
     .modal {
       display: none;
       position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+    }
+
+    /* 배경 스타일 */
+    .modal-bg {
+      display: none;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       background-color: rgba(0, 0, 0, 0.5);
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal-content {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      cursor: pointer;
+      z-index: 999;
     }
   </style>
 </head>
@@ -161,21 +160,24 @@
     </div>
   </form>
 
+
+  <!-- 메시지 확인을 위한 임시 모달창 -->
+  <button id="openModalBtn" onclick="openModal()">롤페 열기</button>
+  <div id="myModal" class="modal">
+    <p> <strong>제목: <%= msg.title %></strong><br>
+      내용: <%= msg.content %><br>
+      작성일: <%= msg.message_at %> </p>
+    <button onclick="closeModal()">닫기</button>
+  </div>
+  <div id="modalBg" class="modal-bg" onclick="closeModal()"></div>
+
+
   <!-- 텃밭, 새싹 부분 -->
   <!-- sprout-btn은 사용자가 롤링페이퍼 게시하면 하나씩 추가되는 걸로 짜야댐-->
   <div class="garden"></div>
   <div class="sprout-container">
-    <button class="sprout-btn" onclick="openMsg()">
+    <button class="sprout-btn">
       <img src="../static/img/sesac.png" alt="Sprout 1" />
-      <div id="myModal" class="modal">
-        <div class="modal-content">
-          <span class="close-btn" onclick="closeMsg()">&times;</span>
-          <h3>롤링페이퍼</h3>
-          <p> <strong>제목: <%= msg.title %></strong><br>
-            내용: <%= msg.content %><br>
-            작성일: <%= msg.message_at %></p>
-        </div>
-      </div>
     </button>
     <button class="sprout-btn">
       <img src="../static/img/sesac.png" alt="Sprout 2" />
@@ -192,33 +194,15 @@
   </div>
 
   <script>
-    // 메시지 확인창
-    function openMsg() {
-      const modal = document.getElementById('myModal');
-      modal.style.display = 'flex'
-    }
-
-    function closeMsg() {
-      const modal = document.getElementById('myModal');
-      modal.style.display = 'none'
-    }
-
-    window.onclick = function(event) {
-      const modal = document.getElementById('myModal');
-      if (event.target === modal) {
-        modal.style.display = 'none';
-      }
-    }
-
-    //현재 '작성하기' 버튼 클릭 후 메세지 보내는 기능까지는 구현함
+    // 현재 '작성하기' 버튼 클릭 후 메세지 보내는 기능까지는 구현함 (오류 체크 필요)
     function writeMsg() {
       const form = document.forms["writeMsg"]
 
-      let msg = {
-        title: form.value.title,
-        content: form.value.content,
-        is_public: form.value.isPublic,
-        color: form.value.flowerColor
+      const msg = {
+        title: form.elements.title.value,
+        content: form.elements.content.value,
+        is_public: form.elements.isPublic.value,
+        color: form.elements.flowerColor.value
       }
 
       axios({
@@ -232,6 +216,21 @@
           alert("메시지 작성 실패 ㅜㅜ")
         }
       })
+    }
+
+    // 메시지 확인을 위한 임시 모달.......인데 왜 열리질 않는 것인지...
+    const modal = document.getElementById('myModal');
+    const modalBg = document.getElementById('modalBg');
+
+    function openModal() {
+      modal.style.display = 'block';
+      modalBg.style.display = 'block';
+    }
+    console.log(openModal())
+
+    function closeModal() {
+      modal.style.display = 'none';
+      modalBg.style.display = 'none';
     }
   </script>
 </body>
