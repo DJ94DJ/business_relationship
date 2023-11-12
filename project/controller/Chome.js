@@ -146,7 +146,10 @@ exports.garden = (req, res) => {
 
 // 롤링페이퍼 '작성' 버튼 클릭 시
 exports.writeMsg = (req, res) => {
-  Message.create(req.body).then((result) => {
+  Message.create({
+    ...req.body,
+    id: req.session.userId, // messages 테이블 id에 id 값 함께 추가(?)
+  }).then((result) => {
     console.log('writeMsg : ', result);
     res.send({ result: true });
   });
