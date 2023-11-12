@@ -1,4 +1,4 @@
-const { User, Message } = require('../model');
+const { db, User, Message } = require('../model');
 const pwSalt = require('../model/pwSalt');
 
 // 메인 페이지 랜더
@@ -29,8 +29,8 @@ exports.signInUser = (req, res) => {
           )
           .then((pwCorrect) => {
             if (pwCorrect) {
-              req.session.user_id = result.user_id; // user_id도 세션에 저장 (개인 가든으로 이동하기 위함)
-              req.session.user = result.id;
+              req.session.userName = result.user_name; // user_name 세션에 저장 (로그인 시 이름을 띄우기 위함)
+              req.session.userId = result.id;
               console.log('signInUser : ', result);
               console.log('session', req.session);
               res.send({ result: true });
@@ -139,17 +139,12 @@ exports.writeMsg = (req, res) => {};
 // 롤링페이퍼 '삭제' 버튼 클릭 시
 exports.deleteMsg = (req, res) => {};
 
-// '산책하기' 버튼 클릭 시 (필수필수필수)
+// '산책하기' 버튼 클릭 시
 exports.randomGarden = (req, res) => {
-  User.count({
-    col: 'id',
-  }).then((result) => {
-    console.log(result);
-    randomNum(1, result);
+  User.findAll().then((result) => {
+    const ranId = Math.floor(Math.random() * result.length);
+    const ranData = result[ranId];
+    console.log(ranData);
+    res.render('garden', { data: ranData });
   });
 };
-
-function randomNum(min, max) {
-  var randNum = Math.floor(Math.random() * (max - min + 1)) + min;
-  return randNum;
-}
