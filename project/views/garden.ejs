@@ -137,7 +137,7 @@
 
 <body>
   <!-- 롤링페이퍼 작성하기 버튼 -->
-  <form name="writeMsg">
+  <form name="newMsg">
     <div class="write-container">
       <div>
         제목<input type="text" name="title">
@@ -196,7 +196,7 @@
   <script>
     // 현재 '작성하기' 버튼 클릭 후 메세지 보내는 기능까지는 구현함 (오류 체크 필요)
     function writeMsg() {
-      const form = document.forms["writeMsg"]
+      const form = document.forms["newMsg"]
 
       const msg = {
         title: form.elements.title.value,
