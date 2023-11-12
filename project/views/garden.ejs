@@ -106,6 +106,33 @@
         transform: translateY(-10px);
       }
     }
+
+    /* 메시지 확인을 위한 임시 모달창 */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -138,8 +165,17 @@
   <!-- sprout-btn은 사용자가 롤링페이퍼 게시하면 하나씩 추가되는 걸로 짜야댐-->
   <div class="garden"></div>
   <div class="sprout-container">
-    <button class="sprout-btn">
+    <button class="sprout-btn" onclick="openMsg()">
       <img src="../static/img/sesac.png" alt="Sprout 1" />
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close-btn" onclick="closeMsg()">&times;</span>
+          <h3>롤링페이퍼</h3>
+          <p> <strong>제목: <%= msg.title %></strong><br>
+            내용: <%= msg.content %><br>
+            작성일: <%= msg.message_at %></p>
+        </div>
+      </div>
     </button>
     <button class="sprout-btn">
       <img src="../static/img/sesac.png" alt="Sprout 2" />
@@ -154,7 +190,26 @@
       <img src="../static/img/sesac.png" alt="Sprout 5" />
     </button>
   </div>
+
   <script>
+    // 메시지 확인창
+    function openMsg() {
+      const modal = document.getElementById('myModal');
+      modal.style.display = 'flex'
+    }
+
+    function closeMsg() {
+      const modal = document.getElementById('myModal');
+      modal.style.display = 'none'
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('myModal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    }
+
     //현재 '작성하기' 버튼 클릭 후 메세지 보내는 기능까지는 구현함
     function writeMsg() {
       const form = document.forms["writeMsg"]

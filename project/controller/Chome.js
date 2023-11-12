@@ -1,5 +1,6 @@
-const { db, User, Message } = require('../model');
+const { db, User, Message, Sequelize } = require('../model');
 const pwSalt = require('../model/pwSalt');
+const Op = Sequelize.Op;
 
 // 메인 페이지 랜더
 exports.home = (req, res) => {
@@ -122,22 +123,45 @@ exports.getUserId = (req, res) => {
 };
 
 // 개인 정원(롤링페이퍼) 페이지 랜더
+// 로그인 후, 정원 랜더 시 해당 user_id에 해당하는 메시지도 함께 응답에 담아 보냄
 exports.garden = (req, res) => {
-  const userId = req.session.user_id;
+  const userId = req.session.userId;
+  console.log('session user_id: ', userId);
+
   User.findOne({
     where: {
-      user_id: userId,
+      id: userId,
     },
   }).then((result) => {
-    res.render('garden', { data: result });
+    Message.findAll({
+      attributes: ['title', 'content', 'is_public', 'message_at'],
+      where: { id: userId },
+      include: { model: User },
+    }).then((msg) => {
+      console.log('msg, result :', result, msg);
+      res.render('garden', { result, msg });
+    });
   });
 };
 
 // 롤링페이퍼 '작성' 버튼 클릭 시
-exports.writeMsg = (req, res) => {};
+exports.writeMsg = (req, res) => {
+  Message.create(req.body).then((result) => {
+    console.log('writeMsg : ', result);
+    res.send({ result: true });
+  });
+};
 
 // 롤링페이퍼 '삭제' 버튼 클릭 시
-exports.deleteMsg = (req, res) => {};
+exports.deleteMsg = (req, res) => {
+  Message.destroy({
+    where: { message_id: req.body.message_id },
+  }).then((result) => {
+    console.log('deleteMsg : ', result);
+    if (result) res.send({ result: true });
+    else res.send({ result: false });
+  });
+};
 
 // '산책하기' 버튼 클릭 시
 exports.randomGarden = (req, res) => {
