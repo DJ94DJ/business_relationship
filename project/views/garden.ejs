@@ -146,29 +146,37 @@
       <%let result=true%>
       <% for (let i=0; i < msg.length; i++) { %>
       <% if(result) { %>
-      <div>
-        <h3>여기는 왼쪽</h3>
-        제목: <%=msg[i].title%> <br />
-        내용: <%=msg[i].content%> <br />
-        공개여부: <%=msg[i].is_public%> <br />
-      </div>
+      <form name="mesId">
+        <div>
+          <h3>여기는 왼쪽</h3>
+          <input type="hidden" name="mesId" value="<%=msg[i].message_id%>">
+          제목: <%=msg[i].title%> <br />
+          내용: <%=msg[i].content%> <br />
+          공개여부: <%=msg[i].is_public%> <br />
+          <button type="button" onclick="deleteMsg()">삭제하기</button>
+        </div>
+      </form>
       <%result=false%>
       <% } else {%>
-      <div style="text-align: right;">
-        <h3>여기는 오른쪽</h3>
-        제목: <%=msg[i].title%> <br />
-        내용: <%=msg[i].content%> <br />
-        공개여부: <%=msg[i].is_public%> <br />
-      </div>
-      <%result=true%>
+      <form name="mesId">
+        <div style="text-align: right;">
+          <h3>여기는 오른쪽</h3>
+          <input type="hidden" name="mesId" value="<%=msg[i].message_id%>">
+          제목: <%=msg[i].title%> <br />
+          내용: <%=msg[i].content%> <br />
+          공개여부: <%=msg[i].is_public%> <br />
+          <button type="button" onclick="deleteMsg()">삭제하기</button>
+      </form>
+  </div>
+  <%result=true%>
+  <%}%>
       <%}%>
-                      <%}%>
-      <%} else {%>
-      <div>
-        <h3>메시지가 없습니다 ㅜㅜ</h3>
-      </div>
-      <%}%>
-    </ul>
+  <%} else {%>
+  <div>
+    <h3>메시지가 없습니다 ㅜㅜ</h3>
+  </div>
+  <%}%>
+  </ul>
   </div>
 
 
@@ -217,6 +225,33 @@
         }
       })
     }
+
+    function deleteMsg() {
+      const form = document.forms["mesId"]
+      let mesId = form.mesId.value
+      console.log("mesId : ", mesId)
+      axios({
+        method: "DELETE",
+        url: "/home/garden",
+        data: mesId
+      }).then((res) => {
+        console.log("res.data", res.data)
+        if (res.data.result) {
+          alert("삭제되었습니다")
+          location.reload()
+        } else {
+          location.reload()
+        }
+      }).catch((err) => {
+        console.log("에러발생")
+      })
+
+    }
+
+
+    // $("buttion[name=delMsg]").on("click", function () {
+    //   console.log("value : ", this.value)
+    // })
 
     function profile() {
       axios({
