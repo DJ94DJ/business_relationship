@@ -125,17 +125,14 @@ exports.getUserId = (req, res) => {
 // 개인 정원(롤링페이퍼) 페이지 랜더
 // 로그인 후, 정원 랜더 시 해당 user_id에 해당하는 메시지도 함께 응답에 담아 보냄
 exports.garden = (req, res) => {
-  const userId = req.session.userId;
-  console.log('session user_id: ', userId);
-
   User.findOne({
     where: {
-      id: userId,
+      id: req.session.userId,
     },
   }).then((result) => {
     Message.findAll({
       attributes: ['title', 'content', 'is_public', 'message_at'],
-      where: { id: userId },
+      where: { id: req.session.userId },
       include: { model: User },
     }).then((msg) => {
       console.log('msg, result :', result, msg);
