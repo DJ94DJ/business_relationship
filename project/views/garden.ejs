@@ -112,6 +112,10 @@
 </head>
 
 <body>
+  <!-- 마이페이지 이동 버튼 -->
+  <button type="button" class="my-page-btn" onclick="profile()">마이페이지</button>
+
+
   <!-- 롤링페이퍼 작성하기 버튼 -->
   <form name="newMsg">
     <div class="write-container">
@@ -214,6 +218,16 @@
       })
     }
 
+    function profile() {
+      axios({
+        method: "GET",
+        url: "/user/profile"
+      }).then((res) => {
+        console.log('res', res.data)
+        if (res.data) location.href = '/user/profile'
+        else {alert("마이페이지 접근 불가 ;ㅁ;")}
+      })
+    }
   </script>
 </body>
 

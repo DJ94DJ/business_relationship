@@ -52,8 +52,18 @@
       <div>
         내 MBTI <input type="text" name="user_mbti" value="<%=data.user_mbti%>">
       </div>
-      <button type="button" onclick="editUser()">프로필 수정</button>
+
+      <!-- 아이디/비번 변경은 '비밀번호 재설정' 버튼 클릭 시 별도 창으로 띄울 예정 -->
+      <div>
+        아이디 <input type="text" name="user_id" value="<%=data.user_id%>">
+      </div>
+      <div>
+        비밀번호 <input type="password" name="user_pw" value="">
+      </div>
+
+      <button type="button" onclick="editUser()">정보 수정</button>
       <button type="button" onclick="deleteUser()">회원 탈퇴</button>
+      <button type="button" onclick="editPw()">비밀번호 재설정</button>
     </form>
 
   </body>
@@ -73,7 +83,6 @@
     function editUser() {
       const form = document.forms["userProfile"]
 
-      // name으로 값을 제대로 받아오지 못해서 elements로 수정
       let user = {
         user_name: form.elements.user_name.value,
         user_intro_self: form.elements.user_intro_self.value,
@@ -89,6 +98,35 @@
           location.reload()
         } else alert("수정 실패")
       })
+    }
+
+    // editPw 인증과 수정 두 가지 함수로 나눌 예정
+    function editPw() {
+      const form = document.forms["userProfile"]
+
+      let user = {
+        user_id: form.elements.user_id.value,
+        user_pw: form.elements.user_pw.value
+      }
+
+      axios({
+        method: "POST",
+        url: `/user/profile`,
+        data: user
+      }).then((res) => {
+        if (res.data.result) {
+          axios({
+            method: "PATCH",
+            url: `/user/profile/pw`,
+            data: user.user_pw
+          }).then((res) => {
+            if (res.data.result) alert("수정 성공")
+            else alert("수정 실패")
+          })
+        } else alert("아이디와 비번이 일치하지 않습니다.")
+      })
+
+
     }
   </script>
 
