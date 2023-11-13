@@ -131,7 +131,7 @@ exports.garden = (req, res) => {
     },
   }).then((result) => {
     Message.findAll({
-      attributes: ['title', 'content', 'is_public', 'message_at'],
+      attributes: ['message_id', 'title', 'content', 'is_public'],
       where: { id: req.session.userId },
       include: { model: User },
     }).then((msg) => {
