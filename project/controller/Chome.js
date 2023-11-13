@@ -168,7 +168,17 @@ exports.randomGarden = (req, res) => {
   User.findAll().then((result) => {
     const ranId = Math.floor(Math.random() * result.length);
     const ranData = result[ranId];
-    console.log(ranData);
+    console.log('ranData :', ranData);
+    console.log('ranId :', ranId);
     res.render('garden', { data: ranData });
   });
 };
+// .then((ranId) => {
+//   Message.findAll({
+//     attributes: ['title', 'content', 'is_public'],
+//     where: { id: ranId },
+//     include: { model: User },
+//   }).then((msg) => {
+//     res.send({ msg });
+//   });
+// });
