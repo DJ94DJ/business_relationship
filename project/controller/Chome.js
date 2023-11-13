@@ -131,7 +131,7 @@ exports.garden = (req, res) => {
     },
   }).then((result) => {
     Message.findAll({
-      attributes: ['title', 'content', 'is_public', 'message_at'],
+      attributes: ['message_id', 'title', 'content', 'is_public'],
       where: { id: req.session.userId },
       include: { model: User },
     }).then((msg) => {
@@ -169,16 +169,18 @@ exports.randomGarden = (req, res) => {
     const ranId = Math.floor(Math.random() * result.length);
     const ranData = result[ranId];
     console.log('ranData :', ranData);
-    console.log('ranId :', ranId);
-    res.render('garden', { data: ranData });
+    res.send({ data: ranData });
   });
 };
-// .then((ranId) => {
-//   Message.findAll({
-//     attributes: ['title', 'content', 'is_public'],
-//     where: { id: ranId },
-//     include: { model: User },
-//   }).then((msg) => {
-//     res.send({ msg });
-//   });
-// });
+
+// '산책하기' 페이지 랜더
+exports.ranGardenPage = (req, res) => {
+  Message.findAll({
+    attributes: ['message_id', 'title', 'content', 'is_public'],
+    where: { id: ranId },
+    include: { model: User },
+  }).then((msg) => {
+    console.log('ran-msg, ran-result :', result, msg);
+    res.render('garden', { result, msg });
+  });
+};

@@ -39,4 +39,7 @@ router.delete('/garden', controller.deleteMsg);
 // 랜덤 페이지(users 테이블에 존재하는 user_id 중 랜덤 반환)
 router.get('/garden/random', controller.randomGarden);
 
+// 랜덤 페이지 이동
+router.get('/garden/randompage', controller.ranGardenPage);
+
 module.exports = router;

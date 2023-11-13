@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <title>garden</title>
   <style>
@@ -135,6 +136,17 @@
     </div>
   </form>
 
+  <div>
+    <ul id="mess">
+      <% for (let i=0; i < msg.length; i++) { %>
+      제목: <%=msg[i].title%> <br />
+      내용: <%=msg[i].content%> <br />
+      공개여부: <%=msg[i].content%> <br />
+      <%}%>
+    </ul>
+  </div>
+
+
   <!-- 텃밭, 새싹 부분 -->
   <!-- sprout-btn은 사용자가 롤링페이퍼 게시하면 하나씩 추가되는 걸로 짜야댐-->
   <div class="garden"></div>
@@ -174,11 +186,30 @@
       }).then((res) => {
         if (res.data.result) {
           alert("메시지 작성 완료")
+          location.reload()
         } else {
           alert("메시지 작성 실패 ㅜㅜ")
         }
       })
     }
+
+    // 메시지 확인을 위한 임시 모달.......인데 왜 열리질 않는 것인지...
+    const modal = document.getElementById('myModal');
+    const modalBg = document.getElementById('modalBg');
+
+    function openModal() {
+      modal.style.display = 'block';
+      modalBg.style.display = 'block';
+    }
+    console.log(openModal())
+
+    function closeModal() {
+      modal.style.display = 'none';
+      modalBg.style.display = 'none';
+    }
+
+    //for문으로 msg의 길이만큼 동작한다.
+
   </script>
 </body>
 
