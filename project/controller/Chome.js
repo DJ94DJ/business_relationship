@@ -169,18 +169,20 @@ exports.randomGarden = (req, res) => {
     const ranId = Math.floor(Math.random() * result.length);
     const ranData = result[ranId];
     console.log('ranData :', ranData);
-    res.send({ data: ranData });
+    console.log('ranId :', ranId);
+    res.send({ data: ranId });
   });
 };
 
 // '산책하기' 페이지 랜더
 exports.ranGardenPage = (req, res) => {
+  console.log('req.params.id :', req.params.id);
   Message.findAll({
     attributes: ['message_id', 'title', 'content', 'is_public'],
-    where: { id: ranId },
+    where: { id: req.params.id },
     include: { model: User },
   }).then((msg) => {
-    console.log('ran-msg, ran-result :', result, msg);
-    res.render('garden', { result, msg });
+    console.log('ran-msg :', msg);
+    res.render('garden', { msg });
   });
 };

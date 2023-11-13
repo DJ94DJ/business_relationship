@@ -40,6 +40,6 @@ router.delete('/garden', controller.deleteMsg);
 router.get('/garden/random', controller.randomGarden);
 
 // 랜덤 페이지 이동
-router.get('/garden/randompage', controller.ranGardenPage);
+router.get('/garden/:id', controller.ranGardenPage);
 
 module.exports = router;

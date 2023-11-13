@@ -138,10 +138,31 @@
 
   <div>
     <ul id="mess">
+      <%if(msg) {%>
+      <%let result=true%>
       <% for (let i=0; i < msg.length; i++) { %>
-      제목: <%=msg[i].title%> <br />
-      내용: <%=msg[i].content%> <br />
-      공개여부: <%=msg[i].content%> <br />
+      <% if(result) { %>
+      <div>
+        <h3>여기는 왼쪽</h3>
+        제목: <%=msg[i].title%> <br />
+        내용: <%=msg[i].content%> <br />
+        공개여부: <%=msg[i].is_public%> <br />
+      </div>
+      <%result=false%>
+      <% } else {%>
+      <div style="text-align: right;">
+        <h3>여기는 오른쪽</h3>
+        제목: <%=msg[i].title%> <br />
+        내용: <%=msg[i].content%> <br />
+        공개여부: <%=msg[i].is_public%> <br />
+      </div>
+      <%result=true%>
+      <%}%>
+                      <%}%>
+      <%} else {%>
+      <div>
+        <h3>메시지가 없습니다 ㅜㅜ</h3>
+      </div>
       <%}%>
     </ul>
   </div>
@@ -149,7 +170,7 @@
 
   <!-- 텃밭, 새싹 부분 -->
   <!-- sprout-btn은 사용자가 롤링페이퍼 게시하면 하나씩 추가되는 걸로 짜야댐-->
-  <div class="garden"></div>
+  <!-- <div class="garden"></div>
   <div class="sprout-container">
     <button class="sprout-btn">
       <img src="../static/img/sesac.png" alt="Sprout 1" />
@@ -166,7 +187,7 @@
     <button class="sprout-btn">
       <img src="../static/img/sesac.png" alt="Sprout 5" />
     </button>
-  </div>
+  </div> -->
 
   <script>
     function writeMsg() {
@@ -192,23 +213,6 @@
         }
       })
     }
-
-    // 메시지 확인을 위한 임시 모달.......인데 왜 열리질 않는 것인지...
-    const modal = document.getElementById('myModal');
-    const modalBg = document.getElementById('modalBg');
-
-    function openModal() {
-      modal.style.display = 'block';
-      modalBg.style.display = 'block';
-    }
-    console.log(openModal())
-
-    function closeModal() {
-      modal.style.display = 'none';
-      modalBg.style.display = 'none';
-    }
-
-    //for문으로 msg의 길이만큼 동작한다.
 
   </script>
 </body>

@@ -13,7 +13,6 @@
 <body>
   <div class="sky"></div>
 
-
   <div class="container">
     <a href="/home">
       <img src="../static/img/zaranara.png" alt="자라나라새싹나라" />
@@ -87,15 +86,21 @@
         method: "GET",
         url: '/home/garden/random'
       }).then((res) => {
-        let num = res.data.ranData
-        console.log(num)
-        axios({
-          method: "GET",
-          url: '/home/garden/randompage',
-          data: num
-        }).then((res) => {
-          location.href = `/home/garden/<%=  %>`
-        })
+        let num = res.data.data
+        console.log("res : ", res)
+        console.log("res.data : ", res.data)
+        console.log("num : ", num)
+        randomPage(num)
+      })
+    }
+
+    function randomPage(id) {
+      console.log("매개변수: ", id)
+      axios({
+        method: "GET",
+        url: `/home/garden/random/${id}`
+      }).then((res) => {
+        location.href = `/home/garden/${id}`
       })
     }
   </script>
