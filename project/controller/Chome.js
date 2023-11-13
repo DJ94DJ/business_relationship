@@ -116,12 +116,6 @@ exports.signUpUser = (req, res) => {
     });
 };
 
-// user_id 가져오기 테스트
-exports.getUserId = (req, res) => {
-  const userId = req.session.user_id;
-  res.send({ user_id: userId });
-};
-
 // 개인 정원(롤링페이퍼) 페이지 랜더
 // 로그인 후, 정원 랜더 시 해당 user_id에 해당하는 메시지도 함께 응답에 담아 보냄
 exports.garden = (req, res) => {
@@ -152,15 +146,17 @@ exports.writeMsg = (req, res) => {
   });
 };
 
-// 롤링페이퍼 '삭제' 버튼 클릭 시
+// 롤링페이퍼 '삭제' 버튼 클릭 시 삭제는 해당 가든의 주인만 가능하다.
 exports.deleteMsg = (req, res) => {
-  Message.destroy({
-    where: { message_id: req.body.message_id },
-  }).then((result) => {
-    console.log('deleteMsg : ', result);
-    if (result) res.send({ result: true });
-    else res.send({ result: false });
-  });
+  console.log('req.mesId', req.body.mesId);
+  if (req.body.mesId == req.session.userId) {
+    Message.destroy({
+      where: { message_id: req.body.message_id },
+    }).then((result) => {
+      console.log('deleteMsg : ', result);
+      res.send({ result: true });
+    });
+  } else res.send({ result: false });
 };
 
 // '산책하기' 버튼 클릭 시

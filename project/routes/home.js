@@ -24,9 +24,6 @@ router.post('/signup', controller.signUpUser);
 // 아이디 중복 체크
 router.post('/signup/idCheck', controller.idCheck);
 
-// user_id를 가져오기 위한 get 요청
-router.get('/getUserId', controller.getUserId);
-
 // 개인 정원(롤링페이퍼) 페이지
 router.get('/garden', controller.garden);
 
