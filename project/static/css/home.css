@@ -35,6 +35,7 @@ body {
 
 #signinButton,
 #signupButton,
+#walkButton,
 #infoButton {
   text-align: center;
   position: relative;

@@ -3,96 +3,79 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>garden</title>
+    <title>garden 첫페이지</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
     <style>
       body {
+        height: 100%;
+        width: 100%;
         margin: 0;
         overflow: hidden;
-        background-color: #87cefa;
       }
 
-      .write-container {
-        text-align: center;
-        position: relative;
-        top: 150px;
-      }
-
-      .write-btn {
-        display: inline-block;
-        padding: 10px 20px;
-        font-size: 26px;
-        font-weight: bold;
-        text-align: center;
-        text-decoration: none;
-        cursor: pointer;
-        border: 3px solid #3498db;
-        color: #3498db;
-        background-color: #ffffff;
-        border-radius: 5px;
-        transition: background-color 0.3s, color 0.3s;
-      }
-
-      .write-btn:hover {
-        background-color: #3498db;
-        color: #ffffff;
-      }
-
-      .garden {
+      .sky {
+        background-attachment: fixed;
         position: absolute;
+        background: linear-gradient(#0072b4, #ffffff);
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: -1;
+      }
+      .green {
+        background-attachment: fixed;
+        position: fixed;
+        background: linear-gradient(#01552c, #019252);
+        height: 30%;
+        width: 100%;
+        position: fixed;
         bottom: 0;
         left: 0;
-        width: 100%;
-        height: 40%;
-        background-color: #a0522d;
+        border-top-left-radius: 50% 40px;
+        border-top-right-radius: 50% 40px;
+        z-index: 0;
       }
-
-      .sprout-container {
+      .sesac-container {
         position: absolute;
-        bottom: 15%;
+        bottom: 10%;
         left: 5%;
         right: 5%;
         display: flex;
-        gap: 10px;
+        gap: 30px;
         justify-content: space-between;
       }
 
-      .sprout-btn {
+      .sesac {
         width: 60px;
         height: 60px;
         background: none;
         border: none;
-        cursor: pointer;
         transition: transform 0.3s ease-in-out;
         animation: float 2s infinite ease-in-out;
       }
 
-      .sprout-btn img {
-        width: 130%;
-        height: 120%;
+      .sesac:nth-child(even) {
+        margin-top: 40px;
       }
 
-      .sprout-btn:nth-child(even) {
-        transform: translateY(50px);
+      .sesac img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
       }
 
-      .sprout-btn:hover {
-        transform: scale(1.2);
-        animation: none;
-      }
-
-      .sprout-btn img {
-        width: 130%;
-        height: 120%;
-      }
-
-      .sprout-btn:nth-child(even) {
-        transform: translateY(50px);
-      }
-
-      .sprout-btn:hover {
-        transform: scale(1.2);
-        animation: none;
-      }
       @keyframes float {
         0%,
         100% {
@@ -102,33 +85,84 @@
           transform: translateY(-10px);
         }
       }
+      .navbar,
+      .offcanvas-header  {
+        opacity: 1;
+        height: 80px;
+      }
+      .offcanvas {
+        opacity: 0.8;
+      }
+
+      .nav-link {
+        height: 150px;
+        font-size: 50px;
+        text-align: center;
+        color: #019252;
+      }
+      body {
+        font-family: 'DNFBitBitv2';
+      }
+      @font-face{
+font-family:'DNFBitBitv2';
+font-style:normal;font-weight:400;src:url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf')format('opentype')}
     </style>
   </head>
   <body>
-    <!-- 롤링페이퍼 작성하기 버튼 -->
-    <div class="write-container">
-      <button class="write-btn">작성하기</button>
+    <nav class="navbar bg-body-tertiary fixed-top">
+      <div class="container-fluid">
+        <!-- 공유하기 버튼 이미지 만들어서 수정 -->
+        <a class="navbar-brand" href="#">공유하기</a>
+        <div class="navbar-brand">'s 정원</div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="offcanvas offcanvas-end"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          <div class="offcanvas-header">
+           
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/home"
+                  >홈으로 가기</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/home/signin">로그인</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">산책하기</a>
+              </li>
+      </div>
+    </nav>
+    <div class="sky"></div>
+    <div class="green"></div>
+    <div class="sesac-container">
+      <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
+      <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
+      <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
+      <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
+      <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
     </div>
-
-    <!-- 텃밭, 새싹 부분 -->
-    <!-- sprout-btn은 사용자가 롤링페이퍼 게시하면 하나씩 추가되는 걸로 짜야댐-->
-    <div class="garden"></div>
-    <div class="sprout-container">
-      <button class="sprout-btn">
-        <img src="../static/img/sesac.png" alt="Sprout 1" />
-      </button>
-      <button class="sprout-btn">
-        <img src="../static/img/sesac.png" alt="Sprout 2" />
-      </button>
-      <button class="sprout-btn">
-        <img src="../static/img/sesac.png" alt="Sprout 3" />
-      </button>
-      <button class="sprout-btn">
-        <img src="../static/img/sesac.png" alt="Sprout 4" />
-      </button>
-      <button class="sprout-btn">
-        <img src="../static/img/sesac.png" alt="Sprout 5" />
-      </button>
-    </div>
+    <script></script>
   </body>
 </html>
