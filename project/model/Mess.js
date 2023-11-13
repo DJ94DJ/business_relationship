@@ -23,11 +23,6 @@ function Message(Sequelize, DataTypes) {
         allowNull: false,
         defaultValue: true, // 메시지를 기본적으로 공개로 만들기
       },
-      message_at: {
-        type: DataTypes.DATE,
-        allowNull: true,
-        defaultValue: Sequelize.fn('NOW'), // 임시 수정입니다.
-      },
       flower_color: {
         type: DataTypes.STRING(10),
         allowNull: false,
