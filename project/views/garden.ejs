@@ -4,8 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <title>garden</title>
   <style>
@@ -140,31 +139,31 @@
   <div>
     <ul id="mess">
       <%if(msg) {%>
-        <%let result=true%>
-          <% for (let i=0; i < msg.length; i++) { %>
-            <% if(result) { %>
-              <div>
-                <h3>여기는 왼쪽</h3>
-                제목: <%=msg[i].title%> <br />
-                  내용: <%=msg[i].content%> <br />
-                    공개여부: <%=msg[i].is_public%> <br />
-              </div>
-              <%result=false%>
-                <% } else {%>
-                  <div style="text-align: right;">
-                    <h3>여기는 오른쪽</h3>
-                    제목: <%=msg[i].title%> <br />
-                      내용: <%=msg[i].content%> <br />
-                        공개여부: <%=msg[i].is_public%> <br />
-                  </div>
-                  <%result=true%>
-                    <%}%>
+      <%let result=true%>
+      <% for (let i=0; i < msg.length; i++) { %>
+      <% if(result) { %>
+      <div>
+        <h3>여기는 왼쪽</h3>
+        제목: <%=msg[i].title%> <br />
+        내용: <%=msg[i].content%> <br />
+        공개여부: <%=msg[i].is_public%> <br />
+      </div>
+      <%result=false%>
+      <% } else {%>
+      <div style="text-align: right;">
+        <h3>여기는 오른쪽</h3>
+        제목: <%=msg[i].title%> <br />
+        내용: <%=msg[i].content%> <br />
+        공개여부: <%=msg[i].is_public%> <br />
+      </div>
+      <%result=true%>
+      <%}%>
                       <%}%>
-                        <%} else {%>
-                          <div>
-                            <h3>메시지가 없습니다 ㅜㅜ</h3>
-                          </div>
-                          <%}%>
+      <%} else {%>
+      <div>
+        <h3>메시지가 없습니다 ㅜㅜ</h3>
+      </div>
+      <%}%>
     </ul>
   </div>
 
@@ -191,7 +190,6 @@
   </div> -->
 
   <script>
-    // 현재 '작성하기' 버튼 클릭 후 메세지 보내는 기능까지는 구현함 (오류 체크 필요)
     function writeMsg() {
       const form = document.forms["newMsg"]
 

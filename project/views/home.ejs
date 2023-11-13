@@ -5,15 +5,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <title>home</title>
   <link rel="stylesheet" href="../static/css/home.css" />
 </head>
 
 <body>
   <div class="sky"></div>
-
 
   <div class="container">
     <a href="/home">
@@ -70,9 +68,9 @@
     function mvUserGarden(user_id) {
       console.log('mvUserGarden 실행');
       axios({
-        method: 'GET',
-        url: '/home/garden',
-      })
+          method: 'GET',
+          url: '/home/garden',
+        })
         .then((res) => {
           if (res.data) {
             location.href = '/home/garden';
@@ -88,11 +86,22 @@
         method: "GET",
         url: '/home/garden/random'
       }).then((res) => {
-        let num = res.data.ranData
-        console.log(num)
-        location.href = `/home/garden/${num}`
+        let num = res.data.data
+        console.log("res : ", res)
+        console.log("res.data : ", res.data)
+        console.log("num : ", num)
+        randomPage(num)
       })
+    }
 
+    function randomPage(id) {
+      console.log("매개변수: ", id)
+      axios({
+        method: "GET",
+        url: `/home/garden/random/${id}`
+      }).then((res) => {
+        location.href = `/home/garden/${id}`
+      })
     }
   </script>
 </body>
