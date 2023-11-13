@@ -24,6 +24,10 @@ function User(Sequelize, DataTypes) {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
+      // sign_in_at: {
+      //   type: DataTypes.DATETIME,
+      //   allowNull: false,
+      // },
       user_intro_self: {
         type: DataTypes.STRING(255),
         defaultValue: '',
