@@ -181,6 +181,6 @@ exports.ranGardenPage = (req, res) => {
     include: { model: User },
   }).then((msg) => {
     console.log('ran-msg :', msg);
-    res.render('garden', { msg });
+    res.render('garden', { msg, userName: req.session.userName });
   });
 };
