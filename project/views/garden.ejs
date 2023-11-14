@@ -6,120 +6,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <title>garden</title>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      background-color: #87cefa;
-    }
 
-    .write-container {
-      text-align: center;
-      position: relative;
-      top: 150px;
-    }
+  <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+      />
 
-    .write-btn {
-      display: inline-block;
-      padding: 10px 20px;
-      font-size: 26px;
-      font-weight: bold;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-      border: 3px solid #3498db;
-      color: #3498db;
-      background-color: #ffffff;
-      border-radius: 5px;
-      transition: background-color 0.3s, color 0.3s;
-    }
+  <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
 
-    .write-btn:hover {
-      background-color: #3498db;
-      color: #ffffff;
-    }
-
-    .garden {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 40%;
-      background-color: #a0522d;
-    }
-
-    .sprout-container {
-      position: absolute;
-      bottom: 15%;
-      left: 5%;
-      right: 5%;
-      display: flex;
-      gap: 10px;
-      justify-content: space-between;
-    }
-
-    .sprout-btn {
-      width: 60px;
-      height: 60px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.3s ease-in-out;
-      animation: float 2s infinite ease-in-out;
-    }
-
-    .sprout-btn img {
-      width: 130%;
-      height: 120%;
-    }
-
-    .sprout-btn:nth-child(even) {
-      transform: translateY(50px);
-    }
-
-    .sprout-btn:hover {
-      transform: scale(1.2);
-      animation: none;
-    }
-
-    .sprout-btn img {
-      width: 130%;
-      height: 120%;
-    }
-
-    .sprout-btn:nth-child(even) {
-      transform: translateY(50px);
-    }
-
-    .sprout-btn:hover {
-      transform: scale(1.2);
-      animation: none;
-    }
-
-    @keyframes float {
-
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-  </style>
+  <title>garden 첫페이지</title>
+  <link rel="stylesheet" href="../static/css/garden.css" />
 </head>
 
 <body>
+
   <!-- 마이페이지 이동 버튼 -->
   <button type="button" class="my-page-btn" onclick="profile()">마이페이지</button>
 
 
   <!-- 롤링페이퍼 작성하기 버튼 -->
   <form name="newMsg">
-    <div class="write-container">
-      <div>
+    <!-- <div class="write-container">
+      <div> -->
         제목<input type="text" name="title">
       </div>
       <div>
@@ -136,8 +49,8 @@
         컬러<input type="color" name="flowerColor">
       </div>
       <br />
-      <button type="button" class="write-btn" onclick="writeMsg()">작성하기</button>
-    </div>
+      <!-- <button type="button" class="write-btn" onclick="writeMsg()">작성하기</button>
+    </div> -->
   </form>
 
   <div>
@@ -200,6 +113,61 @@
       <img src="../static/img/sesac.png" alt="Sprout 5" />
     </button>
   </div> -->
+
+  <nav class="navbar bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+      <!-- 공유하기 버튼 이미지 만들어서 수정 -->
+      <a class="navbar-brand" href="#">공유하기</a>
+      <div class="navbar-brand">'s 정원</div>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="offcanvas offcanvas-end"
+        tabindex="-1"
+        id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel"
+      >
+        <div class="offcanvas-header">
+
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/home"
+                >홈으로 가기</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/home/signin">로그인</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">산책하기</a>
+            </li>
+    </div>
+  </nav>
+  <div class="sky"></div>
+  <div class="green"></div>
+  <div class="sesac-container">
+    <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
+    <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
+    <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
+    <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
+    <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
+  </div>
 
   <script>
     function writeMsg() {
