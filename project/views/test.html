@@ -4,12 +4,134 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>garden 요소 테스트</title>
+
+    <!-- <linearGradient
+      xmlns="http://www.w3.org/2000/svg"
+      id="linear-gradient"
+      x1="0.5"
+      x2="0.5"
+      y2="1"
+      gradientUnits="objectBoundingBox"
+    >
+      <stop offset="0" stop-color="#74b93a" />
+      <stop offset="1" stop-color="#01552c" />
+    </linearGradient>
+
+    <def>
+      <style>
+        .cls-1 {
+          background: rgba(255, 0, 0, 1);
+        }
+
+        .cls-2 {
+          clip-path: url(#clip-path);
+        }
+      </style>
+
+      <clipPath xmlns="http://www.w3.org/2000/svg" id="clip-path">
+        <rect
+          id="사각형_48"
+          data-name="사각형 48"
+          class="cls-1"
+          width="76.23"
+          height="210.106"
+          transform="translate(0 0)"
+        />
+      </clipPath>
+    </def> -->
+
     <link rel="stylesheet" href="../static/css/test.css" />
   </head>
 
   <body>
-    <div>
-      <h3>메시지가 없습니다 ㅜㅜ</h3>
+    <!-- 새싹 스프라이트 -->
+
+    <div class="bed">
+      <div class="sesac-sprite-box">
+        <div class="sesac-sprite-1"></div>
+        <div class="sesac-sprite-2"></div>
+        <div class="sesac-sprite-3"></div>
+        <div class="sesac-sprite-4"></div>
+      </div>
+
+      <div class="sprite-box">
+        <div class="sprite-1">
+          <!-- <g
+            xmlns="http://www.w3.org/2000/svg"
+            id="그룹_40"
+            data-name="그룹 40"
+            class="cls-2"
+            transform="translate(0 0.004)"
+          >
+            <path
+              id="패스_2"
+              data-name="패스 2"
+              class="cls-1"
+              d="M76.129,183.788C74.915,170.52,36.255,12.657,36.255,12.657A13.9,13.9,0,0,0,14.111,2.771C5.367,9.275-.83,18.866.091,28.939c.97,10.6,9.6,19.252,20.1,23.922-9.475,6.5-16.394,16.566-15.424,27.17s9.6,19.252,20.1,23.922c-9.475,6.5-16.394,16.566-15.424,27.17s9.6,19.252,20.1,23.922c-9.475,6.5-16.394,16.566-15.424,27.17,1.38,15.088,18.27,26.218,33.975,27.56a24.14,24.14,0,0,0,28.046-25.988"
+              transform="translate(0 -0.004)"
+            />
+          </g> -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="140.481"
+            height="223.477"
+            viewBox="0 0 140.481 223.477"
+          >
+            <defs>
+              <style>
+                .cls-1 {
+                  fill: url(#linear-gradient);
+                }
+
+                .cls-2 {
+                  clip-path: url(#clip-path);
+                }
+              </style>
+              <linearGradient
+                id="linear-gradient"
+                x1="0.5"
+                x2="0.5"
+                y2="1"
+                gradientUnits="objectBoundingBox"
+              >
+                <stop offset="0" stop-color="#74b93a" />
+                <stop offset="1" stop-color="#01552c" />
+              </linearGradient>
+              <clipPath id="clip-path">
+                <rect
+                  id="사각형_48"
+                  data-name="사각형 48"
+                  class="cls-1"
+                  width="76.23"
+                  height="210.106"
+                  transform="translate(0 0)"
+                />
+              </clipPath>
+            </defs>
+            <g
+              id="그룹_41"
+              data-name="그룹 41"
+              transform="matrix(0.946, -0.326, 0.326, 0.946, -0.001, 24.814)"
+            >
+              <g
+                id="그룹_40"
+                data-name="그룹 40"
+                class="cls-2"
+                transform="translate(0 0.004)"
+              >
+                <path
+                  id="패스_2"
+                  data-name="패스 2"
+                  class="cls-1"
+                  d="M76.129,183.788C74.915,170.52,36.255,12.657,36.255,12.657A13.9,13.9,0,0,0,14.111,2.771C5.367,9.275-.83,18.866.091,28.939c.97,10.6,9.6,19.252,20.1,23.922-9.475,6.5-16.394,16.566-15.424,27.17s9.6,19.252,20.1,23.922c-9.475,6.5-16.394,16.566-15.424,27.17s9.6,19.252,20.1,23.922c-9.475,6.5-16.394,16.566-15.424,27.17,1.38,15.088,18.27,26.218,33.975,27.56a24.14,24.14,0,0,0,28.046-25.988"
+                  transform="translate(0 -0.004)"
+                />
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
     </div>
 
     <div class="sky"></div>
@@ -22,70 +144,6 @@
       <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
     </div>
 
-    <script>
-      function writeMsg() {
-        const form = document.forms['newMsg'];
-
-        const msg = {
-          title: form.elements.title.value,
-          content: form.elements.content.value,
-          is_public: form.elements.isPublic.value,
-          flower_color: form.elements.flowerColor.value,
-        };
-
-        axios({
-          method: 'POST',
-          url: '/home/garden',
-          data: msg,
-        }).then((res) => {
-          if (res.data.result) {
-            alert('메시지 작성 완료');
-            location.reload();
-          } else {
-            alert('메시지 작성 실패 ㅜㅜ');
-          }
-        });
-      }
-
-      function deleteMsg() {
-        const form = document.forms['mesId'];
-        let mesId = form.mesId.value;
-        console.log('mesId : ', mesId);
-        axios({
-          method: 'DELETE',
-          url: '/home/garden',
-          data: mesId,
-        })
-          .then((res) => {
-            console.log('res.data', res.data);
-            if (res.data.result) {
-              alert('삭제되었습니다');
-              location.reload();
-            } else {
-              location.reload();
-            }
-          })
-          .catch((err) => {
-            console.log('에러발생');
-          });
-      }
-
-      // $("buttion[name=delMsg]").on("click", function () {
-      //   console.log("value : ", this.value)
-      // })
-
-      function profile() {
-        axios({
-          method: 'GET',
-          url: '/user/profile',
-        }).then((res) => {
-          console.log('res', res.data);
-          if (res.data) location.href = '/user/profile';
-          else {
-            alert('마이페이지 접근 불가 ;ㅁ;');
-          }
-        });
-      }
-    </script>
+    <script></script>
   </body>
 </html>
