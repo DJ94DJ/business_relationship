@@ -30,7 +30,8 @@ exports.signInUser = (req, res) => {
           )
           .then((pwCorrect) => {
             if (pwCorrect) {
-              req.session.userName = result.user_name; // user_name 세션에 저장 (로그인 시 이름을 띄우기 위함)
+              // user_name ,id 세션에 저장 (로그인 시 유 무를 확인 등)
+              req.session.userName = result.user_name;
               req.session.userId = result.id;
               console.log('signInUser : ', result);
               console.log('session', req.session);
@@ -130,7 +131,7 @@ exports.garden = (req, res) => {
       include: { model: User },
     }).then((msg) => {
       console.log('msg, result :', result, msg);
-      res.render('garden', { result, msg });
+      res.render('garden', { result, msg, userName: req.session.userName });
     });
   });
 };
@@ -146,12 +147,13 @@ exports.writeMsg = (req, res) => {
   });
 };
 
-// 롤링페이퍼 '삭제' 버튼 클릭 시 삭제는 해당 가든의 주인만 가능하다.
+// 롤링페이퍼 '삭제' 버튼 클릭 시 삭제는 해당 가든의 주인만 가능하다. + 삭제 버튼은 세션이 존재하는 사용자이름과 & 세션의 userName 이 일치하면 생성된다. 아닐 시 존재하지 않는다.
 exports.deleteMsg = (req, res) => {
   console.log('req.mesId', req.body.mesId);
-  if (req.body.mesId == req.session.userId) {
+  console.log('gdName : ', req.body.gdName);
+  if (req.body.gdName == req.session.userName) {
     Message.destroy({
-      where: { message_id: req.body.message_id },
+      where: { message_id: req.body.mesId },
     }).then((result) => {
       console.log('deleteMsg : ', result);
       res.send({ result: true });
