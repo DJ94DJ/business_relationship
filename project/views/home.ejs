@@ -1,110 +1,111 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <title>home</title>
+    <link rel="stylesheet" href="../static/css/home.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <title>home</title>
-  <link rel="stylesheet" href="../static/css/home.css" />
-</head>
+  <body>
+    <div class="sky"></div>
 
-<body>
-  <div class="sky"></div>
+    <div class="container">
+      <a href="/home">
+        <img src="../static/img/zaranara.png" alt="자라나라새싹나라" />
+      </a>
+    </div>
+    <div class="green"></div>
 
-  <div class="container">
-    <a href="/home">
-      <img src="../static/img/zaranara.png" alt="자라나라새싹나라" />
-    </a>
-  </div>
-  <div class="green"></div>
+    <div id="signinButton">
+      <a href="/home/signin">
+        <img width="200px" src="../static/img/signin.png" alt="로그인" />
+      </a>
+    </div>
 
-  <div id="signinButton">
-    <a href="/home/signin">
-      <img width="200px" src="../static/img/signin.png" alt="로그인" />
-    </a>
-  </div>
+    <div id="signupButton">
+      <a href="/home/signup">
+        <img width="200px" src="../static/img/signup.png" alt="회원가입" />
+      </a>
+    </div>
 
-  <div id="signupButton">
-    <a href="/home/signup">
-      <img width="200px" src="../static/img/signup.png" alt="회원가입" />
-    </a>
-  </div>
+    <!-- 테스트 용으로 만든 버튼입니다. 후에 onclick만 메소드만 일치하게 넣어주세요 ! -->
+    <div id="signinButton">
+      <button type="button" onclick="randomWalk()">산책하기</button>
+    </div>
 
-  <!-- 테스트 용으로 만든 버튼입니다. 후에 onclick만 메소드만 일치하게 넣어주세요 ! -->
-  <div id="signinButton">
-    <button type="button" onclick="randomWalk()">산책하기</button>
-  </div>
+    <!-- 테스트 용으로 만든 버튼입니다. 후에 onclick만 메소드만 일치하게 넣어주세요 ! -->
+    <div id="signinButton">
+      <button type="button" onclick="mvUserGarden()">내 정원 가기</button>
+    </div>
 
-  <!-- 테스트 용으로 만든 버튼입니다. 후에 onclick만 메소드만 일치하게 넣어주세요 ! -->
-  <div id="signinButton">
-    <button type="button" onclick="mvUserGarden()">내 정원 가기</button>
-  </div>
+    <div id="infoButton">
+      <a href="#">
+        <!-- 아직 안 만든 페이지라... 추후... -->
+        <img width="100px" src="../static/img/info.png" alt="인포" />
+      </a>
+    </div>
 
-  <div id="infoButton">
-    <a href="#">
-      <!-- 아직 안 만든 페이지라... 추후... -->
-      <img width="100px" src="../static/img/info.png" alt="인포" />
-    </a>
-  </div>
+    <script>
+      // function getUserId() {
+      //   axios({
+      //     method: 'GET',
+      //     url: '/home/getUserId',
+      //   })
+      //     .then((res) => {
+      //       console.log('getUserId : ', res.data.user_id);
+      //       const userId = res.data.user_id;
+      //       mvUserGarden(userId);
+      //     })
+      //     .catch((error) => {
+      //       console.error(error);
+      //     });
+      // }
 
-  <script>
-    // function getUserId() {
-    //   axios({
-    //     method: 'GET',
-    //     url: '/home/getUserId',
-    //   })
-    //     .then((res) => {
-    //       console.log('getUserId : ', res.data.user_id);
-    //       const userId = res.data.user_id;
-    //       mvUserGarden(userId);
-    //     })
-    //     .catch((error) => {
-    //       console.error(error);
-    //     });
-    // }
-
-    function mvUserGarden(user_id) {
-      console.log('mvUserGarden 실행');
-      axios({
-        method: 'GET',
-        url: '/home/garden',
-      })
-        .then((res) => {
-          if (res.data) {
-            location.href = '/home/garden';
-          }
+      function mvUserGarden(user_id) {
+        console.log('mvUserGarden 실행');
+        axios({
+          method: 'GET',
+          url: '/home/garden',
         })
-        .catch((error) => {
-          console.error(error);
+          .then((res) => {
+            if (res.data) {
+              location.href = '/home/garden';
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+
+      function randomWalk() {
+        axios({
+          method: 'GET',
+          url: '/home/garden/random',
+        }).then((res) => {
+          let num = res.data.data;
+          console.log('res : ', res);
+          console.log('res.data : ', res.data);
+          console.log('num : ', num);
+          randomPage(num);
         });
-    }
+      }
 
-    function randomWalk() {
-      axios({
-        method: "GET",
-        url: '/home/garden/random'
-      }).then((res) => {
-        let num = res.data.data
-        console.log("res : ", res)
-        console.log("res.data : ", res.data)
-        console.log("num : ", num)
-        randomPage(num)
-      })
-    }
-
-    function randomPage(id) {
-      console.log("매개변수: ", id)
-      axios({
-        method: "GET",
-        url: `/home/garden/random/${id}`
-      }).then((res) => {
-        location.href = `/home/garden/${id}`
-      })
-    }
-  </script>
-</body>
-
+      function randomPage(id) {
+        console.log('매개변수: ', id);
+        axios({
+          method: 'GET',
+          url: `/home/garden/random/${id}`,
+        }).then((res) => {
+          location.href = `/home/garden/${id}`;
+        });
+      }
+    </script>
+  </body>
 </html>
