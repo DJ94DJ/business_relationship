@@ -121,6 +121,7 @@
 
   <!-- 롤링페이퍼 작성하기 버튼 -->
   <form name="newMsg">
+    <input type="text" name="gardenId" value="<%=gardenId%>" hidden>
     <div class="write-container">
       <div>
         제목<input type="text" name="title">
@@ -182,9 +183,6 @@
             </ul>
             </div>
 
-
-
-
             <script>
               // 회원과 비회원을 구분하는 애니메이션 필요
               function writeMsg() {
@@ -194,7 +192,8 @@
                   title: form.elements.title.value,
                   content: form.elements.content.value,
                   is_public: form.elements.isPublic.value,
-                  flower_color: form.elements.flowerColor.value
+                  flower_color: form.elements.flowerColor.value,
+                  id: form.elements.gardenId.value
                 }
 
                 if ("<%=userName%>") { // 세션에 아이디가 있을 때(로그인 O)
