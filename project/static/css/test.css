@@ -1,4 +1,4 @@
-.sky {
+/* .sky {
   background-attachment: fixed;
   position: absolute;
   background: linear-gradient(#0072b4, #ffffff);
@@ -7,9 +7,19 @@
   left: 0;
   top: 0;
   z-index: -1;
+} */
+.sky {
+  background-attachment: fixed;
+  position: absolute;
+  background: gray;
+  height: 200%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: -1;
 }
 
-.green {
+/* .green {
   background-attachment: fixed;
   position: fixed;
   background: linear-gradient(#01552c, #019252);
@@ -21,7 +31,7 @@
   border-top-left-radius: 50% 40px;
   border-top-right-radius: 50% 40px;
   z-index: 0;
-}
+} */
 
 .sesac-container {
   position: absolute;
@@ -38,11 +48,12 @@
 
 /* 새싹 박스 */
 .sesac-sprite-box {
-  height: 120px;
+  height: 110px;
   width: 120px;
   background: rgba(0, 0, 0, 0.05);
   opacity: 1;
   position: relative;
+  border: solid #f5c703;
 }
 
 /* 새싹 떡잎 */
@@ -52,9 +63,9 @@
   background: transparent linear-gradient(180deg, #74b93a 0%, #01552c 100%) 0%
     0% no-repeat padding-box;
   border-radius: 0 50% 50% 50%;
-  position: fixed;
-  top: 18px;
-  left: 32px;
+  position: relative;
+  top: 10px;
+  left: 23px;
   z-index: 3;
 }
 
@@ -63,9 +74,9 @@
   width: 45px;
   background: transparent linear-gradient(180deg, #74b93a 0%, #01552c 100%) 0%;
   border-radius: 50% 0 50% 50%;
-  position: fixed;
-  top: 10px;
-  left: 62px;
+  position: relative;
+  top: -37px;
+  left: 53px;
   z-index: 2;
 }
 
@@ -75,9 +86,9 @@
   width: 10px;
   background: transparent linear-gradient(0deg, #74b93a 0%, #01552c 100%) 0%;
   border-radius: 5px 5px 5px 5px;
-  position: fixed;
-  top: 38px;
-  left: 62px;
+  position: relative;
+  top: -55px;
+  left: 53px;
   z-index: 1;
 }
 
@@ -86,29 +97,87 @@
   height: 86px;
   width: 112px;
   background: transparent
-    radial-gradient(closest-side at 00% 50%, #f5c703 0%, #f5c70300 100%) 0% 0%
+    radial-gradient(closest-side at 50% 50%, #f5c703 0%, #f5c70300 100%) 0% 0%
     no-repeat padding-box;
   mix-blend-mode: multiply;
   border-radius: 50% 50% 50% 50%;
   transform: matrix(0.97, 0.24, -0.24, 0.97, 0, 0);
-  position: fixed;
-  top: 40px;
-  left: 10px;
+  position: relative;
+  top: -88px;
+  left: 5px;
   z-index: 1;
 }
 
-/* 스프라이츠 박스 */
+/* 잎사귀 */
 .leaf-sprite-box {
   height: 210px;
   width: 77px;
-  background: rgba(255, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.05);
   border: solid #f5c703;
   opacity: 1;
-  position: absolute;
   transform: rotate(0deg);
 }
 
 .leaf-sprite-1 {
   position: relative;
   z-index: 1;
+}
+
+.vine-sprite-box {
+  height: 65px;
+  width: 75px;
+  background: rgba(255, 0, 0, 0.05);
+  border: solid #f5c703;
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+.vine-sprite-1 {
+  position: fixed;
+  top: -10px;
+  left: -10px;
+  z-index: 1;
+}
+
+/* .sprite-box {
+  height: 65px;
+  width: 75px;
+  background: rgba(255, 0, 0, 0.05);
+  border: solid #6f601c;
+  opacity: 1;
+  position: absolute;
+  transform: rotate(0deg);
+} */
+
+/* 꽃01 */
+.flower01-sprite-box {
+  height: 290px;
+  width: 290px;
+  background: rgba(255, 0, 0, 0.05);
+  border: solid #f5c703;
+  opacity: 1;
+  position: relative;
+  transform: rotate(0deg);
+}
+
+.flower01-sprite-1 {
+  position: relative;
+  z-index: 1;
+}
+
+.flower01-sprite-2 {
+  position: relative;
+  z-index: 2;
+  top: -290px;
+  left: 68px;
+}
+
+.sprite-box {
+  height: 65px;
+  width: 75px;
+  background: rgba(255, 0, 0, 0.05);
+  border: solid #6f601c;
+  opacity: 1;
+  position: absolute;
+  transform: rotate(0deg);
 }
