@@ -78,9 +78,15 @@ exports.editPw = (req, res) => {
   pwSalt
     .hashPassword(user_pw)
     .then(({ hashedPw, salt }) => {
-      User.update({
-        where: { id: req.session.userId },
-      })
+      User.update(
+        {
+          user_pw: hashedPw,
+          user_pw_salt: salt,
+        },
+        {
+          where: { id: req.session.userId },
+        },
+      )
         .then((result) => {
           console.log('signUpUser', result);
           res.send({ result: true });
@@ -96,10 +102,10 @@ exports.editPw = (req, res) => {
     });
 };
 
-User.update({
-  where: { id: req.session.userId },
-}).then((result) => {
-  console.log('editUser : ', result);
-  if (result[0]) res.send({ result: true });
-  else res.send({ result: false });
-});
+// User.update({
+//   where: { id: req.session.userId },
+// }).then((result) => {
+//   console.log('editUser : ', result);
+//   if (result[0]) res.send({ result: true });
+//   else res.send({ result: false });
+// });
