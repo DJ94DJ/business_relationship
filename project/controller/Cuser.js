@@ -53,8 +53,6 @@ exports.searchUser = (req, res) => {
           )
           .then((pwCorrect) => {
             if (pwCorrect) {
-              console.log('signInUser : ', result);
-              console.log('session', req.session);
               res.send({ result: true });
             } else {
               res.send({ result: false });
@@ -75,11 +73,39 @@ exports.searchUser = (req, res) => {
 };
 
 exports.editPw = (req, res) => {
-  User.update({
-    where: { id: req.session.userId },
-  }).then((result) => {
-    console.log('editUser : ', result);
-    if (result[0]) res.send({ result: true });
-    else res.send({ result: false });
-  });
+  const { user_pw } = req.body;
+
+  pwSalt
+    .hashPassword(user_pw)
+    .then(({ hashedPw, salt }) => {
+      User.update(
+        {
+          user_pw: hashedPw,
+          user_pw_salt: salt,
+        },
+        {
+          where: { id: req.session.userId },
+        },
+      )
+        .then((result) => {
+          console.log('signUpUser', result);
+          res.send({ result: true });
+        })
+        .catch((error) => {
+          console.error('user 생성 에러', error);
+          res.send({ result: false });
+        });
+    })
+    .catch((error) => {
+      console.error('암호화 에러', error);
+      res.send({ result: false });
+    });
 };
+
+// User.update({
+//   where: { id: req.session.userId },
+// }).then((result) => {
+//   console.log('editUser : ', result);
+//   if (result[0]) res.send({ result: true });
+//   else res.send({ result: false });
+// });
