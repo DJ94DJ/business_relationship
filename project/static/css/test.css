@@ -98,34 +98,17 @@
 }
 
 /* 스프라이츠 박스 */
-.sprite-box {
-  height: 120px;
-  width: 120px;
+.leaf-sprite-box {
+  height: 210px;
+  width: 77px;
   background: rgba(255, 0, 0, 0.05);
   border: solid #f5c703;
   opacity: 1;
   position: absolute;
+  transform: rotate(0deg);
 }
 
-.sprite-1 {
-  height: 86px;
-  width: 112px;
-  background: transparent
-    radial-gradient(closest-side at 50% 50%, #f5c703 0%, #f5c70300 100%) 0% 0%
-    no-repeat padding-box;
-  mix-blend-mode: multiply;
-  border-radius: 50% 50% 50% 50%;
-  transform: matrix(0.97, 0.24, -0.24, 0.97, 0, 0);
-  position: fixed;
-  top: 40px;
-  left: 10px;
+.leaf-sprite-1 {
+  position: relative;
   z-index: 1;
-}
-
-.cls-1 {
-  background: rgba(255, 0, 0, 1);
-}
-
-.cls-2 {
-  clip-path: url(#clip-path);
 }
