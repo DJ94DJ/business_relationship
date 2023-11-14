@@ -34,8 +34,9 @@
 
   <!-- 롤링페이퍼 작성하기 버튼 -->
   <form name="newMsg">
-    <!-- <div class="write-container">
-      <div> -->
+    <input type="text" name="gardenId" value="<%=gardenId%>" hidden>
+    <div class="write-container">
+      <div>
         제목<input type="text" name="title">
       </div>
       <div>
@@ -96,82 +97,6 @@
             </div>
 
 
-  <!-- 텃밭, 새싹 부분 -->
-  <!-- sprout-btn은 사용자가 롤링페이퍼 게시하면 하나씩 추가되는 걸로 짜야댐-->
-  <!-- <div class="garden"></div>
-  <div class="sprout-container">
-    <button class="sprout-btn">
-      <img src="../static/img/sesac.png" alt="Sprout 1" />
-    </button>
-    <button class="sprout-btn">
-      <img src="../static/img/sesac.png" alt="Sprout 2" />
-    </button>
-    <button class="sprout-btn">
-      <img src="../static/img/sesac.png" alt="Sprout 3" />
-    </button>
-    <button class="sprout-btn">
-      <img src="../static/img/sesac.png" alt="Sprout 4" />
-    </button>
-    <button class="sprout-btn">
-      <img src="../static/img/sesac.png" alt="Sprout 5" />
-    </button>
-  </div> -->
-
-  <nav class="navbar bg-body-tertiary fixed-top">
-    <div class="container-fluid">
-      <!-- 공유하기 버튼 이미지 만들어서 수정 -->
-      <a class="navbar-brand" href="#">공유하기</a>
-      <div class="navbar-brand">'s 정원</div>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasNavbar"
-        aria-controls="offcanvasNavbar"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="offcanvas offcanvas-end"
-        tabindex="-1"
-        id="offcanvasNavbar"
-        aria-labelledby="offcanvasNavbarLabel"
-      >
-        <div class="offcanvas-header">
-
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/home"
-                >홈으로 가기</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/home/signin">로그인</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">산책하기</a>
-            </li>
-    </div>
-  </nav>
-  <div class="sky"></div>
-  <div class="green"></div>
-  <div class="sesac-container">
-    <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
-    <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
-    <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
-    <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
-    <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
-  </div>
-
 
 
             <script>
@@ -183,7 +108,8 @@
                   title: form.elements.title.value,
                   content: form.elements.content.value,
                   is_public: form.elements.isPublic.value,
-                  flower_color: form.elements.flowerColor.value
+                  flower_color: form.elements.flowerColor.value,
+                  id: form.elements.gardenId.value
                 }
 
                 if ("<%=userName%>") { // 세션에 아이디가 있을 때(로그인 O)

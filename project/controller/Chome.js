@@ -140,7 +140,7 @@ exports.garden = (req, res) => {
 exports.writeMsg = (req, res) => {
   Message.create({
     ...req.body,
-    id: req.session.userId, // messages 테이블 id에 id 값 함께 추가(?)
+    // id: req.session.userId, // messages 테이블 id에 id 값 함께 추가(?)
   }).then((result) => {
     console.log('writeMsg : ', result);
     res.send({ result: true });
@@ -181,6 +181,10 @@ exports.ranGardenPage = (req, res) => {
     include: { model: User },
   }).then((msg) => {
     console.log('ran-msg :', msg);
-    res.render('garden', { msg, userName: req.session.userName });
+    res.render('garden', {
+      msg,
+      userName: req.session.userName,
+      gardenId: req.params.id,
+    });
   });
 };
