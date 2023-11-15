@@ -56,7 +56,7 @@ exports.signInUser = (req, res) => {
 
 // '로그아웃' 버튼 클릭 시
 exports.signOut = (req, res) => {
-  // 접속중인 사용자 세션 삭제 후 요청을 보낼 코드
+  console.log('req.session', req.session);
   req.session.destroy((err) => {
     if (err) throw err;
     res.send({ result: true });
