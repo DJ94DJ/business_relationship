@@ -136,7 +136,7 @@ exports.garden = (req, res) => {
           result,
           msg,
           userName: req.session.userName,
-          gardenId: req.params.id,
+          gardenId: req.session.userId,
         });
       });
     })
