@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="../static/css/home.css">
   <title>garden</title>
@@ -147,39 +148,39 @@
   <div>
     <ul id="mess">
       <%if(msg) {%>
-      <%let result=true%>
-      <% for (let i=0; i < msg.length; i++) { %>
-      <% if(result) { %>
-      <form name="mesId">
-        <div>
-          <h3>여기는 왼쪽</h3>
-          <input type="hidden" name="mesId" value="<%=msg[i].message_id%>">
-          제목: <%=msg[i].title%> <br />
-          내용: <%=msg[i].content%> <br />
-          공개여부: <%=msg[i].is_public%> <br />
-          <button type="button" onclick="deleteMsg(this)">삭제하기</button>
-        </div>
-      </form>
-      <%result=false%>
-      <% } else {%>
-      <form name="mesId">
-        <div style="text-align: right;">
-          <h3>여기는 오른쪽</h3>
-          <input type="hidden" name="mesId" value="<%=msg[i].message_id%>">
-          제목: <%=msg[i].title%> <br />
-          내용: <%=msg[i].content%> <br />
-          공개여부: <%=msg[i].is_public%> <br />
-          <button type="button" onclick="deleteMsg(this)">삭제하기</button>
-      </form>
+        <%let result=true%>
+          <% for (let i=0; i < msg.length; i++) { %>
+            <% if(result) { %>
+              <form name="mesId">
+                <div>
+                  <h3>여기는 왼쪽</h3>
+                  <input type="hidden" name="mesId" value="<%=msg[i].message_id%>">
+                  제목: <%=msg[i].title%> <br />
+                    내용: <%=msg[i].content%> <br />
+                      공개여부: <%=msg[i].is_public%> <br />
+                        <button type="button" onclick="deleteMsg(this)">삭제하기</button>
+                </div>
+              </form>
+              <%result=false%>
+                <% } else {%>
+                  <form name="mesId">
+                    <div style="text-align: right;">
+                      <h3>여기는 오른쪽</h3>
+                      <input type="hidden" name="mesId" value="<%=msg[i].message_id%>">
+                      제목: <%=msg[i].title%> <br />
+                        내용: <%=msg[i].content%> <br />
+                          공개여부: <%=msg[i].is_public%> <br />
+                            <button type="button" onclick="deleteMsg(this)">삭제하기</button>
+                  </form>
   </div>0
   <%result=true%>
-  <%}%>
+    <%}%>
       <%}%>
-  <%} else {%>
-  <div>
-    <h3>메시지가 없습니다 ㅜㅜ</h3>
-  </div>
-  <%}%>
+        <%} else {%>
+          <div>
+            <h3>메시지가 없습니다 ㅜㅜ</h3>
+          </div>
+          <%}%>
             </ul>
             </div>
 
@@ -197,115 +198,115 @@
                 }
 
                 if ("<%=userName%>") { // 세션에 아이디가 있을 때(로그인 O)
-  axios({
-  method: "POST",
-  url: "/home/garden",
-  data: msg
-  }).then((res) => {
-  if (res.data.result) {
-  alert("메시지 작성 완료")
-  location.reload()
-  } else {
-  alert("메시지 작성 실패 ㅜㅜ")
-  }
-  })
-  }
-  else { // 세션에 아이디가 없을 때(로그인 X)
-  axios({
-  method: "POST",
-  url: "/home/garden",
-  data: msg
-  }).then((res) => {
-  if (res.data.result) {
-  alert("메시지 작성 완료")
-  location.reload()
-  } else {
-  alert("메시지 작성 실패 ㅜㅜ")
-  }
-  })
-  }
+                  axios({
+                    method: "POST",
+                    url: "/home/garden",
+                    data: msg
+                  }).then((res) => {
+                    if (res.data.result) {
+                      alert("메시지 작성 완료")
+                      location.reload()
+                    } else {
+                      alert("메시지 작성 실패 ㅜㅜ")
+                    }
+                  })
+                }
+                else { // 세션에 아이디가 없을 때(로그인 X)
+                  axios({
+                    method: "POST",
+                    url: "/home/garden",
+                    data: msg
+                  }).then((res) => {
+                    if (res.data.result) {
+                      alert("메시지 작성 완료")
+                      location.reload()
+                    } else {
+                      alert("메시지 작성 실패 ㅜㅜ")
+                    }
+                  })
+                }
 
-  }
+              }
 
-  function randomWalk() {
-  axios({
-  method: "GET",
-  url: '/home/garden/random'
-  }).then((res) => {
-  let num = res.data.data
-  console.log("res : ", res)
-  console.log("res.data : ", res.data)
-  console.log("num : ", num)
-  randomPage(num)
-  })
-  }
+              function randomWalk() {
+                axios({
+                  method: "GET",
+                  url: '/home/garden/random'
+                }).then((res) => {
+                  let num = res.data.data
+                  console.log("res : ", res)
+                  console.log("res.data : ", res.data)
+                  console.log("num : ", num)
+                  randomPage(num)
+                })
+              }
 
-  function randomPage(id) {
-  console.log("매개변수: ", id)
-  axios({
-  method: "GET",
-  url: `/home/garden/random/${id}`
-  }).then((res) => {
-  location.href = `/home/garden/${id}`
-  })
-  }
-
-
-  // 메시지 삭제
-  function deleteMsg(button) {
-  const form = button.closest("form")
-  let delMess = {
-  mesId: form.querySelector('[name="mesId"]').value,
-  gdName: "<%=userName%>"
-  }
-  console.log("mesId : ", delMess.mesId)
-  console.log("gardenId : ", delMess.gardenId)
-
-  axios({
-  method: "DELETE",
-  url: "/home/garden",
-  data: delMess
-  }).then((res) => {
-  console.log("res.data", res.data)
-  if (res.data.result) {
-  alert("삭제되었습니다")
-  location.reload()
-  } else {
-  location.reload()
-  }
-  }).catch((err) => {
-  console.log("에러발생")
-  })
-
-  }
+              function randomPage(id) {
+                console.log("매개변수: ", id)
+                axios({
+                  method: "GET",
+                  url: `/home/garden/random/${id}`
+                }).then((res) => {
+                  location.href = `/home/garden/${id}`
+                })
+              }
 
 
-  // $("buttion[name=delMsg]").on("click", function () {
-  // console.log("value : ", this.value)
-  // })
+              // 메시지 삭제
+              function deleteMsg(button) {
+                const form = button.closest("form")
+                let delMess = {
+                  mesId: form.querySelector('[name="mesId"]').value,
+                  gdName: "<%=userName%>"
+                }
+                console.log("mesId : ", delMess.mesId)
+                console.log("gardenId : ", delMess.gardenId)
 
-  function profile() {
-  axios({
-  method: "GET",
-  url: "/user/profile"
-  }).then((res) => {
-  console.log('res', res.data)
-  if (res.data) location.href = '/user/profile'
-  else { alert("마이페이지 접근 불가 ;ㅁ;") }
-  })
-  }
+                axios({
+                  method: "DELETE",
+                  url: "/home/garden",
+                  data: delMess
+                }).then((res) => {
+                  console.log("res.data", res.data)
+                  if (res.data.result) {
+                    alert("삭제되었습니다")
+                    location.reload()
+                  } else {
+                    location.reload()
+                  }
+                }).catch((err) => {
+                  console.log("에러발생")
+                })
 
-  function signOut() {
-  axios({
-  method: "POST",
-  url: "/home/signout",
-  }).then((res) => {
-  if(res.data.result) location.href ='/home'
-  else { alert("로그아웃 실패 ;ㅁ;") }
-  })
-  }
+              }
 
-  </script>
+
+              // $("buttion[name=delMsg]").on("click", function () {
+              // console.log("value : ", this.value)
+              // })
+
+              function profile() {
+                axios({
+                  method: "GET",
+                  url: "/user/profile"
+                }).then((res) => {
+                  console.log('res', res.data)
+                  if (res.data) location.href = '/user/profile'
+                  else { alert("마이페이지 접근 불가 ;ㅁ;") }
+                })
+              }
+
+              function signOut() {
+                axios({
+                  method: "POST",
+                  url: "/home/signout",
+                }).then((res) => {
+                  if (res.data.result) location.href = '/home'
+                  else { alert("로그아웃 실패 ;ㅁ;") }
+                })
+              }
+
+            </script>
 </body>
 
 </html>
