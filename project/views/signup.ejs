@@ -42,11 +42,12 @@
     </div>
     <div>
       <!-- 4~12자 이내, 숫자, 영어 포함 -->
-      비밀번호 <input type="password" id="user_pw" name="user_pw" pattern="^(?=.*[0-9])(?=.*[a-zA-Z]).{4,12}$" title="숫자와 영문을 포함하여 4~12자 이내로 작성해 주세요." required>
+      비밀번호 <input type="password" id="user_pw" name="user_pw" oninput="pwCheck()" pattern="^(?=.*[0-9])(?=.*[a-zA-Z]).{4,12}$" title="숫자와 영문을 포함하여 4~12자 이내로 작성해 주세요." required>
     </div>
     <div>
-      비밀번호 확인 <input type="password" id="user_pw_check" name="user_pw_check" required>
-      <button type="button" onclick="pwCheck()">비밀번호 일치 확인</button>
+      비밀번호 확인 <input type="password" id="user_pw_check" oninput="pwCheck()" name="user_pw_check" required>
+      <!-- <button type="button" onclick="pwCheck()">비밀번호 일치 확인</button> -->
+      <span id="pw_check"> 비밀번호를 입력하세요. </span>
     </div>
     <div>
       닉네임 <input type="text" id="user_name" name="user_name" required>
@@ -142,25 +143,34 @@
       })
     }
 
-
-    // 비밀번호 일치 확인 버튼 클릭 시
-    // 일단은 버튼으로 만들었으나 후에는 작성시 바로 메시지형식? 으로 뜨면 좋을 것 같음
+    // 비밀번호 일치 여부 실시간 체크 함수
     function pwCheck() {
-      const form = document.forms["user_upload"]
-
-      let pwData = {
-        user_pw: form.user_pw.value,
-        user_pw_check: form.user_pw_check.value
-      }
-
-      if (pwData.user_pw == pwData.user_pw_check) {
-        alert("일치")
-        return (onSignUpBtn(true))
-
+      if ($('#user_pw').val() == '' | $('#user_pw_check').val() == '') {
+        $('#pw_check').text('')
+      } else if ($('#user_pw').val() == $('#user_pw_check').val()) {
+        $('#pw_check').text('비밀번호 일치').css('color', 'green')
       } else {
-        alert("불일치")
+        $('#pw_check').text('비밀번호가 일치하지 않습니다.').css('color', 'red')
       }
     }
+
+    // 비밀번호 일치 확인 버튼 클릭 시
+    // function pwCheck() {
+    //   const form = document.forms["user_upload"]
+
+    //   let pwData = {
+    //     user_pw: form.user_pw.value,
+    //     user_pw_check: form.user_pw_check.value
+    //   }
+
+    //   if (pwData.user_pw == pwData.user_pw_check) {
+    //     alert("일치")
+    //     return (onSignUpBtn(true))
+
+    //   } else {
+    //     alert("불일치")
+    //   }
+    // }
   </script>
 
 </body>
