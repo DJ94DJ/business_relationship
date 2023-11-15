@@ -26,7 +26,7 @@ function Message(Sequelize, DataTypes) {
       message_at: {
         type: DataTypes.DATE,
         allowNull: true,
-        defaultValue: Sequelize.fn('NOW'), // 임시 수정입니다.
+        defaultValue: Sequelize.fn('NOW'),
       },
       flower_color: {
         type: DataTypes.STRING(10),
