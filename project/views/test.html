@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>garden 요소 테스트</title>
     <link rel="stylesheet" href="../static/css/test.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
   </head>
 
   <body>
@@ -231,9 +232,9 @@
                 r="0.5"
                 gradientUnits="objectBoundingBox"
               >
-                <stop offset="0" stop-color="#fff" stop-opacity="0" />
-                <stop offset="0.46" stop-color="#fff" stop-opacity="0.059" />
-                <stop offset="1" stop-color="#fff" />
+                <stop offset="0.45" stop-color="#fff" stop-opacity="0" />
+                <stop offset="0.6" stop-color="#fff" stop-opacity="0.02" />
+                <stop offset="1" stop-color="#fff" stop-opacity="0.5" />
               </radialGradient>
             </defs>
             <path
@@ -320,22 +321,259 @@
           ></text
         >
       </div>
+
+      <br />
+
+      <div class="box"><div class="point"></div></div>
+
+      <!-- 덩굴 스프라이츠 -->
+      <div class="box-vine">
+        <div class="vinepart-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="71.476"
+            height="1034.7"
+            viewBox="0 0 72 1035"
+          >
+            <defs>
+              <style>
+                .vine-1 {
+                  fill: none;
+                  stroke: #28751b;
+                  stroke-width: 20px;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-miterlimit: 10;
+                }
+              </style>
+              <clipPath id="clip-path">
+                <rect
+                  id="사각형_49"
+                  data-name="사각형 49"
+                  class="vine_1"
+                  width="71.476"
+                  height="1034.7"
+                />
+              </clipPath>
+            </defs>
+            <path
+              id="패스_3"
+              data-name="패스 3"
+              class="vine-1"
+              d="M50.507,11.68c-34.009,48.2-34.009,123.053,0,171.256s34.009,123.053,0,171.256h0c-34.009,48.2-34.009,123.053,0,171.256s34.009,123.053,0,171.256h0c-34.009,48.2-34.009,123.053,0,171.256s34.009,123.053,0,171.256"
+              transform="translate(-14.769 -8.099)"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <div class="box-vine-2">
+        <div class="vinepart-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="71.476"
+            height="608.264"
+            viewBox="0 0 73.5 608.264"
+          >
+            <defs>
+              <style>
+                .vine-1 {
+                  fill: none;
+                  stroke: #1e8c09;
+                  stroke-width: 20px;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-miterlimit: 10;
+                }
+              </style>
+              <clipPath id="clip-path">
+                <rect
+                  id="사각형_49"
+                  data-name="사각형 49"
+                  class="cls-1"
+                  width="71.476"
+                  height="608.264"
+                />
+              </clipPath>
+            </defs>
+            <path
+              id="패스_3"
+              data-name="패스 3"
+              class="vine-1"
+              d="M50.507,11.68C16.5,40.017,16.5,84.019,50.507,112.356s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.676s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.675s34.009,72.339,0,100.676"
+              transform="translate(-14.769 -9.575)"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <div class="box-vine-set">
+        <div class="vinepart-set">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="71.476"
+            height="608.264"
+            viewBox="0 0 73.5 608.264"
+          >
+            <defs>
+              <style>
+                .vine_three {
+                  fill: none;
+                  stroke: red;
+                  stroke-width: 20px;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-miterlimit: 10;
+                }
+              </style>
+              <clipPath id="clip-path">
+                <rect
+                  id="사각형_49"
+                  data-name="사각형 49"
+                  class="cls-1"
+                  width="71.476"
+                  height="608.264"
+                />
+              </clipPath>
+            </defs>
+            <path
+              id="패스_3"
+              data-name="패스 3"
+              class="vine_three"
+              d="M50.507,11.68C16.5,40.017,16.5,84.019,50.507,112.356s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.676s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.675s34.009,72.339,0,100.676"
+              transform="translate(-14.769 -9.575)"
+            />
+          </svg>
+        </div>
+        <div class="vinepart-set">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="71.476"
+            height="608.264"
+            viewBox="0 0 73.5 608.264"
+          >
+            <defs>
+              <style>
+                .vine_two {
+                  fill: none;
+                  stroke: gold;
+                  stroke-width: 20px;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-miterlimit: 10;
+                }
+              </style>
+              <clipPath id="clip-path">
+                <rect
+                  id="사각형_49"
+                  data-name="사각형 49"
+                  class="cls-1"
+                  width="71.476"
+                  height="608.264"
+                />
+              </clipPath>
+            </defs>
+            <path
+              id="패스_3"
+              data-name="패스 3"
+              class="vine_two"
+              d="M50.507,11.68C16.5,40.017,16.5,84.019,50.507,112.356s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.676s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.675s34.009,72.339,0,100.676"
+              transform="translate(-14.769 -9.575)"
+            />
+          </svg>
+        </div>
+        <div class="vinepart-set">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="71.476"
+            height="608.264"
+            viewBox="0 0 73.5 608.264"
+          >
+            <defs>
+              <style>
+                .vine_one {
+                  fill: none;
+                  stroke: blue;
+                  stroke-width: 20px;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-miterlimit: 10;
+                }
+              </style>
+              <clipPath id="clip-path">
+                <rect
+                  id="사각형_49"
+                  data-name="사각형 49"
+                  class="cls-1"
+                  width="71.476"
+                  height="608.264"
+                />
+              </clipPath>
+            </defs>
+            <path
+              id="패스_3"
+              data-name="패스 3"
+              class="vine_one"
+              d="M50.507,11.68C16.5,40.017,16.5,84.019,50.507,112.356s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.676s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.675s34.009,72.339,0,100.676"
+              transform="translate(-14.769 -9.575)"
+            />
+          </svg>
+        </div>
+      </div>
+      <!-- 덩굴 스프라이츠 종료 -->
     </div>
     <!-- 베드 종료 -->
 
     <div class="sky"></div>
     <div class="green"></div>
-    <div class="sesac-container">
-      <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
-      <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
-      <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
-      <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
-      <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
-      <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
-      <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
-      <div class="sesac"><img src="../static/img/sesac.png" alt="새싹" /></div>
-    </div>
 
-    <script></script>
+    <script>
+      // 덩굴 애니매이션 스크립트
+      anime({
+        targets: '.vine-1',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'easeInOutSine',
+        duration: 5000,
+        delay: function (el, i) {
+          return i * 50;
+        },
+        direction: 'alternate',
+        loop: false,
+      });
+
+      anime({
+        targets: '.vinepart-set:nth-child(1) .vine_three',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'linear',
+        duration: 3000,
+        delay: 6000,
+        direction: 'alternate',
+        loop: false,
+      });
+      anime({
+        targets: '.vinepart-set:nth-child(2) .vine_two',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'linear',
+        duration: 3000,
+        delay: 3000,
+        direction: 'alternate',
+        loop: false,
+      });
+      anime({
+        targets: '.vinepart-set:nth-child(3) .vine_one',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'linear',
+        duration: 3000,
+        delay: 0,
+        direction: 'alternate',
+        loop: false,
+      });
+      // 덩굴 애니매이션 스크립트 종료
+    </script>
   </body>
 </html>
