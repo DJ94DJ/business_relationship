@@ -124,16 +124,26 @@ exports.garden = (req, res) => {
     where: {
       id: req.session.userId,
     },
-  }).then((result) => {
-    Message.findAll({
-      attributes: ['message_id', 'title', 'content', 'is_public'],
-      where: { id: req.session.userId },
-      include: { model: User },
-    }).then((msg) => {
-      console.log('msg, result :', result, msg);
-      res.render('garden', { result, msg, userName: req.session.userName });
+  })
+    .then((result) => {
+      Message.findAll({
+        attributes: ['message_id', 'title', 'content', 'is_public'],
+        where: { id: req.session.userId },
+        include: { model: User },
+      }).then((msg) => {
+        console.log('msg, result :', result, msg);
+        res.render('garden', {
+          result,
+          msg,
+          userName: req.session.userName,
+          gardenId: req.params.id,
+        });
+      });
+    })
+    .catch((error) => {
+      console.log('세션 만료', error);
+      res.redirect('/home');
     });
-  });
 };
 
 // 롤링페이퍼 '작성' 버튼 클릭 시
