@@ -41,7 +41,7 @@
   background-attachment: fixed;
   position: absolute;
   background: gray;
-  height: 200%;
+  height: 500%;
   width: 100%;
   left: 0;
   top: 0;
@@ -231,6 +231,7 @@
 .flower01-sprite-1 {
   position: relative;
   z-index: 1;
+  
 }
 
 .flower01-sprite-2 {
@@ -276,6 +277,27 @@
 }
 
 /* 후광 */
+@keyframes infinite-rotation {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
+}
+
+@keyframes swing {
+  0% {
+      transform: rotate(-8deg);
+  }
+  50% {
+      transform: rotate(8deg);
+  }
+  100% {
+      transform: rotate(-8deg);
+  }
+}
+
 .halo-sprite-box {
   height: 190px;
   width: 190px;
@@ -290,6 +312,7 @@
   position: relative;
   z-index: 1;
   top: -75px;
+  animation: infinite-rotation 40s linear infinite;
 }
 
 .seed-sprite-box-2 {
@@ -300,7 +323,10 @@
   transform: rotate(0deg);
   top: 55px;
   left: 60.5px;
+  animation: swing 1s ease-in-out infinite;
 }
+
+
 
 /* 덤불 */
 .bush-sprite-box {
@@ -412,4 +438,45 @@
     z-index: 3;
   }
 
+  /* 덩굴 */
+
+  .box-vine {
+    height: 1030px;
+    width: 70px;
+    background: rgba(255, 0, 0, 0.05);
+    border: solid #1c6f53;
+    opacity: 1;
+    position: relative;
+  }
+
+  .vinepart-1 {
+    transform: rotate(180deg);
+    position: relative;
+    top: -5px;
+    left: 0px;
+  }
+
+  .box-vine-2 {
+    height: 600px;
+    width: 70px;
+    background: rgba(255, 0, 0, 0.05);
+    border: solid gold;
+    opacity: 1;
+    position: relative;
+  }
+
+  .box-vine-set {
+    height: 1750px; /* 1030px * 3 */
+    width: 70px;
+    background: rgba(255, 0, 0, 0.05);
+    border: solid rgb(0, 149, 255);
+    opacity: 1;
+    position: relative;
+  }
+
+  .vinepart-set {
+    transform: rotate(180deg);
+    position: relative;
+    height: 588px;
+  }
   
