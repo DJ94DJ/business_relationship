@@ -14,6 +14,7 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../static/css/garden.css" />
+  <link rel="stylesheet" href="../../static/css/garden.css" />
   <title>garden</title>
   <style>
     body {
@@ -251,7 +252,7 @@
                 console.log("매개변수: ", id)
                 axios({
                   method: "GET",
-                  url: `/home/garden/random/${id}`
+                  url: `/home/garden/${id}`
                 }).then((res) => {
                   location.href = `/home/garden/${id}`
                 })
@@ -278,6 +279,7 @@
                     alert("삭제되었습니다")
                     location.reload()
                   } else {
+                    // 주인만 삭제 가능
                     location.reload()
                   }
                 }).catch((err) => {
