@@ -6,27 +6,114 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-    crossorigin="anonymous"
-    />
-  
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="../static/css/garden.css" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="../static/css/home.css">
   <title>garden</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #87cefa;
+    }
 
+    .write-container {
+      text-align: center;
+      position: relative;
+      top: 150px;
+    }
 
+    .write-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 26px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      border: 3px solid #3498db;
+      color: #3498db;
+      background-color: #ffffff;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
 
-  
+    .write-btn:hover {
+      background-color: #3498db;
+      color: #ffffff;
+    }
+
+    .garden {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      background-color: #a0522d;
+    }
+
+    .sprout-container {
+      position: absolute;
+      bottom: 15%;
+      left: 5%;
+      right: 5%;
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+    }
+
+    .sprout-btn {
+      width: 60px;
+      height: 60px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+      animation: float 2s infinite ease-in-out;
+    }
+
+    .sprout-btn img {
+      width: 130%;
+      height: 120%;
+    }
+
+    .sprout-btn:nth-child(even) {
+      transform: translateY(50px);
+    }
+
+    .sprout-btn:hover {
+      transform: scale(1.2);
+      animation: none;
+    }
+
+    .sprout-btn img {
+      width: 130%;
+      height: 120%;
+    }
+
+    .sprout-btn:nth-child(even) {
+      transform: translateY(50px);
+    }
+
+    .sprout-btn:hover {
+      transform: scale(1.2);
+      animation: none;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
 </head>
-<body>
 
+<body>
   <!-- 마이페이지 이동 버튼 -->
   <button type="button" class="my-page-btn" onclick="profile()">마이페이지</button>
   <button type="button" class="my-page-btn" onclick="randomWalk()">산책하기</button>
@@ -53,8 +140,8 @@
         컬러<input type="color" name="flowerColor">
       </div>
       <br />
-      <!-- <button type="button" class="write-btn" onclick="writeMsg()">작성하기</button>
-    </div> -->
+      <button type="button" class="write-btn" onclick="writeMsg()">작성하기</button>
+    </div>
   </form>
 
   <div>
@@ -84,7 +171,7 @@
                           공개여부: <%=msg[i].is_public%> <br />
                             <button type="button" onclick="deleteMsg(this)">삭제하기</button>
                   </form>
-  </div>
+  </div>0
   <%result=true%>
     <%}%>
       <%}%>
@@ -96,10 +183,13 @@
             </ul>
             </div>
 
-
-
-
             <script>
+              // 세션이 없을 때 예외 처리
+              if ("<%=data%>") {
+                alert("세션이 만료되었습니다")
+                location.href = "/home"
+              }
+
               // 회원과 비회원을 구분하는 애니메이션 필요
               function writeMsg() {
                 const form = document.forms["newMsg"]
