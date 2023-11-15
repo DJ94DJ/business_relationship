@@ -36,13 +36,13 @@ function User(Sequelize, DataTypes) {
         type: DataTypes.STRING(4),
         allowNull: false,
       },
-      user_messages: {
-        type: DataTypes.BIGINT,
-        defaultValue: 0,
-      },
-      user_img: {
-        type: DataTypes.STRING(255),
-      },
+      // user_messages: {
+      //   type: DataTypes.BIGINT,
+      //   defaultValue: 0,
+      // },
+      // user_img: {
+      //   type: DataTypes.STRING(255),
+      // },
     },
     {
       tableName: 'users',
