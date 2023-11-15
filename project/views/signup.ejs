@@ -55,8 +55,8 @@
           title="영문 또는 숫자를 사용하여 1~10자 이내로 작성해 주세요." required placeholder="아이디" />
         <button type="button" name="userIdCk" onclick="userIdCheck()">중복 확인</button>
       </div>
-      <div><input type="text" name="user_name" id="user_name" class="nk-form" oninput="valCk()" required
-          placeholder="닉네임" /></div>
+      <div><input type="text" name="user_name" id="user_name" class="nk-form" oninput="" required placeholder="닉네임" />
+      </div>
       <!-- 4~12자 이내, 숫자, 영어 포함 -->
       <div><input type="password" id="user_pw" name="user_pw" class="pw-form" placeholder="비밀번호"
           oninput="pwCheck(), valCk()" pattern="^(?=.*[0-9])(?=.*[a-zA-Z]).{4,12}$"
@@ -90,7 +90,7 @@
         $('#user_name').val() &&
         $('#user_mbti').val().length == 4
       ) {
-        $('#signUpBtn').attr('readonly', false);
+        $('#signUpBtn').attr('disabled', false);
       } else $('#signUpBtn').attr('disabled', true);
     }
 

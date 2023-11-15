@@ -9,36 +9,41 @@
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <title>signin(로그인 페이지)</title>
 </head>
-<link rel="stylesheet" href="../static/css/signin.css" />
+<link rel="stylesheet" href="../static/css/ws.css" />
 
 <body>
-  <div class="sky"></div>
-
-  <div class="container" style="margin-top: 50px;">
-    <a href="/home">
-      <img src="../static/img/zaranara.png" alt="자라나라새싹나라" />
-    </a>
-  </div>
-  <div class="green"></div>
-
-  <form class="signin-form" name="user_login">
-    <div>
-      <input type="text" name="user_id" class="id-form" required placeholder="아이디" />
-    </div>
-    <div>
-      <input type="password" name="user_pw" class="pw-form" required placeholder="비밀번호" />
-    </div>
-    <div id="signinButton">
-      <a href="/home/signin">
-        <img width="200px" src="../static/img/signin.png" alt="로그인" />
+  <!-- 하늘 배경 -->
+  <div class="sky">
+    <div style="text-align: center;">
+      <a href="/home">
+        <img src="../static/img/zaranara.png" alt="자라나라새싹나라" />
       </a>
     </div>
-  </form>
+    <!-- 동산 -->
+    <div class="green">
+      <div class="container">
 
-  <div><a href="/home/signup" class="signupButton">회원가입</a></div>
-  <div><a href="/home" class="home"></a></div>
-  <div>
-    <img class="home-icon" src="../static/img/home-icon.png" alt="홈으로 가기" />
+        <form class="signin-form" name="user_login">
+          <div>
+            <input type="text" name="user_id" class="id-form" required placeholder="아이디" />
+          </div>
+          <div>
+            <input type="password" name="user_pw" class="pw-form" required placeholder="비밀번호" />
+          </div>
+          <div id="signinButton">
+            <a>
+              <img width="200px" src="../static/img/signin.png" alt="로그인" onclick="userLogin()" />
+            </a>
+          </div>
+        </form>
+
+        <div><a href="/home/signup" class="signupButton">회원가입</a></div>
+        <div><a href="/home" class="home"></a></div>
+        <div>
+          <img class="home-icon" src="../static/img/home-icon.png" alt="홈으로 가기" />
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 <script>
