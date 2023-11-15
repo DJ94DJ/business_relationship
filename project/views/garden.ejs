@@ -132,6 +132,9 @@
     <input type="text" name="gardenId" value="<%=gardenId%>" hidden>
     <div class="write-container">
       <div>
+        <%=gardenName%>의 가든
+      </div>
+      <div>
         제목<input type="text" name="title">
       </div>
       <div>
@@ -179,7 +182,7 @@
                           공개여부: <%=msg[i].is_public%> <br />
                             <button type="button" onclick="deleteMsg(this)">삭제하기</button>
                   </form>
-  </div>0
+  </div>
   <%result=true%>
     <%}%>
       <%}%>

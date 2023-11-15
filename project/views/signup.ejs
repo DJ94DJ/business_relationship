@@ -53,7 +53,7 @@
       <!-- 아이디 중복 확인을 해야 회원가입이 완료될 수 있도록 하는 기능 구현도 이후 추가 -->
       <div class="btn-id"><input type="text" name="user_id" class="id-form" pattern="^[a-zA-Z0-9]{1,10}$"
           title="영문 또는 숫자를 사용하여 1~10자 이내로 작성해 주세요." required placeholder="아이디" />
-        <button type="button" onclick="userIdCheck()">중복 확인</button>
+        <button type="button" name="userIdCk" onclick="userIdCheck()">중복 확인</button>
       </div>
       <div><input type="text" name="user_name" id="user_name" class="nk-form" oninput="valCk()" required
           placeholder="닉네임" /></div>
@@ -90,7 +90,7 @@
         $('#user_name').val() &&
         $('#user_mbti').val().length == 4
       ) {
-        $('#signUpBtn').attr('disabled', false);
+        $('#signUpBtn').attr('readonly', false);
       } else $('#signUpBtn').attr('disabled', true);
     }
 
@@ -140,8 +140,9 @@
         // true 값이 들어오면 아이디가 존재하지 않는다는 뜻
         console.log('idCheck res :', res);
         if (res.data.result) {
+          $("#user_id").attr("disabled", true)
+          $("#userIdCk").attr("disabled", true)
           alert('사용 가능한 아이디입니다.');
-          // $("#signUpBtn").attr("disabled", false); // 회원가입 버튼 활성화
           return (userIdCk = true);
         } else {
           alert('중복된 아이디입니다.'); // 중복된 아이디일 경우 회원가입 버튼이 활성화 되지 않음 = 회원가입 버튼은 default 값 = false(비활성화)
