@@ -1,0 +1,220 @@
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  font-family: 'DNFBitBitv2';
+}
+
+input::placeholder {
+  color: BLACK;
+}
+
+#file {
+  display: none;
+}
+
+.btn-id {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.btn-id input {
+  width: 67%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.btn-id button {
+  width: 30%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.btn-upload {
+  top: 325px;
+  left: 40px;
+  position: absolute;
+  width: 242px;
+  height: 46px;
+  background: #74b93a 0% 0% no-repeat padding-box;
+  border-radius: 63px;
+  opacity: 1;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.sky {
+  background-attachment: fixed;
+  position: absolute;
+  background: linear-gradient(#0072b4, #ffffff);
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+.navbar,
+.offcanvas-header {
+  opacity: 1;
+  height: 80px;
+}
+.offcanvas {
+  opacity: 0.8;
+}
+
+.nav-link {
+  height: 150px;
+  font-size: 50px;
+  text-align: center;
+  color: #019252;
+}
+.navbar-brand {
+  margin: auto 0;
+  margin-top: 11px;
+  text-align: center;
+  color: #01552c;
+}
+.signup-border {
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 408px;
+  height: 719px;
+  background: #ffffff;
+  border: 15px solid #f5c703;
+  border-radius: 36px;
+  opacity: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  position: absolute;
+}
+.signup {
+  top: 23%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 140px;
+  position: absolute;
+}
+.realForm {
+  top: 210px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  position: relative;
+  box-sizing: border-box;
+}
+.id-form {
+  /* Layout Properties */
+  top: 221px;
+  left: 56px;
+  width: 222px;
+  height: 46px;
+  /* UI Properties */
+  border: 3px solid #707070;
+  border-radius: 63px;
+  opacity: 1;
+}
+.nk-form,
+.pw-form,
+.pwCheck-form,
+.mb-form {
+  /* Layout Properties */
+  top: 287px;
+  left: 56px;
+  width: 315px;
+  height: 46px;
+  /* UI Properties */
+  border: 3px solid #707070;
+  border-radius: 63px;
+  opacity: 1;
+}
+
+.self-form {
+  margin-top: 40px;
+  top: 618px;
+  left: 56px;
+  width: 315px;
+  height: 174px;
+  /* UI Properties */
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 3px solid #707070;
+  border-radius: 23px;
+  opacity: 1;
+}
+
+.btn-signup {
+  /* Layout Properties */
+  /* top: 831px; */
+  width: 155px;
+  height: 46px;
+  /* UI Properties */
+  background: #181d17;
+  border-radius: 63px;
+  opacity: 1;
+  color: white;
+  display: flex; /* 추가 */
+  align-items: center; /* 추가 */
+  justify-content: center; /* 추가 */
+  margin: 0 auto;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.title-border {
+  top: 17%;
+  left: 50%;
+  text-align: center;
+  width: 242px;
+  height: 46px;
+  background: #01552c;
+  border-radius: 63px;
+  opacity: 1;
+  margin: auto 0;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.title {
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+  top: 7px;
+  position: relative;
+  white-space: nowrap;
+}
+@font-face {
+  font-family: 'DNFBitBitv2';
+  font-style: normal;
+  font-weight: 400;
+  src: url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf')
+    format('opentype');
+}
+
+div {
+  margin-bottom: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
