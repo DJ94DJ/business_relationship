@@ -131,7 +131,12 @@ exports.garden = (req, res) => {
       include: { model: User },
     }).then((msg) => {
       console.log('msg, result :', result, msg);
-      res.render('garden', { result, msg, userName: req.session.userName });
+      res.render('garden', {
+        result,
+        msg,
+        userName: req.session.userName,
+        gardenId: req.session.userId,
+      });
     });
   });
 };
