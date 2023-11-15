@@ -44,11 +44,11 @@
     </div>
     <div>
       <!-- 4~12자 이내, 숫자, 영어 포함 -->
-      비밀번호 <input type="password" id="user_pw" name="user_pw" oninput="pwCheck()"
+      비밀번호 <input type="password" id="user_pw" name="user_pw" oninput="pwCheck(), valCk()"
         pattern="^(?=.*[0-9])(?=.*[a-zA-Z]).{4,12}$" title="숫자와 영문을 포함하여 4~12자 이내로 작성해 주세요." required>
     </div>
     <div>
-      비밀번호 확인 <input type="password" id="user_pw_check" oninput="pwCheck()" name="user_pw_check" required>
+      비밀번호 확인 <input type="password" id="user_pw_check" oninput="pwCheck(), valCk()" name="user_pw_check" required>
       <!-- <button type="button" onclick="pwCheck()">비밀번호 일치 확인</button> -->
       <span id="pw_check"> 비밀번호를 입력하세요. </span>
     </div>
@@ -68,14 +68,13 @@
     </div>
     <div>
       <button id="signUpBtn" type="button" onclick="userSignUp()" disabled>회원가입</button>
-      <button id="retCheck" type="button" onclick="test()">리턴체크</button>
     </div>
   </form>
 
   <script>
     // 회원가입 버튼 활성화 함수 / 중복검사, 비밀번호 일치 닉네임 값 존재 mbti 4글자를 충족시키면 활성화된다
     function valCk() {
-      if (((userIdCk == true) && (pwCk == true)) && $("#user_name").val() && ($("#user_mbti").val().length == 4)) {
+      if ((userIdCk == true) && (pwCk == true) && $("#user_name").val() && ($("#user_mbti").val().length == 4)) {
         $("#signUpBtn").attr("disabled", false);
       } else $("#signUpBtn").attr("disabled", true)
     }
