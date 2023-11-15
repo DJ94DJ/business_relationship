@@ -184,12 +184,6 @@
             </div>
 
             <script>
-              // 세션이 없을 때 예외 처리
-              if ("<%=data%>") {
-                alert("세션이 만료되었습니다")
-                location.href = "/home"
-              }
-
               // 회원과 비회원을 구분하는 애니메이션 필요
               function writeMsg() {
                 const form = document.forms["newMsg"]
