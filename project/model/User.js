@@ -45,7 +45,7 @@ function User(Sequelize, DataTypes) {
       },
     },
     {
-      tableName: 'Users',
+      tableName: 'users',
       freezeTableName: true, //복수 형태 방지
       timestamps: false,
     },
