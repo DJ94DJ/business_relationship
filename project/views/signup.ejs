@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <title>signup (회원가입 페이지)</title>
 </head>
 <style>
@@ -37,20 +38,22 @@
     <div>
       <!-- 1~10자 이내, 영문(대소문자)+숫자 포함 -->
       <!-- 아이디 중복 확인을 해야 회원가입이 완료될 수 있도록 하는 기능 구현도 이후 추가 -->
-      ID <input type="text" id="user_id" name="user_id" pattern="^[a-zA-Z0-9]{1,10}$" title="영문 또는 숫자를 사용하여 1~10자 이내로 작성해 주세요." required>
+      ID <input type="text" id="user_id" name="user_id" pattern="^[a-zA-Z0-9]{1,10}$"
+        title="영문 또는 숫자를 사용하여 1~10자 이내로 작성해 주세요." required>
       <button type="button" onclick="userIdCheck()">아이디 중복 확인</button>
     </div>
     <div>
       <!-- 4~12자 이내, 숫자, 영어 포함 -->
-      비밀번호 <input type="password" id="user_pw" name="user_pw" oninput="pwCheck()" pattern="^(?=.*[0-9])(?=.*[a-zA-Z]).{4,12}$" title="숫자와 영문을 포함하여 4~12자 이내로 작성해 주세요." required>
+      비밀번호 <input type="password" id="user_pw" name="user_pw" oninput="pwCheck(), valCk()"
+        pattern="^(?=.*[0-9])(?=.*[a-zA-Z]).{4,12}$" title="숫자와 영문을 포함하여 4~12자 이내로 작성해 주세요." required>
     </div>
     <div>
-      비밀번호 확인 <input type="password" id="user_pw_check" oninput="pwCheck()" name="user_pw_check" required>
+      비밀번호 확인 <input type="password" id="user_pw_check" oninput="pwCheck(), valCk()" name="user_pw_check" required>
       <!-- <button type="button" onclick="pwCheck()">비밀번호 일치 확인</button> -->
       <span id="pw_check"> 비밀번호를 입력하세요. </span>
     </div>
     <div>
-      닉네임 <input type="text" id="user_name" name="user_name" required>
+      닉네임 <input type="text" id="user_name" name="user_name" oninput="valCk()" required>
     </div>
     <!-- <div> 보류
       사용자 이미지 설정<input type="file" id="user_img" name="user_img">
@@ -60,28 +63,21 @@
     </div>
     <div>
       <!-- 4글자 영어만 가능 (추후에는 직접 입력하는 것이 아니라 버튼 형식으로 선택할 수 있게 하는 것도?)-->
-      내 MBTI <input type="text" id="user_mbti" name="user_mbti" pattern="^[a-zA-Z]{4}$" title="" required>
+      내 MBTI <input type="text" id="user_mbti" oninput="valCk()" name="user_mbti" pattern="^[a-zA-Z]{4}$" title=""
+        required>
     </div>
     <div>
-      <button id="signUpBtn" type="button" onclick="userSignUp()">회원가입</button>
+      <button id="signUpBtn" type="button" onclick="userSignUp()" disabled>회원가입</button>
     </div>
   </form>
 
   <script>
-    // user_id에 값이 들어가면 회원가입 버튼 활성화 function
-    $("#signUpBtn").attr("disabled", true);
-
-    function onSignUpBtn(result) {
-      console.log("onSignUp 동작", pwCheck.result)
-      if (result == true) {
+    // 회원가입 버튼 활성화 함수 / 중복검사, 비밀번호 일치 닉네임 값 존재 mbti 4글자를 충족시키면 활성화된다
+    function valCk() {
+      if ((userIdCk == true) && (pwCk == true) && $("#user_name").val() && ($("#user_mbti").val().length == 4)) {
         $("#signUpBtn").attr("disabled", false);
-      } else $("#signUpBtn").attr("disabled", true);
+      } else $("#signUpBtn").attr("disabled", true)
     }
-    $("#user_id").on("input", function() {
-      if ($("#user_id").val() == "") {
-        $("#signUpBtn").attr("disabled", true);
-      } else $("#signUpBtn").attr("disabled", false);
-    })
 
     //회원가입 버튼 클릭 시 user 데이터를 db로 넘김
     function userSignUp() {
@@ -105,9 +101,6 @@
         method: "POST",
         url: "/home/signup",
         data: user
-        // headers: {
-        //     "Content-type": "multipart/form-data"
-        // }
       }).then((res) => {
         if (res.data.result) {
           alert("회원가입 성공 !")
@@ -134,9 +127,8 @@
         if (res.data.result) {
           alert("사용 가능한 아이디입니다.")
           // $("#signUpBtn").attr("disabled", false); // 회원가입 버튼 활성화
-          return {
-            userIdCheck: true
-          }
+          return userIdCk = true
+
         } else {
           alert("중복된 아이디입니다.") // 중복된 아이디일 경우 회원가입 버튼이 활성화 되지 않음 = 회원가입 버튼은 default 값 = false(비활성화)
         }
@@ -147,30 +139,16 @@
     function pwCheck() {
       if ($('#user_pw').val() == '' | $('#user_pw_check').val() == '') {
         $('#pw_check').text('')
+        return pwCk = false
       } else if ($('#user_pw').val() == $('#user_pw_check').val()) {
         $('#pw_check').text('비밀번호 일치').css('color', 'green')
+        return pwCk = true
       } else {
         $('#pw_check').text('비밀번호가 일치하지 않습니다.').css('color', 'red')
+        return pwCk = false
       }
     }
 
-    // 비밀번호 일치 확인 버튼 클릭 시
-    // function pwCheck() {
-    //   const form = document.forms["user_upload"]
-
-    //   let pwData = {
-    //     user_pw: form.user_pw.value,
-    //     user_pw_check: form.user_pw_check.value
-    //   }
-
-    //   if (pwData.user_pw == pwData.user_pw_check) {
-    //     alert("일치")
-    //     return (onSignUpBtn(true))
-
-    //   } else {
-    //     alert("불일치")
-    //   }
-    // }
   </script>
 
 </body>
