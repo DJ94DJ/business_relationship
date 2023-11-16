@@ -187,7 +187,7 @@ input::placeholder {
   }
 }
 
-/* ipad 반응형 */
+/* Nest Hub 반응형 */
 @media screen and (min-height: 599px) and (max-height: 700px) and (min-width: 1000px) {
   .id-form,
   .pw-form {
@@ -215,12 +215,12 @@ input::placeholder {
   }
 }
 
-/* Nest Hub 반응형 */
+/* iPad 반응형 */
 @media screen and (min-width: 800px) and (max-width: 1400px) and (min-height: 1000px) {
   .id-form,
   .pw-form {
     width: 544px;
-    height: 122px;
+    height: 102px;
   }
   input::placeholder {
     font-size: 38px;
