@@ -82,6 +82,22 @@
   </form>
 
   <script>
+    // 비밀번호 일치 여부 실시간 체크 함수
+    function pwCheck() {
+      if (($('#user_pw').val() == '') | ($('#user_pw_check').val() == '')) {
+        $('#pw_check').text('');
+        return (pwCk = false);
+      } else if ($('#user_pw').val() == $('#user_pw_check').val()) {
+        $('#pw_check').text('비밀번호 일치').css('color', 'green');
+        return (pwCk = true);
+      } else {
+        $('#pw_check')
+          .text('비밀번호가 일치하지 않습니다.')
+          .css('color', 'red');
+        return (pwCk = false);
+      }
+    }
+
     // 회원가입 버튼 활성화 함수 / 중복검사, 비밀번호 일치 닉네임 값 존재 mbti 4글자를 충족시키면 활성화된다
     function valCk() {
       if (
@@ -148,22 +164,6 @@
           alert('중복된 아이디입니다.'); // 중복된 아이디일 경우 회원가입 버튼이 활성화 되지 않음 = 회원가입 버튼은 default 값 = false(비활성화)
         }
       });
-    }
-
-    // 비밀번호 일치 여부 실시간 체크 함수
-    function pwCheck() {
-      if (($('#user_pw').val() == '') | ($('#user_pw_check').val() == '')) {
-        $('#pw_check').text('');
-        return (pwCk = false);
-      } else if ($('#user_pw').val() == $('#user_pw_check').val()) {
-        $('#pw_check').text('비밀번호 일치').css('color', 'green');
-        return (pwCk = true);
-      } else {
-        $('#pw_check')
-          .text('비밀번호가 일치하지 않습니다.')
-          .css('color', 'red');
-        return (pwCk = false);
-      }
     }
   </script>
 </body>
