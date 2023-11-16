@@ -29,9 +29,7 @@
       <input type="password" name="user_pw" class="pw-form" required placeholder="비밀번호" />
     </div>
     <div id="signinButton">
-      <a href="/home/signin">
-        <img width="200px" src="../static/img/signin.png" alt="로그인" />
-      </a>
+      <img width="200px" src="../static/img/signin.png" onclick="userLogin()" alt="로그인" />
     </div>
   </form>
 
@@ -41,6 +39,7 @@
     <img class="home-icon" src="../static/img/home-icon.png" alt="홈으로 가기" />
   </div>
 </body>
+
 <script>
   // 로그인 버튼 클릭 시
   function userLogin() {
