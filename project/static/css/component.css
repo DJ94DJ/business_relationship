@@ -106,3 +106,23 @@ button:disabled:hover {
 .pubRadioBtn {
   font-size: 30px;
 }
+
+/* 모달창 */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.container .closeBtn {
+  align-self: flex-end;
+}
+
+.modal {
+  width: 70vw;
+  background-color: white;
+  border: 15px solid yellow;
+  border-radius: 20px;
+  padding: 10px;
+}
