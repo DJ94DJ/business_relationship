@@ -108,7 +108,8 @@
     <form class="" name="userProfile">
       <h3>마이(프로필) 페이지</h3>
       <div>
-        <!-- 아이디는 변경 불가능 -->
+      <!-- 아이디는 변경 불가능 -->
+        아이디 <input type="text" class="user-id" name="user_id" value="<%=data.user_id%>" readonly>
       </div>
       <div>
         닉네임 <input type="text" name="user_name" value="<%=data.user_name%>">
@@ -124,10 +125,7 @@
         내 MBTI <input type="text" name="user_mbti" value="<%=data.user_mbti%>">
       </div>
 
-      <!-- 아이디/비번 변경은 '비밀번호 재설정' 버튼 클릭 시 별도 창으로 띄울 예정 -->
-      <div>
-        아이디 <input type="text" name="user_id" value="<%=data.user_id%>">
-      </div>
+
       <div>
         비밀번호 <input type="password" name="user_pw" id="user-pw" value="">
       </div>
