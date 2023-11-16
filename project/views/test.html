@@ -1,204 +1,256 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>garden 요소 테스트</title>
+    <link rel="stylesheet" href="../static/css/test.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>garden 요소 테스트</title>
-  <link rel="stylesheet" href="../static/css/test.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
-</head>
+  <body>
+    <div class="bed">
+      <!-- 새싹 스프라이트 -->
+      <div class="sesac-sprite-box">
+        <div class="sesac-sprite-1"></div>
+        <div class="sesac-sprite-2"></div>
+        <div class="sesac-sprite-3"></div>
+        <div class="sesac-sprite-4"></div>
+      </div>
+      <!-- 새싹 스프라이트 종료-->
 
-<body>
-  <div class="bed">
-    <!-- 새싹 스프라이트 -->
-    <div class="sesac-sprite-box">
-      <div class="sesac-sprite-1"></div>
-      <div class="sesac-sprite-2"></div>
-      <div class="sesac-sprite-3"></div>
-      <div class="sesac-sprite-4"></div>
-    </div>
-    <!-- 새싹 스프라이트 종료-->
+      <!-- 잎사귀 스프라이트 -->
+      <div class="leaf-sprite-box">
+        <div class="leaf-sprite-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="140.481"
+            height="223.477"
+            viewBox="0 0 140.481 223.477"
+          >
+            <defs>
+              <style>
+                .leaf-1 {
+                  fill: url(#linear-gradient);
+                }
 
-    <!-- 잎사귀 스프라이트 -->
-    <div class="leaf-sprite-box">
-      <div class="leaf-sprite-1">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="140.481"
-          height="223.477" viewBox="0 0 140.481 223.477">
-          <defs>
-            <style>
-              .leaf-1 {
-                fill: url(#linear-gradient);
-              }
-
-              .leaf-2 {
-                clip-path: url(#clip-path);
-              }
-            </style>
-            <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
-              <stop offset="0" stop-color="#74b93a" />
-              <stop offset="1" stop-color="#01552c" />
-            </linearGradient>
-            <clipPath id="clip-path">
-              <rect id="leaf" data-name="leaf" class="leaf-1" width="76.23" height="210.106"
-                transform="translate(0 0)" />
-            </clipPath>
-          </defs>
-          <g id="leaf-part" data-name="leaf-part">
-            <g id="leaf-group" data-name="leaf-group" class="leaf-2" transform="translate(0 0.004)">
-              <path id="leaf-path" data-name="leaf-path" class="leaf-1"
-                d="M76.129,183.788C74.915,170.52,36.255,12.657,36.255,12.657A13.9,13.9,0,0,0,14.111,2.771C5.367,9.275-.83,18.866.091,28.939c.97,10.6,9.6,19.252,20.1,23.922-9.475,6.5-16.394,16.566-15.424,27.17s9.6,19.252,20.1,23.922c-9.475,6.5-16.394,16.566-15.424,27.17s9.6,19.252,20.1,23.922c-9.475,6.5-16.394,16.566-15.424,27.17,1.38,15.088,18.27,26.218,33.975,27.56a24.14,24.14,0,0,0,28.046-25.988"
-                transform="translate(0 -0.004)" />
+                .leaf-2 {
+                  clip-path: url(#clip-path);
+                }
+              </style>
+              <linearGradient
+                id="linear-gradient"
+                x1="0.5"
+                x2="0.5"
+                y2="1"
+                gradientUnits="objectBoundingBox"
+              >
+                <stop offset="0" stop-color="#74b93a" />
+                <stop offset="1" stop-color="#01552c" />
+              </linearGradient>
+              <clipPath id="clip-path">
+                <rect
+                  id="leaf"
+                  data-name="leaf"
+                  class="leaf-1"
+                  width="76.23"
+                  height="210.106"
+                  transform="translate(0 0)"
+                />
+              </clipPath>
+            </defs>
+            <g id="leaf-part" data-name="leaf-part">
+              <g
+                id="leaf-group"
+                data-name="leaf-group"
+                class="leaf-2"
+                transform="translate(0 0.004)"
+              >
+                <path
+                  id="leaf-path"
+                  data-name="leaf-path"
+                  class="leaf-1"
+                  d="M76.129,183.788C74.915,170.52,36.255,12.657,36.255,12.657A13.9,13.9,0,0,0,14.111,2.771C5.367,9.275-.83,18.866.091,28.939c.97,10.6,9.6,19.252,20.1,23.922-9.475,6.5-16.394,16.566-15.424,27.17s9.6,19.252,20.1,23.922c-9.475,6.5-16.394,16.566-15.424,27.17s9.6,19.252,20.1,23.922c-9.475,6.5-16.394,16.566-15.424,27.17,1.38,15.088,18.27,26.218,33.975,27.56a24.14,24.14,0,0,0,28.046-25.988"
+                  transform="translate(0 -0.004)"
+                />
+              </g>
             </g>
-          </g>
-        </svg>
+          </svg>
+        </div>
       </div>
-    </div>
-    <!-- 잎사귀 스프라이트 종료 -->
+      <!-- 잎사귀 스프라이트 종료 -->
 
-    <!-- 잎사귀2 스프라이트 -->
-    <div class="leaf02-sprite-box">
-      <div class="leaf02-sprite-1"></div>
-      <div class="leaf02-sprite-2"></div>
-    </div>
-    <!-- 잎사귀2 스프라이트 종료 -->
+      <!-- 잎사귀2 스프라이트 -->
+      <div class="leaf02-sprite-box">
+        <div class="leaf02-sprite-1"></div>
+        <div class="leaf02-sprite-2"></div>
+      </div>
+      <!-- 잎사귀2 스프라이트 종료 -->
 
-    <!-- 덩굴 스프라이트 -->
-    <div class="vine-sprite-box">
-      <div class="vine-sprite-1">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="92.235"
-          height="87.818" viewBox="0 0 92.235 87.818">
-          <defs>
-            <style>
-              .vine-1,
-              .vine-3 {
-                fill: none;
-                stroke: #1e8c09;
-                stroke-width: 5px;
-              }
+      <!-- 덩굴 스프라이트 -->
+      <div class="vine-sprite-box">
+        <div class="vine-sprite-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="92.235"
+            height="87.818"
+            viewBox="0 0 92.235 87.818"
+          >
+            <defs>
+              <style>
+                .vine-1,
+                .vine-3 {
+                  fill: none;
+                  stroke: #1e8c09;
+                  stroke-width: 5px;
+                }
 
-              .vine-2 {
-                clip-path: url(#clip-path);
-              }
+                .vine-2 {
+                  clip-path: url(#clip-path);
+                }
 
-              .vine-3 {
-                stroke-miterlimit: 10;
-              }
-            </style>
-            <clipPath id="clip-path">
-              <rect id="vine_1" data-name="vine 1" class="vine-1" width="72.275" height="58.391" />
-            </clipPath>
-          </defs>
-          <g id="vine_1-1" data-name="vine 1-1" transform="matrix(0.848, 0.53, -0.53, 0.848, 30.943, 0)">
-            <g id="vine_2" data-name="vine 2" class="vine-2">
-              <path id="vine_3" data-name="vine 3" class="vine-3"
-                d="M112.793,54.935a10.743,10.743,0,0,0-11.039,10.686,30.361,30.361,0,0,1-30.66,30.307A27.594,27.594,0,0,1,43.5,68.335,24.835,24.835,0,0,1,68.335,43.5,22.351,22.351,0,0,1,90.686,65.851,20.116,20.116,0,0,1,70.57,85.967a18.1,18.1,0,0,1-18.1-18.1A16.294,16.294,0,0,1,68.759,51.569,14.665,14.665,0,0,1,83.424,66.233a13.2,13.2,0,0,1-13.2,13.2A11.878,11.878,0,0,1,58.347,67.553"
-                transform="translate(-40.519 -40.519)" />
+                .vine-3 {
+                  stroke-miterlimit: 10;
+                }
+              </style>
+              <clipPath id="clip-path">
+                <rect
+                  id="vine_1"
+                  data-name="vine 1"
+                  class="vine-1"
+                  width="72.275"
+                  height="58.391"
+                />
+              </clipPath>
+            </defs>
+            <g
+              id="vine_1-1"
+              data-name="vine 1-1"
+              transform="matrix(0.848, 0.53, -0.53, 0.848, 30.943, 0)"
+            >
+              <g id="vine_2" data-name="vine 2" class="vine-2">
+                <path
+                  id="vine_3"
+                  data-name="vine 3"
+                  class="vine-3"
+                  d="M112.793,54.935a10.743,10.743,0,0,0-11.039,10.686,30.361,30.361,0,0,1-30.66,30.307A27.594,27.594,0,0,1,43.5,68.335,24.835,24.835,0,0,1,68.335,43.5,22.351,22.351,0,0,1,90.686,65.851,20.116,20.116,0,0,1,70.57,85.967a18.1,18.1,0,0,1-18.1-18.1A16.294,16.294,0,0,1,68.759,51.569,14.665,14.665,0,0,1,83.424,66.233a13.2,13.2,0,0,1-13.2,13.2A11.878,11.878,0,0,1,58.347,67.553"
+                  transform="translate(-40.519 -40.519)"
+                />
+              </g>
             </g>
-          </g>
-        </svg>
+          </svg>
+        </div>
       </div>
-    </div>
-    <!-- 덩굴 스프라이트 종료-->
+      <!-- 덩굴 스프라이트 종료-->
 
-    <!-- 꽃-1 스프라이츠 -->
-    <div class="flower01-sprite-box">
-      <div class="flower01-sprite-1">
-        <svg xmlns="http://www.w3.org/2000/svg" width="356.199" height="356.198" viewBox="0 0 356.199 356.198">
-          <defs>
-            <style>
-              .flower-1 {
-                fill: #cb6767;
-              }
-            </style>
-          </defs>
-          <path id="flower_1" data-name="flower 1" class="flower-1"
-            d="M223.526,82.013a62.23,62.23,0,0,0-17.439,2.651,59.972,59.972,0,0,0,2.735-17.355c0-37.174-28.388-67.31-63.4-67.31s-63.4,30.136-63.4,67.31a62.144,62.144,0,0,0,2.651,17.437A60.042,60.042,0,0,0,67.31,82.013C30.136,82.013,0,110.4,0,145.417s30.136,63.4,67.31,63.4a62.164,62.164,0,0,0,17.439-2.651,59.979,59.979,0,0,0-2.733,17.355c0,37.175,28.386,67.31,63.4,67.31s63.4-30.134,63.4-67.31a62.227,62.227,0,0,0-2.651-17.437,59.961,59.961,0,0,0,17.355,2.733c37.174,0,67.31-28.386,67.31-63.4s-30.136-63.4-67.31-63.4m-78.12,63.393h.023v.021l-.023,0v-.023" />
-        </svg>
+      <!-- 꽃-1 스프라이츠 -->
+      <div class="flower01-sprite-box">
+        <div class="flower01-sprite-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="356.199"
+            height="356.198"
+            viewBox="0 0 356.199 356.198"
+          >
+            <defs>
+              <style>
+                .flower-1 {
+                  fill: #cb6767;
+                }
+              </style>
+            </defs>
+            <path
+              id="flower_1"
+              data-name="flower 1"
+              class="flower-1"
+              d="M223.526,82.013a62.23,62.23,0,0,0-17.439,2.651,59.972,59.972,0,0,0,2.735-17.355c0-37.174-28.388-67.31-63.4-67.31s-63.4,30.136-63.4,67.31a62.144,62.144,0,0,0,2.651,17.437A60.042,60.042,0,0,0,67.31,82.013C30.136,82.013,0,110.4,0,145.417s30.136,63.4,67.31,63.4a62.164,62.164,0,0,0,17.439-2.651,59.979,59.979,0,0,0-2.733,17.355c0,37.175,28.386,67.31,63.4,67.31s63.4-30.134,63.4-67.31a62.227,62.227,0,0,0-2.651-17.437,59.961,59.961,0,0,0,17.355,2.733c37.174,0,67.31-28.386,67.31-63.4s-30.136-63.4-67.31-63.4m-78.12,63.393h.023v.021l-.023,0v-.023"
+            />
+          </svg>
+        </div>
+
+        <div class="flower01-sprite-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="151.268"
+            height="151.268"
+            viewBox="0 0 151.268 151.268"
+          >
+            <defs>
+              <style>
+                .flower-2 {
+                  fill: #f5c703;
+                }
+              </style>
+            </defs>
+            <path
+              id="flower_2"
+              data-name="flower 2"
+              class="flower-2"
+              d="M62.558.78,63.61,38.192a.8.8,0,0,0,1.58.178L74.541,2.13a.8.8,0,0,1,1.564.357L68.807,39.2a.8.8,0,0,0,1.5.525L87.489,6.47a.8.8,0,0,1,1.446.7L73.65,41.331A.8.8,0,0,0,75,42.176L99.145,13.583a.8.8,0,0,1,1.255,1L77.9,44.49a.8.8,0,0,0,1.124,1.124l29.906-22.5a.8.8,0,0,1,1,1.255L81.334,48.514a.8.8,0,0,0,.845,1.346l34.164-15.285a.8.8,0,0,1,.7,1.446L83.79,53.2a.8.8,0,0,0,.525,1.5l36.708-7.3a.8.8,0,0,1,.357,1.565L85.14,58.32a.8.8,0,0,0,.178,1.58l37.413,1.052a.8.8,0,0,1,0,1.605L85.318,63.61a.8.8,0,0,0-.178,1.579l36.24,9.351a.8.8,0,0,1-.357,1.565l-36.708-7.3a.8.8,0,0,0-.525,1.5L117.04,87.488a.8.8,0,0,1-.7,1.446L82.179,73.65A.8.8,0,0,0,81.334,75l28.594,24.149a.8.8,0,0,1-1,1.254L79.021,77.9A.8.8,0,0,0,77.9,79.021l22.5,29.906a.8.8,0,0,1-1.255,1L75,81.333a.8.8,0,0,0-1.346.846l15.285,34.163a.8.8,0,0,1-1.446.7L70.307,83.789a.8.8,0,0,0-1.5.525l7.3,36.709a.8.8,0,0,1-1.564.357L65.19,85.14a.8.8,0,0,0-1.58.178L62.558,122.73a.8.8,0,0,1-1.6,0L59.9,85.318a.8.8,0,0,0-1.579-.178L48.97,121.38a.8.8,0,0,1-1.565-.357l7.3-36.709a.8.8,0,0,0-1.5-.525L36.022,117.039a.8.8,0,0,1-1.446-.7L49.86,82.18a.8.8,0,0,0-1.346-.846L24.365,109.928a.8.8,0,0,1-1.255-1l22.5-29.906A.8.8,0,0,0,44.489,77.9L14.583,100.4a.8.8,0,0,1-1-1.254L42.177,75a.8.8,0,0,0-.846-1.346L7.167,88.934a.8.8,0,0,1-.7-1.446L39.721,70.307a.8.8,0,0,0-.525-1.5l-36.709,7.3a.8.8,0,0,1-.357-1.565L38.37,65.19a.8.8,0,0,0-.178-1.579L.78,62.558a.8.8,0,0,1,0-1.605L38.192,59.9a.8.8,0,0,0,.178-1.58L2.13,48.969A.8.8,0,0,1,2.487,47.4L39.2,54.7a.8.8,0,0,0,.525-1.5L6.471,36.022a.8.8,0,0,1,.7-1.446L41.331,49.861a.8.8,0,0,0,.846-1.346L13.583,24.365a.8.8,0,0,1,1-1.255l29.906,22.5a.8.8,0,0,0,1.124-1.124l-22.5-29.906a.8.8,0,0,1,1.255-1L48.514,42.176a.8.8,0,0,0,1.346-.846L34.576,7.167a.8.8,0,0,1,1.446-.7L53.2,39.721a.8.8,0,0,0,1.5-.525l-7.3-36.708A.8.8,0,0,1,48.97,2.13l9.351,36.24a.8.8,0,0,0,1.579-.178L60.953.78a.8.8,0,0,1,1.6,0"
+              transform="matrix(0.966, -0.259, 0.259, 0.966, 0, 31.967)"
+            />
+          </svg>
+        </div>
       </div>
+      <!-- 꽃-1 스프라이츠 종료-->
 
-      <div class="flower01-sprite-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="151.268" height="151.268" viewBox="0 0 151.268 151.268">
-          <defs>
-            <style>
-              .flower-2 {
-                fill: #f5c703;
-              }
-            </style>
-          </defs>
-          <path id="flower_2" data-name="flower 2" class="flower-2"
-            d="M62.558.78,63.61,38.192a.8.8,0,0,0,1.58.178L74.541,2.13a.8.8,0,0,1,1.564.357L68.807,39.2a.8.8,0,0,0,1.5.525L87.489,6.47a.8.8,0,0,1,1.446.7L73.65,41.331A.8.8,0,0,0,75,42.176L99.145,13.583a.8.8,0,0,1,1.255,1L77.9,44.49a.8.8,0,0,0,1.124,1.124l29.906-22.5a.8.8,0,0,1,1,1.255L81.334,48.514a.8.8,0,0,0,.845,1.346l34.164-15.285a.8.8,0,0,1,.7,1.446L83.79,53.2a.8.8,0,0,0,.525,1.5l36.708-7.3a.8.8,0,0,1,.357,1.565L85.14,58.32a.8.8,0,0,0,.178,1.58l37.413,1.052a.8.8,0,0,1,0,1.605L85.318,63.61a.8.8,0,0,0-.178,1.579l36.24,9.351a.8.8,0,0,1-.357,1.565l-36.708-7.3a.8.8,0,0,0-.525,1.5L117.04,87.488a.8.8,0,0,1-.7,1.446L82.179,73.65A.8.8,0,0,0,81.334,75l28.594,24.149a.8.8,0,0,1-1,1.254L79.021,77.9A.8.8,0,0,0,77.9,79.021l22.5,29.906a.8.8,0,0,1-1.255,1L75,81.333a.8.8,0,0,0-1.346.846l15.285,34.163a.8.8,0,0,1-1.446.7L70.307,83.789a.8.8,0,0,0-1.5.525l7.3,36.709a.8.8,0,0,1-1.564.357L65.19,85.14a.8.8,0,0,0-1.58.178L62.558,122.73a.8.8,0,0,1-1.6,0L59.9,85.318a.8.8,0,0,0-1.579-.178L48.97,121.38a.8.8,0,0,1-1.565-.357l7.3-36.709a.8.8,0,0,0-1.5-.525L36.022,117.039a.8.8,0,0,1-1.446-.7L49.86,82.18a.8.8,0,0,0-1.346-.846L24.365,109.928a.8.8,0,0,1-1.255-1l22.5-29.906A.8.8,0,0,0,44.489,77.9L14.583,100.4a.8.8,0,0,1-1-1.254L42.177,75a.8.8,0,0,0-.846-1.346L7.167,88.934a.8.8,0,0,1-.7-1.446L39.721,70.307a.8.8,0,0,0-.525-1.5l-36.709,7.3a.8.8,0,0,1-.357-1.565L38.37,65.19a.8.8,0,0,0-.178-1.579L.78,62.558a.8.8,0,0,1,0-1.605L38.192,59.9a.8.8,0,0,0,.178-1.58L2.13,48.969A.8.8,0,0,1,2.487,47.4L39.2,54.7a.8.8,0,0,0,.525-1.5L6.471,36.022a.8.8,0,0,1,.7-1.446L41.331,49.861a.8.8,0,0,0,.846-1.346L13.583,24.365a.8.8,0,0,1,1-1.255l29.906,22.5a.8.8,0,0,0,1.124-1.124l-22.5-29.906a.8.8,0,0,1,1.255-1L48.514,42.176a.8.8,0,0,0,1.346-.846L34.576,7.167a.8.8,0,0,1,1.446-.7L53.2,39.721a.8.8,0,0,0,1.5-.525l-7.3-36.708A.8.8,0,0,1,48.97,2.13l9.351,36.24a.8.8,0,0,0,1.579-.178L60.953.78a.8.8,0,0,1,1.6,0"
-            transform="matrix(0.966, -0.259, 0.259, 0.966, 0, 31.967)" />
-        </svg>
-      </div>
-    </div>
-    <!-- 꽃-1 스프라이츠 종료-->
-
-    <!-- 씨앗 스프라이츠 -->
-    <div class="seed-sprite-box">
-      <div class="seed-sprite-1"></div>
-      <div class="seed-sprite-2"></div>
-    </div>
-    <!-- 씨앗 스프라이츠 종료 -->
-
-    <!-- 씨앗 후광 스프라이츠 -->
-    <div class="halo-sprite-box">
-      <div class="seed-sprite-box-2">
+      <!-- 씨앗 스프라이츠 -->
+      <div class="seed-sprite-box">
         <div class="seed-sprite-1"></div>
         <div class="seed-sprite-2"></div>
       </div>
+      <!-- 씨앗 스프라이츠 종료 -->
 
-      <div class="halo-sprite-1">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="191.19"
-          height="191.19" viewBox="0 0 191.19 191.19">
-          <defs>
-            <style>
-              .halo-1 {
-                fill: url(#radial-gradient);
-              }
-            </style>
-            <radialGradient xmlns="http://www.w3.org/2000/svg" id="radial-gradient" cx="0.5" cy="0.5" r="0.5"
-              gradientUnits="objectBoundingBox">
-              <stop offset="0.45" stop-color="#fff" stop-opacity="0" />
-              <stop offset="0.6" stop-color="#fff" stop-opacity="0.02" />
-              <stop offset="1" stop-color="#fff" stop-opacity="0.5" />
-            </radialGradient>
-          </defs>
-          <path id="halo_1" data-name="halo 1" class="halo-1"
-            d="M1141.52,221.093l1.629,57.913a1.243,1.243,0,0,0,2.446.276l14.475-56.1a1.243,1.243,0,0,1,2.422.553l-11.3,56.823a1.243,1.243,0,0,0,2.323.813l26.6-51.471a1.243,1.243,0,0,1,2.238,1.078l-23.66,52.885a1.243,1.243,0,0,0,2.084,1.309l37.382-44.262a1.243,1.243,0,0,1,1.942,1.549l-34.834,46.294a1.243,1.243,0,0,0,1.74,1.74L1213.3,255.66a1.243,1.243,0,0,1,1.549,1.942l-44.262,37.382a1.243,1.243,0,0,0,1.309,2.084l52.885-23.66a1.243,1.243,0,0,1,1.078,2.238l-51.471,26.6a1.243,1.243,0,0,0,.813,2.323l56.823-11.3a1.243,1.243,0,0,1,.553,2.422l-56.1,14.475a1.243,1.243,0,0,0,.276,2.446l57.913,1.629a1.243,1.243,0,0,1,0,2.485l-57.913,1.629a1.242,1.242,0,0,0-.276,2.445l56.1,14.475a1.243,1.243,0,0,1-.553,2.423L1175.2,326.4a1.243,1.243,0,0,0-.813,2.323l51.471,26.6a1.243,1.243,0,0,1-1.078,2.239l-52.885-23.66a1.243,1.243,0,0,0-1.309,2.084l44.262,37.382a1.243,1.243,0,0,1-1.549,1.942L1167,340.467a1.243,1.243,0,0,0-1.74,1.74L1200.1,388.5a1.243,1.243,0,0,1-1.942,1.549l-37.382-44.263a1.243,1.243,0,0,0-2.084,1.31l23.66,52.884a1.242,1.242,0,0,1-2.238,1.078l-26.6-51.471a1.243,1.243,0,0,0-2.323.813l11.3,56.824a1.243,1.243,0,0,1-2.422.553l-14.475-56.1a1.243,1.243,0,0,0-2.446.276l-1.629,57.913a1.242,1.242,0,0,1-2.484,0l-1.63-57.913a1.242,1.242,0,0,0-2.445-.276l-14.475,56.1a1.243,1.243,0,0,1-2.422-.553l11.3-56.824a1.243,1.243,0,0,0-2.323-.813l-26.595,51.471a1.243,1.243,0,0,1-2.239-1.078l23.66-52.884a1.243,1.243,0,0,0-2.084-1.31L1082.4,390.05a1.243,1.243,0,0,1-1.942-1.549l34.834-46.294a1.243,1.243,0,0,0-1.74-1.74L1067.257,375.3a1.243,1.243,0,0,1-1.549-1.942l44.263-37.382a1.243,1.243,0,0,0-1.31-2.084l-52.884,23.66a1.243,1.243,0,0,1-1.078-2.239l51.471-26.6a1.243,1.243,0,0,0-.813-2.323l-56.824,11.3a1.243,1.243,0,0,1-.553-2.423l56.1-14.475a1.242,1.242,0,0,0-.276-2.445l-57.913-1.629a1.243,1.243,0,0,1,0-2.485l57.913-1.629a1.243,1.243,0,0,0,.276-2.446l-56.1-14.475a1.243,1.243,0,0,1,.553-2.422l56.824,11.3a1.243,1.243,0,0,0,.813-2.323l-51.471-26.6a1.243,1.243,0,0,1,1.078-2.238l52.884,23.66a1.243,1.243,0,0,0,1.31-2.084L1065.708,257.6a1.243,1.243,0,0,1,1.549-1.942l46.294,34.834a1.243,1.243,0,0,0,1.74-1.74l-34.834-46.294a1.243,1.243,0,0,1,1.942-1.549l37.382,44.262a1.243,1.243,0,0,0,2.084-1.309l-23.66-52.885a1.243,1.243,0,0,1,2.239-1.078l26.595,51.471a1.243,1.243,0,0,0,2.323-.813l-11.3-56.823a1.243,1.243,0,0,1,2.422-.553l14.475,56.1a1.242,1.242,0,0,0,2.445-.276l1.63-57.913a1.242,1.242,0,0,1,2.484,0"
-            transform="translate(-1044.682 -219.885)" />
-        </svg>
+      <!-- 씨앗 후광 스프라이츠 -->
+      <div class="halo-sprite-box">
+        <div class="seed-sprite-box-2">
+          <div class="seed-sprite-1"></div>
+          <div class="seed-sprite-2"></div>
+        </div>
+
+        <div class="halo-sprite-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="191.19"
+            height="191.19"
+            viewBox="0 0 191.19 191.19"
+          >
+            <defs>
+              <style>
+                .halo-1 {
+                  fill: url(#radial-gradient);
+                }
+              </style>
+              <radialGradient
+                xmlns="http://www.w3.org/2000/svg"
+                id="radial-gradient"
+                cx="0.5"
+                cy="0.5"
+                r="0.5"
+                gradientUnits="objectBoundingBox"
+              >
+                <stop offset="0.45" stop-color="#fff" stop-opacity="0" />
+                <stop offset="0.6" stop-color="#fff" stop-opacity="0.02" />
+                <stop offset="1" stop-color="#fff" stop-opacity="0.5" />
+              </radialGradient>
+            </defs>
+            <path
+              id="halo_1"
+              data-name="halo 1"
+              class="halo-1"
+              d="M1141.52,221.093l1.629,57.913a1.243,1.243,0,0,0,2.446.276l14.475-56.1a1.243,1.243,0,0,1,2.422.553l-11.3,56.823a1.243,1.243,0,0,0,2.323.813l26.6-51.471a1.243,1.243,0,0,1,2.238,1.078l-23.66,52.885a1.243,1.243,0,0,0,2.084,1.309l37.382-44.262a1.243,1.243,0,0,1,1.942,1.549l-34.834,46.294a1.243,1.243,0,0,0,1.74,1.74L1213.3,255.66a1.243,1.243,0,0,1,1.549,1.942l-44.262,37.382a1.243,1.243,0,0,0,1.309,2.084l52.885-23.66a1.243,1.243,0,0,1,1.078,2.238l-51.471,26.6a1.243,1.243,0,0,0,.813,2.323l56.823-11.3a1.243,1.243,0,0,1,.553,2.422l-56.1,14.475a1.243,1.243,0,0,0,.276,2.446l57.913,1.629a1.243,1.243,0,0,1,0,2.485l-57.913,1.629a1.242,1.242,0,0,0-.276,2.445l56.1,14.475a1.243,1.243,0,0,1-.553,2.423L1175.2,326.4a1.243,1.243,0,0,0-.813,2.323l51.471,26.6a1.243,1.243,0,0,1-1.078,2.239l-52.885-23.66a1.243,1.243,0,0,0-1.309,2.084l44.262,37.382a1.243,1.243,0,0,1-1.549,1.942L1167,340.467a1.243,1.243,0,0,0-1.74,1.74L1200.1,388.5a1.243,1.243,0,0,1-1.942,1.549l-37.382-44.263a1.243,1.243,0,0,0-2.084,1.31l23.66,52.884a1.242,1.242,0,0,1-2.238,1.078l-26.6-51.471a1.243,1.243,0,0,0-2.323.813l11.3,56.824a1.243,1.243,0,0,1-2.422.553l-14.475-56.1a1.243,1.243,0,0,0-2.446.276l-1.629,57.913a1.242,1.242,0,0,1-2.484,0l-1.63-57.913a1.242,1.242,0,0,0-2.445-.276l-14.475,56.1a1.243,1.243,0,0,1-2.422-.553l11.3-56.824a1.243,1.243,0,0,0-2.323-.813l-26.595,51.471a1.243,1.243,0,0,1-2.239-1.078l23.66-52.884a1.243,1.243,0,0,0-2.084-1.31L1082.4,390.05a1.243,1.243,0,0,1-1.942-1.549l34.834-46.294a1.243,1.243,0,0,0-1.74-1.74L1067.257,375.3a1.243,1.243,0,0,1-1.549-1.942l44.263-37.382a1.243,1.243,0,0,0-1.31-2.084l-52.884,23.66a1.243,1.243,0,0,1-1.078-2.239l51.471-26.6a1.243,1.243,0,0,0-.813-2.323l-56.824,11.3a1.243,1.243,0,0,1-.553-2.423l56.1-14.475a1.242,1.242,0,0,0-.276-2.445l-57.913-1.629a1.243,1.243,0,0,1,0-2.485l57.913-1.629a1.243,1.243,0,0,0,.276-2.446l-56.1-14.475a1.243,1.243,0,0,1,.553-2.422l56.824,11.3a1.243,1.243,0,0,0,.813-2.323l-51.471-26.6a1.243,1.243,0,0,1,1.078-2.238l52.884,23.66a1.243,1.243,0,0,0,1.31-2.084L1065.708,257.6a1.243,1.243,0,0,1,1.549-1.942l46.294,34.834a1.243,1.243,0,0,0,1.74-1.74l-34.834-46.294a1.243,1.243,0,0,1,1.942-1.549l37.382,44.262a1.243,1.243,0,0,0,2.084-1.309l-23.66-52.885a1.243,1.243,0,0,1,2.239-1.078l26.595,51.471a1.243,1.243,0,0,0,2.323-.813l-11.3-56.823a1.243,1.243,0,0,1,2.422-.553l14.475,56.1a1.242,1.242,0,0,0,2.445-.276l1.63-57.913a1.242,1.242,0,0,1,2.484,0"
+              transform="translate(-1044.682 -219.885)"
+            />
+          </svg>
+        </div>
       </div>
-    </div>
-    <!-- 후광 스프라이츠 종료 -->
+      <!-- 후광 스프라이츠 종료 -->
 
-    <!-- 덤불 스프라이츠 -->
-    <div class="bush-sprite-box">
-      <div class="bushpart-1"></div>
-      <div class="bushpart-1"></div>
-      <div class="bushpart-1"></div>
-      <div class="bushpart-1"></div>
-      <div class="bushpart-1"></div>
-      <div class="bushpart-1"></div>
-      <div class="bushpart-1"></div>
-      <div class="bushpart-1"></div>
-      <div class="bushpart-1"></div>
-    </div>
-
-    <div class="bush-sprite-box2">
-      <div class="bush-layer-01">
-        <div class="bushpart-1"></div>
-        <div class="bushpart-1"></div>
-        <div class="bushpart-1"></div>
-        <div class="bushpart-1"></div>
-        <div class="bushpart-1"></div>
-        <div class="bushpart-1"></div>
-        <div class="bushpart-1"></div>
-        <div class="bushpart-1"></div>
-        <div class="bushpart-1"></div>
-      </div>
-
-      <div class="bush-layer-02">
+      <!-- 덤불 스프라이츠 -->
+      <div class="bush-sprite-box">
         <div class="bushpart-1"></div>
         <div class="bushpart-1"></div>
         <div class="bushpart-1"></div>
@@ -210,216 +262,318 @@
         <div class="bushpart-1"></div>
       </div>
 
-      <div class="bush-layer-03">
-        <div class="bushpart-1"></div>
-        <div class="bushpart-1"></div>
-        <div class="bushpart-1"></div>
-        <div class="bushpart-1"></div>
-        <div class="bushpart-1"></div>
-        <div class="bushpart-1"></div>
-        <div class="bushpart-1"></div>
-        <div class="bushpart-1"></div>
-        <div class="bushpart-1"></div>
+      <div class="bush-sprite-box2">
+        <div class="bush-layer-01">
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+        </div>
+
+        <div class="bush-layer-02">
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+        </div>
+
+        <div class="bush-layer-03">
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+          <div class="bushpart-1"></div>
+        </div>
       </div>
-    </div>
 
-    <div class="bush-sprite-box3">
-      <div class="bushpart-1-1"></div>
-      <div class="bushpart-1-2"></div>
-      <div class="bushpart-1-3"></div>
-    </div>
-    <!-- 덤불 스프라이츠 종료-->
-
-    <!-- 미니 타이틀 -->
-    <!-- 새싹 내일 추가할게요 -->
-    <div class="title-box">
-      <text xmlns="http://www.w3.org/2000/svg" id="자라나라_새싹나라" data-name="자라나라 새싹나라" class="mini-title"
-        transform="translate(0 28.63)">
-        <tspan x="0" y="0">자라나라</tspan><br />
-        <tspan x="0" y="26">새싹나라</tspan>
-      </text>
-    </div>
-
-    <br />
-
-    <div class="box">
-      <div class="point"></div>
-    </div>
-
-    <!-- 덩굴 스프라이츠 -->
-    <div class="box-vine">
-      <div class="vinepart-1">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="71.476"
-          height="1034.7" viewBox="0 0 72 1035">
-          <defs>
-            <style>
-              .vine-1 {
-                fill: none;
-                stroke: #28751b;
-                stroke-width: 20px;
-                stroke-linecap: round;
-                stroke-linejoin: round;
-                stroke-miterlimit: 10;
-              }
-            </style>
-            <clipPath id="clip-path">
-              <rect id="사각형_49" data-name="사각형 49" class="vine_1" width="71.476" height="1034.7" />
-            </clipPath>
-          </defs>
-          <path id="패스_3" data-name="패스 3" class="vine-1"
-            d="M50.507,11.68c-34.009,48.2-34.009,123.053,0,171.256s34.009,123.053,0,171.256h0c-34.009,48.2-34.009,123.053,0,171.256s34.009,123.053,0,171.256h0c-34.009,48.2-34.009,123.053,0,171.256s34.009,123.053,0,171.256"
-            transform="translate(-14.769 -8.099)" />
-        </svg>
+      <div class="bush-sprite-box3">
+        <div class="bushpart-1-1"></div>
+        <div class="bushpart-1-2"></div>
+        <div class="bushpart-1-3"></div>
       </div>
+      <!-- 덤불 스프라이츠 종료-->
+
+      <!-- 미니 타이틀 --><!-- 새싹 내일 추가할게요 -->
+      <div class="title-box">
+        <text
+          xmlns="http://www.w3.org/2000/svg"
+          id="자라나라_새싹나라"
+          data-name="자라나라 새싹나라"
+          class="mini-title"
+          transform="translate(0 28.63)"
+          ><tspan x="0" y="0">자라나라</tspan><br /><tspan x="0" y="26"
+            >새싹나라</tspan
+          ></text
+        >
+      </div>
+      <br />
+
+      <div class="box">
+        <div class="point"></div>
+      </div>
+
+      <!-- 덩굴 스프라이츠 -->
+      <div class="box-vine">
+        <div class="vinepart-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="71.476"
+            height="1034.7"
+            viewBox="0 0 72 1035"
+          >
+            <defs>
+              <style>
+                .vine-1 {
+                  fill: none;
+                  stroke: #28751b;
+                  stroke-width: 20px;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-miterlimit: 10;
+                }
+              </style>
+              <clipPath id="clip-path">
+                <rect
+                  id="사각형_49"
+                  data-name="사각형 49"
+                  class="vine_1"
+                  width="71.476"
+                  height="1034.7"
+                />
+              </clipPath>
+            </defs>
+            <path
+              id="패스_3"
+              data-name="패스 3"
+              class="vine-1"
+              d="M50.507,11.68c-34.009,48.2-34.009,123.053,0,171.256s34.009,123.053,0,171.256h0c-34.009,48.2-34.009,123.053,0,171.256s34.009,123.053,0,171.256h0c-34.009,48.2-34.009,123.053,0,171.256s34.009,123.053,0,171.256"
+              transform="translate(-14.769 -8.099)"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <div class="box-vine-2">
+        <div class="vinepart-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="71.476"
+            height="608.264"
+            viewBox="0 0 73.5 608.264"
+          >
+            <defs>
+              <style>
+                .vine-1 {
+                  fill: none;
+                  stroke: #1e8c09;
+                  stroke-width: 20px;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-miterlimit: 10;
+                }
+              </style>
+              <clipPath id="clip-path">
+                <rect
+                  id="사각형_49"
+                  data-name="사각형 49"
+                  class="cls-1"
+                  width="71.476"
+                  height="608.264"
+                />
+              </clipPath>
+            </defs>
+            <path
+              id="패스_3"
+              data-name="패스 3"
+              class="vine-1"
+              d="M50.507,11.68C16.5,40.017,16.5,84.019,50.507,112.356s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.676s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.675s34.009,72.339,0,100.676"
+              transform="translate(-14.769 -9.575)"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <div class="box-vine-set">
+        <div class="vinepart-set">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="71.476"
+            height="608.264"
+            viewBox="0 0 73.5 608.264"
+          >
+            <defs>
+              <style>
+                .vine_three {
+                  fill: none;
+                  stroke: red;
+                  stroke-width: 20px;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-miterlimit: 10;
+                }
+              </style>
+              <clipPath id="clip-path">
+                <rect
+                  id="사각형_49"
+                  data-name="사각형 49"
+                  class="cls-1"
+                  width="71.476"
+                  height="608.264"
+                />
+              </clipPath>
+            </defs>
+            <path
+              id="패스_3"
+              data-name="패스 3"
+              class="vine_three"
+              d="M50.507,11.68C16.5,40.017,16.5,84.019,50.507,112.356s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.676s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.675s34.009,72.339,0,100.676"
+              transform="translate(-14.769 -9.575)"
+            />
+          </svg>
+        </div>
+        <div class="vinepart-set">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="71.476"
+            height="608.264"
+            viewBox="0 0 73.5 608.264"
+          >
+            <defs>
+              <style>
+                .vine_two {
+                  fill: none;
+                  stroke: gold;
+                  stroke-width: 20px;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-miterlimit: 10;
+                }
+              </style>
+              <clipPath id="clip-path">
+                <rect
+                  id="사각형_49"
+                  data-name="사각형 49"
+                  class="cls-1"
+                  width="71.476"
+                  height="608.264"
+                />
+              </clipPath>
+            </defs>
+            <path
+              id="패스_3"
+              data-name="패스 3"
+              class="vine_two"
+              d="M50.507,11.68C16.5,40.017,16.5,84.019,50.507,112.356s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.676s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.675s34.009,72.339,0,100.676"
+              transform="translate(-14.769 -9.575)"
+            />
+          </svg>
+        </div>
+        <div class="vinepart-set">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="71.476"
+            height="608.264"
+            viewBox="0 0 73.5 608.264"
+          >
+            <defs>
+              <style>
+                .vine_one {
+                  fill: none;
+                  stroke: blue;
+                  stroke-width: 20px;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-miterlimit: 10;
+                }
+              </style>
+              <clipPath id="clip-path">
+                <rect
+                  id="사각형_49"
+                  data-name="사각형 49"
+                  class="cls-1"
+                  width="71.476"
+                  height="608.264"
+                />
+              </clipPath>
+            </defs>
+            <path
+              id="패스_3"
+              data-name="패스 3"
+              class="vine_one"
+              d="M50.507,11.68C16.5,40.017,16.5,84.019,50.507,112.356s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.676s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.675s34.009,72.339,0,100.676"
+              transform="translate(-14.769 -9.575)"
+            />
+          </svg>
+        </div>
+      </div>
+      <!-- 덩굴 스프라이츠 종료 -->
     </div>
+    <!-- 베드 종료 -->
 
-    <div class="box-vine-2">
-      <div class="vinepart-1">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="71.476"
-          height="608.264" viewBox="0 0 73.5 608.264">
-          <defs>
-            <style>
-              .vine-1 {
-                fill: none;
-                stroke: #1e8c09;
-                stroke-width: 20px;
-                stroke-linecap: round;
-                stroke-linejoin: round;
-                stroke-miterlimit: 10;
-              }
-            </style>
-            <clipPath id="clip-path">
-              <rect id="사각형_49" data-name="사각형 49" class="cls-1" width="71.476" height="608.264" />
-            </clipPath>
-          </defs>
-          <path id="패스_3" data-name="패스 3" class="vine-1"
-            d="M50.507,11.68C16.5,40.017,16.5,84.019,50.507,112.356s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.676s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.675s34.009,72.339,0,100.676"
-            transform="translate(-14.769 -9.575)" />
-        </svg>
-      </div>
-    </div>
+    <div class="sky"></div>
+    <div class="green"></div>
 
-    <div class="box-vine-set">
-      <div class="vinepart-set">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="71.476"
-          height="608.264" viewBox="0 0 73.5 608.264">
-          <defs>
-            <style>
-              .vine_three {
-                fill: none;
-                stroke: red;
-                stroke-width: 20px;
-                stroke-linecap: round;
-                stroke-linejoin: round;
-                stroke-miterlimit: 10;
-              }
-            </style>
-            <clipPath id="clip-path">
-              <rect id="사각형_49" data-name="사각형 49" class="cls-1" width="71.476" height="608.264" />
-            </clipPath>
-          </defs>
-          <path id="패스_3" data-name="패스 3" class="vine_three"
-            d="M50.507,11.68C16.5,40.017,16.5,84.019,50.507,112.356s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.676s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.675s34.009,72.339,0,100.676"
-            transform="translate(-14.769 -9.575)" />
-        </svg>
-      </div>
-      <div class="vinepart-set">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="71.476"
-          height="608.264" viewBox="0 0 73.5 608.264">
-          <defs>
-            <style>
-              .vine_two {
-                fill: none;
-                stroke: gold;
-                stroke-width: 20px;
-                stroke-linecap: round;
-                stroke-linejoin: round;
-                stroke-miterlimit: 10;
-              }
-            </style>
-            <clipPath id="clip-path">
-              <rect id="사각형_49" data-name="사각형 49" class="cls-1" width="71.476" height="608.264" />
-            </clipPath>
-          </defs>
-          <path id="패스_3" data-name="패스 3" class="vine_two"
-            d="M50.507,11.68C16.5,40.017,16.5,84.019,50.507,112.356s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.676s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.675s34.009,72.339,0,100.676"
-            transform="translate(-14.769 -9.575)" />
-        </svg>
-      </div>
-      <div class="vinepart-set">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="71.476"
-          height="608.264" viewBox="0 0 73.5 608.264">
-          <defs>
-            <style>
-              .vine_one {
-                fill: none;
-                stroke: blue;
-                stroke-width: 20px;
-                stroke-linecap: round;
-                stroke-linejoin: round;
-                stroke-miterlimit: 10;
-              }
-            </style>
-            <clipPath id="clip-path">
-              <rect id="사각형_49" data-name="사각형 49" class="cls-1" width="71.476" height="608.264" />
-            </clipPath>
-          </defs>
-          <path id="패스_3" data-name="패스 3" class="vine_one"
-            d="M50.507,11.68C16.5,40.017,16.5,84.019,50.507,112.356s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.676s34.009,72.339,0,100.675h0c-34.009,28.337-34.009,72.339,0,100.675s34.009,72.339,0,100.676"
-            transform="translate(-14.769 -9.575)" />
-        </svg>
-      </div>
-    </div>
-    <!-- 덩굴 스프라이츠 종료 -->
-  </div>
-  <!-- 베드 종료 -->
+    <script>
+      // 덩굴 애니매이션 스크립트
+      anime({
+        targets: '.vine-1',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'easeInOutSine',
+        duration: 5000,
+        delay: function (el, i) {
+          return i * 50;
+        },
+        direction: 'alternate',
+        loop: false,
+      });
 
-  <div class="sky"></div>
-  <div class="green"></div>
-
-  <script>
-    // 덩굴 애니매이션 스크립트
-    anime({
-      targets: '.vine-1',
-      strokeDashoffset: [anime.setDashoffset, 0],
-      easing: 'easeInOutSine',
-      duration: 5000,
-      delay: function (el, i) {
-        return i * 50;
-      },
-      direction: 'alternate',
-      loop: false,
-    });
-
-    anime({
-      targets: '.vinepart-set:nth-child(1) .vine_three',
-      strokeDashoffset: [anime.setDashoffset, 0],
-      easing: 'linear',
-      duration: 3000,
-      delay: 6000,
-      direction: 'alternate',
-      loop: false,
-    });
-    anime({
-      targets: '.vinepart-set:nth-child(2) .vine_two',
-      strokeDashoffset: [anime.setDashoffset, 0],
-      easing: 'linear',
-      duration: 3000,
-      delay: 3000,
-      direction: 'alternate',
-      loop: false,
-    });
-    anime({
-      targets: '.vinepart-set:nth-child(3) .vine_one',
-      strokeDashoffset: [anime.setDashoffset, 0],
-      easing: 'linear',
-      duration: 3000,
-      delay: 0,
-      direction: 'alternate',
-      loop: false,
-    });
-    // 덩굴 애니매이션 스크립트 종료
-  </script>
-</body>
-
+      anime({
+        targets: '.vinepart-set:nth-child(1) .vine_three',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'linear',
+        duration: 3000,
+        delay: 6000,
+        direction: 'alternate',
+        loop: false,
+      });
+      anime({
+        targets: '.vinepart-set:nth-child(2) .vine_two',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'linear',
+        duration: 3000,
+        delay: 3000,
+        direction: 'alternate',
+        loop: false,
+      });
+      anime({
+        targets: '.vinepart-set:nth-child(3) .vine_one',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'linear',
+        duration: 3000,
+        delay: 0,
+        direction: 'alternate',
+        loop: false,
+      });
+      // 덩굴 애니매이션 스크립트 종료
+    </script>
+  </body>
 </html>
