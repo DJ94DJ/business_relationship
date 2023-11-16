@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<style>
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100px;
+        /* nav바의 높이 만큼 padding-top 속성 추가 */
+    }
+
+    .shareLink {
+        cursor: pointer;
+    }
+
+    #shareLink:disabled {
+        color: black;
+        cursor: default;
+    }
+</style>
+
+<body>
+    <nav>
+        <ul class="navbar">
+            <li id="navShare"><img id="shareLink" alt="공유" onclick="shareLink()">
+            </li>
+            <li id="navLogo">
+            </li>
+            <li id="navMenu">메뉴</li>
+        </ul>
+    </nav>
+    <script>
+        // 공유하기 버튼 (왼쪽)
+
+        if ("<%=gardenName%>") {
+            $('#shareLink').attr('disabled', false)
+        } else $('#shareLink').attr('disabled', true)
+
+        // 로고 (가운데)
+        if ("<%=gardenName%>") {
+            $("#navLogo").html("<%=gardenName%>의 새싹")
+        } else $("#navLogo").html("img link")
+
+        // 메뉴(오른쪽)는 클릭 -> 모달 창 -> 안에서 또 세션에 따라 다르게 보이게
+
+
+        // 링크 공유하기 onclick 함수
+        function shareLink() {
+            var url = '';    // <a>태그에서 호출한 함수인 clip 생성
+            var textarea = document.createElement("textarea");
+            //url 변수 생성 후, textarea라는 변수에 textarea의 요소를 생성
+
+            document.body.appendChild(textarea); //</body> 바로 위에 textarea를 추가(임시 공간이라 위치는 상관 없음)
+            url = window.document.location.href;  //url에는 현재 주소값을 넣어줌
+            textarea.value = url;  // textarea 값에 url를 넣어줌
+            textarea.select();  //textarea를 설정
+            document.execCommand("copy");   // 복사
+            document.body.removeChild(textarea); //extarea 요소를 없애줌
+
+            alert("URL이 복사되었습니다.")  // 알림창
+
+        }
+    </script>
+</body>
+
+</html>
