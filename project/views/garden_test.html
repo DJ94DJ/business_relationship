@@ -17,34 +17,10 @@
   <link rel="stylesheet" href="../../static/css/garden.css" />
   <title>garden</title>
   <style>
-    /* body {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      background-image: linear-gradient(to bottom, #0072b4, #e9e9e7);
-    } */
-
-    
-
-    .content {
+    body {
       margin: 0;
       overflow: hidden;
-      /* background-color: #87cefa; */
-      width: 90%;
-      height: 90%;
-    }
-
-    #sky {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background-image: linear-gradient(to bottom, #0072b4, #e9e9e7);
+      background-color: #87cefa;
     }
 
     .write-container {
@@ -141,27 +117,10 @@
         transform: translateY(-10px);
       }
     }
-
-    #animation {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 9999;
-      background-image: linear-gradient(to bottom, #0072b4, #e9e9e7);
-      /* 이하 애니메이션 스타일 */
-    }
-
   </style>
 </head>
 
 <body>
-  <div id="sky"></div>
-  <div id="animation">여기에 애니메이션을 넣습니다</div>
-
-
-  <div clas="content">
   <!-- 마이페이지 이동 버튼 -->
   <button type="button" class="my-page-btn" onclick="profile()">마이페이지</button>
   <button type="button" class="my-page-btn" onclick="randomWalk()">산책하기</button>
@@ -235,17 +194,7 @@
             </ul>
             </div>
 
-          </div>
-
             <script>
-              window.onload = function() {
-                 setTimeout(function() {
-                  document.getElementById('animation').style.display = 'none';
-                }, 5000); // 5000ms = 5초
-              };
-
-
-
               // 회원과 비회원을 구분하는 애니메이션 필요
               function writeMsg() {
                 const form = document.forms["newMsg"]
