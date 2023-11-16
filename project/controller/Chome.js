@@ -137,6 +137,7 @@ exports.garden = (req, res) => {
           msg,
           userName: req.session.userName,
           gardenId: req.session.userId,
+          gardenName: result.user_name,
         });
       });
     })
@@ -174,8 +175,8 @@ exports.deleteMsg = (req, res) => {
 // '산책하기' 버튼 클릭 시
 exports.randomGarden = (req, res) => {
   User.findAll().then((result) => {
-    const ranId = Math.floor(Math.random() * result.length);
-    const ranData = result[ranId];
+    const ranId = Math.floor(Math.random() * result.length) + 1;
+    const ranData = result[ranId - 1];
     console.log('ranData :', ranData);
     console.log('ranId :', ranId);
     res.send({ data: ranId });
@@ -185,16 +186,23 @@ exports.randomGarden = (req, res) => {
 // '산책하기' 페이지 랜더
 exports.ranGardenPage = (req, res) => {
   console.log('req.params.id :', req.params.id);
-  Message.findAll({
-    attributes: ['message_id', 'title', 'content', 'is_public'],
-    where: { id: req.params.id },
-    include: { model: User },
-  }).then((msg) => {
-    console.log('ran-msg :', msg);
-    res.render('garden', {
-      msg,
-      userName: req.session.userName,
-      gardenId: req.params.id,
+  User.findOne({
+    where: {
+      id: req.params.id,
+    },
+  }).then((result) => {
+    Message.findAll({
+      attributes: ['message_id', 'title', 'content', 'is_public'],
+      where: { id: req.params.id },
+      include: { model: User },
+    }).then((msg) => {
+      console.log('ran-msg :', msg);
+      res.render('garden', {
+        msg,
+        userName: req.session.userName,
+        gardenId: req.params.id,
+        gardenName: result.user_name,
+      });
     });
   });
 };
