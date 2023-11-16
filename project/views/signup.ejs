@@ -64,7 +64,6 @@
       <form class="signup" name="user_upload">
         <div class="realForm">
           <!-- 1~10자 이내, 영문(대소문자)+숫자 포함 -->
-          <!-- 아이디 중복 확인을 해야 회원가입이 완료될 수 있도록 하는 기능 구현도 이후 추가 -->
           <div class="btn-id"><input type="text" name="user_id" class="id-form" pattern="^[a-zA-Z0-9]{1,10}$"
               title="영문 또는 숫자를 사용하여 1~10자 이내로 작성해 주세요." required placeholder="아이디" />
             <button type="button" class="check-id" name="userIdCk" onclick="userIdCheck()">중복 확인</button>
@@ -77,17 +76,12 @@
               title="숫자와 영문을 포함하여 4~12자 이내로 작성해 주세요." required /></div>
           <div><input type="password" id="user_pw_check" name="user_pw_check" class="pwCheck-form" placeholder="비밀번호 확인"
               oninput="pwCheck(), valCk()" required />
-            <!-- <button type="button" onclick="pwCheck()">비밀번호 일치 확인</button> -->
             <br/>
             <div id="pw_check"> 비밀번호를 입력하세요. </div>
           </div>
-          <!-- <div> 보류
-          사용자 이미지 설정<input type="file" id="user_img" name="user_img">
-        </div> -->
-          <!-- 4글자 영어만 가능 (추후에는 직접 입력하는 것이 아니라 버튼 형식으로 선택할 수 있게 하는 것도?)-->
+          <!-- 4글자 영어만 가능 -->
           <div><input type="text" id="user_mbti" oninput="valCk()" name="user_mbti" class="mb-form" placeholder="MBTI"
               pattern="^[a-zA-Z]{4}$" title="" required /></div>
-          <!-- <label for="file"><div class="btn-upload">프로필 이미지 업로드</div></label><input type="file" name="user_img" id="file"/> -->
           <div><input type="textarea" id="user_intro_self" name="user_intro_self" class="self-form" placeholder="자기소개" />
           </div>
           <div>
@@ -143,7 +137,6 @@
           user_name: form.user_name.value,
           user_intro_self: form.user_intro_self.value,
           user_mbti: form.user_mbti.value,
-          // user_img: form.user_img.files[0]  multer은 잠시 보류
         };
 
         axios({
