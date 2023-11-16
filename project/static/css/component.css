@@ -5,29 +5,104 @@
   src: url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf')
     format('opentype');
 }
+* {
+  font-family: 'DNFBitBitv2';
+}
+
 body {
   background-color: #019252;
 }
 
+button {
+  cursor: pointer;
+}
+
+/* 기본 버튼 */
 .sesacBtn {
-  font-family: 'DNFBitBitv2';
   font-size: 20px;
   border-radius: 25px;
   width: 200px;
   height: 50px;
   background-color: #74b93a;
   color: #ffffff;
-  border: 0px;
+  border: none;
 }
 
+.sesacBtn:hover {
+  background-color: #509217;
+}
+
+/* info 버튼 */
+.infoBtn {
+  font-size: 20px;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  background-color: #74b93a;
+  color: #ffffff;
+  border: none;
+}
+
+.infoBtn:hover {
+  background-color: #509217;
+}
+
+/* 모든 버튼의 비활성화 상태 커서도 변하지 않음*/
 button:disabled {
   background-color: #c0c0c0;
 }
 
 button:disabled:hover {
-  box-shadow: 0px 0px 0px 0px;
+  background-color: #c0c0c0;
+  cursor: default;
 }
 
-button:hover {
-  box-shadow: 0px 3px 0px 0px #000000;
+/* 닫기 버튼 (X) */
+.closeBtn {
+  font-size: 20px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+}
+
+.closeBtn:hover {
+  background-color: #1f2020;
+}
+
+/* 회원가입 버튼 */
+.signUpBtn {
+  font-size: 20px;
+  border-radius: 25px;
+  width: 200px;
+  height: 50px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+}
+
+.signUpBtn:hover {
+  background-color: #1f2020;
+}
+
+/* 탈퇴하기 버튼 */
+.delBtn {
+  font-size: 20px;
+  border-radius: 25px;
+  width: 200px;
+  height: 50px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+}
+
+.delBtn:hover {
+  background-color: #1f2020;
+}
+
+/* 공개 여부 라디오 버튼 */
+.pubRadioBtn {
+  font-size: 30px;
 }
