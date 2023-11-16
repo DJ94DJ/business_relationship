@@ -7,15 +7,11 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-
-<<<<<<< HEAD
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
-=======
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
->>>>>>> develop
+
   <link rel="stylesheet" href="../static/css/garden.css" />
   <link rel="stylesheet" href="../../static/css/garden.css" />
   <title>garden</title>
@@ -779,191 +775,181 @@
      </ul>
    </div>
 
-<<<<<<< HEAD
-          </div>
+  </div>
 
-            <script>
-
-              // 애니매이션 스크립트
-
-              window.onload = function() {
-                setTimeout(function() {
-                  var animationDiv = document.getElementById('animation_sky');
-                  animationDiv.style.opacity = '0';
-                  setTimeout(function() {
-                    animationDiv.style.display = 'none';
-                  }, 250);
-                }, 5000);
-
-                setTimeout(function() {
-                  var bushes = document.getElementsByClassName('bush-sprite-box3');
-                  for (var i = 0; i < bushes.length; i++) {
-                    bushes[i].style.setProperty('--i', i);
-                  }
-                }); 
-              };
-
-              // anime({
-              //   targets: '.vine-1',
-              //   strokeDashoffset: [anime.setDashoffset, 0],
-              //   easing: 'easeInOutSine',
-              //   duration: 5000,
-              //   delay: function (el, i) {
-              //     return i * 50;
-              //   },
-              //   direction: 'alternate',
-              //   loop: false,
-              // });
-              
-              anime({
-                targets: '.vinepart-set:nth-child(1) .vine_one',
-                strokeDashoffset: [anime.setDashoffset, 0],
-                easing: 'linear',
-                duration: 2000,
-                delay: 2000,
-                direction: 'alternate',
-                loop: false,
-              });
-
-              anime({
-                targets: '.vinepart-set:nth-child(2) .vine_two',
-                strokeDashoffset: [anime.setDashoffset, 0],
-                easing: 'linear',
-                duration: 2000,
-                delay: 0,
-                direction: 'alternate',
-                loop: false,
-              });
-              
-              
-
-              // 회원과 비회원을 구분하는 애니메이션 필요
-              function writeMsg() {
-                const form = document.forms["newMsg"]
-=======
   <script>
-  // 회원과 비회원을 구분하는 애니메이션 필요
-  function writeMsg() {
-    const form = document.forms["newMsg"]
->>>>>>> develop
 
-    const msg = {
-      title: form.elements.title.value,
-      content: form.elements.content.value,
-      is_public: form.elements.isPublic.value,
-      flower_color: form.elements.flowerColor.value,
-      id: form.elements.gardenId.value
+  // 애니매이션 스크립트
+
+  window.onload = function() {
+    setTimeout(function() {
+      var animationDiv = document.getElementById('animation_sky');
+      animationDiv.style.opacity = '0';
+      setTimeout(function() {
+        animationDiv.style.display = 'none';
+      }, 250);
+    }, 5000);
+
+    setTimeout(function() {
+      var bushes = document.getElementsByClassName('bush-sprite-box3');
+      for (var i = 0; i < bushes.length; i++) {
+        bushes[i].style.setProperty('--i', i);
+      }
+    }); 
+  };
+
+  // anime({
+  //   targets: '.vine-1',
+  //   strokeDashoffset: [anime.setDashoffset, 0],
+  //   easing: 'easeInOutSine',
+  //   duration: 5000,
+  //   delay: function (el, i) {
+  //     return i * 50;
+  //   },
+  //   direction: 'alternate',
+  //   loop: false,
+  // });
+  
+  anime({
+    targets: '.vinepart-set:nth-child(1) .vine_one',
+    strokeDashoffset: [anime.setDashoffset, 0],
+    easing: 'linear',
+    duration: 2000,
+    delay: 2000,
+    direction: 'alternate',
+    loop: false,
+  });
+
+  anime({
+    targets: '.vinepart-set:nth-child(2) .vine_two',
+    strokeDashoffset: [anime.setDashoffset, 0],
+    easing: 'linear',
+    duration: 2000,
+    delay: 0,
+    direction: 'alternate',
+    loop: false,
+  });
+      
+
+    // 회원과 비회원을 구분하는 애니메이션 필요
+    function writeMsg() {
+      const form = document.forms["newMsg"]
+
+      const msg = {
+        title: form.elements.title.value,
+        content: form.elements.content.value,
+        is_public: form.elements.isPublic.value,
+        flower_color: form.elements.flowerColor.value,
+        id: form.elements.gardenId.value
+      }
+
+      if ("<%=userName%>") { // 세션에 아이디가 있을 때(로그인 O)
+          axios({
+          method: "POST",
+          url: "/home/garden",
+          data: msg
+        }).then((res) => {
+          if (res.data.result) {
+            alert("메시지 작성 완료")
+            location.reload()
+          } else {
+            alert("메시지 작성 실패 ㅜㅜ")
+          }
+        })
+      } else { // 세션에 아이디가 없을 때(로그인 X)
+        axios({
+        method: "POST",
+        url: "/home/garden",
+        data: msg
+      }).then((res) => {
+      if (res.data.result) {
+        alert("메시지 작성 완료")
+        location.reload()
+      } else {
+          alert("메시지 작성 실패 ㅜㅜ")
+          }
+        })
+      }
     }
 
-    if ("<%=userName%>") { // 세션에 아이디가 있을 때(로그인 O)
-  axios({
-  method: "POST",
-  url: "/home/garden",
-  data: msg
-  }).then((res) => {
-  if (res.data.result) {
-  alert("메시지 작성 완료")
-  location.reload()
-  } else {
-  alert("메시지 작성 실패 ㅜㅜ")
-  }
-  })
-  }
-  else { // 세션에 아이디가 없을 때(로그인 X)
-  axios({
-  method: "POST",
-  url: "/home/garden",
-  data: msg
-  }).then((res) => {
-  if (res.data.result) {
-  alert("메시지 작성 완료")
-  location.reload()
-  } else {
-  alert("메시지 작성 실패 ㅜㅜ")
-  }
-  })
-  }
+    function randomWalk() {
+    axios({
+    method: "GET",
+    url: '/home/garden/random'
+    }).then((res) => {
+    let num = res.data.data
+    console.log("res : ", res)
+    console.log("res.data : ", res.data)
+    console.log("num : ", num)
+    randomPage(num)
+    })
+    }
 
-  }
-
-  function randomWalk() {
-  axios({
-  method: "GET",
-  url: '/home/garden/random'
-  }).then((res) => {
-  let num = res.data.data
-  console.log("res : ", res)
-  console.log("res.data : ", res.data)
-  console.log("num : ", num)
-  randomPage(num)
-  })
-  }
-
-  function randomPage(id) {
-  console.log("매개변수: ", id)
-  axios({
-  method: "GET",
-  url: `/home/garden/${id}`
-  }).then((res) => {
-  location.href = `/home/garden/${id}`
-  })
-  }
+    function randomPage(id) {
+    console.log("매개변수: ", id)
+    axios({
+    method: "GET",
+    url: `/home/garden/${id}`
+    }).then((res) => {
+    location.href = `/home/garden/${id}`
+    })
+    }
 
 
-  // 메시지 삭제
-  function deleteMsg(button) {
-  const form = button.closest("form")
-  let delMess = {
-  mesId: form.querySelector('[name="mesId"]').value,
-  gdName: "<%=userName%>"
-  }
-  console.log("mesId : ", delMess.mesId)
-  console.log("gardenId : ", delMess.gardenId)
+    // 메시지 삭제
+    function deleteMsg(button) {
+    const form = button.closest("form")
+    let delMess = {
+    mesId: form.querySelector('[name="mesId"]').value,
+    gdName: "<%=userName%>"
+    }
+    console.log("mesId : ", delMess.mesId)
+    console.log("gardenId : ", delMess.gardenId)
 
-  axios({
-  method: "DELETE",
-  url: "/home/garden",
-  data: delMess
-  }).then((res) => {
-  console.log("res.data", res.data)
-  if (res.data.result) {
-  alert("삭제되었습니다")
-  location.reload()
-  } else {
-  // 주인만 삭제 가능
-  location.reload()
-  }
-  }).catch((err) => {
-  console.log("에러발생")
-  })
+    axios({
+    method: "DELETE",
+    url: "/home/garden",
+    data: delMess
+    }).then((res) => {
+    console.log("res.data", res.data)
+    if (res.data.result) {
+    alert("삭제되었습니다")
+    location.reload()
+    } else {
+    // 주인만 삭제 가능
+    location.reload()
+    }
+    }).catch((err) => {
+    console.log("에러발생")
+    })
 
-  }
+    }
 
 
-  // $("buttion[name=delMsg]").on("click", function () {
-  // console.log("value : ", this.value)
-  // })
+    $("buttion[name=delMsg]").on("click", function () {
+    console.log("value : ", this.value)
+    })
 
-  function profile() {
-  axios({
-  method: "GET",
-  url: "/user/profile"
-  }).then((res) => {
-  console.log('res', res.data)
-  if (res.data) location.href = '/user/profile'
-  else { alert("마이페이지 접근 불가 ;ㅁ;") }
-  })
-  }
+    function profile() {
+    axios({
+    method: "GET",
+    url: "/user/profile"
+    }).then((res) => {
+    console.log('res', res.data)
+    if (res.data) location.href = '/user/profile'
+    else { alert("마이페이지 접근 불가 ;ㅁ;") }
+    })
+    }
 
-  function signOut() {
-  axios({
-  method: "POST",
-  url: "/home/signout",
-  }).then((res) => {
-  if (res.data.result) location.href = '/home'
-  else { alert("로그아웃 실패 ;ㅁ;") }
-  })
-  }
+    function signOut() {
+    axios({
+    method: "POST",
+    url: "/home/signout",
+    }).then((res) => {
+    if (res.data.result) location.href = '/home'
+    else { alert("로그아웃 실패 ;ㅁ;") }
+    })
+    }
 
   </script>
 </body>
