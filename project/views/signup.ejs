@@ -24,21 +24,21 @@
     <link rel="stylesheet" href="../static/css/signup.css" />
   <link rel="stylesheet" href="../static/css/signup.css">
 
-  <title>signup (회원가입 페이지)</title>
-</head>
+    <title>signup (회원가입 페이지)</title>
+  </head>
 
-<body>
-  <nav class="navbar bg-body-tertiary fixed-top">
-    <div class="container-fluid">
-      <!-- 공유하기 버튼 이미지 만들어서 수정 -->
-      <a class="navbar-brand" href="#">공유하기</a>
-      <div class="navbar-brand" id="zara">자라나라 새싹나라</div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-        aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
+  <body>
+    <nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+          <!-- 공유하기 버튼 이미지 만들어서 수정 -->
+          <a class="navbar-brand" href="#">공유하기</a>
+          <div class="navbar-brand" id="zara">자라나라 새싹나라</div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
 
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
@@ -64,7 +64,6 @@
       <form class="signup" name="user_upload">
         <div class="realForm">
           <!-- 1~10자 이내, 영문(대소문자)+숫자 포함 -->
-          <!-- 아이디 중복 확인을 해야 회원가입이 완료될 수 있도록 하는 기능 구현도 이후 추가 -->
           <div class="btn-id"><input type="text" name="user_id" class="id-form" pattern="^[a-zA-Z0-9]{1,10}$"
               title="영문 또는 숫자를 사용하여 1~10자 이내로 작성해 주세요." required placeholder="아이디" />
             <button type="button" class="check-id" name="userIdCk" onclick="userIdCheck()">중복 확인</button>
@@ -77,17 +76,12 @@
               title="숫자와 영문을 포함하여 4~12자 이내로 작성해 주세요." required /></div>
           <div><input type="password" id="user_pw_check" name="user_pw_check" class="pwCheck-form" placeholder="비밀번호 확인"
               oninput="pwCheck(), valCk()" required />
-            <!-- <button type="button" onclick="pwCheck()">비밀번호 일치 확인</button> -->
             <br/>
             <div id="pw_check"> 비밀번호를 입력하세요. </div>
           </div>
-          <!-- <div> 보류
-          사용자 이미지 설정<input type="file" id="user_img" name="user_img">
-        </div> -->
-          <!-- 4글자 영어만 가능 (추후에는 직접 입력하는 것이 아니라 버튼 형식으로 선택할 수 있게 하는 것도?)-->
+          <!-- 4글자 영어만 가능 -->
           <div><input type="text" id="user_mbti" oninput="valCk()" name="user_mbti" class="mb-form" placeholder="MBTI"
               pattern="^[a-zA-Z]{4}$" title="" required /></div>
-          <!-- <label for="file"><div class="btn-upload">프로필 이미지 업로드</div></label><input type="file" name="user_img" id="file"/> -->
           <div><input type="textarea" id="user_intro_self" name="user_intro_self" class="self-form" placeholder="자기소개" />
           </div>
           <div>
@@ -116,74 +110,72 @@
       }
     }
 
-    // 회원가입 버튼 활성화 함수 / 중복검사, 비밀번호 일치 닉네임 값 존재 mbti 4글자를 충족시키면 활성화된다
-    function valCk() {
-      if (
-        userIdCk == true &&
-        pwCk == true &&
-        $('#user_name').val() &&
-        $('#user_mbti').val().length == 4
-      ) {
-        $('#signUpBtn').attr('disabled', false);
-      } else $('#signUpBtn').attr('disabled', true);
-    }
-
-    //회원가입 버튼 클릭 시 user 데이터를 db로 넘김
-    function userSignUp() {
-      const form = document.forms['user_upload'];
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return false;
+      // 회원가입 버튼 활성화 함수 / 중복검사, 비밀번호 일치 닉네임 값 존재 mbti 4글자를 충족시키면 활성화된다
+      function valCk() {
+        if (
+          userIdCk == true &&
+          pwCk == true &&
+          $('#user_name').val() &&
+          $('#user_mbti').val().length == 4
+        ) {
+          $('#signUpBtn').attr('disabled', false);
+        } else $('#signUpBtn').attr('disabled', true);
       }
 
-      let user = {
-        user_id: form.user_id.value,
-        user_pw: form.user_pw.value,
-        user_name: form.user_name.value,
-        user_intro_self: form.user_intro_self.value,
-        user_mbti: form.user_mbti.value,
-        // user_img: form.user_img.files[0]  multer은 잠시 보류
-      };
+      //회원가입 버튼 클릭 시 user 데이터를 db로 넘김
+      function userSignUp() {
+        const form = document.forms['user_upload'];
 
-      axios({
-        method: 'POST',
-        url: '/home/signup',
-        data: user,
-      }).then((res) => {
-        if (res.data.result) {
-          alert('회원가입 성공 !');
-          location.href = '/home';
-        } else {
-          alert('알 수 없는 오류가 발생했습니다.');
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return false;
         }
-      });
-    }
 
-    // 아이디 중복 확인 버튼 클릭 시
-    function userIdCheck() {
-      const form = document.forms['user_upload'];
-
-      axios({
-        method: 'POST',
-        url: '/home/signup/idCheck',
-        data: {
+        let user = {
           user_id: form.user_id.value,
-        },
-      }).then((res) => {
-        // true 값이 들어오면 아이디가 존재하지 않는다는 뜻
-        console.log('idCheck res :', res);
-        if (res.data.result) {
-          $("#user_id").attr("disabled", true)
-          $("#userIdCk").attr("disabled", true)
-          alert('사용 가능한 아이디입니다.');
-          return (userIdCk = true);
-        } else {
-          alert('중복된 아이디입니다.'); // 중복된 아이디일 경우 회원가입 버튼이 활성화 되지 않음 = 회원가입 버튼은 default 값 = false(비활성화)
-        }
-      });
-    }
-  </script>
-</body>
+          user_pw: form.user_pw.value,
+          user_name: form.user_name.value,
+          user_intro_self: form.user_intro_self.value,
+          user_mbti: form.user_mbti.value,
+        };
 
+        axios({
+          method: 'POST',
+          url: '/home/signup',
+          data: user,
+        }).then((res) => {
+          if (res.data.result) {
+            alert('회원가입 성공 !');
+            location.href = '/home';
+          } else {
+            alert('알 수 없는 오류가 발생했습니다.');
+          }
+        });
+      }
+
+      // 아이디 중복 확인 버튼 클릭 시
+      function userIdCheck() {
+        const form = document.forms['user_upload'];
+
+        axios({
+          method: 'POST',
+          url: '/home/signup/idCheck',
+          data: {
+            user_id: form.user_id.value,
+          },
+        }).then((res) => {
+          // true 값이 들어오면 아이디가 존재하지 않는다는 뜻
+          console.log('idCheck res :', res);
+          if (res.data.result) {
+            $('#user_id').attr('disabled', true);
+            $('#userIdCk').attr('disabled', true);
+            alert('사용 가능한 아이디입니다.');
+            return (userIdCk = true);
+          } else {
+            alert('중복된 아이디입니다.'); // 중복된 아이디일 경우 회원가입 버튼이 활성화 되지 않음 = 회원가입 버튼은 default 값 = false(비활성화)
+          }
+        });
+      }
+    </script>
+  </body>
 </html>
