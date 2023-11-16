@@ -60,6 +60,7 @@ input::placeholder {
   top: 0;
   z-index: -1;
 }
+
 .navbar,
 .offcanvas-header {
   opacity: 1;
