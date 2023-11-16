@@ -47,10 +47,7 @@
       <div>
         닉네임 <input type="text" name="user_name" value="<%=data.user_name%>">
       </div>
-      <!-- 이미지는 잠시 보류 -->
-      <!-- <div>
-                사용자 이미지 설정<input type="file" name="user_img" value="사진링크">
-            </div> -->
+
       <div>
         자기소개 <input type="text" name="user_intro_self" value="<%=data.user_intro_self%>">
       </div>
@@ -63,10 +60,6 @@
 
       <button type="button" onclick="checkPwEdit()">정보 수정</button>
       <button type="button" onclick="checkPwDel()">회원 탈퇴</button>
-      <!-- <button type="button" id="check-btn" onclick="checkPw()">비밀번호 재설정(인증)</button> -->
-
-      <!-- 비번 인증 후 재설정 버튼 보임 -->
-      <!-- <button type="button" hidden="true" id="edit-btn" onclick="editPw()">비밀번호 재설정</button> -->
     </form>
 
     
@@ -85,7 +78,7 @@
         data: user
       }).then((res) => {
         if (res.data.result) {
-          deleteUser() // 비밀번호 조회 결과 true면 탈퇴됨
+          deleteUser()
         } else {
           alert("탈퇴를 위해선 비밀번호가 필요합니다.")
           document.getElementById('user-pw').value = ''        }
@@ -119,7 +112,7 @@
         data: user
       }).then((res) => {
         if (res.data.result) {
-          editUser() // 비밀번호 조회 결과 true면 정보 수정됨
+          editUser()
         } else {
           alert("정보 수정을 위해 비밀번호를 입력해 주세요.")
           document.getElementById('user-pw').value = ''        }

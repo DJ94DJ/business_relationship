@@ -18,12 +18,12 @@
 }
 
 .title-box {
-  height: 70px;
-  width: 120px;
+  height: 58px;
+  width: 90px;
   background: rgba(0, 0, 0, 0.05);
   opacity: 1;
   position: relative;
-  border: solid #f5c703;
+  border: solid #f54c03;
 }
 
 .mini-title {
@@ -36,7 +36,16 @@
   line-height: 105%;
   position: relative;
   left: 0px;
-  top: 20px;
+  top: 11px;
+}
+
+.bud_title_box {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  z-index: 2;
+  left: 1px;
+  top: -4px;
 }
 
 .sky {
