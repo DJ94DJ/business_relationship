@@ -13,50 +13,53 @@
   </head>
   <link rel="stylesheet" href="../static/css/signin.css" />
   <body>
-    <div class="sky"></div>
+    <div class="sky">
+      <div class="green">
+        <div class="container">
+          <a href="/home">
+            <img
+              src="../static/img/zaranara.png"
+              class="zara"
+              alt="자라나라새싹나라"
+            />
+          </a>
+        </div>
 
-    <div class="container">
-      <a href="/home">
-        <img src="../static/img/zaranara.png" alt="자라나라새싹나라" />
-      </a>
-    </div>
-    <div class="green"></div>
-
-    <form class="signin-form" name="user_login">
-      <div>
-        <input
-          type="text"
-          name="user_id"
-          class="id-form"
-          required
-          placeholder="아이디"
-        />
+        <form class="signin-form" name="user_login">
+          <div>
+            <input
+              type="text"
+              name="user_id"
+              class="id-form"
+              required
+              placeholder="아이디"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              name="user_pw"
+              class="pw-form"
+              required
+              placeholder="비밀번호"
+            />
+          </div>
+        </form>
+        <div>
+          <button type="button" onclick="userLogin()" id="signinButton">
+            <div class="btn-signin">로그인</div>
+          </button>
+        </div>
+        <div><a href="/home/signup" class="signupButton">회원가입</a></div>
+        <div><a href="/home" class="home"></a></div>
+        <div>
+          <img
+            class="home-icon"
+            src="../static/img/home-icon.png"
+            alt="홈으로 가기"
+          />
+        </div>
       </div>
-      <div>
-        비밀번호
-        <input
-          type="password"
-          name="user_pw"
-          class="pw-form"
-          required
-          placeholder="비밀번호"
-        />
-      </div>
-      <button type="button" onclick="userLogin()">로그인</button>
-    </form>
-    <div id="signinButton">
-      <a href="/home/signin">
-        <img width="200px" src="../static/img/signin.png" alt="로그인" />
-      </a>
-    </div>
-    <div><a href="/home/signup" class="signupButton">회원가입</a></div>
-    <div><a href="/home" class="home"></a></div>
-    <div>
-      <img
-        class="home-icon"
-        src="../static/img/home-icon.png"
-        alt="홈으로 가기"
-      />
     </div>
   </body>
   <script>
