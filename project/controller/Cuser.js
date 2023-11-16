@@ -36,8 +36,8 @@ exports.deleteUser = (req, res) => {
   }); // 탈퇴 버튼을 클릭시 세션 destroy(삭제) 코드 추가
 };
 
-// 마이페이지 비번 수정 시 인증
-exports.searchUser = (req, res) => {
+// 마이페이지 개인 정보 수정 시 비밀번호 인증
+exports.searchPw = (req, res) => {
   User.findOne({
     where: {
       user_id: req.body.user_id,
@@ -71,41 +71,3 @@ exports.searchUser = (req, res) => {
       res.send({ result: false });
     });
 };
-
-exports.editPw = (req, res) => {
-  const { user_pw } = req.body;
-
-  pwSalt
-    .hashPassword(user_pw)
-    .then(({ hashedPw, salt }) => {
-      User.update(
-        {
-          user_pw: hashedPw,
-          user_pw_salt: salt,
-        },
-        {
-          where: { id: req.session.userId },
-        },
-      )
-        .then((result) => {
-          console.log('signUpUser', result);
-          res.send({ result: true });
-        })
-        .catch((error) => {
-          console.error('user 생성 에러', error);
-          res.send({ result: false });
-        });
-    })
-    .catch((error) => {
-      console.error('암호화 에러', error);
-      res.send({ result: false });
-    });
-};
-
-// User.update({
-//   where: { id: req.session.userId },
-// }).then((result) => {
-//   console.log('editUser : ', result);
-//   if (result[0]) res.send({ result: true });
-//   else res.send({ result: false });
-// });
