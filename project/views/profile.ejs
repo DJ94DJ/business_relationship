@@ -1,146 +1,135 @@
 <!DOCTYPE html>
 <html lang="ko">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <title>profile(마이페이지)</title>
-</head>
-
-<body>
-  <style>
-    /* 간단하게 만든 style 코드입니다. 후에 수정해주시면 됩니다. */
-    form {
-      max-width: 400px;
-      margin: 0 auto;
-    }
-
-    div {
-      margin-bottom: 15px;
-    }
-
-    input {
-      width: 100%;
-      padding: 8px;
-      box-sizing: border-box;
-    }
-
-    button {
-      padding: 10px;
-      cursor: pointer;
-    }
-
-    .user-id {
-      background-color: rgba(128, 128, 128, 0.5);
-    }
-  </style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <title>profile(마이페이지)</title>
+    <link rel="stylesheet" href="../static/css/profile.css" />
+  </head>
 
   <body>
     <form class="" name="userProfile">
       <h3>마이(프로필) 페이지</h3>
       <div>
-      <!-- 아이디는 변경 불가능 -->
-        아이디 <input type="text" class="user-id" name="user_id" value="<%=data.user_id%>" readonly>
+        <!-- 아이디는 변경 불가능 -->
+        아이디
+        <input
+          type="text"
+          class="user-id"
+          name="user_id"
+          value="<%=data.user_id%>"
+          readonly
+        />
       </div>
       <div>
-        닉네임 <input type="text" name="user_name" value="<%=data.user_name%>">
+        닉네임
+        <input type="text" name="user_name" value="<%=data.user_name%>" />
       </div>
 
       <div>
-        자기소개 <input type="text" name="user_intro_self" value="<%=data.user_intro_self%>">
+        자기소개
+        <input
+          type="text"
+          name="user_intro_self"
+          value="<%=data.user_intro_self%>"
+        />
       </div>
       <div>
-        내 MBTI <input type="text" name="user_mbti" value="<%=data.user_mbti%>">
+        내 MBTI
+        <input type="text" name="user_mbti" value="<%=data.user_mbti%>" />
       </div>
       <div>
-        비밀번호 <input type="password" name="user_pw" id="user-pw" value="">
+        비밀번호 <input type="password" name="user_pw" id="user-pw" value="" />
       </div>
 
       <button type="button" onclick="checkPwEdit()">정보 수정</button>
       <button type="button" onclick="checkPwDel()">회원 탈퇴</button>
     </form>
 
-    
-  <script>
-    function checkPwDel() {
-      const form = document.forms["userProfile"]
+    <script>
+      function checkPwDel() {
+        const form = document.forms['userProfile'];
 
-      let user = {
-        user_id: form.elements.user_id.value,
-        user_pw: form.elements.user_pw.value
+        let user = {
+          user_id: form.elements.user_id.value,
+          user_pw: form.elements.user_pw.value,
+        };
+
+        axios({
+          method: 'POST',
+          url: `/user/profile`,
+          data: user,
+        }).then((res) => {
+          if (res.data.result) {
+            deleteUser();
+          } else {
+            alert('탈퇴를 위해선 비밀번호가 필요합니다.');
+            document.getElementById('user-pw').value = '';
+          }
+        });
       }
 
-      axios({
-        method: "POST",
-        url: `/user/profile`,
-        data: user
-      }).then((res) => {
-        if (res.data.result) {
-          deleteUser()
-        } else {
-          alert("탈퇴를 위해선 비밀번호가 필요합니다.")
-          document.getElementById('user-pw').value = ''        }
-      })
-    }
-
-    function deleteUser() {
-      axios({
-        method: "DELETE",
-        url: "/user/profile",
-      }).then((res) => {
-        if (res.data.result) {
-          alert("탈퇴 완료")
-          location.href = "/home"
-        } else alert("탈퇴 실패")
-      })
-    }
-
-    // 개인정보 수정을 위해 사용자가 입력한 기존 비번을 검증
-    function checkPwEdit() {
-      const form = document.forms["userProfile"]
-
-      let user = {
-        user_id: form.elements.user_id.value,
-        user_pw: form.elements.user_pw.value
+      function deleteUser() {
+        axios({
+          method: 'DELETE',
+          url: '/user/profile',
+        }).then((res) => {
+          if (res.data.result) {
+            alert('탈퇴 완료');
+            location.href = '/home';
+          } else alert('탈퇴 실패');
+        });
       }
 
-      axios({
-        method: "POST",
-        url: `/user/profile`,
-        data: user
-      }).then((res) => {
-        if (res.data.result) {
-          editUser()
-        } else {
-          alert("정보 수정을 위해 비밀번호를 입력해 주세요.")
-          document.getElementById('user-pw').value = ''        }
-      })
-    }
-    
-    function editUser() {
-      const form = document.forms["userProfile"]
+      // 개인정보 수정을 위해 사용자가 입력한 기존 비번을 검증
+      function checkPwEdit() {
+        const form = document.forms['userProfile'];
 
-      let user = {
-        user_name: form.elements.user_name.value,
-        user_intro_self: form.elements.user_intro_self.value,
-        user_mbti: form.elements.user_mbti.value
+        let user = {
+          user_id: form.elements.user_id.value,
+          user_pw: form.elements.user_pw.value,
+        };
+
+        axios({
+          method: 'POST',
+          url: `/user/profile`,
+          data: user,
+        }).then((res) => {
+          if (res.data.result) {
+            editUser();
+          } else {
+            alert('정보 수정을 위해 비밀번호를 입력해 주세요.');
+            document.getElementById('user-pw').value = '';
+          }
+        });
       }
 
-      axios({
-        method: "PATCH",
-        url: `/user/profile/`,
-        data: user
-      }).then((res) => {
-        if (res.data.result) {
-          alert("수정 성공")
-          location.reload()
-        } else alert("수정 실패")
-      })
-    }
-  </script>
+      function editUser() {
+        const form = document.forms['userProfile'];
 
+        let user = {
+          user_name: form.elements.user_name.value,
+          user_intro_self: form.elements.user_intro_self.value,
+          user_mbti: form.elements.user_mbti.value,
+        };
+
+        axios({
+          method: 'PATCH',
+          url: `/user/profile/`,
+          data: user,
+        }).then((res) => {
+          if (res.data.result) {
+            alert('수정 성공');
+            location.reload();
+          } else alert('수정 실패');
+        });
+      }
+    </script>
   </body>
-
 </html>
