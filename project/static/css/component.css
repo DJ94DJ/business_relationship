@@ -59,10 +59,10 @@ button:disabled:hover {
 
 /* 닫기 버튼 (X) */
 .closeBtn {
-  font-size: 20px;
+  font-size: 10px;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 25px;
+  height: 25px;
   background-color: #000000;
   color: #ffffff;
   border: none;
@@ -105,4 +105,23 @@ button:disabled:hover {
 /* 공개 여부 라디오 버튼 */
 .pubRadioBtn {
   font-size: 30px;
+}
+
+/* 모달창 */
+.container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.modal {
+  width: 70vw;
+  background-color: white;
+  border: 7px solid #f5c703;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.closeBtn-container {
+  text-align: right;
 }
