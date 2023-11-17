@@ -1,71 +1,92 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../static/css/signin.css" />
+    <title>signin(로그인 페이지)</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="../static/css/signin.css" />
-  <title>signin(로그인 페이지)</title>
-</head>
-
-<body>
-  <div class="sky">
-    <div class="green">
-      <div class="container">
-        <a href="/home">
-          <img src="../static/img/zaranara.png" class="zara" alt="자라나라새싹나라" />
-        </a>
-      </div>
-
-      <form class="signin-form" name="user_login">
-        <div>
-          <input type="text" name="user_id" class="id-form" required placeholder="아이디" />
+  <body>
+    <div class="sky">
+      <div class="green">
+        <div class="container">
+          <a href="/home">
+            <img
+              src="../static/img/zaranara.png"
+              class="zara"
+              alt="자라나라새싹나라"
+            />
+          </a>
         </div>
+
+        <form class="signin-form" name="user_login">
+          <div>
+            <input
+              type="text"
+              name="user_id"
+              class="id-form"
+              required
+              placeholder="아이디"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              name="user_pw"
+              class="pw-form"
+              required
+              placeholder="비밀번호"
+            />
+          </div>
+        </form>
         <div>
-          <input type="password" name="user_pw" class="pw-form" required placeholder="비밀번호" />
+          <button type="button" onclick="userLogin()" id="signinButton">
+            <div class="btn-signin">로그인</div>
+          </button>
         </div>
-      </form>
-      <div>
-        <button type="button" onclick="userLogin()" id="signinButton">
-          <div class="btn-signin">로그인</div>
-        </button>
-      </div>
-      <div><a href="/home/signup" class="signupButton">회원가입</a></div>
-      <div><a href="/home" class="home"></a></div>
-      <div>
-        <a href="/home/signup">
-          <img class="home-icon" src="../static/img/home-icon.png" alt="홈으로 가기" /></a>
+        <div><a href="/home/signup" class="signupButton">회원가입</a></div>
+        <div><a href="/home" class="home"></a></div>
+        <div>
+          <a href="/home">
+            <img
+              class="home-icon"
+              src="../static/img/home-icon.png"
+              alt="홈으로 가기"
+          /></a>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-<script>
-  // 로그인 버튼 클릭 시
-  function userLogin() {
-    const form = document.forms['user_login'];
+  </body>
+  <script>
+    // 로그인 버튼 클릭 시
+    function userLogin() {
+      const form = document.forms['user_login'];
 
-    let user = {
-      user_id: form.user_id.value,
-      user_pw: form.user_pw.value,
-    };
+      let user = {
+        user_id: form.user_id.value,
+        user_pw: form.user_pw.value,
+      };
 
-    axios({
-      method: 'POST',
-      url: '/home/signin',
-      data: user,
-    }).then((res) => {
-      if (res.data.result) {
-        alert('로그인 성공');
-        location.href = '/home/garden';
-      } else {
-        alert('로그인 실패');
-        form.reset();
-      }
-    });
-  }
-</script>
-
+      axios({
+        method: 'POST',
+        url: '/home/signin',
+        data: user,
+      }).then((res) => {
+        if (res.data.result) {
+          alert('로그인 성공');
+          location.href = '/home/garden';
+        } else {
+          alert('로그인 실패');
+          form.reset();
+        }
+      });
+    }
+  </script>
 </html>
