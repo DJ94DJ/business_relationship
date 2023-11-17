@@ -1,6 +1,5 @@
-const { db, User, Message, Sequelize } = require('../model');
+const { User, Message } = require('../model');
 const pwSalt = require('../model/pwSalt');
-const Op = Sequelize.Op;
 
 // 메인 페이지 랜더
 exports.home = (req, res) => {

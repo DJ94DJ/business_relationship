@@ -1,24 +1,32 @@
+@font-face {
+  font-family: 'DNFBitBitv2';
+  font-style: normal;
+  font-weight: 400;
+  src: url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf')
+    format('opentype');
+}
+
 body {
   height: 100%;
   width: 100%;
-  background-attachment: fixed;
+  margin: 0;
+}
+* {
+  font-family: 'DNFBitBitv2';
 }
 
 .sky {
   background-attachment: fixed;
   position: fixed;
-  background: linear-gradient(#0072b4, #ffffff);
+  background: linear-gradient(#0072b4, #ffffff, #ffffff);
   height: 100%;
   width: 100%;
-  left: 0;
-  top: 0;
 }
 
-.container {
+.logo {
   text-align: center;
   position: relative;
-  top: 25px;
-  z-index: 1;
+  top: 120px;
 }
 
 .green {
@@ -28,17 +36,63 @@ body {
   width: 100%;
   position: fixed;
   bottom: 0;
-  left: 0;
   border-top-left-radius: 50% 40px;
   border-top-right-radius: 50% 40px;
+}
+
+.btnForm {
+  text-align: center;
+  position: relative;
+  bottom: 80px;
+}
+
+button {
+  cursor: pointer;
 }
 
 #signinButton,
 #signupButton,
 #walkButton,
 #infoButton {
-  text-align: center;
+  width: 150px;
+  height: 60px;
   position: relative;
   top: 100px;
-  margin-top: 20px;
+  margin-top: 30px;
+  font-size: 25px;
+  border-radius: 30px;
+  background-color: #74b93a;
+  color: #ffffff;
+  border: none;
+}
+
+#infoButton {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+#walkButton,
+#infoButton {
+  background-color: #01552c;
+}
+
+#signinButton:hover,
+#signinButton:active {
+  background-color: #509217;
+}
+
+#signupButton:hover,
+#signupButton:active {
+  background-color: #509217;
+}
+
+#walkButton:hover,
+#walkButton:active {
+  background-color: #1f2020;
+}
+
+#infoButton:hover,
+#infoButton:active {
+  background-color: #1f2020;
 }

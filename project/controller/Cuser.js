@@ -1,4 +1,4 @@
-const { User, Message } = require('../model');
+const { User } = require('../model');
 const pwSalt = require('../model/pwSalt');
 
 // 마이페이지 랜더
@@ -18,7 +18,7 @@ exports.editUser = (req, res) => {
   User.update(req.body, {
     where: { id: req.session.userId },
   }).then((result) => {
-    console.log('editUser : ', result); // update의 결과는 [1] or [0] 배열?로 담겨서 나온다.
+    console.log('editUser : ', result);
     if (result[0]) res.send({ result: true });
     else res.send({ result: false });
   });
@@ -33,7 +33,7 @@ exports.deleteUser = (req, res) => {
 
     if (result) res.send({ result: true });
     else res.send({ result: false });
-  }); // 탈퇴 버튼을 클릭시 세션 destroy(삭제) 코드 추가
+  });
 };
 
 // 마이페이지 개인 정보 수정 시 비밀번호 인증
