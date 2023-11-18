@@ -221,14 +221,36 @@ button {
 }
 
 .modal {
-  width: 80vw;
+  width: 70vw;
   height: auto;
   background-color: white;
   border: 7px solid #f5c703;
   border-radius: 20px;
   padding: 5px;
+  /* display: none; */
+  position: fixed;
+  top: 40%;
 }
 
 .closeBtn-container {
   text-align: right;
+}
+
+#mask {
+  position: absolute;
+  z-index: 9000;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: none;
+  left: 0;
+  top: 0;
+}
+
+.window {
+  display: none;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  /* left: 33%;
+  top: 10%; */
+  z-index: 10000;
 }

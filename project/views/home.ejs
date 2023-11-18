@@ -49,7 +49,7 @@
 
           <!-- info 버튼 -->
           <div>
-            <button id="infoButton" onclick="wrapWindowByMask()">info</button>
+            <button id="infoButton">info</button>
           </div>
         </div>
       </div>
@@ -126,7 +126,6 @@
       // info 모달창
       // 1. 디폴트로 모달창 안 보이도록 설정
       // 2. 모달창 가운데 정렬
-
       function wrapWindowByMask() {
         var $mask = $('#mask');
         var $window = $('.window');
@@ -135,9 +134,26 @@
           $mask.hide();
           $window.hide();
         } else {
+          var maskHeight = $(document).height();
+          var maskWidth = $(window).width();
+
+          $mask.css({ width: maskWidth, height: maskHeight });
+
           $mask.fadeIn(100);
           $window.show();
         }
+      }
+
+      $(document).ready(function () {
+        $('#mask, .window').hide();
+      });
+
+      $(document).ready(function () {
+        //검은 막 띄우기
+        $('#infoButton').click(function (e) {
+          e.preventDefault();
+          wrapWindowByMask();
+        });
 
         //닫기 버튼을 눌렀을 때
         $('.window, .closeBtn').click(function (e) {
@@ -145,7 +161,13 @@
           e.preventDefault();
           $('#mask, .window').hide();
         });
-      }
+
+        //검은 막을 눌렀을 때
+        $('#mask').click(function () {
+          $(this).hide();
+          $('.window').hide();
+        });
+      });
     </script>
   </body>
 </html>
