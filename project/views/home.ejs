@@ -14,60 +14,50 @@
   </head>
 
   <body>
-    <div class="sky"></div>
+    <!-- 하늘 -->
+    <div class="sky">
+      <!-- 로고 -->
+      <div class="logo">
+        <a href="/home">
+          <img
+            id="logo"
+            src="../static/img/zaranara.png"
+            alt="자라나라새싹나라"
+          />
+        </a>
+      </div>
 
-    <div class="container">
-      <a href="/home">
-        <img src="../static/img/zaranara.png" alt="자라나라새싹나라" />
-      </a>
-    </div>
-    <div class="green"></div>
+      <!-- 잔디 -->
+      <div class="green">
+        <!-- 버튼들 -->
+        <div class="btnForm">
+          <div>
+            <button id="signinButton" onclick="location.href='/home/signin'">
+              로그인
+            </button>
+          </div>
 
-    <div id="signinButton">
-      <a href="/home/signin">
-        <img width="200px" src="../static/img/signin.png" alt="로그인" />
-      </a>
-    </div>
+          <div>
+            <button id="signupButton" onclick="location.href='/home/signup'">
+              회원가입
+            </button>
+          </div>
 
-    <div id="signupButton">
-      <a href="/home/signup">
-        <img width="200px" src="../static/img/signup.png" alt="회원가입" />
-      </a>
-    </div>
+          <div>
+            <button type="button" id="walkButton" onclick="randomWalk()">
+              산책하기
+            </button>
+          </div>
 
-    <!-- 테스트 용으로 만든 버튼입니다. 후에 onclick만 메소드만 일치하게 넣어주세요 ! -->
-    <div id="signinButton">
-      <button type="button" onclick="randomWalk()">산책하기</button>
-    </div>
-
-    <!-- 테스트 용으로 만든 버튼입니다. 후에 onclick만 메소드만 일치하게 넣어주세요 ! -->
-    <div id="signinButton">
-      <button type="button" onclick="mvUserGarden()">내 정원 가기</button>
-    </div>
-
-    <div id="infoButton">
-      <a href="#">
-        <!-- 아직 안 만든 페이지라... 추후... -->
-        <img width="100px" src="../static/img/info.png" alt="인포" />
-      </a>
+          <!-- info 버튼 -->
+          <div>
+            <button id="infoButton">info</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
-      // function getUserId() {
-      //   axios({
-      //     method: 'GET',
-      //     url: '/home/getUserId',
-      //   })
-      //     .then((res) => {
-      //       console.log('getUserId : ', res.data.user_id);
-      //       const userId = res.data.user_id;
-      //       mvUserGarden(userId);
-      //     })
-      //     .catch((error) => {
-      //       console.error(error);
-      //     });
-      // }
-
       function mvUserGarden(user_id) {
         console.log('mvUserGarden 실행');
         axios({

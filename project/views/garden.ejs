@@ -4,10 +4,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
 
   <link rel="stylesheet" href="../static/css/garden.css" />
   <link rel="stylesheet" href="../../static/css/garden.css" />
@@ -23,7 +28,7 @@
       background-image: linear-gradient(to bottom, #0072b4, #e9e9e7);
     } */
 
-    
+
 
     .content {
       margin: 0;
@@ -148,79 +153,80 @@
   <div id="sky"></div>
 
   <div clas="content">
-  <!-- 마이페이지 이동 버튼 -->
-  <button type="button" class="my-page-btn" onclick="profile()">마이페이지</button>
-  <button type="button" class="my-page-btn" onclick="randomWalk()">산책하기</button>
-  <button type="button" class="my-page-btn" onclick="signOut()">로그아웃</button>
+    <!-- 마이페이지 이동 버튼 -->
+    <button type="button" class="my-page-btn" onclick="profile()">마이페이지</button>
+    <button type="button" class="my-page-btn" onclick="randomWalk()">산책하기</button>
+    <button type="button" class="my-page-btn" onclick="signOut()">로그아웃</button>
 
 
-  <!-- 롤링페이퍼 작성하기 버튼 -->
-  <form name="newMsg">
-    <input type="text" name="gardenId" value="<%=gardenId%>" hidden>
-    <div class="write-container">
-      <div>
-        <%=gardenName%>의 가든
-      </div>
-      <div>
-        제목<input type="text" name="title">
-      </div>
-      <div>
-        메시지 내용<input type="text" name="content">
-      </div>
-      <div>
-        <input type="radio" name="isPublic" value="true" id="public">
-        <label for="public">메시지 공개 </label>
-        //
-        <input type="radio" name="isPublic" value="false" id="private">
-        <label for="private">메시지 비공개 </label>
-      </div>
-      <div>
-        컬러<input type="color" name="flowerColor">
-      </div>
-      <br />
-      <button type="button" class="write-btn" onclick="writeMsg()">작성하기</button>
-    </div>
-  </form>
-
-  <div>
-    <ul id="mess">
-      <%if(msg) {%>
-      <%let result=true%>
-      <% for (let i=0; i < msg.length; i++) { %>
-      <% if(result) { %>
-      <form name="mesId">
+    <!-- 롤링페이퍼 작성하기 버튼 -->
+    <form name="newMsg">
+      <input type="text" name="gardenId" value="<%=gardenId%>" hidden>
+      <div class="write-container">
         <div>
-          <h3>여기는 왼쪽</h3>
-          <input type="hidden" name="mesId" value="<%=msg[i].message_id%>">
-          제목: <%=msg[i].title%> <br />
-          내용: <%=msg[i].content%> <br />
-          공개여부: <%=msg[i].is_public%> <br />
-          <button type="button" onclick="deleteMsg(this)">삭제하기</button>
+          <%=gardenName%>의 가든
         </div>
-      </form>
-      <%result=false%>
-      <% } else {%>
-      <form name="mesId">
-        <div style="text-align: right;">
-          <h3>여기는 오른쪽</h3>
-          <input type="hidden" name="mesId" value="<%=msg[i].message_id%>">
-          제목: <%=msg[i].title%> <br />
-          내용: <%=msg[i].content%> <br />
-          공개여부: <%=msg[i].is_public%> <br />
-          <button type="button" onclick="deleteMsg(this)">삭제하기</button>
-      </form>
-  </div>
-  <%result=true%>
-  <%}%>
+        <div>
+          제목<input type="text" name="title">
+        </div>
+        <div>
+          메시지 내용<input type="text" name="content">
+        </div>
+        <div>
+          <input type="radio" name="isPublic" value="true" id="public" checked>
+          <label for="public">메시지 공개 </label>
+          //
+          <input type="radio" name="isPublic" value="false" id="private">
+          <label for="private">메시지 비공개 </label>
+        </div>
+        <div>
+          컬러<input type="color" name="flowerColor">
+        </div>
+        <br />
+        <button type="button" class="write-btn" onclick="writeMsg()">작성하기</button>
+      </div>
+    </form>
+
+    <div>
+      <ul id="mess">
+        <%if(msg) {%>
+          <%let result=true%>
+            <% for (let i=0; i < msg.length; i++) { %>
+              <% if(result) { %>
+                <form name="mesId">
+                  <div>
+                    <h3>여기는 왼쪽</h3>
+                    <input type="hidden" name="mesId" value="<%=msg[i].message_id%>">
+                    제목: <%=msg[i].title%> <br />
+                      내용: <%=msg[i].content%> <br />
+                        공개여부: <%=msg[i].is_public%> <br />
+                          <button type="button" onclick="deleteMsg(this)">삭제하기</button>
+                  </div>
+                </form>
+                <%result=false%>
+                  <% } else {%>
+                    <form name="mesId">
+                      <div style="text-align: right;">
+                        <h3>여기는 오른쪽</h3>
+                        <input type="hidden" name="mesId" value="<%=msg[i].message_id%>">
+                        제목: <%=msg[i].title%> <br />
+                          내용: <%=msg[i].content%> <br />
+                            공개여부: <%=msg[i].is_public%> <br />
+                              <button type="button" onclick="deleteMsg(this)">삭제하기</button>
+                    </form>
+    </div>
+    <%result=true%>
       <%}%>
-  <%} else {%>
-  <div>
-    <h3>메시지가 없습니다 ㅜㅜ</h3>
+        <%}%>
+          <%} else {%>
+            <div>
+              <h3>메시지가 없습니다 ㅜㅜ</h3>
+            </div>
+            <%}%>
+              </ul>
   </div>
-  <%}%>
-     </ul>
-   </div>
-</div>
+
+  </div>
 
 <script>       
   // 회원과 비회원을 구분하는 애니메이션 필요
@@ -228,113 +234,121 @@
     const form = document.forms["newMsg"]
 
 
-    const msg = {
-      title: form.elements.title.value,
-      content: form.elements.content.value,
-      is_public: form.elements.isPublic.value,
-      flower_color: form.elements.flowerColor.value,
-      id: form.elements.gardenId.value
+      const msg = {
+        title: form.elements.title.value,
+        content: form.elements.content.value,
+        is_public: form.elements.isPublic.value,
+        flower_color: form.elements.flowerColor.value,
+        id: form.elements.gardenId.value
+      }
+
+      if ("<%=userName%>") { // 세션에 아이디가 있을 때(로그인 O)
+        axios({
+          method: "POST",
+          url: "/home/garden",
+          data: msg
+        }).then((res) => {
+          if (res.data.result) {
+            alert("메시지 작성 완료")
+            location.reload()
+          } else {
+            alert("메시지 작성 실패 ㅜㅜ")
+          }
+        })
+      } else { // 세션에 아이디가 없을 때(로그인 X)
+        axios({
+          method: "POST",
+          url: "/home/garden",
+          data: msg
+        }).then((res) => {
+          if (res.data.result) {
+            alert("메시지 작성 완료")
+            location.reload()
+          } else {
+            alert("메시지 작성 실패 ㅜㅜ")
+          }
+        })
+      }
     }
 
-    if ("<%=userName%>") { // 세션에 아이디가 있을 때(로그인 O)
-  axios({
-  method: "POST",
-  url: "/home/garden",
-  data: msg
-  }).then((res) => {
-  if (res.data.result) {
-  alert("메시지 작성 완료")
-  location.reload()
-  } else {
-  alert("메시지 작성 실패 ㅜㅜ")
-  }
-  })
-  }
-  else { // 세션에 아이디가 없을 때(로그인 X)
-  axios({
-  method: "POST",
-  url: "/home/garden",
-  data: msg
-  }).then((res) => {
-  if (res.data.result) {
-  alert("메시지 작성 완료")
-  location.reload()
-  } else {
-  alert("메시지 작성 실패 ㅜㅜ")
-  }
-  })
-  }
+    function randomWalk() {
+      axios({
+        method: "GET",
+        url: '/home/garden/random'
+      }).then((res) => {
+        let num = res.data.data
+        console.log("res : ", res)
+        console.log("res.data : ", res.data)
+        console.log("num : ", num)
+        randomPage(num)
+      })
+    }
 
-  }
-
-  function randomWalk() {
-  axios({
-  method: "GET",
-  url: '/home/garden/random'
-  }).then((res) => {
-  let num = res.data.data
-  console.log("res : ", res)
-  console.log("res.data : ", res.data)
-  console.log("num : ", num)
-  randomPage(num)
-  })
-  }
-
-  function randomPage(id) {
-  console.log("매개변수: ", id)
-  axios({
-  method: "GET",
-  url: `/home/garden/${id}`
-  }).then((res) => {
-  location.href = `/home/garden/${id}`
-  })
-  }
+    function randomPage(id) {
+      console.log("매개변수: ", id)
+      axios({
+        method: "GET",
+        url: `/home/garden/${id}`
+      }).then((res) => {
+        location.href = `/home/garden/${id}`
+      })
+    }
 
 
-  // 메시지 삭제
-  function deleteMsg(button) {
-  const form = button.closest("form")
-  let delMess = {
-  mesId: form.querySelector('[name="mesId"]').value,
-  gdName: "<%=userName%>"
-  }
-  console.log("mesId : ", delMess.mesId)
-  console.log("gardenId : ", delMess.gardenId)
+    // 메시지 삭제
+    function deleteMsg(button) {
+      const form = button.closest("form")
+      let delMess = {
+        mesId: form.querySelector('[name="mesId"]').value,
+        gdName: "<%=userName%>"
+      }
+      console.log("mesId : ", delMess.mesId)
+      console.log("gardenId : ", delMess.gardenId)
 
-  axios({
-  method: "DELETE",
-  url: "/home/garden",
-  data: delMess
-  }).then((res) => {
-  console.log("res.data", res.data)
-  if (res.data.result) {
-  alert("삭제되었습니다")
-  location.reload()
-  } else {
-  // 주인만 삭제 가능
-  location.reload()
-  }
-  }).catch((err) => {
-  console.log("에러발생")
-  })
+      axios({
+        method: "DELETE",
+        url: "/home/garden",
+        data: delMess
+      }).then((res) => {
+        console.log("res.data", res.data)
+        if (res.data.result) {
+          alert("삭제되었습니다")
+          location.reload()
+        } else {
+          // 주인만 삭제 가능
+          location.reload()
+        }
+      }).catch((err) => {
+        console.log("에러발생")
+      })
 
-  }
+    }
 
 
-  // $("buttion[name=delMsg]").on("click", function () {
-  // console.log("value : ", this.value)
-  // })
+    $("buttion[name=delMsg]").on("click", function () {
+      console.log("value : ", this.value)
+    })
 
-  function profile() {
-  axios({
-  method: "GET",
-  url: "/user/profile"
-  }).then((res) => {
-  console.log('res', res.data)
-  if (res.data) location.href = '/user/profile'
-  else { alert("마이페이지 접근 불가 ;ㅁ;") }
-  })
-  }
+    function profile() {
+      axios({
+        method: "GET",
+        url: "/user/profile"
+      }).then((res) => {
+        console.log('res', res.data)
+        if (res.data) location.href = '/user/profile'
+        else { alert("마이페이지 접근 불가 ;ㅁ;") }
+      })
+    }
+
+    function signOut() {
+      axios({
+        method: "POST",
+        url: "/home/signout",
+      }).then((res) => {
+        if (res.data.result) location.href = '/home'
+        else { alert("로그아웃 실패 ;ㅁ;") }
+      })
+    }
 
   function signOut() {
   axios({

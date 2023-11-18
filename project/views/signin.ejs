@@ -9,10 +9,9 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
+    <link rel="stylesheet" href="../static/css/signin.css" />
     <title>signin(로그인 페이지)</title>
   </head>
-  <link rel="stylesheet" href="../static/css/signin.css" />
 
   <body>
     <div class="sky">
@@ -55,7 +54,7 @@
         <div><a href="/home/signup" class="signupButton">회원가입</a></div>
         <div><a href="/home" class="home"></a></div>
         <div>
-          <a href="/home/signup">
+          <a href="/home">
             <img
               class="home-icon"
               src="../static/img/home-icon.png"
@@ -83,9 +82,7 @@
         if (res.data.result) {
           alert('로그인 성공');
           location.href = '/home/garden';
-          // 성공 시 유저의 id(PK)의 맞는 garden으로 이동하는 코드 작성 필요 (보류)
         } else {
-          // 실패 시 해당 페이지 초기화
           alert('로그인 실패');
           form.reset();
         }
