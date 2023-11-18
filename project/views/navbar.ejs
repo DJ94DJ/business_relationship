@@ -1,73 +1,262 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
     <title>Document</title>
+    <link rel="stylesheet" href="../static/css/nav.css">
 </head>
 <style>
-    .navbar {
-        position: fixed;
+    @font-face {
+        font-family: 'DNFBitBitv2';
+        font-style: normal;
+        font-weight: 400;
+        src: url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf') format('opentype');
+    }
+
+    * {
+        font-family: 'DNFBitBitv2';
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul li {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        align-items: center;
+    }
+
+    a {
+        list-style: none;
+        text-decoration: none;
+    }
+
+    li>a {
+        color: #01552c;
+        text-decoration: none;
+    }
+
+    .header1 {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 60px;
+        background-color: #ffffff;
+    }
+
+    .header1 li {
+        float: left;
+        margin: 10px;
+        color: #01552c;
+    }
+
+    div a {
+        color: #70b734;
+    }
+
+    .menus {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* 모달 */
+    #mask {
+        position: absolute;
+        z-index: 9000;
+        background-color: rgba(255, 255, 255, 0.7);
+        display: none;
+        left: 0;
         top: 0;
-        width: 100px;
-        /* nav바의 높이 만큼 padding-top 속성 추가 */
+        margin-top: 50px;
     }
 
-    .shareLink {
+    .maskText {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        color: #70b734;
+    }
+
+    .maskText>div {
+        margin-top: 40px;
+    }
+
+    .window {
+        display: none;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        /* left: 33%;
+  top: 10%; */
+        z-index: 10000;
+    }
+
+    .maskText>div {
         cursor: pointer;
-    }
-
-    #shareLink:disabled {
-        color: black;
-        cursor: default;
     }
 </style>
 
 <body>
-    <nav>
-        <ul class="navbar">
-            <li id="navShare"><img id="shareLink" alt="공유" onclick="shareLink()">
+    <!-- nav바  -->
+    <header class="header1">
+        <ul class="menus">
+            <li onclick="shareLink()"><a href=""><img src="../static/img/share.svg" alt=""></a></li>
+            <li>
+                <%if(gardenName) {%>
+                    <a href="/home">
+                        <%=gardenName%>의 정원
+                    </a>
+                    <%} else {%>
+                        <a href="/home">
+                            자라나라<br>
+                            새싹나라
+                        </a>
+                        <%}%>
             </li>
-            <li id="navLogo">
-            </li>
-            <li id="navMenu">메뉴</li>
+            <li><a id="#mask" class="openMask"><img src="../static/img/menubar.svg" alt="" /></a></li>
         </ul>
-    </nav>
+    </header>
+
+    <div id="mask">
+        <div class="window">
+            <div class="maskText">
+                <%if(userName) {%>
+                    <div onclick="mvUserGarden()">내 정원으로 가기</a></div>
+                    <div onclick="profile()">내 정보 수정</a></div>
+                    <div onclick="randomWalk()">산책하기</div>
+                    <div onclick="signOut()">로그아웃</div>
+                    <%} else {%>
+                        <div><a href="/home">홈으로 가기</a></div>
+                        <div><a href="/home/signin">로그인</a></div>
+                        <div onclick="randomWalk()">산책하기</div>
+                        <%}%>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // 공유하기 버튼 (왼쪽)
+        // if ("<%=userName%>") {
+        //     $("#navLogo").html(`<%=userName%>의 가든`)
+        // } else $("#navLogo").html("새싹나라")
 
-        if ("<%=gardenName%>") {
-            $('#shareLink').attr('disabled', false)
-        } else $('#shareLink').attr('disabled', true)
+        function wrapWindowByMask() {
+            var $mask = $('#mask');
+            var $window = $('.window');
 
-        // 로고 (가운데)
-        if ("<%=gardenName%>") {
-            $("#navLogo").html("<%=gardenName%>의 새싹")
-        } else $("#navLogo").html("img link")
+            if ($mask.is(':visible')) {
+                $mask.hide();
+                $window.hide();
+            } else {
+                var maskHeight = $(document).height();
+                var maskWidth = $(window).width();
 
-        // 메뉴(오른쪽)는 클릭 -> 모달 창 -> 안에서 또 세션에 따라 다르게 보이게
+                $mask.css({ 'width': maskWidth, 'height': maskHeight - 50 });
 
-
-        // 링크 공유하기 onclick 함수
-        function shareLink() {
-            var url = '';    // <a>태그에서 호출한 함수인 clip 생성
-            var textarea = document.createElement("textarea");
-            //url 변수 생성 후, textarea라는 변수에 textarea의 요소를 생성
-
-            document.body.appendChild(textarea); //</body> 바로 위에 textarea를 추가(임시 공간이라 위치는 상관 없음)
-            url = window.document.location.href;  //url에는 현재 주소값을 넣어줌
-            textarea.value = url;  // textarea 값에 url를 넣어줌
-            textarea.select();  //textarea를 설정
-            document.execCommand("copy");   // 복사
-            document.body.removeChild(textarea); //extarea 요소를 없애줌
-
-            alert("URL이 복사되었습니다.")  // 알림창
-
+                $mask.fadeIn(100);
+                $window.show();
+            }
         }
+
+        $(document).ready(function () {
+            //검은 막 띄우기
+            $('.openMask').click(function (e) {
+                e.preventDefault();
+                wrapWindowByMask();
+            });
+
+            //닫기 버튼을 눌렀을 때
+            $('.window .close').click(function (e) {
+                //링크 기본동작은 작동하지 않도록 한다.
+                e.preventDefault();
+                $('#mask, .window').hide();
+            });
+
+            //검은 막을 눌렀을 때
+            $('#mask').click(function () {
+                $(this).hide();
+                $('.window').hide();
+            });
+        });
+
+        // 내 정원 이동
+        function mvUserGarden(user_id) {
+            console.log('mvUserGarden 실행');
+            axios({
+                method: 'GET',
+                url: '/home/garden',
+            })
+                .then((res) => {
+                    if (res.data) {
+                        location.href = '/home/garden';
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        }
+
+        // 산책하기
+        function randomWalk() {
+            axios({
+                method: 'GET',
+                url: '/home/garden/random',
+            }).then((res) => {
+                let num = res.data.data;
+                console.log('res : ', res);
+                console.log('res.data : ', res.data);
+                console.log('num : ', num);
+                randomPage(num);
+            });
+        }
+
+
+        function randomPage(id) {
+            console.log('매개변수: ', id);
+            axios({
+                method: 'GET',
+                url: `/home/garden/random/${id}`,
+            }).then((res) => {
+                location.href = `/home/garden/${id}`;
+            });
+        }
+
+        // 프로필 이동
+        function profile() {
+            axios({
+                method: "GET",
+                url: "/user/profile"
+            }).then((res) => {
+                console.log('res', res.data)
+                if (res.data) location.href = '/user/profile'
+                else { alert("마이페이지 접근 불가 ;ㅁ;") }
+            })
+        }
+
+        // 로그아웃
+        function signOut() {
+            axios({
+                method: "POST",
+                url: "/home/signout",
+            }).then((res) => {
+                if (res.data.result) location.href = '/home'
+                else { alert("로그아웃 실패 ;ㅁ;") }
+            })
+        }
+
     </script>
 </body>
 

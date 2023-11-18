@@ -8,7 +8,12 @@ exports.profile = (req, res) => {
     where: { id: req.session.userId },
   }).then((result) => {
     console.log('result : ', result);
-    if (result) res.render('profile', { data: result });
+    if (result)
+      res.render('profile', {
+        data: result,
+        gardenName: false,
+        userName: result.user_name,
+      });
     else res.send({ result: false });
   });
 };

@@ -1,107 +1,62 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://code.jquery.com/jquery-3.7.1.min.js"
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-      crossorigin="anonymous"
-    ></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    <title>profile(마이페이지)</title>
-    <link rel="stylesheet" href="../static/css/profile.css" />
-  </head>
 
-  <body>
-    <nav class="navbar bg-body-tertiary fixed-top">
-        <div class="container-fluid">
-          <!-- 공유하기 버튼 이미지 만들어서 수정 -->
-          <a class="navbar-brand" href="#">공유하기</a>
-          <div class="navbar-brand" id="zara">자라나라 새싹나라</div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-            aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <title>profile(마이페이지)</title>
+  <link rel="stylesheet" href="../static/css/profile.css" />
+</head>
 
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/home">홈으로 가기</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/home/signin">로그인</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">산책하기</a>
-            </li>
-            </ul>
-        </div>
-  </nav>
-  <div class="sky">
-    <div class="title-border">
-      <h3 class="title">회원정보 수정</h3>
-    </div>
-    <div class="signup-border">
-    <form class="" name="userProfile">
-      <div>
-        <!-- 아이디는 변경 불가능 -->
-        아이디
-        <input
-          type="text"
-          class="user-id"
-          name="user_id"
-          value="<%=data.user_id%>"
-          readonly
-        />
+<body>
+  <%-include('navbar.ejs')%>
+    <div class="sky">
+      <div class="title-border">
+        <h3 class="title">회원정보 수정</h3>
       </div>
-      <div>
-        닉네임
-        <input type="text" name="user_name" class="user-nk" value="<%=data.user_name%>" />
+      <div class="signup-border">
+        <form class="" name="userProfile">
+          <div>
+            <!-- 아이디는 변경 불가능 -->
+            아이디
+            <input type="text" class="user-id" name="user_id" value="<%=data.user_id%>" readonly />
+          </div>
+          <div>
+            닉네임
+            <input type="text" name="user_name" class="user-nk" value="<%=data.user_name%>" />
+          </div>
+          <div>
+            비밀번호 <input type="password" name="user_pw" class="user-pw" id="user-pw" value="" oninput="pwCheck()"
+              pattern="^(?=.*[0-9])(?=.*[a-zA-Z]).{4,12}$" title="숫자와 영문을 포함하여 4~12자 이내로 작성해 주세요." />
+          </div>
+          <div>
+            비밀번호 확인<input type="password" name="user_pw_check" class="user-pwCheck" id="user-pw-check" value=""
+              oninput="pwCheck()" />
+            <br />
+            <div id="pw_check"></div>
+          </div>
+          <div>
+            내 MBTI
+            <input type="text" name="user_mbti" class="user-mb" value="<%=data.user_mbti%>" />
+          </div>
+          <div>
+            자기소개
+            <input class="user-self" type="textarea" name="user_intro_self" value="<%=data.user_intro_self%>" />
+          </div>
+          <div class="btn-container">
+            <button type="button" class="delBtn" onclick="checkPwDel()">회원 탈퇴</button>
+            <button type="button" class="editBtn" onclick="checkPwEdit()">정보 수정</button>
+          </div>
+        </form>
       </div>
-      <div>
-        비밀번호 <input type="password" name="user_pw" class="user-pw" id="user-pw" value="" oninput="pwCheck()" pattern="^(?=.*[0-9])(?=.*[a-zA-Z]).{4,12}$"
-        title="숫자와 영문을 포함하여 4~12자 이내로 작성해 주세요."/>
-      </div>
-      <div>
-        비밀번호 확인<input type="password" name="user_pw_check" class="user-pwCheck" id="user-pw-check" value="" oninput="pwCheck()"/>
-        <br/>
-        <div id="pw_check"></div>
-      </div>
-      <div>
-        내 MBTI
-        <input type="text" name="user_mbti" class="user-mb" value="<%=data.user_mbti%>" />
-      </div>
-      <div>
-        자기소개
-        <input
-        class="user-self"
-          type="textarea"
-          name="user_intro_self"
-          value="<%=data.user_intro_self%>"
-        />
-      </div>
-      <div class="btn-container">
-      <button type="button" class="delBtn" onclick="checkPwDel()">회원 탈퇴</button>
-      <button type="button" class="editBtn" onclick="checkPwEdit()">정보 수정</button>
-    </div>
-    </form>
-    </div>
     </div>
 
     <script>
@@ -184,20 +139,21 @@
       }
 
       // 비밀번호 일치 여부 실시간 체크 함수
-    function pwCheck() {
-      if (($('#user-pw').val() == '') | ($('#user-pw-check').val() == '')) {
-        $('#pw_check').text('');
-        return (pwCk = false);
-      } else if ($('#user-pw').val() == $('#user-pw-check').val()) {
-        $('#pw_check').text('비밀번호 일치').css('color', 'green');
-        return (pwCk = true);
-      } else {
-        $('#pw_check')
-          .text('비밀번호가 일치하지 않습니다.')
-          .css('color', 'red');
-        return (pwCk = false);
+      function pwCheck() {
+        if (($('#user-pw').val() == '') | ($('#user-pw-check').val() == '')) {
+          $('#pw_check').text('');
+          return (pwCk = false);
+        } else if ($('#user-pw').val() == $('#user-pw-check').val()) {
+          $('#pw_check').text('비밀번호 일치').css('color', 'green');
+          return (pwCk = true);
+        } else {
+          $('#pw_check')
+            .text('비밀번호가 일치하지 않습니다.')
+            .css('color', 'red');
+          return (pwCk = false);
+        }
       }
-    }
     </script>
-  </body>
+</body>
+
 </html>
