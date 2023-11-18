@@ -29,9 +29,11 @@
     }
 
     ul li {
+        display: flex;
         margin: 0;
         padding: 0;
         list-style: none;
+        align-items: center;
     }
 
     a {
@@ -46,9 +48,8 @@
     .header1 {
         display: flex;
         justify-content: space-between;
-        align-items: center;
         width: 100%;
-        height: 50px;
+        height: 60px;
     }
 
     .header1 li {
@@ -68,7 +69,6 @@
     #mask {
         position: absolute;
         z-index: 9000;
-        /* background-color: #ffffff; */
         background-color: rgba(255, 255, 255, 0.7);
         display: none;
         left: 0;
@@ -77,16 +77,26 @@
     }
 
     .maskText {
-        text-align: center;
-        font-size: 20px;
-        color: #019252;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        color: #70B734;
+    }
+
+    .maskText>div {
+        margin-top: 40px;
+
     }
 
     .window {
         display: none;
         position: absolute;
-        /* left: 100px;
-        top: 100px; */
+        width: 100%;
+        text-align: center;
+        /* left: 33%;
+        top: 10%; */
         z-index: 10000;
     }
 </style>
@@ -95,40 +105,46 @@
     <!-- nav바  -->
     <header class="header1">
         <ul class="menus">
-            <li><a href="">MENU1</a></li>
-            <li><a href="">MENU2</a></li>
-            <li><a href="opMenu" class="openMask">메뉴오픈</a></li>
+            <li onclick="shareLink()"><a href=""><img src="../static/img/share.svg" alt=""></a></li>
+            <li><a href="/home"><img src="../static/img/logo.svg" alt=""></a>
+            </li>
+            <li><a href="opMenu" class="openMask"><img src="../static/img/menubar.svg" alt=""></a></li>
         </ul>
     </header>
 
     <div id="mask">
         <div class="window">
-            <input type="button" href="#opMenu" class="close" value="닫기" />
+            <!-- <input type="button" href="#opMenu" class="close" value="닫기" /> -->
             <div class="maskText">
-                <div>아아</div>
-                <div>아아</div>
-                <div>아아</div>
+                <div onclick="location.href='/home/garden'">내 정원으로 가기</div>
+                <div onclick="location.href='/user/profile'">내 정보 수정</div>
+                <div onclick="location.href='/home/garden/random'">산책하기</div>
+                <div onclick="location.href='/home/signout'">로그아웃</div>
             </div>
         </div>
     </div>
     아아 테스트
-
-
     <script>
+        if ("<%=gardenName%>") {
+            $("#navLogo").html("<%=gardenName%>의 새싹")
+        } else $("#navLogo").html("img link")
+
         function wrapWindowByMask() {
-            //화면의 높이와 너비를 구한다.
-            var maskHeight = $(document).height();
-            var maskWidth = $(window).width();
+            var $mask = $('#mask');
+            var $window = $('.window');
 
-            //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
-            $('#mask').css({ 'width': maskWidth, 'height': maskHeight });
+            if ($mask.is(':visible')) {
+                $mask.hide();
+                $window.hide();
+            } else {
+                var maskHeight = $(document).height();
+                var maskWidth = $(window).width();
 
-            //애니메이션 효과 - 일단 1초동안 까맣게 됐다가 80% 불투명도로 간다.
-            $('#mask').fadeIn(100);
-            // $('#mask').fadeTo("slow", 0.8);
+                $mask.css({ 'width': maskWidth, 'height': maskHeight - 50 });
 
-            //윈도우 같은 거 띄운다.
-            $('.window').show();
+                $mask.fadeIn(100);
+                $window.show();
+            }
         }
 
         $(document).ready(function () {
@@ -151,6 +167,23 @@
                 $('.window').hide();
             });
         });
+
+        function shareLink() {
+            var url = '';    // <a>태그에서 호출한 함수인 clip 생성
+            var textarea = document.createElement("textarea");
+            //url 변수 생성 후, textarea라는 변수에 textarea의 요소를 생성
+
+            document.body.appendChild(textarea); //</body> 바로 위에 textarea를 추가(임시 공간이라 위치는 상관 없음)
+            url = window.document.location.href;  //url에는 현재 주소값을 넣어줌
+            textarea.value = url;  // textarea 값에 url를 넣어줌
+            textarea.select();  //textarea를 설정
+            document.execCommand("copy");   // 복사
+            document.body.removeChild(textarea); //extarea 요소를 없애줌
+
+            alert("URL이 복사되었습니다.")  // 알림창
+
+        }
+
     </script>
 </body>
 
