@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/nav.css">
+</head>
+
+<style>
+    @font-face {
+        font-family: 'DNFBitBitv2';
+        font-style: normal;
+        font-weight: 400;
+        src: url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf') format('opentype');
+    }
+
+    * {
+        font-family: 'DNFBitBitv2';
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    a {
+        list-style: none;
+    }
+
+    li>a {
+        color: black;
+        text-decoration: none;
+    }
+
+    .header1 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 50px;
+    }
+
+    .header1 li {
+        float: left;
+        margin: 10px;
+    }
+
+    .menus {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* 모달 */
+    #mask {
+        position: absolute;
+        z-index: 9000;
+        /* background-color: #ffffff; */
+        background-color: rgba(255, 255, 255, 0.7);
+        display: none;
+        left: 0;
+        top: 0;
+        margin-top: 50px;
+    }
+
+    .maskText {
+        text-align: center;
+        font-size: 20px;
+        color: #019252;
+    }
+
+    .window {
+        display: none;
+        position: absolute;
+        /* left: 100px;
+        top: 100px; */
+        z-index: 10000;
+    }
+</style>
+
+<body>
+    <!-- nav바  -->
+    <header class="header1">
+        <ul class="menus">
+            <li><a href="">MENU1</a></li>
+            <li><a href="">MENU2</a></li>
+            <li><a href="opMenu" class="openMask">메뉴오픈</a></li>
+        </ul>
+    </header>
+
+    <div id="mask">
+        <div class="window">
+            <input type="button" href="#opMenu" class="close" value="닫기" />
+            <div class="maskText">
+                <div>아아</div>
+                <div>아아</div>
+                <div>아아</div>
+            </div>
+        </div>
+    </div>
+    아아 테스트
+
+
+    <script>
+        function wrapWindowByMask() {
+            //화면의 높이와 너비를 구한다.
+            var maskHeight = $(document).height();
+            var maskWidth = $(window).width();
+
+            //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
+            $('#mask').css({ 'width': maskWidth, 'height': maskHeight });
+
+            //애니메이션 효과 - 일단 1초동안 까맣게 됐다가 80% 불투명도로 간다.
+            $('#mask').fadeIn(100);
+            // $('#mask').fadeTo("slow", 0.8);
+
+            //윈도우 같은 거 띄운다.
+            $('.window').show();
+        }
+
+        $(document).ready(function () {
+            //검은 막 띄우기
+            $('.openMask').click(function (e) {
+                e.preventDefault();
+                wrapWindowByMask();
+            });
+
+            //닫기 버튼을 눌렀을 때
+            $('.window .close').click(function (e) {
+                //링크 기본동작은 작동하지 않도록 한다.
+                e.preventDefault();
+                $('#mask, .window').hide();
+            });
+
+            //검은 막을 눌렀을 때
+            $('#mask').click(function () {
+                $(this).hide();
+                $('.window').hide();
+            });
+        });
+    </script>
+</body>
+
+</html>
