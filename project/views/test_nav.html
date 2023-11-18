@@ -1,19 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script
-      src="https://code.jquery.com/jquery-3.7.1.min.js"
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-      crossorigin="anonymous"
-    ></script>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <title>Document</title>
-    <link rel="stylesheet" href="../static/css/nav.css" />
-  </head>
-
-  <style>
+    <link rel="stylesheet" href="../static/css/nav.css">
+</head>
+<style>
     @font-face {
       font-family: 'DNFBitBitv2';
       font-style: normal;
@@ -56,8 +53,9 @@
     }
 
     .header1 li {
-      float: left;
-      margin: 10px;
+        float: left;
+        margin: 10px;
+        color: #01552c;
     }
 
     .menus {
@@ -80,64 +78,70 @@
     }
 
     .maskText {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
-      color: #70b734;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        color: #70b734;
     }
 
     .maskText > div {
       margin-top: 40px;
+    .maskText>div {
+        margin-top: 40px;
     }
 
     .window {
-      display: none;
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      /* left: 33%;
-        top: 10%; */
-      z-index: 10000;
+        display: none;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        /* left: 33%;
+  top: 10%; */
+        z-index: 10000;
     }
-  </style>
+
+    .maskText>div {
+        cursor: pointer;
+    }
+</style>
 
   <body>
     <!-- nav바  -->
     <header class="header1">
-      <ul class="menus">
-        <li onclick="shareLink()">
-          <a href=""><img src="../static/img/share.svg" alt="" /></a>
-        </li>
-        <li>
-          <a href="/home"><img src="../static/img/logo.svg" alt="" /></a>
-        </li>
-        <li>
-          <a href="opMenu" class="openMask"
-            ><img src="../static/img/menubar.svg" alt=""
-          /></a>
-        </li>
-      </ul>
+        <ul class="menus">
+            <li onclick="shareLink()"><a href=""><img src="../static/img/share.svg" alt=""></a></li>
+            <li id="navLogo"><a href="/home">
+            </li>
+            <li><a href="opMenu" class="openMask"><img src="../static/img/menubar.svg" alt="" /></a></li>
+        </ul>
     </header>
 
     <div id="mask">
-      <div class="window">
-        <!-- <input type="button" href="#opMenu" class="close" value="닫기" /> -->
-        <div class="maskText">
-          <div onclick="location.href='/home/garden'">내 정원으로 가기</div>
-          <div onclick="location.href='/user/profile'">내 정보 수정</div>
-          <div onclick="location.href='/home/garden/random'">산책하기</div>
-          <div onclick="location.href='/home/signout'">로그아웃</div>
+        <div class="window">
+            <!-- <input type="button" href="#opMenu" class="close" value="닫기" /> -->
+            <div class="maskText">
+                <%if(userName) {%>
+                    <div onclick="location.href='/home/garden'">내 정원으로 가기</div>
+                    <div onclick="location.href='/user/profile'">내 정보 수정</div>
+                    <div onclick="location.href='/home/garden/random'">산책하기</div>
+                    <div onclick="location.href='/home/signout'">로그아웃</div>
+                    <%} else {%>
+                        <div onclick="location.href='/home'">홈으로 가기</div>
+                        <div onclick="location.href='/home/signin'">로그인</div>
+                        <div onclick="location.href='/home/garden/random'">산책하기</div>
+                        <%}%>
+
+            </div>
         </div>
-      </div>
     </div>
     아아 테스트
 
     <script>
-      if ('<%=gardenName%>') {
-        $('#navLogo').html('<%=gardenName%>의 새싹');
-      } else $('#navLogo').html('img link');
+        if ("<%=gardenName%>") {
+            $("#navLogo").html("<%=gardenName%>의 가든")
+        } else $("#navLogo").html("새싹나라")
 
       function wrapWindowByMask() {
         var $mask = $('#mask');

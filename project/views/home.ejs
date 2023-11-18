@@ -38,9 +38,7 @@
           </div>
 
           <div>
-            <button id="signupButton" onclick="location.href='/home/signup'">
-              회원가입
-            </button>
+            <button id="signupButton" onclick="mvSignUp()">회원가입</button>
           </div>
 
           <div>
@@ -96,6 +94,15 @@
           .catch((error) => {
             console.error(error);
           });
+      }
+
+      function mvSignUp() {
+        axios({
+          method: 'GET',
+          url: '/home/signup',
+        }).then((res) => {
+          location.href = '/home/signup';
+        });
       }
 
       function randomWalk() {
