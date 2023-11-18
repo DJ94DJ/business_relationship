@@ -6,12 +6,87 @@
     format('opentype');
 }
 
+* {
+  font-family: 'DNFBitBitv2';
+}
+
 body {
-  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  align-items: center;
+}
+
+a {
+  list-style: none;
+}
+
+li > a {
+  color: black;
+  text-decoration: none;
+}
+
+.header1 {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
+  height: 60px;
+}
+
+.header1 li {
+  float: left;
+  margin: 10px;
+  color: #01552c;
+}
+
+.menus {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 0;
   margin: 0;
 }
 
-* {
-  font-family: 'DNFBitBitv2';
+/* 모달 */
+#mask {
+  position: absolute;
+  z-index: 9000;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: none;
+  left: 0;
+  top: 0;
+  margin-top: 50px;
+}
+
+.maskText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: #70b734;
+}
+
+.maskText > div {
+  margin-top: 40px;
+}
+
+.window {
+  display: none;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  /* left: 33%;
+  top: 10%; */
+  z-index: 10000;
+}
+
+.maskText > div {
+  cursor: pointer;
 }

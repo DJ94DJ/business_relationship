@@ -64,7 +64,7 @@ exports.signOut = (req, res) => {
 
 // 회원 가입 페이지 랜더
 exports.signUp = (req, res) => {
-  res.render('signup');
+  res.render('signup', { userName: false, gardenName: false });
 };
 
 // 회원가입 -> 아이디 중복체크 버튼 클릭 시
