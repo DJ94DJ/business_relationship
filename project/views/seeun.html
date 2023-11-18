@@ -134,32 +134,92 @@
         </div>
         <div class="user-name">From. 닉넴</div>
       </div>
-    </div>
-
-    <div
-      class="modal fade"
-      id="testModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">세은</h5>
+      <!-- 꽃 모달 -->
+      <div
+        class="modal fade"
+        id="testModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">세은</h5>
+              <button class="closeBtn">
+                <span aria-hidden="true">X</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              와아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아
+            </div>
+          </div>
+        </div>
+        </div>
+        <!-- 꽃 모달 끝 -->
+        <!-- 씨앗 버튼 -->
+        <div class="seed-sprite-box" onclick="writeMsg()">
+          <div class="seed-sprite-1"></div>
+          <div class="seed-sprite-2"></div>
+        </div>
+      </div>
+      <!-- 씨앗 작성 모달 -->
+      <div
+        class="modal fade"
+        id="seedModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="seed-title">메시지 작성하기</div>
+          <div class="modal-content">
             <button class="closeBtn">
               <span aria-hidden="true">X</span>
             </button>
-          </div>
-          <div class="modal-body">
-            와아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아아아아아아ㅏ아아ㅏ아아아아
+            <div class="modal-body">
+              <form class="msgForm" name="">
+                <div class="msgForm">
+                  <div class="msg-name"><input type="text" name="user_name" class="user_name" required placeholder="작성자명" />
+                  </div>
+                  <!-- 괜찮을 것 같아서 input color로 받아봅니다... 별로면 다시 수정하겠습니다 -->
+                  <div class="msg-color"><div class="flo-color">꽃 색상 선택&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div><input type="color" name="user_color" id="user_color" class="user_color" required placeholder="색상" style="width:100px;"/>
+                  </div>
+                  <div class="msg-public">
+                    <input type="radio" name="isPublic" value="true" id="public" checked />
+                    <label for="public">&nbsp;&nbsp;메시지 공개 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+              
+                    <input type="radio" name="isPublic" value="false" id="private" />
+                    <label for="private">&nbsp;&nbsp;메시지 비공개 </label>
+                  </div>
+                  <!-- textarea 자동 줄바꿈이 안 돼요..... 후에 수정하겠습니다  -->
+                  <div class="msg-msg"><input type="textarea" id="user_msg" name="user_msg" class="user_msg" placeholder="메시지 내용을 입력해주세요..."/>
+                  </div>
+                  </div>
+                  </form>
+              <div><button class="submitBtn">작성 완료</button></div>
+            </div>
           </div>
         </div>
       </div>
+      <!-- 씨앗 모달 끝 -->
     </div>
 
     <script>
+      // 씨앗 누르면 작성 모달창 또롱
+      $('.seed-sprite-box').on('click', function (e) {
+        seedOpen(e);
+      });
+      function seedOpen(e) {
+        e.preventDefault();
+        $('#seedModal').modal('show');
+      }
+      $('.closeBtn').click(function () {
+        $('#seedModal').modal('hide');
+      });
+
       // 모달창 닫기버튼 활성화
       $('.closeBtn').click(function () {
         $('.modal').modal('hide');
@@ -197,7 +257,9 @@
       }
 
       // 회원과 비회원을 구분하는 애니메이션 필요
-      function writeMsg() {
+      function writeMsg(e) {
+        e.preventDefault();
+        $('#testModal').modal('show');
         const form = document.forms['newMsg'];
 
         const msg = {

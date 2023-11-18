@@ -176,7 +176,7 @@
         <div>
           <input type="radio" name="isPublic" value="true" id="public" checked>
           <label for="public">메시지 공개 </label>
-          //
+          
           <input type="radio" name="isPublic" value="false" id="private">
           <label for="private">메시지 비공개 </label>
         </div>
@@ -350,16 +350,6 @@
         else { alert("로그아웃 실패 ;ㅁ;") }
       })
     }
-
-  function signOut() {
-  axios({
-  method: "POST",
-  url: "/home/signout",
-  }).then((res) => {
-  if (res.data.result) location.href = '/home'
-  else { alert("로그아웃 실패 ;ㅁ;") }
-  })
-  }
   </script>
 </body>
 
