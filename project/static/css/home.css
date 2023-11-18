@@ -179,7 +179,6 @@ button {
   }
 }
 
-
 /* Nest Hub, desktop */
 @media screen and (min-width: 1000px) and (max-width: 1900px) and (max-height: 700px) {
   #logo {
@@ -194,4 +193,64 @@ button {
     margin-top: 20px;
     top: 85px;
   }
+}
+
+/* 닫기 버튼 (X) */
+.closeBtn {
+  font-size: 10px;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+}
+
+.closeBtn:hover {
+  background-color: #1f2020;
+}
+
+/* 모달창 */
+.container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  position: relative;
+  z-index: 999;
+}
+
+.modal {
+  width: 70vw;
+  height: auto;
+  background-color: white;
+  border: 7px solid #f5c703;
+  border-radius: 20px;
+  padding: 5px;
+  /* display: none; */
+  position: fixed;
+  top: 40%;
+}
+
+.closeBtn-container {
+  text-align: right;
+}
+
+#mask {
+  position: absolute;
+  z-index: 9000;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: none;
+  left: 0;
+  top: 0;
+}
+
+.window {
+  display: none;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  /* left: 33%;
+  top: 10%; */
+  z-index: 10000;
 }

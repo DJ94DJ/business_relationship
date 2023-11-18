@@ -130,7 +130,7 @@ exports.garden = (req, res) => {
         where: { id: req.session.userId },
         include: { model: User },
       }).then((msg) => {
-        console.log('msg, result :', result, msg);
+        console.log('msg :', msg);
         res.render('garden', {
           result,
           msg,
@@ -150,7 +150,6 @@ exports.garden = (req, res) => {
 exports.writeMsg = (req, res) => {
   Message.create({
     ...req.body,
-    // id: req.session.userId, // messages 테이블 id에 id 값 함께 추가(?)
   }).then((result) => {
     console.log('writeMsg : ', result);
     res.send({ result: true });
