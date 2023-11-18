@@ -37,11 +37,10 @@
 
     a {
         list-style: none;
-        text-decoration: none;
     }
 
     li>a {
-        color: #01552c;
+        color: black;
         text-decoration: none;
     }
 
@@ -50,17 +49,12 @@
         justify-content: space-between;
         width: 100%;
         height: 60px;
-        background-color: #ffffff;
     }
 
     .header1 li {
         float: left;
         margin: 10px;
         color: #01552c;
-    }
-
-    div a {
-        color: #70b734;
     }
 
     .menus {
@@ -115,43 +109,35 @@
     <header class="header1">
         <ul class="menus">
             <li onclick="shareLink()"><a href=""><img src="../static/img/share.svg" alt=""></a></li>
-            <li>
-                <%if(gardenName) {%>
-                    <a href="/home">
-                        <%=gardenName%>의 정원
-                    </a>
-                    <%} else {%>
-                        <a href="/home">
-                            자라나라<br>
-                            새싹나라
-                        </a>
-                        <%}%>
+            <li id="navLogo"><a href="/home">
             </li>
-            <li><a id="#mask" class="openMask"><img src="../static/img/menubar.svg" alt="" /></a></li>
+            <li><a href="opMenu" class="openMask"><img src="../static/img/menubar.svg" alt="" /></a></li>
         </ul>
     </header>
 
     <div id="mask">
         <div class="window">
+            <!-- <input type="button" href="#opMenu" class="close" value="닫기" /> -->
             <div class="maskText">
                 <%if(userName) {%>
-                    <div onclick="mvUserGarden()">내 정원으로 가기</a></div>
-                    <div onclick="profile()">내 정보 수정</a></div>
-                    <div onclick="randomWalk()">산책하기</div>
-                    <div onclick="signOut()">로그아웃</div>
+                    <div onclick="location.href='/home/garden'">내 정원으로 가기</div>
+                    <div onclick="location.href='/user/profile'">내 정보 수정</div>
+                    <div onclick="location.href='/home/garden/random'">산책하기</div>
+                    <div onclick="location.href='/home/signout'">로그아웃</div>
                     <%} else {%>
-                        <div><a href="/home">홈으로 가기</a></div>
-                        <div><a href="/home/signin">로그인</a></div>
-                        <div onclick="randomWalk()">산책하기</div>
+                        <div onclick="location.href='/home'">홈으로 가기</div>
+                        <div onclick="location.href='/home/signin'">로그인</div>
+                        <div onclick="location.href='/home/garden/random'">산책하기</div>
                         <%}%>
+
             </div>
         </div>
     </div>
-
+    아아 테스트
     <script>
-        // if ("<%=userName%>") {
-        //     $("#navLogo").html(`<%=userName%>의 가든`)
-        // } else $("#navLogo").html("새싹나라")
+        if ("<%=gardenName%>") {
+            $("#navLogo").html("<%=gardenName%>의 가든")
+        } else $("#navLogo").html("새싹나라")
 
         function wrapWindowByMask() {
             var $mask = $('#mask');
@@ -191,71 +177,6 @@
                 $('.window').hide();
             });
         });
-
-        // 내 정원 이동
-        function mvUserGarden(user_id) {
-            console.log('mvUserGarden 실행');
-            axios({
-                method: 'GET',
-                url: '/home/garden',
-            })
-                .then((res) => {
-                    if (res.data) {
-                        location.href = '/home/garden';
-                    }
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        }
-
-        // 산책하기
-        function randomWalk() {
-            axios({
-                method: 'GET',
-                url: '/home/garden/random',
-            }).then((res) => {
-                let num = res.data.data;
-                console.log('res : ', res);
-                console.log('res.data : ', res.data);
-                console.log('num : ', num);
-                randomPage(num);
-            });
-        }
-
-
-        function randomPage(id) {
-            console.log('매개변수: ', id);
-            axios({
-                method: 'GET',
-                url: `/home/garden/random/${id}`,
-            }).then((res) => {
-                location.href = `/home/garden/${id}`;
-            });
-        }
-
-        // 프로필 이동
-        function profile() {
-            axios({
-                method: "GET",
-                url: "/user/profile"
-            }).then((res) => {
-                console.log('res', res.data)
-                if (res.data) location.href = '/user/profile'
-                else { alert("마이페이지 접근 불가 ;ㅁ;") }
-            })
-        }
-
-        // 로그아웃
-        function signOut() {
-            axios({
-                method: "POST",
-                url: "/home/signout",
-            }).then((res) => {
-                if (res.data.result) location.href = '/home'
-                else { alert("로그아웃 실패 ;ㅁ;") }
-            })
-        }
 
     </script>
 </body>
