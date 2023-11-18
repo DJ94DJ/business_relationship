@@ -1,190 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
 
     <title>Document</title>
-    <link rel="stylesheet" href="../static/css/nav.css">
-</head>
+    <link rel="stylesheet" href="../static/css/nav.css" />
+  </head>
 
-<style>
+  <style>
     @font-face {
-        font-family: 'DNFBitBitv2';
-        font-style: normal;
-        font-weight: 400;
-        src: url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf') format('opentype');
+      font-family: 'DNFBitBitv2';
+      font-style: normal;
+      font-weight: 400;
+      src: url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf')
+        format('opentype');
     }
 
     * {
-        font-family: 'DNFBitBitv2';
+      font-family: 'DNFBitBitv2';
     }
 
     body {
-        margin: 0;
-        padding: 0;
+      margin: 0;
+      padding: 0;
     }
 
     ul li {
-        display: flex;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        align-items: center;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      align-items: center;
     }
 
     a {
-        list-style: none;
+      list-style: none;
     }
 
-    li>a {
-        color: black;
-        text-decoration: none;
+    li > a {
+      color: black;
+      text-decoration: none;
     }
 
     .header1 {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        height: 60px;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      height: 60px;
     }
 
     .header1 li {
-        float: left;
-        margin: 10px;
+      float: left;
+      margin: 10px;
     }
 
     .menus {
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-        padding: 0;
-        margin: 0;
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      padding: 0;
+      margin: 0;
     }
 
     /* 모달 */
     #mask {
-        position: absolute;
-        z-index: 9000;
-        background-color: rgba(255, 255, 255, 0.7);
-        display: none;
-        left: 0;
-        top: 0;
-        margin-top: 50px;
+      position: absolute;
+      z-index: 9000;
+      background-color: rgba(255, 255, 255, 0.7);
+      display: none;
+      left: 0;
+      top: 0;
+      margin-top: 50px;
     }
 
     .maskText {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        font-size: 30px;
-        color: #70B734;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      color: #70b734;
     }
 
-    .maskText>div {
-        margin-top: 40px;
-
+    .maskText > div {
+      margin-top: 40px;
     }
 
     .window {
-        display: none;
-        position: absolute;
-        width: 100%;
-        text-align: center;
-        /* left: 33%;
+      display: none;
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      /* left: 33%;
         top: 10%; */
-        z-index: 10000;
+      z-index: 10000;
     }
-</style>
+  </style>
 
-<body>
+  <body>
     <!-- nav바  -->
     <header class="header1">
-        <ul class="menus">
-            <li onclick="shareLink()"><a href=""><img src="../static/img/share.svg" alt=""></a></li>
-            <li><a href="/home"><img src="../static/img/logo.svg" alt=""></a>
-            </li>
-            <li><a href="opMenu" class="openMask"><img src="../static/img/menubar.svg" alt=""></a></li>
-        </ul>
+      <ul class="menus">
+        <li onclick="shareLink()">
+          <a href=""><img src="../static/img/share.svg" alt="" /></a>
+        </li>
+        <li>
+          <a href="/home"><img src="../static/img/logo.svg" alt="" /></a>
+        </li>
+        <li>
+          <a href="opMenu" class="openMask"
+            ><img src="../static/img/menubar.svg" alt=""
+          /></a>
+        </li>
+      </ul>
     </header>
 
     <div id="mask">
-        <div class="window">
-            <!-- <input type="button" href="#opMenu" class="close" value="닫기" /> -->
-            <div class="maskText">
-                <div onclick="location.href='/home/garden'">내 정원으로 가기</div>
-                <div onclick="location.href='/user/profile'">내 정보 수정</div>
-                <div onclick="location.href='/home/garden/random'">산책하기</div>
-                <div onclick="location.href='/home/signout'">로그아웃</div>
-            </div>
+      <div class="window">
+        <!-- <input type="button" href="#opMenu" class="close" value="닫기" /> -->
+        <div class="maskText">
+          <div onclick="location.href='/home/garden'">내 정원으로 가기</div>
+          <div onclick="location.href='/user/profile'">내 정보 수정</div>
+          <div onclick="location.href='/home/garden/random'">산책하기</div>
+          <div onclick="location.href='/home/signout'">로그아웃</div>
         </div>
+      </div>
     </div>
     아아 테스트
+
     <script>
-        if ("<%=gardenName%>") {
-            $("#navLogo").html("<%=gardenName%>의 새싹")
-        } else $("#navLogo").html("img link")
+      if ('<%=gardenName%>') {
+        $('#navLogo').html('<%=gardenName%>의 새싹');
+      } else $('#navLogo').html('img link');
 
-        function wrapWindowByMask() {
-            var $mask = $('#mask');
-            var $window = $('.window');
+      function wrapWindowByMask() {
+        var $mask = $('#mask');
+        var $window = $('.window');
 
-            if ($mask.is(':visible')) {
-                $mask.hide();
-                $window.hide();
-            } else {
-                var maskHeight = $(document).height();
-                var maskWidth = $(window).width();
+        if ($mask.is(':visible')) {
+          $mask.hide();
+          $window.hide();
+        } else {
+          var maskHeight = $(document).height();
+          var maskWidth = $(window).width();
 
-                $mask.css({ 'width': maskWidth, 'height': maskHeight - 50 });
+          $mask.css({ width: maskWidth, height: maskHeight - 50 });
 
-                $mask.fadeIn(100);
-                $window.show();
-            }
+          $mask.fadeIn(100);
+          $window.show();
         }
+      }
 
-        $(document).ready(function () {
-            //검은 막 띄우기
-            $('.openMask').click(function (e) {
-                e.preventDefault();
-                wrapWindowByMask();
-            });
-
-            //닫기 버튼을 눌렀을 때
-            $('.window .close').click(function (e) {
-                //링크 기본동작은 작동하지 않도록 한다.
-                e.preventDefault();
-                $('#mask, .window').hide();
-            });
-
-            //검은 막을 눌렀을 때
-            $('#mask').click(function () {
-                $(this).hide();
-                $('.window').hide();
-            });
+      $(document).ready(function () {
+        //검은 막 띄우기
+        $('.openMask').click(function (e) {
+          e.preventDefault();
+          wrapWindowByMask();
         });
 
-        function shareLink() {
-            var url = '';    // <a>태그에서 호출한 함수인 clip 생성
-            var textarea = document.createElement("textarea");
-            //url 변수 생성 후, textarea라는 변수에 textarea의 요소를 생성
+        //닫기 버튼을 눌렀을 때
+        $('.window .close').click(function (e) {
+          //링크 기본동작은 작동하지 않도록 한다.
+          e.preventDefault();
+          $('#mask, .window').hide();
+        });
 
-            document.body.appendChild(textarea); //</body> 바로 위에 textarea를 추가(임시 공간이라 위치는 상관 없음)
-            url = window.document.location.href;  //url에는 현재 주소값을 넣어줌
-            textarea.value = url;  // textarea 값에 url를 넣어줌
-            textarea.select();  //textarea를 설정
-            document.execCommand("copy");   // 복사
-            document.body.removeChild(textarea); //extarea 요소를 없애줌
+        //검은 막을 눌렀을 때
+        $('#mask').click(function () {
+          $(this).hide();
+          $('.window').hide();
+        });
+      });
 
-            alert("URL이 복사되었습니다.")  // 알림창
+      function shareLink() {
+        var url = ''; // <a>태그에서 호출한 함수인 clip 생성
+        var textarea = document.createElement('textarea');
+        //url 변수 생성 후, textarea라는 변수에 textarea의 요소를 생성
 
-        }
+        document.body.appendChild(textarea); //바로 위에 textarea를 추가(임시 공간이라 위치는 상관 없음)
+        url = window.document.location.href; //url에는 현재 주소값을 넣어줌
+        textarea.value = url; // textarea 값에 url를 넣어줌
+        textarea.select(); //textarea를 설정
+        document.execCommand('copy'); // 복사
+        document.body.removeChild(textarea); //extarea 요소를 없애줌
 
+        alert('URL이 복사되었습니다.'); // 알림창
+      }
     </script>
-</body>
-
+  </body>
 </html>
