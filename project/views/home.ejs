@@ -54,7 +54,6 @@
         </div>
       </div>
     </div>
-
     <!-- info 모달창 -->
     <div id="mask">
       <div class="window">
@@ -65,13 +64,9 @@
             </div>
 
             <div class="content">
-              와아아아 내용내용 <br />
-              여러 줄도 들어갑니다. <br />
-              바<br />
-              로<br />
-              이<br />
-              렇<br />
-              게<br />
+              자라나라 새싹나라는 <br />
+              정원을 통해 메시지를 주고 받는 <br />
+              롤링페이퍼 서비스입니다.<br />
               <br />
             </div>
           </div>
@@ -128,6 +123,10 @@
         });
       }
 
+      // info 모달창
+      // 1. 디폴트로 모달창 안 보이도록 설정
+      // 2. 모달창 가운데 정렬
+
       function wrapWindowByMask() {
         var $mask = $('#mask');
         var $window = $('.window');
@@ -136,34 +135,15 @@
           $mask.hide();
           $window.hide();
         } else {
-          var maskHeight = $('.modal').height();
-          var maskWidth = $('.modal').width();
-
-          $mask.css({ width: maskWidth, height: maskHeight });
-
           $mask.fadeIn(100);
           $window.show();
         }
 
-        $(document).ready(function () {
-          //검은 막 띄우기
-          $('.openMask').click(function (e) {
-            e.preventDefault();
-            wrapWindowByMask();
-          });
-
-          //닫기 버튼을 눌렀을 때
-          $('.window .close').click(function (e) {
-            //링크 기본동작은 작동하지 않도록 한다.
-            e.preventDefault();
-            $('#mask, .window').hide();
-          });
-
-          //검은 막을 눌렀을 때
-          $('#mask').click(function () {
-            $(this).hide();
-            $('.window').hide();
-          });
+        //닫기 버튼을 눌렀을 때
+        $('.window, .closeBtn').click(function (e) {
+          //링크 기본동작은 작동하지 않도록 한다.
+          e.preventDefault();
+          $('#mask, .window').hide();
         });
       }
     </script>
