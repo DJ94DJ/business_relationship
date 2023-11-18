@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="../static/css/nav.css">
 </head>
-
 <style>
     @font-face {
         font-family: 'DNFBitBitv2';
@@ -55,6 +54,7 @@
     .header1 li {
         float: left;
         margin: 10px;
+        color: #01552c;
     }
 
     .menus {
@@ -82,12 +82,11 @@
         align-items: center;
         justify-content: center;
         font-size: 30px;
-        color: #70B734;
+        color: #70b734;
     }
 
     .maskText>div {
         margin-top: 40px;
-
     }
 
     .window {
@@ -96,8 +95,12 @@
         width: 100%;
         text-align: center;
         /* left: 33%;
-        top: 10%; */
+  top: 10%; */
         z-index: 10000;
+    }
+
+    .maskText>div {
+        cursor: pointer;
     }
 </style>
 
@@ -106,9 +109,9 @@
     <header class="header1">
         <ul class="menus">
             <li onclick="shareLink()"><a href=""><img src="../static/img/share.svg" alt=""></a></li>
-            <li><a href="/home"><img src="../static/img/logo.svg" alt=""></a>
+            <li id="navLogo"><a href="/home">
             </li>
-            <li><a href="opMenu" class="openMask"><img src="../static/img/menubar.svg" alt=""></a></li>
+            <li><a href="opMenu" class="openMask"><img src="../static/img/menubar.svg" alt="" /></a></li>
         </ul>
     </header>
 
@@ -116,18 +119,25 @@
         <div class="window">
             <!-- <input type="button" href="#opMenu" class="close" value="닫기" /> -->
             <div class="maskText">
-                <div onclick="location.href='/home/garden'">내 정원으로 가기</div>
-                <div onclick="location.href='/user/profile'">내 정보 수정</div>
-                <div onclick="location.href='/home/garden/random'">산책하기</div>
-                <div onclick="location.href='/home/signout'">로그아웃</div>
+                <%if(userName) {%>
+                    <div onclick="location.href='/home/garden'">내 정원으로 가기</div>
+                    <div onclick="location.href='/user/profile'">내 정보 수정</div>
+                    <div onclick="location.href='/home/garden/random'">산책하기</div>
+                    <div onclick="location.href='/home/signout'">로그아웃</div>
+                    <%} else {%>
+                        <div onclick="location.href='/home'">홈으로 가기</div>
+                        <div onclick="location.href='/home/signin'">로그인</div>
+                        <div onclick="location.href='/home/garden/random'">산책하기</div>
+                        <%}%>
+
             </div>
         </div>
     </div>
     아아 테스트
     <script>
         if ("<%=gardenName%>") {
-            $("#navLogo").html("<%=gardenName%>의 새싹")
-        } else $("#navLogo").html("img link")
+            $("#navLogo").html("<%=gardenName%>의 가든")
+        } else $("#navLogo").html("새싹나라")
 
         function wrapWindowByMask() {
             var $mask = $('#mask');
@@ -167,22 +177,6 @@
                 $('.window').hide();
             });
         });
-
-        function shareLink() {
-            var url = '';    // <a>태그에서 호출한 함수인 clip 생성
-            var textarea = document.createElement("textarea");
-            //url 변수 생성 후, textarea라는 변수에 textarea의 요소를 생성
-
-            document.body.appendChild(textarea); //</body> 바로 위에 textarea를 추가(임시 공간이라 위치는 상관 없음)
-            url = window.document.location.href;  //url에는 현재 주소값을 넣어줌
-            textarea.value = url;  // textarea 값에 url를 넣어줌
-            textarea.select();  //textarea를 설정
-            document.execCommand("copy");   // 복사
-            document.body.removeChild(textarea); //extarea 요소를 없애줌
-
-            alert("URL이 복사되었습니다.")  // 알림창
-
-        }
 
     </script>
 </body>
