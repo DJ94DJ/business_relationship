@@ -1,0 +1,42 @@
+<svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14.886"
+            height="13.088"
+            viewBox="0 0 14.886 13.088"
+          >
+            <defs>
+              <style>
+                .bud_title {
+                  fill: #01552c;
+                }
+              </style>
+              <text
+          xmlns="http://www.w3.org/2000/svg"
+          id="자라나라_새싹나라"
+          data-name="자라나라 새싹나라"
+          class="mini-title"
+          transform="translate(0 28.63)"
+          ><tspan x="0" y="0">자라나라</tspan><br /><tspan x="0" y="26"
+            >새싹나라</tspan
+          ></text
+        >
+              
+            </defs>
+            <g id="그룹_21" data-name="그룹 21" transform="translate(0 0)">
+              <rect
+                id="사각형_27"
+                data-name="사각형 27"
+                class="bud_title"
+                width="1.692"
+                height="7.105"
+                rx="0.846"
+                transform="translate(6.766 5.983)"
+              />
+              <path
+                id="합치기_7"
+                data-name="합치기 7"
+                class="bud_title"
+                d="M7.663,6.956A4.294,4.294,0,0,1,0,4.294c0-.032,0-.064,0-.1H0V0H4.294A4.294,4.294,0,0,1,8.581,4.045,3.617,3.617,0,0,1,11.26,2.863h3.626V6.408h0c0,.027,0,.054,0,.081a3.626,3.626,0,0,1-7.222.467Z"
+              />
+            </g>
+          </svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="27" height="25" viewBox="0 0 35 32">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #01552c;
+      }
+    </style>
+  </defs>
+  <g id="그룹_106" data-name="그룹 106" transform="translate(-373 -46)">
+    <g id="그룹_105" data-name="그룹 105" transform="translate(0 -5)">
+      <rect id="사각형_69" data-name="사각형 69" class="cls-1" width="35" height="4" rx="2" transform="translate(373 51)"/>
+      <rect id="사각형_69-2" data-name="사각형 69" class="cls-1" width="35" height="4" rx="2" transform="translate(373 65)"/>
+      <rect id="사각형_70" data-name="사각형 70" class="cls-1" width="35" height="4" rx="2" transform="translate(373 79)"/>
+    </g>
+  </g>
+</svg>
