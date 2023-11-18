@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/test_ani.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="animation_sky">
+      <div id="leafContainer"></div>
+      <div class="vines"></div>
+      <div class="bush"></div>
+    </div>
+
+    <script>
+      function createLeafSVG() {
+        const svgNS = 'http://www.w3.org/2000/svg';
+        const svg = document.createElementNS(svgNS, 'svg');
+        svg.setAttribute('width', '140.481');
+        svg.setAttribute('height', '223.477');
+        svg.setAttribute('viewBox', '0 0 140.481 223.477');
+
+        const defs = document.createElementNS(svgNS, 'defs');
+        svg.appendChild(defs);
+
+        const linearGradient = document.createElementNS(
+          svgNS,
+          'linearGradient',
+        );
+        linearGradient.setAttribute('id', 'linear-gradient');
+        linearGradient.setAttribute('x1', '0.5');
+        linearGradient.setAttribute('x2', '0.5');
+        linearGradient.setAttribute('y2', '1');
+        defs.appendChild(linearGradient);
+
+        const stop1 = document.createElementNS(svgNS, 'stop');
+        stop1.setAttribute('offset', '0');
+        stop1.setAttribute('stop-color', '#74b93a');
+        linearGradient.appendChild(stop1);
+
+        const stop2 = document.createElementNS(svgNS, 'stop');
+        stop2.setAttribute('offset', '1');
+        stop2.setAttribute('stop-color', '#01552c');
+        linearGradient.appendChild(stop2);
+
+        const path = document.createElementNS(svgNS, 'path');
+        path.setAttribute(
+          'd',
+          'M76.129,183.788C74.915,170.52,36.255,12.657,36.255,12.657A13.9,13.9,0,0,0,14.111,2.771C5.367,9.275-.83,18.866.091,28.939c.97,10.6,9.6,19.252,20.1,23.922-9.475,6.5-16.394,16.566-15.424,27.17s9.6,19.252,20.1,23.922c-9.475,6.5-16.394,16.566-15.424,27.17s9.6,19.252,20.1,23.922c-9.475,6.5-16.394,16.566-15.424,27.17,1.38,15.088,18.27,26.218,33.975,27.56a24.14,24.14,0,0,0,28.046-25.988',
+        );
+        path.setAttribute('fill', 'url(#linear-gradient)');
+        svg.appendChild(path);
+
+        return svg;
+      }
+
+      //   자라나는 애니매이션 스크립트
+      //   애니매이션 스크립트
+      window.onload = function () {
+        // 시간정하기
+        /* setTimeout(function () {
+          var animationDiv = document.getElementById('animation_sky');
+          animationDiv.style.opacity = '0';
+          setTimeout(function () {
+            animationDiv.style.display = 'none';
+          }, 500);
+        }, 5000); */
+
+        const leafContainer = document.querySelector('#leafContainer');
+        for (let i = 0; i < 9; i++) {
+          const leaf = document.createElement('div');
+          leaf.classList.add('leaf');
+          leaf.innerHTML = `
+            <div class="leaf-sprite-box">
+              <div class="leaf-sprite-1">
+              </div>
+            </div>
+          `;
+          const svg = createLeafSVG();
+          leaf.querySelector('.leaf-sprite-1').appendChild(svg);
+          leafContainer.appendChild(leaf);
+        }
+
+        // 덤불 개수 생성 30개
+        const bush = document.querySelector('.bush');
+
+        for (let i = 0; i < 30; i++) {
+          const bushSpriteBox = document.createElement('div');
+          bushSpriteBox.classList.add('bush-sprite-box');
+          bushSpriteBox.style.setProperty('--i', i);
+          bush.appendChild(bushSpriteBox);
+
+          for (let j = 1; j <= 3; j++) {
+            const bushPart = document.createElement('div');
+            bushPart.classList.add('bushpart', `bushpart-1-${j}`);
+            bushPart.style.setProperty('--z-index', j);
+            bushSpriteBox.appendChild(bushPart);
+          }
+        }
+
+        setTimeout(function () {
+          const bushSpriteBoxes = document.querySelectorAll('.bush-sprite-box');
+          bushSpriteBoxes.forEach((box, index) => {
+            for (let i = 1; i <= 3; i++) {
+              const bushPart = document.createElement('div');
+              bushPart.classList.add('bushpart', `bushpart-1-${i}`);
+              bushPart.style.setProperty('--z-index', i); // --z-index 변수 값을 설정
+              box.appendChild(bushPart);
+            }
+            box.style.setProperty('--i', index);
+          });
+        }, 0);
+
+        // 덩굴 제작기
+
+        const vinepathData = [
+          'm36.24,10l-12.56,20.8c-7.22,11.95-4.99,29.84,4.72,37.87l7.84,6.49c11.96,9.9,11.96,33.55,0,43.45h0c-11.96,9.9-11.96,33.55,0,43.45l12.61,10.44c8.46,7.01,13.63,19.52,13.63,33.01h0c0,13.49-5.17,26-13.63,33.01l-12.61,10.44c-11.96,9.9-11.96,33.55,0,43.45h0c11.96,9.9,11.96,33.55,0,43.45l-12.61,10.44c-8.46,7.01-13.63,19.52-13.63,33.01h0c0,13.49,5.17,26,13.63,33.01l12.61,10.44c11.96,9.9,11.96,33.55,0,43.45h0c-11.96,9.9-11.96,33.55,0,43.45l9.59,7.94c10.34,8.56,16.65,23.84,16.65,40.32h0c0,10.93-2.79,21.53-7.89,29.97l-18.35,30.39',
+          'm36.24,10l-20.17,49.04c-9.59,23.31-5.58,50,10.43,69.46l9.74,11.84c20.76,25.24,20.76,61.65,0,86.89h0c-20.76,25.24-20.76,61.65,0,86.89h0c20.76,25.24,20.76,61.65,0,86.89h0c-20.76,25.24-20.76,61.65,0,86.89l9.74,11.84c16.01,19.46,20.02,46.15,10.43,69.46l-20.17,49.04',
+          'm36.24,10l-14.94,10.59c-8.75,6.2-6.87,19.69,3.23,23.27l12.26,4.35c11.75,4.17,11.75,20.78,0,24.95l-1.11.39c-11.75,4.17-11.75,20.78,0,24.95l1.11.39c11.75,4.17,11.75,20.78,0,24.95l-1.11.39c-11.75,4.17-11.75,20.78,0,24.95l2.03.72c17.21,6.1,23.84,26.94,13.32,41.86l-13.09,18.57c-22.45,31.84-22.45,74.35,0,106.19l10.14,14.39c14.35,20.35,14.45,47.51.24,67.96l-26.82,38.62c-10.49,15.11-3.52,36.07,13.93,41.88h0c11.95,3.98,12.11,20.82.24,25.03h0c-11.75,4.17-11.75,20.78,0,24.95l1.11.39c11.75,4.17,11.75,20.78,0,24.95l-1.11.39c-11.75,4.17-11.75,20.78,0,24.95l12.26,4.35c10.11,3.58,11.98,17.07,3.23,23.27l-14.94,10.59',
+          'm38.68,10l-13.44,16.33c-11.77,14.31-8.13,35.72,7.7,45.35l8.38,5.09c17.8,10.82,22.53,34.56,10.24,51.38l-15.2,20.79c-5.12,7-15.19,8.01-21.6,2.17h0c-6.34-5.78-6.34-15.77,0-21.55h0c6.41-5.85,16.48-4.83,21.6,2.17l20.33,27.81c8.67,11.85,3.04,28.71-11.01,32.98l-7,2.13c-10.73,3.26-10.73,18.46,0,21.72h0c10.73,3.26,10.73,18.46,0,21.72h0c-10.73,3.26-10.73,18.46,0,21.72l11.46,3.48c9.39,2.85,10.98,15.47,2.6,20.56l-8.6,5.22c-3.39,2.06-5.46,5.74-5.46,9.7v28.17c0,19.83-6.68,39.08-18.97,54.64h0c-9.39,11.89-7.81,29.05,3.6,39.02l16.5,14.42c6.15,5.37,15.35,5.28,21.38-.22l.23-.21c6.98-6.37,6.98-17.36,0-23.72h0c-6.13-5.59-15.5-5.59-21.63,0l-8.78,8.01c-14.02,12.78-11.82,35.44,4.39,45.3l15.12,9.19c10.9,6.63,10.9,22.45,0,29.07h0c-7.34,4.46-11.82,12.43-11.82,21.02v18.96c0,6.62,3.45,12.75,9.1,16.19h0c12.14,7.38,12.14,25,0,32.38l-3.65,2.22c-3.39,2.06-5.46,5.74-5.46,9.7v15.34',
+          'm39.9,10l-23.53,98.72c-7.54,31.62,2.7,64.84,26.71,86.74h0c4.94,4.51,12.5,4.51,17.45,0l4.61-4.2c5.63-5.14,5.63-14,0-19.14h0c-6.55-5.97-17.02-3.75-20.58,4.37l-14.56,33.18c-16.12,36.74-12.53,79.14,9.52,112.66h0c22.22,33.76,23.96,77.04,4.52,112.48l-8.15,14.86c-4.03,7.35-13.88,8.99-20.08,3.34l-1.6-1.46c-5.47-4.99-5.65-13.55-.39-18.76l.25-.25c6.05-6,16.14-4.62,20.36,2.78l18.7,32.8c14.32,25.1,17.33,55.09,8.3,82.55l-21.55,65.5',
+          //   필요한 만큼 추가
+        ];
+
+        const container = document.querySelector('.vines'); // 혹은 다른 적절한 부모 요소
+        let usedPaths = [];
+
+        for (let i = 0; i < 3; i++) {
+          const vine = document.createElement('div');
+          vine.classList.add('vine', `vine-${i + 1}`);
+
+          const boxVineSet = document.createElement('div');
+          boxVineSet.classList.add('box-vine-set');
+          vine.appendChild(boxVineSet);
+
+          // 덩굴마다 한번씩 랜덤하게 경로 데이터 선택
+          let randomPathData;
+          do {
+            randomPathData =
+              vinepathData[Math.floor(Math.random() * vinepathData.length)];
+          } while (usedPaths.includes(randomPathData)); // 이미 사용된 경로 데이터를 제외
+          usedPaths.push(randomPathData); // 선택한 경로 데이터를 사용된 경로 데이터 배열에 추가
+
+          for (let j = 0; j < 2; j++) {
+            const vinepartSet = document.createElement('div');
+            vinepartSet.classList.add('vinepart-set');
+            boxVineSet.appendChild(vinepartSet);
+
+            const svg = document.createElementNS(
+              'http://www.w3.org/2000/svg',
+              'svg',
+            );
+
+            svg.setAttribute('width', 'auto');
+            svg.setAttribute('height', '600');
+            svg.setAttribute('viewBox', '0 0 70 630');
+            svg.setAttribute('overflow', 'visible');
+
+            vinepartSet.appendChild(svg);
+
+            const path = document.createElementNS(
+              'http://www.w3.org/2000/svg',
+              'path',
+            );
+            path.setAttribute('d', randomPathData); // 선택한 경로 데이터를 적용
+            path.setAttribute('transform', 'translate(-14.769 -9.575)');
+            path.classList.add(j === 0 ? 'vine_one' : 'vine_two');
+            svg.appendChild(path);
+          }
+          container.appendChild(vine);
+        }
+
+        anime({
+          targets: '.vinepart-set:nth-child(1) .vine_one',
+          strokeDashoffset: [anime.setDashoffset, 0],
+          easing: 'linear',
+          duration: 2000,
+          delay: 2000,
+          direction: 'alternate',
+          loop: false,
+        });
+
+        anime({
+          targets: '.vinepart-set:nth-child(2) .vine_two',
+          strokeDashoffset: [anime.setDashoffset, 0],
+          easing: 'linear',
+          duration: 2000,
+          delay: 0,
+          direction: 'alternate',
+          loop: false,
+        });
+      };
+    </script>
+  </body>
+</html>
