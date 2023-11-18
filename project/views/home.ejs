@@ -51,7 +51,31 @@
 
           <!-- info 버튼 -->
           <div>
-            <button id="infoButton">info</button>
+            <button id="infoButton" onclick="wrapWindowByMask()">info</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- info 모달창 -->
+    <div id="mask">
+      <div class="window">
+        <div class="container">
+          <div class="modal">
+            <div class="closeBtn-container">
+              <button class="closeBtn">x</button>
+            </div>
+
+            <div class="content">
+              와아아아 내용내용 <br />
+              여러 줄도 들어갑니다. <br />
+              바<br />
+              로<br />
+              이<br />
+              렇<br />
+              게<br />
+              <br />
+            </div>
           </div>
         </div>
       </div>
@@ -94,6 +118,45 @@
           url: `/home/garden/random/${id}`,
         }).then((res) => {
           location.href = `/home/garden/${id}`;
+        });
+      }
+
+      function wrapWindowByMask() {
+        var $mask = $('#mask');
+        var $window = $('.window');
+
+        if ($mask.is(':visible')) {
+          $mask.hide();
+          $window.hide();
+        } else {
+          var maskHeight = $('.modal').height();
+          var maskWidth = $('.modal').width();
+
+          $mask.css({ width: maskWidth, height: maskHeight });
+
+          $mask.fadeIn(100);
+          $window.show();
+        }
+
+        $(document).ready(function () {
+          //검은 막 띄우기
+          $('.openMask').click(function (e) {
+            e.preventDefault();
+            wrapWindowByMask();
+          });
+
+          //닫기 버튼을 눌렀을 때
+          $('.window .close').click(function (e) {
+            //링크 기본동작은 작동하지 않도록 한다.
+            e.preventDefault();
+            $('#mask, .window').hide();
+          });
+
+          //검은 막을 눌렀을 때
+          $('#mask').click(function () {
+            $(this).hide();
+            $('.window').hide();
+          });
         });
       }
     </script>
