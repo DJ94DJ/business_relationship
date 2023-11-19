@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>color</title>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .colors {
+        display: flex;
+      }
+
+      .color-option {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        margin: 2px;
+        cursor: pointer;
+      }
+
+      .selected {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="colors">
+      <div
+        class="color-option"
+        style="background-color: #ff5733"
+        value="#ff5733"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #ffff00"
+        value="#ffff00"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #800080"
+        value="#800080"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #008080"
+        value="#008080"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #ff69b4"
+        value="#ff69B4"
+      ></div>
+    </div>
+
+    <script>
+      $(document).ready(() => {
+        $('.color-option').on('click', function () {
+          $('.color-option').removeClass('selected');
+          $(this).addClass('selected');
+
+          const flowerColor = $(this).attr('value'); // 클릭한 div 태그의 value(16진수 색상값)
+          console.log(flowerColor);
+          $('input[name="flowerColor"]').val(flowerColor);
+        });
+      });
+    </script>
+  </body>
+</html>

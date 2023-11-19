@@ -1,106 +1,171 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <title>home</title>
+    <link rel="stylesheet" href="../static/css/home.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <title>home</title>
-  <link rel="stylesheet" href="../static/css/home.css" />
-</head>
+  <body>
+    <!-- 하늘 -->
+    <div class="sky">
+      <!-- 로고 -->
+      <div class="logo">
+        <a href="/home">
+          <img
+            id="logo"
+            src="../static/img/zaranara.png"
+            alt="자라나라새싹나라"
+          />
+        </a>
+      </div>
 
-<body>
-  <!-- 하늘 -->
-  <div class="sky">
-    <!-- 로고 -->
-    <div class="logo">
-      <a href="/home">
-        <img id="logo" src="../static/img/zaranara.png" alt="자라나라새싹나라" />
-      </a>
-    </div>
+      <!-- 잔디 -->
+      <div class="green">
+        <!-- 버튼들 -->
+        <div class="btnForm">
+          <div>
+            <button id="signinButton" onclick="location.href='/home/signin'">
+              로그인
+            </button>
+          </div>
 
-    <!-- 잔디 -->
-    <div class="green">
-      <!-- 버튼들 -->
-      <div class="btnForm">
-        <div>
-          <button id="signinButton" onclick="location.href='/home/signin'">
-            로그인
-          </button>
-        </div>
+          <div>
+            <button id="signupButton" onclick="mvSignUp()">회원가입</button>
+          </div>
 
-        <div>
-          <button id="signupButton" onclick="mvSignUp()">
-            회원가입
-          </button>
-        </div>
+          <div>
+            <button type="button" id="walkButton" onclick="randomWalk()">
+              산책하기
+            </button>
+          </div>
 
-        <div>
-          <button type="button" id="walkButton" onclick="randomWalk()">
-            산책하기
-          </button>
-        </div>
-
-        <!-- info 버튼 -->
-        <div>
-          <button id="infoButton">info</button>
+          <!-- info 버튼 -->
+          <div>
+            <button id="infoButton">info</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    <!-- info 모달창 -->
+    <div id="mask">
+      <div class="window">
+        <div class="container">
+          <div class="modal">
+            <div class="closeBtn-container">
+              <button class="closeBtn">X</button>
+            </div>
 
-  <script>
-    function mvUserGarden(user_id) {
-      console.log('mvUserGarden 실행');
-      axios({
-        method: 'GET',
-        url: '/home/garden',
-      })
-        .then((res) => {
-          if (res.data) {
-            location.href = '/home/garden';
-          }
+            <div class="content">
+              자라나라 새싹나라는 <br />
+              정원을 통해 메시지를 주고 받는 <br />
+              롤링페이퍼 서비스입니다.<br />
+              <br />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function mvUserGarden(user_id) {
+        console.log('mvUserGarden 실행');
+        axios({
+          method: 'GET',
+          url: '/home/garden',
         })
-        .catch((error) => {
-          console.error(error);
+          .then((res) => {
+            if (res.data) {
+              location.href = '/home/garden';
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+
+      function mvSignUp() {
+        axios({
+          method: 'GET',
+          url: '/home/signup',
+        }).then((res) => {
+          location.href = '/home/signup';
         });
-    }
+      }
 
-    function mvSignUp() {
-      axios({
-        method: 'GET',
-        url: '/home/signup'
-      }).then((res) => {
-        location.href = '/home/signup'
-      })
+      function randomWalk() {
+        axios({
+          method: 'GET',
+          url: '/home/garden/random',
+        }).then((res) => {
+          let num = res.data.data;
+          console.log('res : ', res);
+          console.log('res.data : ', res.data);
+          console.log('num : ', num);
+          randomPage(num);
+        });
+      }
 
-    }
+      function randomPage(id) {
+        console.log('매개변수: ', id);
+        axios({
+          method: 'GET',
+          url: `/home/garden/random/${id}`,
+        }).then((res) => {
+          location.href = `/home/garden/${id}`;
+        });
+      }
 
-    function randomWalk() {
-      axios({
-        method: 'GET',
-        url: '/home/garden/random',
-      }).then((res) => {
-        let num = res.data.data;
-        console.log('res : ', res);
-        console.log('res.data : ', res.data);
-        console.log('num : ', num);
-        randomPage(num);
+      // info 모달창
+      function wrapWindowByMask() {
+        var $mask = $('#mask');
+        var $window = $('.window');
+
+        if ($mask.is(':visible')) {
+          $mask.hide();
+          $window.hide();
+        } else {
+          var maskHeight = $(document).height();
+          var maskWidth = $(window).width();
+
+          $mask.css({ width: maskWidth, height: maskHeight });
+
+          $mask.fadeIn(100);
+          $window.show();
+        }
+      }
+
+      $(document).ready(function () {
+        $('#mask, .window').hide();
       });
-    }
 
-    function randomPage(id) {
-      console.log('매개변수: ', id);
-      axios({
-        method: 'GET',
-        url: `/home/garden/random/${id}`,
-      }).then((res) => {
-        location.href = `/home/garden/${id}`;
+      $(document).ready(function () {
+        //검은 막 띄우기
+        $('#infoButton').click(function (e) {
+          e.preventDefault();
+          wrapWindowByMask();
+        });
+
+        //닫기 버튼을 눌렀을 때
+        $('.window, .closeBtn').click(function (e) {
+          //링크 기본동작은 작동하지 않도록 한다.
+          e.preventDefault();
+          $('#mask, .window').hide();
+        });
+
+        //검은 막을 눌렀을 때
+        $('#mask').click(function () {
+          $(this).hide();
+          $('.window').hide();
+        });
       });
-    }
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>

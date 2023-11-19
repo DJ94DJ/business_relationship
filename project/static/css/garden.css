@@ -95,3 +95,188 @@
   color: #ffffff;
   border: none;
 }
+
+/* 씨앗 버튼 */
+.seed-sprite-box {
+  cursor: pointer;
+  top: 80%;
+  left: 70%;
+  width: 85px;
+  height: 83px;
+  background-color: white;
+  opacity: 1;
+  position: fixed;
+  transform: rotate(0deg);
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border-radius: 63px;
+  opacity: 1;
+}
+
+.seed-sprite-1 {
+  height: 55px;
+  width: 55px;
+  background: transparent linear-gradient(134deg, #f5c703 0%, #181d17 100%) 0%
+    0%;
+  border-radius: 0 50% 50% 50%;
+  position: absolute;
+  transform: scaleX(1) rotate(45deg);
+  top: 20%;
+  left: 17%;
+  z-index: 1;
+}
+
+.seed-sprite-2 {
+  height: 70px;
+  width: 30px;
+  background: #ffffff33;
+  border-radius: 50% 50% 50% 50%;
+  position: absolute;
+  top: 8%;
+  left: 32%;
+  z-index: 1;
+}
+
+/* 씨앗 모달 css */
+/* .closeBtn {
+  font-size: 12px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 2%;
+  right: 3%;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+} */
+
+/* 메시지 작성하기 title */
+.seed-title {
+  background-color: #01552c;
+  width: 180px;
+  height: 35px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+}
+
+/* 모달 body */
+.modal-content {
+  top: 57%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 378px;
+  height: 549px;
+  background: #ffffff;
+  border: 13px solid #f5c703;
+  border-radius: 36px;
+  opacity: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+.submitBtn {
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+  font-size: 20px;
+  border-radius: 25px;
+  width: 170px;
+  height: 50px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+}
+
+.submitBtn:hover {
+  background-color: #1f2020;
+}
+
+input::placeholder {
+  color: BLACK;
+}
+
+.msgForm {
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 200px;
+  position: absolute;
+}
+
+.user_name {
+  width: 315px;
+  height: 46px;
+  border: 3px solid #707070;
+  border-radius: 63px;
+  opacity: 1;
+  padding: 0 15px 0 15px;
+  margin: 10px;
+  margin-bottom: 5px;
+}
+
+input[type='color'] {
+  border: 0px;
+}
+
+.msg-color {
+  width: 315px;
+  height: 46px;
+  border: 3px solid #707070;
+  border-radius: 63px;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.msg-public {
+  width: 315px;
+  height: 46px;
+  border: 3px solid #707070;
+  border-radius: 63px;
+  opacity: 1;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.user_msg {
+  margin-top: 12px;
+  width: 315px;
+  height: 174px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 3px solid #707070;
+  border-radius: 23px;
+  opacity: 1;
+  padding: 0 20px 0 20px;
+  margin: 10px;
+}
+
+/* 닫기 버튼 (X) */
+.closeBtn {
+  font-size: 10px;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+}
+
+.closeBtn:hover {
+  background-color: #1f2020;
+}
+
+.closeBtn-container {
+  text-align: right;
+}

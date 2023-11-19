@@ -1,0 +1,208 @@
+/* 애니매이션 파트 */
+
+#animation_sky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-image: linear-gradient(to bottom, #0072b4, #e9e9e7);
+  /* 이하 애니메이션 스타일 */
+  opacity: 1;
+  transition: opacity 0.25s ease-out;
+}
+
+.bush {
+  width: 100%;
+  height: 102%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.bush-sprite-box {
+  height: 230px;
+  width: 47.78px;
+  opacity: 1;
+  position: relative;
+  transform: rotate(0deg);
+  animation: bushAnimation 0.5s infinite;
+  flex: none;
+}
+
+.bush-sprite-box:nth-child(n) {
+  animation-delay: calc(0.07s * (var(--i) + 1));
+}
+
+.bushpart {
+  height: 160px;
+  width: 47.78px;
+  background: transparent linear-gradient(180deg, #01552c 0%, #181d17 100%) 0%
+    0% no-repeat padding-box;
+  border-radius: 30px 30px 0 0;
+  position: absolute;
+  transform: scaleX(1.05);
+  z-index: var(--z-index);
+}
+
+.bushpart-1-1 {
+  --z-index: 1;
+}
+
+.bushpart-1-2 {
+  --z-index: 2;
+  top: 31.25px;
+}
+
+.bushpart-1-3 {
+  --z-index: 3;
+  top: 62.5px;
+}
+
+@keyframes bushAnimation {
+  0% {
+    transform: scaleY(1) scaleX(1);
+  }
+  50% {
+    transform: scaleY(1.03) scaleX(1.03);
+  }
+  100% {
+    transform: scaleY(1) scaleX(1);
+  }
+}
+
+/* 덩굴 */
+
+.vines {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.vine_one,
+.vine_two {
+  fill: none;
+  stroke: #1e8c09;
+  stroke-width: 23px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+}
+
+@keyframes VineAnimation {
+  0% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.vine-1 {
+  left: 25%;
+  opacity: 1;
+}
+
+.vine-1 .vine_one,
+.vine-1 .vine_two {
+  stroke: #007534;
+}
+
+.vine-2 {
+  left: 50%;
+  opacity: 0.9;
+}
+
+.vine-2 .vine_one,
+.vine-2 .vine_two {
+  stroke: rgb(73, 122, 17);
+}
+
+.vine-3 {
+  left: 75%;
+  opacity: 0.8;
+}
+
+.vine-3 .vine_one,
+.vine-3 .vine_two {
+  stroke: #145c11;
+}
+
+.vine-1,
+.vine-2,
+.vine-3 {
+  position: absolute;
+  z-index: 0;
+  transform: translateX(-50%);
+  bottom: 180px;
+}
+
+.vinepart-set {
+  transform: rotate(180deg);
+  position: relative;
+  height: 579px;
+}
+
+.box-vine-set:nth-child(n) {
+  animation: VineAnimation 5.5s infinite;
+  animation-delay: calc(1.6s * var(--i)); /* --i는 각 요소의 인덱스 */
+}
+
+.leaf-sprite-box {
+  height: 210px;
+  width: 77px;
+  opacity: 1;
+  transform: rotate(-5deg);
+}
+
+.leaf-sprite-1 {
+  position: relative;
+  z-index: 2;
+  animation: popupAnimation 1s linear;
+}
+
+.leaf {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  /* 요소를 가로로 두기 */
+  /* align-items: center; */
+  justify-content: center;
+  /* 가로 줄의 가운데에 두기 */
+  top: 50px;
+}
+
+@keyframes popupAnimation {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+/* @keyframes waveAnimation {
+    0% {transform: scale(1); rotate: -10deg}
+    10% {transform: scale(1.03); rotate: 10deg}
+    100% {transform: scaleY(1); rotate: -10deg}
+  } */
