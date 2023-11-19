@@ -186,7 +186,9 @@
                     <div class="flo-color">
                     꽃 색상 선택&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
-                    <input type="color" name="flowerColor" id="user_color" class="user_color" required placeholder="색상" style="width:100px;"/>
+                    <%- include('pick_color') %>
+                    <input type="hidden" name="flowerColor" value="">
+                    <!-- <input type="color" name="flowerColor" id="user_color" class="user_color" required placeholder="색상" style="width:100px;"/> -->
                   </div>
                   <div class="msg-public">
                     <input type="radio" name="isPublic" value="true" id="public" checked />
