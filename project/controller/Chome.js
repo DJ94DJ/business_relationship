@@ -130,7 +130,7 @@ exports.garden = (req, res) => {
         where: { id: req.session.userId },
         include: { model: User },
       }).then((msg) => {
-        console.log('msg :', msg);
+        // console.log('msg :', msg);
         res.render('garden', {
           result,
           msg,
@@ -148,6 +148,8 @@ exports.garden = (req, res) => {
 
 // 롤링페이퍼 '작성' 버튼 클릭 시
 exports.writeMsg = (req, res) => {
+  console.log('작성 요청', req);
+
   Message.create({
     ...req.body,
   }).then((result) => {

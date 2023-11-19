@@ -160,33 +160,52 @@
 
     <div> 도착한 메시지 <%= msg.length %> 통 </div>
 
-    <!-- 롤링페이퍼 작성하기 버튼 -->
-    <form name="newMsg">
-      <input type="text" name="gardenId" value="<%=gardenId%>" hidden>
-      <div class="write-container">
-        <div>
-          <%=gardenName%>의 가든
+    <!-- 씨앗 버튼 -->
+    <div class="seed-sprite-box">
+      <div class="seed-sprite-1"></div>
+      <div class="seed-sprite-2"></div>
+    </div>
+
+    <!-- 씨앗 작성 모달 -->
+    <div class="modal fade" id="seedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="seed-title">메시지 작성하기</div>
+          <div class="modal-content">
+            <button class="closeBtn">
+              <span aria-hidden="true">X</span>
+            </button>
+          <div class="modal-body">
+            <form class="newMsg" name="newMsg">
+                <input type="text" name="gardenId" value="<%=gardenId%>" hidden>
+                <div class="msgForm">
+                  <!-- 현재 작성자 데이터 받는 부분 없음 (title을 작성자로 교체?) -->
+                  <div class="msg-name">
+                    <input type="text" name="title" class="user_name" required placeholder="작성자명" /> 
+                  </div>
+                  <div class="msg-color">
+                    <div class="flo-color">
+                    꽃 색상 선택&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <input type="color" name="flowerColor" id="user_color" class="user_color" required placeholder="색상" style="width:100px;"/>
+                  </div>
+                  <div class="msg-public">
+                    <input type="radio" name="isPublic" value="true" id="public" checked />
+                    <label for="public">&nbsp;&nbsp;메시지 공개 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+              
+                    <input type="radio" name="isPublic" value="false" id="private" />
+                    <label for="private">&nbsp;&nbsp;메시지 비공개 </label>
+                  </div>
+                  <div class="msg-msg">
+                    <input type="textarea" id="user_msg" name="content" class="user_msg" placeholder="메시지 내용을 입력해주세요..."/>
+                  </div>
+                  </div>
+              <div><button type="button" class="submitBtn" onclick="writeMsg()">작성 완료</button></div>
+            </form>
+          </div>
         </div>
-        <div>
-          제목<input type="text" name="title">
-        </div>
-        <div>
-          메시지 내용<input type="text" name="content">
-        </div>
-        <div>
-          <input type="radio" name="isPublic" value="true" id="public" checked>
-          <label for="public">메시지 공개 </label>
-          
-          <input type="radio" name="isPublic" value="false" id="private">
-          <label for="private">메시지 비공개 </label>
-        </div>
-        <div>
-          컬러<input type="color" name="flowerColor">
-        </div>
-        <br />
-        <button type="button" class="write-btn" onclick="writeMsg()">작성하기</button>
       </div>
-    </form>
+    </div>
+
 
     <div>
       <ul id="mess">
@@ -229,47 +248,68 @@
 
   </div>
 
-<script>       
+<script>
+      // 메시지 작성 모달창
+      $('.seed-sprite-box').on('click', function (e) {
+        seedOpen(e);
+      });
+
+      function seedOpen(e) {
+        e.preventDefault();
+        $('#seedModal').modal('show');
+      }
+
+      $('.closeBtn').click(function () {
+        $('#seedModal').modal('hide');
+      });
+
+      // 모달창 닫기 버튼 활성화
+      // $('.closeBtn').click(function () {
+      //   $('.modal').modal('hide');
+      // });
+
   // 회원과 비회원을 구분하는 애니메이션 필요
   function writeMsg() {
     const form = document.forms["newMsg"]
 
+    const msg = {
+      title: form.elements.title.value,
+      content: form.elements.content.value,
+      is_public: form.elements.isPublic.value,
+      flower_color: form.elements.flowerColor.value,
+      id: form.elements.gardenId.value
+    }
 
-      const msg = {
-        title: form.elements.title.value,
-        content: form.elements.content.value,
-        is_public: form.elements.isPublic.value,
-        flower_color: form.elements.flowerColor.value,
-        id: form.elements.gardenId.value
-      }
+    console.log("form :", form)
+    console.log("msg : ", msg)
 
-      if ("<%=userName%>") { // 세션에 아이디가 있을 때(로그인 O)
-        axios({
-          method: "POST",
-          url: "/home/garden",
-          data: msg
-        }).then((res) => {
-          if (res.data.result) {
-            alert("메시지 작성 완료")
-            location.reload()
-          } else {
-            alert("메시지 작성 실패 ㅜㅜ")
-          }
-        })
-      } else { // 세션에 아이디가 없을 때(로그인 X)
-        axios({
-          method: "POST",
-          url: "/home/garden",
-          data: msg
-        }).then((res) => {
-          if (res.data.result) {
-            alert("메시지 작성 완료")
-            location.reload()
-          } else {
-            alert("메시지 작성 실패 ㅜㅜ")
-          }
-        })
-      }
+    if ("<%=userName%>") { // 세션에 아이디가 있을 때(로그인 O)
+      axios({
+        method: "POST",
+        url: "/home/garden",
+        data: msg
+      }).then((res) => {
+        if (res.data.result) {
+          alert("메시지 작성 완료")
+          location.reload()
+        } else {
+          alert("메시지 작성 실패 ㅜㅜ")
+        }
+      })
+    } else { // 세션에 아이디가 없을 때(로그인 X)
+      axios({
+        method: "POST",
+        url: "/home/garden",
+        data: msg
+      }).then((res) => {
+        if (res.data.result) {
+          alert("메시지 작성 완료")
+          location.reload()
+        } else {
+          alert("메시지 작성 실패 ㅜㅜ")
+        }
+      })
+    }
     }
 
     function randomWalk() {
