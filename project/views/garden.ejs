@@ -171,9 +171,9 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="seed-title">메시지 작성하기</div>
           <div class="modal-content">
-            <button class="closeBtn">
-              <span aria-hidden="true">X</span>
-            </button>
+          <div class="closeBtn-container">
+            <button class="closeBtn">X</button>
+          </div>
           <div class="modal-body">
             <form class="newMsg" name="newMsg">
                 <input type="text" name="gardenId" value="<%=gardenId%>" hidden>
@@ -264,9 +264,9 @@
       });
 
       // 모달창 닫기 버튼 활성화
-      // $('.closeBtn').click(function () {
-      //   $('.modal').modal('hide');
-      // });
+      $('.closeBtn').click(function () {
+        $('.modal').modal('hide');
+      });
 
   // 회원과 비회원을 구분하는 애니메이션 필요
   function writeMsg() {
