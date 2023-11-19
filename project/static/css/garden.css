@@ -1,166 +1,97 @@
-body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  overflow: hidden;
-  /* background-color: #87cefa; */
-}
-
-/* .write-container {
-  text-align: center;
-  position: relative;
-  top: 150px;
-}
-
-.write-btn {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 26px;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  border: 3px solid #3498db;
-  color: #3498db;
-  background-color: #ffffff;
-  border-radius: 5px;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.write-btn:hover {
-  background-color: #3498db;
-  color: #ffffff;
-} */
-
-.garden {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 40%;
-  background-color: #a0522d;
-}
-
-/* 세은님 추가요소 */
-.sky {
-  background-attachment: fixed;
-  position: absolute;
-  background: linear-gradient(#0072b4, #ffffff);
-  height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
-  z-index: -1;
-}
-
-.green {
-  background-attachment: fixed;
-  position: fixed;
-  background: linear-gradient(#01552c, #019252);
-  height: 30%;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  border-top-left-radius: 50% 40px;
-  border-top-right-radius: 50% 40px;
-  z-index: 0;
-}
-
-.sesac-container {
-  position: absolute;
-  bottom: 10%;
-  left: 5%;
-  right: 5%;
-  display: flex;
-  gap: 30px;
-  justify-content: space-between;
-}
-
-.sesac {
-  width: 60px;
-  height: 60px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-  animation: float 2s infinite ease-in-out;
-}
-
-/* .sprout-btn img {
-  width: 130%;
-  height: 120%;
-}
-
-.sprout-btn:nth-child(even) {
-  transform: translateY(50px);
-}
-
-.sprout-btn:hover {
-  transform: scale(1.2);
-  animation: none;
-}
-
-.sprout-btn img {
-  width: 130%;
-  height: 120%;
-} */
-
-.sesac:nth-child(even) {
-  margin-top: 40px;
-}
-
-/* .sprout:nth-child(even) { */
-/* transform: translateY(50px); */
-
-.sesac img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-/* .sprout-btn:hover {
-  transform: scale(1.2);
-  animation: none;
-} */
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.navbar,
-.offcanvas-header {
-  opacity: 1;
-  height: 80px;
-}
-
-.offcanvas {
-  opacity: 0.8;
-}
-
-.nav-link {
-  height: 150px;
-  font-size: 50px;
-  text-align: center;
-  color: #019252;
-}
-
-body {
-  font-family: 'DNFBitBitv2';
-}
-
 @font-face {
   font-family: 'DNFBitBitv2';
   font-style: normal;
   font-weight: 400;
   src: url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf')
     format('opentype');
+}
+* {
+  font-family: 'DNFBitBitv2';
+}
+#sky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100%;
+  z-index: -1;
+  background-image: linear-gradient(to bottom, #0072b4, #e9e9e7);
+  overflow-y: scroll;
+}
+.flower01-sprite-box {
+  height: 290px;
+  width: 290px;
+  opacity: 1;
+  position: absolute;
+  transform: rotate(0deg);
+  white-space: nowrap;
+  display: inline;
+  cursor: pointer;
+}
+
+.flower01-sprite-1 {
+  position: relative;
+  z-index: 1;
+}
+
+.flower01-sprite-2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.flower-2 {
+  fill: #f5c703;
+}
+
+.flower-1 {
+  fill: #cb6767;
+}
+
+.msg-btn {
+  /* display: none; */
+  /* cursor: pointer; */
+}
+
+.user-name {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  background-color: white;
+  padding: 5px;
+  border-radius: 50px;
+  margin: 0;
+}
+
+.flower01-sprite-box:nth-child(even) .user-name {
+  right: -160px;
+}
+
+.flower01-sprite-box:nth-child(odd) .user-name {
+  left: -60px;
+  right: auto;
+}
+
+.modal-content {
+  border: 10px solid #f5c703;
+  border-radius: 50px;
+}
+
+.modal-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.closeBtn {
+  font-size: 10px;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
 }

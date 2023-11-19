@@ -157,6 +157,17 @@ exports.writeMsg = (req, res) => {
   });
 };
 
+exports.getMes = (req, res) => {
+  Mess.findOne({
+    where: {
+      message_id: req,
+    },
+  }).then((result) => {
+    console.log('getMesID', result);
+    res.send({ result });
+  });
+};
+
 // 롤링페이퍼 '삭제' 버튼 클릭 시 삭제는 해당 가든의 주인만 가능하다. + 삭제 버튼은 세션이 존재하는 사용자이름과 & 세션의 userName 이 일치하면 생성된다. 아닐 시 존재하지 않는다.
 exports.deleteMsg = (req, res) => {
   console.log('req.mesId', req.body.mesId);
