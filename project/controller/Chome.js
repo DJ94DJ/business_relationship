@@ -162,6 +162,25 @@ exports.writeMsg = (req, res) => {
   });
 };
 
+// 꽃 클릭 시 해당 id 를 받아 메시지 내용들을 불러온다.
+exports.getMes = (req, res) => {
+  console.log(req.query.data);
+  Message.findOne({
+    where: {
+      message_id: req.query.data,
+    },
+  }).then((result) => {
+    console.log('getMesID', result);
+    const mesData = {
+      messageId: result.message_id,
+      title: result.title,
+      content: result.content,
+      isPublic: result.is_public,
+    };
+    res.send(mesData);
+  });
+};
+
 // 롤링페이퍼 '삭제' 버튼 클릭 시 삭제는 해당 가든의 주인만 가능하다. + 삭제 버튼은 세션이 존재하는 사용자이름과 & 세션의 userName 이 일치하면 생성된다. 아닐 시 존재하지 않는다.
 exports.deleteMsg = (req, res) => {
   console.log('req.mesId', req.body.mesId);
