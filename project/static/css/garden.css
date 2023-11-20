@@ -110,6 +110,7 @@
   background: #ffffff 0% 0% no-repeat padding-box;
   border-radius: 63px;
   opacity: 1;
+  z-index: 5;
 }
 
 .seed-sprite-1 {
