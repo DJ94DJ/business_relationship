@@ -51,6 +51,8 @@ button {
   cursor: pointer;
 }
 
+#gardenButton,
+#signoutButton,
 #signinButton,
 #signupButton,
 #walkButton,
@@ -88,9 +90,19 @@ button {
   background-color: #509217;
 }
 
+#signoutButton:hover,
+#signoutButton:active {
+  background-color: #509217;
+}
+
 #walkButton:hover,
 #walkButton:active {
   background-color: #1f2020;
+}
+
+#gardenButton:hover,
+#gardenButton:active {
+  background-color: #509217;
 }
 
 #infoButton:hover,

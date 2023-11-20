@@ -42,9 +42,29 @@
           </div>
 
           <div>
-            <button type="button" id="walkButton" onclick="randomWalk()">
-              산책하기
+            <button
+              id="gardenButton"
+              onclick="mvUserGarden()"
+              style="display: none"
+            >
+              내 정원 가기
             </button>
+          </div>
+
+          <div>
+            <button
+              id="signoutButton"
+              onclick="signOut()"
+              style="display: none"
+            >
+              로그아웃
+            </button>
+
+            <div>
+              <button type="button" id="walkButton" onclick="randomWalk()">
+                산책하기
+              </button>
+            </div>
           </div>
 
           <!-- info 버튼 -->
@@ -75,6 +95,15 @@
     </div>
 
     <script>
+      // 로그인 상태면(세션값 존재) 홈 화면에서 '로그인', '회원가입' 버튼 사라지고 '로그아웃', '내 정원 가기' 버튼 보임
+      if (`<%=user%>`) {
+        console.log(`<%=user%>`);
+        $('#signoutButton').removeAttr('style');
+        $('#gardenButton').removeAttr('style');
+        $('#signinButton').attr('style', 'display: none');
+        $('#signupButton').attr('style', 'display: none');
+      }
+
       function mvUserGarden(user_id) {
         console.log('mvUserGarden 실행');
         axios({
@@ -120,6 +149,18 @@
           url: `/home/garden/random/${id}`,
         }).then((res) => {
           location.href = `/home/garden/${id}`;
+        });
+      }
+
+      function signOut() {
+        axios({
+          method: 'POST',
+          url: '/home/signout',
+        }).then((res) => {
+          if (res.data.result) location.href = '/home';
+          else {
+            alert('로그아웃 실패 ;ㅁ;');
+          }
         });
       }
 
