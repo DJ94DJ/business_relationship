@@ -162,14 +162,22 @@ exports.writeMsg = (req, res) => {
   });
 };
 
+// 꽃 클릭 시 해당 id 를 받아 메시지 내용들을 불러온다.
 exports.getMes = (req, res) => {
-  Mess.findOne({
+  console.log(req.query.data);
+  Message.findOne({
     where: {
-      message_id: req,
+      message_id: req.query.data,
     },
   }).then((result) => {
     console.log('getMesID', result);
-    res.send({ result });
+    const mesData = {
+      messageId: result.message_id,
+      title: result.title,
+      content: result.content,
+      isPublic: result.is_public,
+    };
+    res.send(mesData);
   });
 };
 
