@@ -3,7 +3,11 @@ const pwSalt = require('../model/pwSalt');
 
 // 메인 페이지 랜더
 exports.home = (req, res) => {
-  res.render('home');
+  if (req.session) {
+    res.render('home', { user: req.session.userId });
+  } else {
+    res.render('home');
+  }
 };
 
 // 로그인 페이지 랜더
