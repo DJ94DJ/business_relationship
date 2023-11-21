@@ -238,7 +238,6 @@
       function msgOpen(button) {
         const form = button.closest('form');
         let mesId = form.querySelector('[name="mesId"]').value;
-        console.log(mesId);
         axios({
           method: 'get',
           url: '/home/garden/getMes',
@@ -314,7 +313,6 @@
             url: '/home/garden',
             data: msg,
           }).then((res) => {
-            console.log('작성 결과', res);
             if (res.data.result) {
               alert('메시지 작성 완료');
               location.reload();
@@ -331,9 +329,6 @@
           url: '/home/garden/random',
         }).then((res) => {
           let num = res.data.data;
-          console.log('res : ', res);
-          console.log('res.data : ', res.data);
-          console.log('num : ', num);
           randomPage(num);
         });
       }
@@ -367,7 +362,6 @@
           data: delMess,
         })
           .then((res) => {
-            console.log('res.data', res.data);
             if (res.data.result) {
               alert('삭제되었습니다');
               location.reload();
@@ -390,7 +384,6 @@
           method: 'GET',
           url: '/user/profile',
         }).then((res) => {
-          console.log('res', res.data);
           if (res.data) location.href = '/user/profile';
           else {
             alert('마이페이지 접근 불가 ;ㅁ;');

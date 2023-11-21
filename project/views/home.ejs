@@ -97,7 +97,6 @@
     <script>
       // 로그인 상태면(세션값 존재) 홈 화면에서 '로그인', '회원가입' 버튼 사라지고 '로그아웃', '내 정원 가기' 버튼 보임
       if (`<%=user%>`) {
-        console.log(`<%=user%>`);
         $('#signoutButton').removeAttr('style');
         $('#gardenButton').removeAttr('style');
         $('#signinButton').attr('style', 'display: none');
@@ -135,9 +134,6 @@
           url: '/home/garden/random',
         }).then((res) => {
           let num = res.data.data;
-          console.log('res : ', res);
-          console.log('res.data : ', res.data);
-          console.log('num : ', num);
           randomPage(num);
         });
       }

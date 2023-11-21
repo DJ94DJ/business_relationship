@@ -3,7 +3,6 @@ const pwSalt = require('../model/pwSalt');
 
 // 마이페이지 랜더
 exports.profile = (req, res) => {
-  console.log('마이페이지 이동');
   User.findOne({
     where: { id: req.session.userId },
   }).then((result) => {
