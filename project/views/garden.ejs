@@ -114,7 +114,7 @@
 
             <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
-              <input type="text" value="<%=msg[i].message_id%>">
+              <input type="text" id="modMesId" name="modMesId" value="">
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -124,7 +124,7 @@
                     </button>
                   </div>
                   <div class="modal-body" id="modBody" style=""></div>
-                  <button type="button" onclick="deleteMsg(this)">삭제</button>
+                  <button type="button" id="mesDelBtn" onclick="deleteMsg(this)">삭제</button>
                 </div>
               </div>
             </div>
@@ -169,22 +169,24 @@
 
             function msgOpen(button) {
               const form = button.closest('form');
-              let mesId = form.querySelector('[name="mesId"]').value;
+              let mesId = {
+                userId: form.querySelector('[name="mesId"]').value
+              }
               axios({
-                method: 'get',
+                method: 'post',
                 url: '/home/garden/getMes',
-                params: {
-                  data: mesId,
-                },
+                data: mesId
               }).then((res) => {
                 if (res.data.isPublic) {
                   $('.modTitle').html(res.data.writer);
                   $('#modBody').html(res.data.content).css('text-align', 'center');
+                  $("#modMesId").val(res.data.messageId);
                   // e.preventDefault();
                   $('#testModal').modal('show');
                 } else if ('<%=gardenName%>' == '<%=userName%>') {
                   $('.modTitle').html(res.data.writer);
                   $('#modBody').html(res.data.content);
+                  $("#modMesId").val(res.data.messageId);
                   // e.preventDefault();
                   $('#testModal').modal('show');
                 } else {
@@ -277,14 +279,18 @@
 
             // 메시지 삭제
             function deleteMsg(button) {
-              const form = document.forms["flowerForm"]
-              let mesId = form.elements.modalMesId.value;
+              const form = button.closest('form');
+              let mesId = {
+                userId: form.querySelector('[name="modMesId"]').value
+              }
+              // const form = document.forms["flowerForm"]
+              // let mesId = form.elements.modMesId.value;
               // console.log(
               //   '메시지ID : ',
               //   document.getElementById((name = 'modalMesId')).value,
               // );
               let delMess = {
-                mesId: form.querySelector('[name="modalMesId"]').value,
+                mesId: mesId.userId,
                 gdName: '<%=userName%>',
               };
 
@@ -338,6 +344,8 @@
             // 자신의 가든이면 메시지 작성기능 제거
             if ('<%=gardenName%>' == '<%=userName%>') {
               $('#seedBtn').css('display', 'none');
+            } else {
+              $("#mesDelBtn").css('display', 'none');
             }
           </script>
 </body>
