@@ -230,7 +230,8 @@
                     transform="matrix(0.966, -0.259, 0.259, 0.966, 0, 31.967)" />
                 </svg>
               </div>
-              <button type="button" onclick="deleteMsg(this)">삭제하기</button>
+              <div class="user-name">From. 닉넴</div>
+            </div>
           </form>
           <!-- <div class="user-name">From. </div> -->
   </div>
@@ -305,7 +306,7 @@
             $('#testModal').modal('show');
           }
 
-          
+
           // 메시지 작성 모달창
           $('.seed-sprite-box').on('click', function (e) {
             seedOpen(e);
@@ -324,7 +325,7 @@
           $('.closeBtn').click(function () {
             $('.modal').modal('hide');
           });
-          
+
           // 회원과 비회원을 구분하는 애니메이션 필요
           function writeMsg() {
             const form = document.forms["newMsg"]
@@ -401,8 +402,6 @@
             }
 
             console.log("mesId : ", delMess.mesId)
-            console.log("gardenId : ", delMess.gardenId)
-
             axios({
               method: "DELETE",
               url: "/home/garden",
@@ -446,9 +445,10 @@
             })
           }
 
-          if ("<%=gardenName%>" == "<%=userName%>") {
-            $("#seedBtn").css("display", "none")
-          }
+          // 자신의 가든이면 메시지 작성기능 제거
+          // if ("<%=gardenName%>" == "<%=userName%>") {
+          //   $("#seedBtn").css("display", "none")
+          // }
         </script>
 </body>
 
