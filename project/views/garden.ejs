@@ -107,29 +107,31 @@
                 <%=msg[i].writer%>
               </div>
             </div>
+            <!-- </div> -->
+
+            <!-- msgOpen 버튼을 누를 시 해당 폼에 대한 메시지ID = (mesId)를 받아온다 -->
+            <!-- axios 요청을 받아서 해당 데이터를 이용해서 모달 창을 구성한다 -->
+
+            <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <input type="text" value="<%=msg[i].message_id%>">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title modTitle" id="exampleModalLabel"></h5>
+                    <button class="closeBtn">
+                      <span aria-hidden="true">X</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" id="modBody" style=""></div>
+                  <button type="button" onclick="deleteMsg(this)">삭제</button>
+                </div>
+              </div>
+            </div>
           </form>
     </div>
     <%}%>
       <%} else {%> 메시지가 없습니다. <%}%>
-          <!-- </div> -->
-
-          <!-- msgOpen 버튼을 누를 시 해당 폼에 대한 메시지ID = (mesId)를 받아온다 -->
-          <!-- axios 요청을 받아서 해당 데이터를 이용해서 모달 창을 구성한다 -->
-
-          <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title modTitle" id="exampleModalLabel"></h5>
-                  <button class="closeBtn">
-                    <span aria-hidden="true">X</span>
-                  </button>
-                </div>
-                <div class="modal-body" id="modBody" style=""></div>
-              </div>
-            </div>
-          </div>
 
           <script>
             $(document).ready(function () {
