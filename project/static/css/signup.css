@@ -2,7 +2,7 @@ body {
   height: 100%;
   width: 100%;
   margin: 0;
-  overflow: hidden;
+  /* overflow: hidden; */
   font-family: 'DNFBitBitv2';
 }
 
@@ -63,6 +63,7 @@ input::placeholder {
   left: 0;
   top: 0;
   z-index: -1;
+  overflow: auto;
 }
 
 .navbar,

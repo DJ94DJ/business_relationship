@@ -130,17 +130,24 @@ exports.garden = (req, res) => {
   })
     .then((result) => {
       Message.findAll({
-        attributes: ['message_id', 'title', 'content', 'is_public'],
+        attributes: [
+          'message_id',
+          'title',
+          'content',
+          'is_public',
+          'flower_color',
+        ],
         where: { id: req.session.userId },
         include: { model: User },
       }).then((msg) => {
-        // console.log('msg :', msg);
+        console.log('msg :', msg);
         res.render('garden', {
           result,
           msg,
           userName: req.session.userName,
           gardenId: req.session.userId,
           gardenName: result.user_name,
+          flowerColor: result.flower_color,
         });
       });
     })
@@ -215,7 +222,13 @@ exports.ranGardenPage = (req, res) => {
     },
   }).then((result) => {
     Message.findAll({
-      attributes: ['message_id', 'title', 'content', 'is_public'],
+      attributes: [
+        'message_id',
+        'title',
+        'content',
+        'is_public',
+        'flower_color',
+      ],
       where: { id: req.params.id },
       include: { model: User },
     }).then((msg) => {
