@@ -38,7 +38,7 @@ exports.signInUser = (req, res) => {
               req.session.userId = result.id;
               console.log('signInUser : ', result);
               console.log('session', req.session);
-              res.send({ result: true });
+              res.send({ result: true, userId: result.id });
             } else {
               res.send({ result: false });
             }
