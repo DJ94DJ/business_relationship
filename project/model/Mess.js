@@ -10,7 +10,7 @@ function Message(Sequelize, DataTypes) {
         primaryKey: true,
         defaultValue: Sequelize.UUIDV4,
       },
-      title: {
+      writer: {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
