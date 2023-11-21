@@ -205,7 +205,7 @@
                   <div class="msg-name">
                     <input
                       type="text"
-                      name="title"
+                      name="writer"
                       class="user_name"
                       required
                       placeholder="작성자명"
@@ -307,7 +307,7 @@
               />
             </svg>
           </div>
-          <div class="user-name">From. 닉넴</div>
+          <div class="user-name"><%=msg[i].writer%></div>
         </div>
       </form>
     </div>
@@ -423,7 +423,7 @@
         const form = document.forms['newMsg'];
 
         const msg = {
-          title: form.elements.title.value,
+          writer: form.elements.writer.value,
           content: form.elements.content.value,
           is_public: form.elements.isPublic.value,
           flower_color: form.elements.flowerColor.value,
