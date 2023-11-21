@@ -205,7 +205,7 @@
                   <div class="msg-name">
                     <input
                       type="text"
-                      name="writer"
+                      name="title"
                       class="user_name"
                       required
                       placeholder="작성자명"
@@ -278,6 +278,7 @@
               width="290.82"
               height="290.82"
               viewBox="0 0 290.82 290.82"
+              class="flower-svg"
             >
               <path
                 id="flower_1"
@@ -295,6 +296,7 @@
               width="151.268"
               height="151.268"
               viewBox="0 0 151.268 151.268"
+              class="flower2-svg"
             >
               <path
                 id="flower_2"
@@ -343,12 +345,21 @@
         function arrangeFlowers() {
           $('.flower01-sprite-box').each(function (index) {
             var flower = $(this);
+            var userName = flower.find('.user-name');
             var screenWidth = $(window).width();
 
             var posX = index % 2 === 0 ? screenWidth - flower.width() : 0;
             var posY = index * flower.height() + 70;
 
             flower.css({ top: posY, left: posX });
+
+            if (index % 2 === 0) {
+              var oddName = '-20%';
+              userName.css({ left: oddName });
+            } else {
+              var evenName = '120%';
+              userName.css({ left: evenName });
+            }
           });
         }
 
@@ -412,7 +423,7 @@
         const form = document.forms['newMsg'];
 
         const msg = {
-          writer: form.elements.writer.value,
+          title: form.elements.title.value,
           content: form.elements.content.value,
           is_public: form.elements.isPublic.value,
           flower_color: form.elements.flowerColor.value,
