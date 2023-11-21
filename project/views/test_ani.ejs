@@ -43,13 +43,6 @@
           },
         );
       }
-      // $(document).ready(function () {
-      //   setInterval(function () {
-      //     var angle = calculateDeg('.leaves');
-      //     rotate('#leaves', angle, 35, 1000);
-      //     rotate('#leaves', angle, 0, 1000);
-      //   }, 2000);
-      // });
 
       function getRandomColor() {
         var hue = Math.floor(Math.random() * 60) + 90;
@@ -150,7 +143,7 @@
         // 덤불 개수 생성 30개
         const bush = document.querySelector('.bush');
 
-        for (let i = 0; i < 90; i++) {
+        for (let i = 0; i < 30; i++) {
           const bushSpriteBox = document.createElement('div');
           bushSpriteBox.classList.add('bush-sprite-box');
           bushSpriteBox.style.setProperty('--i', i);
@@ -253,8 +246,8 @@
             // 잎사귀 추가 코드
             // const LEAF_INTERVAL = Math.floor(450); // 잎사귀를 추가할 간격을 설정합니다.
             const LEAF_INTERVAL = 1; // 잎사귀를 추가할 간격을 설정합니다.
-            const LEAF_count = 400;
-            const LEAF_SIZE = Math.random() * 80 + 60; // 잎사귀의 크기를 설정합니다.
+            const LEAF_count = 350;
+            const LEAF_SIZE = Math.random() * 100 + 40; // 잎사귀의 크기를 설정합니다.
 
             for (let i = 0; i < path.getTotalLength(); i += LEAF_count) {
               const point1 = path.getPointAtLength(i);
@@ -294,6 +287,16 @@
 
               svg.appendChild(leaf2);
             }
+            // 잎사귀 종료
+
+            // const leaves2 = document.querySelectorAll(
+            //   '.vine vine-3 .box-vine-set .vinepart-set .leaves',
+            // );
+            // leaves.forEach((leaf, index) => {
+            //   setTimeout(() => {
+            //     leaf.classList.add('animate');
+            //   }, index * 100); // 각 잎사귀 요소에 대해 100ms 간격으로 애니메이션을 시작합니다.
+            // });
 
             const defs = document.createElementNS(svgNS, 'defs');
             svg.appendChild(defs);
@@ -390,7 +393,7 @@
               leaf.style.opacity = 1; // 나뭇잎을 나타냅니다.
               setTimeout(() => {
                 showLeavesSequentially(index + 1);
-              }, 300 - index * 15); // 100ms 간격으로 다음 나뭇잎을 나타냅니다.
+              }, 300 - index * 10); // 100ms 간격으로 다음 나뭇잎을 나타냅니다.
             }
           }
 
@@ -402,32 +405,6 @@
           // 나뭇잎을 순서대로 나타냅니다.
           showLeavesSequentially(0);
         }
-
-        function handleWindowSize() {
-          const screenWidth = window.innerWidth;
-          const vines = document.querySelector('.vines');
-          const leafContainer = document.querySelector('#leafContainer');
-
-          // screenWidth를 기준으로 필요한 가로 비율을 계산합니다.
-          let widthRatio;
-          if (screenWidth >= 850) {
-            // 화면 가로 크기가 850px 이상인 경우
-            widthRatio = '60%';
-          } else {
-            // 화면 가로 크기가 850px 미만인 경우
-            widthRatio = '100%';
-          }
-
-          // 가로 비율을 변경합니다.
-          vines.style.width = widthRatio;
-          leafContainer.style.width = widthRatio;
-        }
-
-        // 초기 실행
-        handleWindowSize();
-
-        // 화면 크기 변경 이벤트를 감지하여 가로 비율을 업데이트합니다.
-        window.addEventListener('resize', handleWindowSize);
 
         anime({
           targets: '.vinepart-set:nth-child(1) .vine_one',

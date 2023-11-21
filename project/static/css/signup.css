@@ -222,8 +222,9 @@ button {
 @media screen and (max-width: 545px) and (max-height: 800px) {
   .signup-border {
     width: 328px;
-    height: 510px;
+    height: 480px;
     top: 60%;
+    border: 9px solid #f5c703;
   }
   .nk-form,
   .pw-form,
@@ -234,7 +235,7 @@ button {
     height: 32px;
   }
   .realForm {
-    top: 0px;
+    top: -10px;
     bottom: 10px;
   }
   .self-form {
@@ -252,6 +253,13 @@ button {
   .navbar,
   .offcanvas-header {
     height: 70px;
+  }
+  .title-border {
+    width: 190px;
+    height: 35px;
+  }
+  .title {
+    font-size: 18px;
   }
 }
 
