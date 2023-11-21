@@ -165,7 +165,7 @@ exports.writeMsg = (req, res) => {
 exports.getMes = (req, res) => {
   Message.findOne({
     where: {
-      message_id: req.query.data,
+      message_id: req.body.userId,
     },
   }).then((result) => {
     const mesData = {
@@ -184,7 +184,10 @@ exports.deleteMsg = (req, res) => {
     Message.destroy({
       where: { message_id: req.body.mesId },
     }).then((result) => {
-      res.send({ result: true });
+      console.log('msgDEl', result);
+      if (result) {
+        res.send({ result: true });
+      } else res.send({ result: false });
     });
   } else res.send({ result: false });
 };

@@ -27,7 +27,8 @@ router.post('/signup/idCheck', controller.idCheck);
 // 개인 정원(롤링페이퍼) 페이지
 router.get('/garden', controller.garden);
 
-router.get('/garden/getMes', controller.getMes);
+// 메시지 가져오기
+router.post('/garden/getMes', controller.getMes);
 
 // 롤링페이퍼 작성
 router.post('/garden', controller.writeMsg);
