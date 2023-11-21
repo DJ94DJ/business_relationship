@@ -3,7 +3,11 @@ const pwSalt = require('../model/pwSalt');
 
 // 메인 페이지 랜더
 exports.home = (req, res) => {
-  res.render('home');
+  if (req.session) {
+    res.render('home', { user: req.session.userId });
+  } else {
+    res.render('home');
+  }
 };
 
 // 로그인 페이지 랜더
@@ -130,7 +134,7 @@ exports.garden = (req, res) => {
         where: { id: req.session.userId },
         include: { model: User },
       }).then((msg) => {
-        console.log('msg :', msg);
+        // console.log('msg :', msg);
         res.render('garden', {
           result,
           msg,
@@ -148,11 +152,32 @@ exports.garden = (req, res) => {
 
 // 롤링페이퍼 '작성' 버튼 클릭 시
 exports.writeMsg = (req, res) => {
+  console.log('작성 요청', req);
+
   Message.create({
     ...req.body,
   }).then((result) => {
     console.log('writeMsg : ', result);
     res.send({ result: true });
+  });
+};
+
+// 꽃 클릭 시 해당 id 를 받아 메시지 내용들을 불러온다.
+exports.getMes = (req, res) => {
+  console.log(req.query.data);
+  Message.findOne({
+    where: {
+      message_id: req.query.data,
+    },
+  }).then((result) => {
+    console.log('getMesID', result);
+    const mesData = {
+      messageId: result.message_id,
+      title: result.title,
+      content: result.content,
+      isPublic: result.is_public,
+    };
+    res.send(mesData);
   });
 };
 

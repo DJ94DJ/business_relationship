@@ -42,9 +42,29 @@
           </div>
 
           <div>
-            <button type="button" id="walkButton" onclick="randomWalk()">
-              산책하기
+            <button
+              id="gardenButton"
+              onclick="mvUserGarden()"
+              style="display: none"
+            >
+              내 정원 가기
             </button>
+          </div>
+
+          <div>
+            <button
+              id="signoutButton"
+              onclick="signOut()"
+              style="display: none"
+            >
+              로그아웃
+            </button>
+
+            <div>
+              <button type="button" id="walkButton" onclick="randomWalk()">
+                산책하기
+              </button>
+            </div>
           </div>
 
           <!-- info 버튼 -->
@@ -60,7 +80,7 @@
         <div class="container">
           <div class="modal">
             <div class="closeBtn-container">
-              <button class="closeBtn">x</button>
+              <button class="closeBtn">X</button>
             </div>
 
             <div class="content">
@@ -75,6 +95,15 @@
     </div>
 
     <script>
+      // 로그인 상태면(세션값 존재) 홈 화면에서 '로그인', '회원가입' 버튼 사라지고 '로그아웃', '내 정원 가기' 버튼 보임
+      if (`<%=user%>`) {
+        console.log(`<%=user%>`);
+        $('#signoutButton').removeAttr('style');
+        $('#gardenButton').removeAttr('style');
+        $('#signinButton').attr('style', 'display: none');
+        $('#signupButton').attr('style', 'display: none');
+      }
+
       function mvUserGarden(user_id) {
         console.log('mvUserGarden 실행');
         axios({
@@ -123,9 +152,19 @@
         });
       }
 
+      function signOut() {
+        axios({
+          method: 'POST',
+          url: '/home/signout',
+        }).then((res) => {
+          if (res.data.result) location.href = '/home';
+          else {
+            alert('로그아웃 실패 ;ㅁ;');
+          }
+        });
+      }
+
       // info 모달창
-      // 1. 디폴트로 모달창 안 보이도록 설정
-      // 2. 모달창 가운데 정렬
       function wrapWindowByMask() {
         var $mask = $('#mask');
         var $window = $('.window');
