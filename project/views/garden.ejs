@@ -113,23 +113,7 @@
 
             <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="seed">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title modTitle" id="exampleModalLabel"></h5>
-                      <button class="closeBtn">
-                        <span aria-hidden="true">X</span>
-                      </button>
-                    </div>
-                    <div class="modal-body" id="modBody"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <input type="text" id="modMesId" name="modMesId" value="" />
+              <input type="text" id="modMesId" name="modMesId" value="" hidden>
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -138,12 +122,10 @@
                       <span aria-hidden="true">X</span>
                     </button>
                   </div>
-                  <div class="modal-body" id="modBody" style=""></div>
-                  <div>
-                    <button type="button" id="mesDelBtn" onclick="deleteMsg(this)">
-                      삭제
-                    </button>
-                  </div>
+                  <div class="modal-body" id="modBody"></div>
+                  <button type="button" id="mesDelBtn" onclick="deleteMsg(this)">
+                    삭제
+                  </button>
                 </div>
               </div>
             </div>
@@ -184,20 +166,21 @@
                 msgOpen(button);
               });
 
-              function adjustModalHeight() {
-                var contentHeight = $('#modBody').height();
-                var threshold = 100;
+              // 창 수정
+              // function adjustModalHeight() {
+              //   var contentHeight = $('#modBody').height();
+              //   var threshold = 100;
 
-                if (contentHeight > threshold) {
-                  var newHeight = contentHeight + threshold * 1.5;
+              //   if (contentHeight > threshold) {
+              //     var newHeight = contentHeight + threshold * 1.5;
 
-                  $('#testModal .modal-content').css('height', newHeight + 'px');
-                }
-              }
+              //     $('#testModal .modal-content').css('height', newHeight + 'px');
+              //   }
+              // }
 
-              $('#testModal').on('shown.bs.modal', function () {
-                adjustModalHeight();
-              });
+              // $('#testModal').on('shown.bs.modal', function () {
+              //   adjustModalHeight();
+              // });
             });
 
             function msgOpen(button) {
@@ -212,7 +195,7 @@
               }).then((res) => {
                 if (res.data.isPublic) {
                   $('.modTitle').html(res.data.writer);
-                  $('#modBody').html(res.data.content).css('text-align', 'center');
+                  $('#modBody').html(res.data.content);
                   $('#modMesId').val(res.data.messageId);
                   // e.preventDefault();
                   $('#testModal').modal('show');
