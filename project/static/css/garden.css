@@ -5,9 +5,11 @@
   src: url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf')
     format('opentype');
 }
+
 * {
   font-family: 'DNFBitBitv2';
 }
+
 #sky {
   position: fixed;
   top: 0;
@@ -18,6 +20,7 @@
   background-image: linear-gradient(to bottom, #0072b4, #e9e9e7);
   overflow-y: scroll;
 }
+
 .flower01-sprite-box {
   height: 290px;
   width: 290px;
