@@ -21,6 +21,35 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  animation: move 7s ease-in-out forwards;
+  animation-delay: 6s;
+}
+
+@keyframes move {
+  12.5% {
+    height: 102%;
+  }
+  25% {
+    height: 107%;
+  }
+  37.5% {
+    height: 103%;
+  }
+  50% {
+    height: 109%;
+  }
+  62.5% {
+    height: 104%;
+  }
+  75% {
+    height: 119%;
+  }
+  87.5% {
+    height: 108%;
+  }
+  100% {
+    height: 155%;
+  }
 }
 
 .bush-sprite-box {
@@ -84,16 +113,50 @@
   justify-content: center;
   padding: 0;
   margin: 0;
+  animation: movevine 15s ease-in-out forwards;
 }
 
 .vine_one,
-.vine_two {
+.vine_two,
+.vine_three,
+.vine_four,
+.vine_five,
+.vine_six,
+.vine_seven,
+.vine_eight {
   fill: none;
   /* stroke: #1e8c09; */
   stroke-width: 23px;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-miterlimit: 10;
+}
+
+@keyframes movevine {
+  12.5% {
+    transform: translateY(0px);
+  }
+  25% {
+    transform: translateY(100px);
+  }
+  37.5% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(100px);
+  }
+  62.5% {
+    transform: translateY(0px);
+  }
+  75% {
+    transform: translateY(100px);
+  }
+  87.5% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(100px);
+  }
 }
 
 /* @keyframes VineAnimation {
@@ -135,7 +198,7 @@
   position: absolute;
   z-index: -1;
   transform: translateX(-50%);
-  bottom: 180px;
+  bottom: 0px;
 }
 
 .vinepart-set {
@@ -146,7 +209,6 @@
 
 .box-vine-set:nth-child(n) {
   animation: VineAnimation 5.5s infinite;
-
   animation-delay: calc(1.6s * var(--i)); /* --i는 각 요소의 인덱스 */
 }
 
@@ -185,9 +247,6 @@
   transform-origin: 50% 120%;
   opacity: 0.1;
   transition: opacity 0.5s ease-in-out;
-}
-
-@keyframes PopupAnimation {
 }
 
 /* .box-vine-set .vinepart-set .leaves {
