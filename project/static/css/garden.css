@@ -66,15 +66,6 @@
   margin: 0;
 }
 
-.flower01-sprite-box:nth-child(even) .user-name {
-  right: -160px;
-}
-
-.flower01-sprite-box:nth-child(odd) .user-name {
-  left: -60px;
-  right: auto;
-}
-
 .modal-content {
   border: 10px solid #f5c703;
   border-radius: 50px;
@@ -282,10 +273,41 @@ input[type='color'] {
   text-align: right;
 }
 
+/* iPhone SE */
+@media screen and (min-width: 300px) and (max-width: 400px) and (min-height: 600px) and (max-height: 700px) {
+  .flower01-sprite-box {
+    width: 200px !important;
+    height: 200px !important;
+  }
+  .flower-svg {
+    width: 200px !important;
+    height: 200px !important;
+  }
+  .flower2-svg {
+    width: 100px !important;
+    height: 100px !important;
+  }
+  .flower01-sprite {
+    text-align: center;
+  }
+}
+
 /* iPhone XR, iPhone 12 Pro, iPhone 14 Pro Max */
 @media screen and (min-width: 380px) and (max-width: 500px) and (min-height: 800px) and (max-height: 940px) {
   .seed-title {
     top: 18%;
+  }
+  .flower01-sprite-box {
+    width: 270px !important;
+    height: 270px !important;
+  }
+  .flower-svg {
+    width: 270px !important;
+    height: 270px !important;
+  }
+  .flower2-svg {
+    width: 130px !important;
+    height: 130px !important;
   }
 }
 
@@ -294,7 +316,58 @@ input[type='color'] {
   .seed-title {
     top: 14%;
   }
+  .flower01-sprite-box {
+    width: 250px !important;
+    height: 250px !important;
+  }
+  .flower-svg {
+    width: 250px !important;
+    height: 250px !important;
+  }
+  .flower2-svg {
+    width: 110px !important;
+    height: 110px !important;
+  }
   .modal-content {
     width: 348px;
+  }
+}
+
+/* Galaxy Fold */
+@media screen and (min-width: 200px) and (max-width: 300px) and (min-height: 600px) and (max-height: 700px) {
+  .flower01-sprite-box {
+    width: 150px !important;
+    height: 150px !important;
+  }
+  .flower-svg {
+    width: 150px !important;
+    height: 150px !important;
+  }
+  .flower2-svg {
+    width: 60px !important;
+    height: 60px !important;
+  }
+}
+
+/* 화면 큰 것들 다... */
+@media screen and (min-width: 750px) {
+  .flower01-sprite-box {
+    width: 400px !important;
+    height: 400px !important;
+  }
+  .flower-svg {
+    width: 400px !important;
+    height: 400px !important;
+  }
+  .flower2-svg {
+    width: 200px !important;
+    height: 200px !important;
+  }
+  .user-name {
+    width: 150px;
+    height: 40px;
+    border-radius: 150px;
+    font-size: 20px;
+    text-align: center;
   }
 }
