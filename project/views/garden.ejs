@@ -179,7 +179,7 @@
                 <div class="msgForm">
                   <!-- 현재 작성자 데이터 받는 부분 없음 (title을 작성자로 교체?) -->
                   <div class="msg-name">
-                    <input type="text" name="title" class="user_name" required placeholder="작성자명" />
+                    <input type="text" name="writer" class="user_name" required placeholder="작성자명" />
                   </div>
                   <div class="msg-color">
                     <div class="flo-color">
@@ -221,6 +221,7 @@
                   <path id="flower_1" data-name="flower 1" class="flower-1" style="fill: <%=msg[i].flower_color%>"
                     d="M223.526,82.013a62.23,62.23,0,0,0-17.439,2.651,59.972,59.972,0,0,0,2.735-17.355c0-37.174-28.388-67.31-63.4-67.31s-63.4,30.136-63.4,67.31a62.144,62.144,0,0,0,2.651,17.437A60.042,60.042,0,0,0,67.31,82.013C30.136,82.013,0,110.4,0,145.417s30.136,63.4,67.31,63.4a62.164,62.164,0,0,0,17.439-2.651,59.979,59.979,0,0,0-2.733,17.355c0,37.175,28.386,67.31,63.4,67.31s63.4-30.134,63.4-67.31a62.227,62.227,0,0,0-2.651-17.437,59.961,59.961,0,0,0,17.355,2.733c37.174,0,67.31-28.386,67.31-63.4s-30.136-63.4-67.31-63.4m-78.12,63.393h.023v.021l-.023,0v-.023" />
                 </svg>
+                <span class="writerN"> 작성자명 </span>
               </div>
 
               <div class="flower01-sprite-2">
@@ -273,7 +274,7 @@
                 var posY = index * flower.height() + 70;
 
                 flower.css({ top: posY, left: posX });
-              });
+              });           
             }
 
             $(window).on('resize', function () {
@@ -296,7 +297,7 @@
                 data: mesId
               }
             }).then((res) => {
-              $(".modTitle").html(res.data.title)
+              $(".modTitle").html(res.data.writer)
               $("#modBody").html(res.data.content)
 
             })
@@ -329,7 +330,7 @@
             const form = document.forms["newMsg"]
 
             const msg = {
-              title: form.elements.title.value,
+              writer: form.elements.writer.value,
               content: form.elements.content.value,
               is_public: form.elements.isPublic.value,
               flower_color: form.elements.flowerColor.value,

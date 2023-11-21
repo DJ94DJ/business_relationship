@@ -102,6 +102,17 @@ button:disabled:hover {
   background-color: #1f2020;
 }
 
+/* 작성자명 */
+.writerN {
+  padding: 6px;
+  text-align: center;
+  font-size: 10px;
+  border-radius: 25px;
+  background-color: #74b93a; /* 꽃 색상에 맞춰서 */
+  color: #000000;
+  border: none;
+}
+
 /* 공개 여부 라디오 버튼 */
 .pubRadioBtn {
   font-size: 30px;
