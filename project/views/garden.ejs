@@ -201,7 +201,7 @@
                   hidden
                 />
                 <div class="msgForm">
-                  <!-- 현재 작성자 데이터 받는 부분 없음 (title을 작성자로 교체?) -->
+                  <!-- 현재 작성자 데이터 받는 부분 없음 (title을 작성자로 교체) -->
                   <div class="msg-name">
                     <input
                       type="text"
@@ -383,11 +383,20 @@
             data: mesId,
           },
         }).then((res) => {
-          $('.modTitle').html(res.data.title);
-          $('#modBody').html(res.data.content);
+          if (res.data.isPublic) {
+            $('.modTitle').html(res.data.writer);
+            $('#modBody').html(res.data.content);
+            // e.preventDefault();
+            $('#testModal').modal('show');
+          } else if ('<%=gardenName%>' == '<%=userName%>') {
+            $('.modTitle').html(res.data.writer);
+            $('#modBody').html(res.data.content);
+            // e.preventDefault();
+            $('#testModal').modal('show');
+          } else {
+            alert('비공개 메시지입니다.');
+          }
         });
-        // e.preventDefault();
-        $('#testModal').modal('show');
       }
 
       // 메시지 작성 모달창
