@@ -1,162 +1,28 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script
-      src="https://code.jquery.com/jquery-3.7.1.min.js"
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
 
-    <link rel="stylesheet" href="../static/css/garden.css" />
-    <link rel="stylesheet" href="../../static/css/garden.css" />
-    <title>garden</title>
-    <!-- <style>
-    /* body {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      background-image: linear-gradient(to bottom, #0072b4, #e9e9e7);
-    } */
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
 
+  <link rel="stylesheet" href="../static/css/garden.css" />
+  <link rel="stylesheet" href="../../static/css/garden.css" />
+  <title>garden</title>
+</head>
 
+<body>
+  <div id="sky"></div>
 
-    .content {
-      margin: 0;
-      overflow: hidden;
-      /* background-color: #87cefa; */
-      width: 90%;
-      height: 90%;
-    }
-
-    #sky {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background-image: linear-gradient(to bottom, #0072b4, #e9e9e7);
-    }
-
-    .write-container {
-      text-align: center;
-      position: relative;
-      top: 150px;
-    }
-
-    .write-btn {
-      display: inline-block;
-      padding: 10px 20px;
-      font-size: 26px;
-      font-weight: bold;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-      border: 3px solid #3498db;
-      color: #3498db;
-      background-color: #ffffff;
-      border-radius: 5px;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    .write-btn:hover {
-      background-color: #3498db;
-      color: #ffffff;
-    }
-
-    .garden {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 40%;
-      background-color: #a0522d;
-    }
-
-    .sprout-container {
-      position: absolute;
-      bottom: 15%;
-      left: 5%;
-      right: 5%;
-      display: flex;
-      gap: 10px;
-      justify-content: space-between;
-    }
-
-    .sprout-btn {
-      width: 60px;
-      height: 60px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.3s ease-in-out;
-      animation: float 2s infinite ease-in-out;
-    }
-
-    .sprout-btn img {
-      width: 130%;
-      height: 120%;
-    }
-
-    .sprout-btn:nth-child(even) {
-      transform: translateY(50px);
-    }
-
-    .sprout-btn:hover {
-      transform: scale(1.2);
-      animation: none;
-    }
-
-    .sprout-btn img {
-      width: 130%;
-      height: 120%;
-    }
-
-    .sprout-btn:nth-child(even) {
-      transform: translateY(50px);
-    }
-
-    .sprout-btn:hover {
-      transform: scale(1.2);
-      animation: none;
-    }
-
-    @keyframes float {
-
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-  </style> -->
-  </head>
-
-  <body>
-    <div id="sky"></div>
-
-    <%-include('navbar.ejs')%>
+  <%-include('navbar.ejs')%>
     <div clas="content">
       <!-- 마이페이지 이동 버튼 -->
       <button type="button" class="my-page-btn" onclick="profile()">
@@ -178,14 +44,8 @@
       </div>
 
       <!-- 씨앗 작성 모달 -->
-      <div
-        class="modal fade"
-        id="seedModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
+      <div class="modal fade" id="seedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="seed-title">메시지 작성하기</div>
           <div class="modal-content">
@@ -194,22 +54,11 @@
             </div>
             <div class="modal-body">
               <form class="newMsg" name="newMsg">
-                <input
-                  type="text"
-                  name="gardenId"
-                  value="<%=gardenId%>"
-                  hidden
-                />
+                <input type="text" name="gardenId" value="<%=gardenId%>" hidden />
                 <div class="msgForm">
                   <!-- 현재 작성자 데이터 받는 부분 없음 (title을 작성자로 교체) -->
                   <div class="msg-name">
-                    <input
-                      type="text"
-                      name="title"
-                      class="user_name"
-                      required
-                      placeholder="작성자명"
-                    />
+                    <input type="text" name="title" class="user_name" required placeholder="작성자명" />
                   </div>
                   <div class="msg-color">
                     <div class="flo-color">
@@ -217,37 +66,19 @@
                       선택&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                     <%- include('pick_color') %>
-                    <input type="hidden" name="flowerColor" value="" />
+                      <input type="hidden" name="flowerColor" value="" />
                   </div>
                   <div class="msg-public">
-                    <input
-                      type="radio"
-                      name="isPublic"
-                      value="true"
-                      id="public"
-                      checked
-                    />
-                    <label for="public"
-                      >&nbsp;&nbsp;메시지 공개
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label
-                    >
+                    <input type="radio" name="isPublic" value="true" id="public" checked />
+                    <label for="public">&nbsp;&nbsp;메시지 공개
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 
-                    <input
-                      type="radio"
-                      name="isPublic"
-                      value="false"
-                      id="private"
-                    />
+                    <input type="radio" name="isPublic" value="false" id="private" />
                     <label for="private">&nbsp;&nbsp;메시지 비공개 </label>
                   </div>
                   <div class="msg-msg">
-                    <input
-                      type="textarea"
-                      id="user_msg"
-                      name="content"
-                      class="user_msg"
-                      placeholder="메시지 내용을 입력해주세요..."
-                    />
+                    <input type="textarea" id="user_msg" name="content" class="user_msg"
+                      placeholder="메시지 내용을 입력해주세요..." />
                   </div>
                 </div>
                 <div>
@@ -262,294 +93,268 @@
       </div>
 
       <!-- 꽃 - 메시지 부분 -->
-      <%if(msg) {%> <%for(let i=0; i < msg.length; i++) {%>
-      <form name="flowerForm">
-        <div class="flower01-sprite-box" onclick="msgOpen(this)">
-          <input
-            type="text"
-            name="mesId"
-            id="mesId"
-            value="<%=msg[i].message_id%>"
-            hidden
-          />
-          <div class="flower01-sprite-1">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="290.82"
-              height="290.82"
-              viewBox="0 0 290.82 290.82"
-              class="flower-svg"
-            >
-              <path
-                id="flower_1"
-                data-name="flower 1"
-                class="flower-1"
-                style="fill: <%=msg[i].flower_color%>"
-                d="M223.526,82.013a62.23,62.23,0,0,0-17.439,2.651,59.972,59.972,0,0,0,2.735-17.355c0-37.174-28.388-67.31-63.4-67.31s-63.4,30.136-63.4,67.31a62.144,62.144,0,0,0,2.651,17.437A60.042,60.042,0,0,0,67.31,82.013C30.136,82.013,0,110.4,0,145.417s30.136,63.4,67.31,63.4a62.164,62.164,0,0,0,17.439-2.651,59.979,59.979,0,0,0-2.733,17.355c0,37.175,28.386,67.31,63.4,67.31s63.4-30.134,63.4-67.31a62.227,62.227,0,0,0-2.651-17.437,59.961,59.961,0,0,0,17.355,2.733c37.174,0,67.31-28.386,67.31-63.4s-30.136-63.4-67.31-63.4m-78.12,63.393h.023v.021l-.023,0v-.023"
-              />
-            </svg>
-          </div>
+      <%if(msg) {%>
+        <%for(let i=0; i < msg.length; i++) {%>
+          <form name="flowerForm">
+            <div class="flower01-sprite-box" onclick="msgOpen(this)">
+              <input type="text" name="mesId" id="mesId" value="<%=msg[i].message_id%>" hidden />
+              <div class="flower01-sprite-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="290.82" height="290.82" viewBox="0 0 290.82 290.82"
+                  class="flower-svg">
+                  <path id="flower_1" data-name="flower 1" class="flower-1" style="fill: <%=msg[i].flower_color%>"
+                    d="M223.526,82.013a62.23,62.23,0,0,0-17.439,2.651,59.972,59.972,0,0,0,2.735-17.355c0-37.174-28.388-67.31-63.4-67.31s-63.4,30.136-63.4,67.31a62.144,62.144,0,0,0,2.651,17.437A60.042,60.042,0,0,0,67.31,82.013C30.136,82.013,0,110.4,0,145.417s30.136,63.4,67.31,63.4a62.164,62.164,0,0,0,17.439-2.651,59.979,59.979,0,0,0-2.733,17.355c0,37.175,28.386,67.31,63.4,67.31s63.4-30.134,63.4-67.31a62.227,62.227,0,0,0-2.651-17.437,59.961,59.961,0,0,0,17.355,2.733c37.174,0,67.31-28.386,67.31-63.4s-30.136-63.4-67.31-63.4m-78.12,63.393h.023v.021l-.023,0v-.023" />
+                </svg>
+              </div>
 
-          <div class="flower01-sprite-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="151.268"
-              height="151.268"
-              viewBox="0 0 151.268 151.268"
-              class="flower2-svg"
-            >
-              <path
-                id="flower_2"
-                data-name="flower 2"
-                class="flower-2"
-                d="M62.558.78,63.61,38.192a.8.8,0,0,0,1.58.178L74.541,2.13a.8.8,0,0,1,1.564.357L68.807,39.2a.8.8,0,0,0,1.5.525L87.489,6.47a.8.8,0,0,1,1.446.7L73.65,41.331A.8.8,0,0,0,75,42.176L99.145,13.583a.8.8,0,0,1,1.255,1L77.9,44.49a.8.8,0,0,0,1.124,1.124l29.906-22.5a.8.8,0,0,1,1,1.255L81.334,48.514a.8.8,0,0,0,.845,1.346l34.164-15.285a.8.8,0,0,1,.7,1.446L83.79,53.2a.8.8,0,0,0,.525,1.5l36.708-7.3a.8.8,0,0,1,.357,1.565L85.14,58.32a.8.8,0,0,0,.178,1.58l37.413,1.052a.8.8,0,0,1,0,1.605L85.318,63.61a.8.8,0,0,0-.178,1.579l36.24,9.351a.8.8,0,0,1-.357,1.565l-36.708-7.3a.8.8,0,0,0-.525,1.5L117.04,87.488a.8.8,0,0,1-.7,1.446L82.179,73.65A.8.8,0,0,0,81.334,75l28.594,24.149a.8.8,0,0,1-1,1.254L79.021,77.9A.8.8,0,0,0,77.9,79.021l22.5,29.906a.8.8,0,0,1-1.255,1L75,81.333a.8.8,0,0,0-1.346.846l15.285,34.163a.8.8,0,0,1-1.446.7L70.307,83.789a.8.8,0,0,0-1.5.525l7.3,36.709a.8.8,0,0,1-1.564.357L65.19,85.14a.8.8,0,0,0-1.58.178L62.558,122.73a.8.8,0,0,1-1.6,0L59.9,85.318a.8.8,0,0,0-1.579-.178L48.97,121.38a.8.8,0,0,1-1.565-.357l7.3-36.709a.8.8,0,0,0-1.5-.525L36.022,117.039a.8.8,0,0,1-1.446-.7L49.86,82.18a.8.8,0,0,0-1.346-.846L24.365,109.928a.8.8,0,0,1-1.255-1l22.5-29.906A.8.8,0,0,0,44.489,77.9L14.583,100.4a.8.8,0,0,1-1-1.254L42.177,75a.8.8,0,0,0-.846-1.346L7.167,88.934a.8.8,0,0,1-.7-1.446L39.721,70.307a.8.8,0,0,0-.525-1.5l-36.709,7.3a.8.8,0,0,1-.357-1.565L38.37,65.19a.8.8,0,0,0-.178-1.579L.78,62.558a.8.8,0,0,1,0-1.605L38.192,59.9a.8.8,0,0,0,.178-1.58L2.13,48.969A.8.8,0,0,1,2.487,47.4L39.2,54.7a.8.8,0,0,0,.525-1.5L6.471,36.022a.8.8,0,0,1,.7-1.446L41.331,49.861a.8.8,0,0,0,.846-1.346L13.583,24.365a.8.8,0,0,1,1-1.255l29.906,22.5a.8.8,0,0,0,1.124-1.124l-22.5-29.906a.8.8,0,0,1,1.255-1L48.514,42.176a.8.8,0,0,0,1.346-.846L34.576,7.167a.8.8,0,0,1,1.446-.7L53.2,39.721a.8.8,0,0,0,1.5-.525l-7.3-36.708A.8.8,0,0,1,48.97,2.13l9.351,36.24a.8.8,0,0,0,1.579-.178L60.953.78a.8.8,0,0,1,1.6,0"
-                transform="matrix(0.966, -0.259, 0.259, 0.966, 0, 31.967)"
-              />
-            </svg>
-          </div>
-          <div class="user-name">From. 닉넴</div>
-        </div>
-      </form>
+              <div class="flower01-sprite-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="151.268" height="151.268" viewBox="0 0 151.268 151.268"
+                  class="flower2-svg">
+                  <path id="flower_2" data-name="flower 2" class="flower-2"
+                    d="M62.558.78,63.61,38.192a.8.8,0,0,0,1.58.178L74.541,2.13a.8.8,0,0,1,1.564.357L68.807,39.2a.8.8,0,0,0,1.5.525L87.489,6.47a.8.8,0,0,1,1.446.7L73.65,41.331A.8.8,0,0,0,75,42.176L99.145,13.583a.8.8,0,0,1,1.255,1L77.9,44.49a.8.8,0,0,0,1.124,1.124l29.906-22.5a.8.8,0,0,1,1,1.255L81.334,48.514a.8.8,0,0,0,.845,1.346l34.164-15.285a.8.8,0,0,1,.7,1.446L83.79,53.2a.8.8,0,0,0,.525,1.5l36.708-7.3a.8.8,0,0,1,.357,1.565L85.14,58.32a.8.8,0,0,0,.178,1.58l37.413,1.052a.8.8,0,0,1,0,1.605L85.318,63.61a.8.8,0,0,0-.178,1.579l36.24,9.351a.8.8,0,0,1-.357,1.565l-36.708-7.3a.8.8,0,0,0-.525,1.5L117.04,87.488a.8.8,0,0,1-.7,1.446L82.179,73.65A.8.8,0,0,0,81.334,75l28.594,24.149a.8.8,0,0,1-1,1.254L79.021,77.9A.8.8,0,0,0,77.9,79.021l22.5,29.906a.8.8,0,0,1-1.255,1L75,81.333a.8.8,0,0,0-1.346.846l15.285,34.163a.8.8,0,0,1-1.446.7L70.307,83.789a.8.8,0,0,0-1.5.525l7.3,36.709a.8.8,0,0,1-1.564.357L65.19,85.14a.8.8,0,0,0-1.58.178L62.558,122.73a.8.8,0,0,1-1.6,0L59.9,85.318a.8.8,0,0,0-1.579-.178L48.97,121.38a.8.8,0,0,1-1.565-.357l7.3-36.709a.8.8,0,0,0-1.5-.525L36.022,117.039a.8.8,0,0,1-1.446-.7L49.86,82.18a.8.8,0,0,0-1.346-.846L24.365,109.928a.8.8,0,0,1-1.255-1l22.5-29.906A.8.8,0,0,0,44.489,77.9L14.583,100.4a.8.8,0,0,1-1-1.254L42.177,75a.8.8,0,0,0-.846-1.346L7.167,88.934a.8.8,0,0,1-.7-1.446L39.721,70.307a.8.8,0,0,0-.525-1.5l-36.709,7.3a.8.8,0,0,1-.357-1.565L38.37,65.19a.8.8,0,0,0-.178-1.579L.78,62.558a.8.8,0,0,1,0-1.605L38.192,59.9a.8.8,0,0,0,.178-1.58L2.13,48.969A.8.8,0,0,1,2.487,47.4L39.2,54.7a.8.8,0,0,0,.525-1.5L6.471,36.022a.8.8,0,0,1,.7-1.446L41.331,49.861a.8.8,0,0,0,.846-1.346L13.583,24.365a.8.8,0,0,1,1-1.255l29.906,22.5a.8.8,0,0,0,1.124-1.124l-22.5-29.906a.8.8,0,0,1,1.255-1L48.514,42.176a.8.8,0,0,0,1.346-.846L34.576,7.167a.8.8,0,0,1,1.446-.7L53.2,39.721a.8.8,0,0,0,1.5-.525l-7.3-36.708A.8.8,0,0,1,48.97,2.13l9.351,36.24a.8.8,0,0,0,1.579-.178L60.953.78a.8.8,0,0,1,1.6,0"
+                    transform="matrix(0.966, -0.259, 0.259, 0.966, 0, 31.967)" />
+                </svg>
+              </div>
+              <div class="user-name" id="flowerName">
+                <%=msg[i].writer%>
+              </div>
+            </div>
+          </form>
     </div>
-    <%}%> <%} else {%> 메시지가 없습니다. <%}%>
-    <!-- </div> -->
+    <%}%>
+      <%} else {%> 메시지가 없습니다. <%}%>
+          <!-- </div> -->
 
-    <!-- msgOpen 버튼을 누를 시 해당 폼에 대한 메시지ID = (mesId)를 받아온다 -->
-    <!-- axios 요청을 받아서 해당 데이터를 이용해서 모달 창을 구성한다 -->
+          <!-- msgOpen 버튼을 누를 시 해당 폼에 대한 메시지ID = (mesId)를 받아온다 -->
+          <!-- axios 요청을 받아서 해당 데이터를 이용해서 모달 창을 구성한다 -->
 
-    <div
-      class="modal fade"
-      id="testModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title modTitle" id="exampleModalLabel"></h5>
-            <button class="closeBtn">
-              <span aria-hidden="true">X</span>
-            </button>
+          <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title modTitle" id="exampleModalLabel"></h5>
+                  <button class="closeBtn">
+                    <span aria-hidden="true">X</span>
+                  </button>
+                </div>
+                <div class="modal-body" id="modBody"></div>
+              </div>
+            </div>
           </div>
-          <div class="modal-body" id="modBody"></div>
-        </div>
-      </div>
-    </div>
 
-    <script>
-      $(document).ready(function () {
-        arrangeFlowers();
+          <script>
+            $(document).ready(function () {
+              arrangeFlowers();
 
-        function arrangeFlowers() {
-          $('.flower01-sprite-box').each(function (index) {
-            var flower = $(this);
-            var userName = flower.find('.user-name');
-            var screenWidth = $(window).width();
+              function arrangeFlowers() {
+                $('.flower01-sprite-box').each(function (index) {
+                  var flower = $(this);
+                  var userName = flower.find('.user-name');
+                  var screenWidth = $(window).width();
 
-            var posX = index % 2 === 0 ? screenWidth - flower.width() : 0;
-            var posY = index * flower.height() + 70;
+                  var posX = index % 2 === 0 ? screenWidth - flower.width() : 0;
+                  var posY = index * flower.height() + 70;
 
-            flower.css({ top: posY, left: posX });
+                  flower.css({ top: posY, left: posX });
 
-            if (index % 2 === 0) {
-              var oddName = '-20%';
-              userName.css({ left: oddName });
-            } else {
-              var evenName = '120%';
-              userName.css({ left: evenName });
+                  if (index % 2 === 0) {
+                    var oddName = '-20%';
+                    userName.css({ left: oddName });
+                  } else {
+                    var evenName = '120%';
+                    userName.css({ left: evenName });
+                  }
+                });
+              }
+
+              $(window).on('resize', function () {
+                arrangeFlowers();
+              });
+
+              $('.flower01-sprite-box').on('click', function (button) {
+                msgOpen(button);
+              });
+            });
+
+            function msgOpen(button) {
+              const form = button.closest('form');
+              let mesId = form.querySelector('[name="mesId"]').value;
+              console.log(mesId);
+              axios({
+                method: 'get',
+                url: '/home/garden/getMes',
+                params: {
+                  data: mesId,
+                },
+              }).then((res) => {
+                if (res.data.isPublic) {
+                  $('.modTitle').html(res.data.writer);
+                  $('#modBody').html(res.data.content);
+                  // e.preventDefault();
+                  $('#testModal').modal('show');
+                } else if ('<%=gardenName%>' == '<%=userName%>') {
+                  $('.modTitle').html(res.data.writer);
+                  $('#modBody').html(res.data.content);
+                  // e.preventDefault();
+                  $('#testModal').modal('show');
+                } else {
+                  alert('비공개 메시지입니다.');
+                }
+              });
             }
-          });
-        }
 
-        $(window).on('resize', function () {
-          arrangeFlowers();
-        });
+            // 메시지 작성 모달창
+            $('.seed-sprite-box').on('click', function (e) {
+              seedOpen(e);
+            });
 
-        $('.flower01-sprite-box').on('click', function (button) {
-          msgOpen(button);
-        });
-      });
-
-      function msgOpen(button) {
-        const form = button.closest('form');
-        let mesId = form.querySelector('[name="mesId"]').value;
-        console.log(mesId);
-        axios({
-          method: 'get',
-          url: '/home/garden/getMes',
-          params: {
-            data: mesId,
-          },
-        }).then((res) => {
-          if (res.data.isPublic) {
-            $('.modTitle').html(res.data.writer);
-            $('#modBody').html(res.data.content);
-            // e.preventDefault();
-            $('#testModal').modal('show');
-          } else if ('<%=gardenName%>' == '<%=userName%>') {
-            $('.modTitle').html(res.data.writer);
-            $('#modBody').html(res.data.content);
-            // e.preventDefault();
-            $('#testModal').modal('show');
-          } else {
-            alert('비공개 메시지입니다.');
-          }
-        });
-      }
-
-      // 메시지 작성 모달창
-      $('.seed-sprite-box').on('click', function (e) {
-        seedOpen(e);
-      });
-
-      function seedOpen(e) {
-        e.preventDefault();
-        $('#seedModal').modal('show');
-      }
-
-      $('.closeBtn').click(function () {
-        $('#seedModal').modal('hide');
-      });
-
-      // 모달창 닫기 버튼 활성화
-      $('.closeBtn').click(function () {
-        $('.modal').modal('hide');
-      });
-
-      // 회원과 비회원을 구분하는 애니메이션 필요
-      function writeMsg() {
-        const form = document.forms['newMsg'];
-
-        const msg = {
-          title: form.elements.title.value,
-          content: form.elements.content.value,
-          is_public: form.elements.isPublic.value,
-          flower_color: form.elements.flowerColor.value,
-          id: form.elements.gardenId.value,
-        };
-
-        if ('<%=userName%>') {
-          // 세션에 아이디가 있을 때(로그인 O)
-          axios({
-            method: 'POST',
-            url: '/home/garden',
-            data: msg,
-          }).then((res) => {
-            if (res.data.result) {
-              alert('메시지 작성 완료');
-              location.reload();
-            } else {
-              alert('메시지 작성 실패 ㅜㅜ');
+            function seedOpen(e) {
+              e.preventDefault();
+              $('#seedModal').modal('show');
             }
-          });
-        } else {
-          // 세션에 아이디가 없을 때(로그인 X)
-          axios({
-            method: 'POST',
-            url: '/home/garden',
-            data: msg,
-          }).then((res) => {
-            console.log('작성 결과', res);
-            if (res.data.result) {
-              alert('메시지 작성 완료');
-              location.reload();
-            } else {
-              alert('메시지 작성 실패 ㅜㅜ');
+
+            $('.closeBtn').click(function () {
+              $('#seedModal').modal('hide');
+            });
+
+            // 모달창 닫기 버튼 활성화
+            $('.closeBtn').click(function () {
+              $('.modal').modal('hide');
+            });
+
+            // 회원과 비회원을 구분하는 애니메이션 필요
+            function writeMsg() {
+              const form = document.forms['newMsg'];
+
+              const msg = {
+                title: form.elements.title.value,
+                content: form.elements.content.value,
+                is_public: form.elements.isPublic.value,
+                flower_color: form.elements.flowerColor.value,
+                id: form.elements.gardenId.value,
+              };
+
+              if ('<%=userName%>') {
+                // 세션에 아이디가 있을 때(로그인 O)
+                axios({
+                  method: 'POST',
+                  url: '/home/garden',
+                  data: msg,
+                }).then((res) => {
+                  if (res.data.result) {
+                    alert('메시지 작성 완료');
+                    location.reload();
+                  } else {
+                    alert('메시지 작성 실패 ㅜㅜ');
+                  }
+                });
+              } else {
+                // 세션에 아이디가 없을 때(로그인 X)
+                axios({
+                  method: 'POST',
+                  url: '/home/garden',
+                  data: msg,
+                }).then((res) => {
+                  console.log('작성 결과', res);
+                  if (res.data.result) {
+                    alert('메시지 작성 완료');
+                    location.reload();
+                  } else {
+                    alert('메시지 작성 실패 ㅜㅜ');
+                  }
+                });
+              }
             }
-          });
-        }
-      }
 
-      function randomWalk() {
-        axios({
-          method: 'GET',
-          url: '/home/garden/random',
-        }).then((res) => {
-          let num = res.data.data;
-          console.log('res : ', res);
-          console.log('res.data : ', res.data);
-          console.log('num : ', num);
-          randomPage(num);
-        });
-      }
-
-      function randomPage(id) {
-        console.log('매개변수: ', id);
-        axios({
-          method: 'GET',
-          url: `/home/garden/${id}`,
-        }).then((res) => {
-          location.href = `/home/garden/${id}`;
-        });
-      }
-
-      // 메시지 삭제
-      function deleteMsg(id) {
-        // const form = button.closest("form")
-        console.log(
-          '메시지ID : ',
-          document.getElementById((name = 'mesId')).value,
-        );
-        let delMess = {
-          mesId: document.getElementById((name = 'mesId')).value,
-          gdName: '<%=userName%>',
-        };
-
-        console.log('mesId : ', delMess.mesId);
-        axios({
-          method: 'DELETE',
-          url: '/home/garden',
-          data: delMess,
-        })
-          .then((res) => {
-            console.log('res.data', res.data);
-            if (res.data.result) {
-              alert('삭제되었습니다');
-              location.reload();
-            } else {
-              // 주인만 삭제 가능
-              location.reload();
+            function randomWalk() {
+              axios({
+                method: 'GET',
+                url: '/home/garden/random',
+              }).then((res) => {
+                let num = res.data.data;
+                console.log('res : ', res);
+                console.log('res.data : ', res.data);
+                console.log('num : ', num);
+                randomPage(num);
+              });
             }
-          })
-          .catch((err) => {
-            console.log('에러발생');
-          });
-      }
 
-      $('buttion[name=delMsg]').on('click', function () {
-        console.log('value : ', this.value);
-      });
+            function randomPage(id) {
+              console.log('매개변수: ', id);
+              axios({
+                method: 'GET',
+                url: `/home/garden/${id}`,
+              }).then((res) => {
+                location.href = `/home/garden/${id}`;
+              });
+            }
 
-      function profile() {
-        axios({
-          method: 'GET',
-          url: '/user/profile',
-        }).then((res) => {
-          console.log('res', res.data);
-          if (res.data) location.href = '/user/profile';
-          else {
-            alert('마이페이지 접근 불가 ;ㅁ;');
-          }
-        });
-      }
-      function signOut() {
-        axios({
-          method: 'POST',
-          url: '/home/signout',
-        }).then((res) => {
-          if (res.data.result) location.href = '/home';
-          else {
-            alert('로그아웃 실패 ;ㅁ;');
-          }
-        });
-      }
+            // 메시지 삭제
+            function deleteMsg(id) {
+              // const form = button.closest("form")
+              console.log(
+                '메시지ID : ',
+                document.getElementById((name = 'mesId')).value,
+              );
+              let delMess = {
+                mesId: document.getElementById((name = 'mesId')).value,
+                gdName: '<%=userName%>',
+              };
 
-      // 자신의 가든이면 메시지 작성기능 제거
-      if ('<%=gardenName%>' == '<%=userName%>') {
-        $('#seedBtn').css('display', 'none');
-      }
-    </script>
-  </body>
+              console.log('mesId : ', delMess.mesId);
+              axios({
+                method: 'DELETE',
+                url: '/home/garden',
+                data: delMess,
+              })
+                .then((res) => {
+                  console.log('res.data', res.data);
+                  if (res.data.result) {
+                    alert('삭제되었습니다');
+                    location.reload();
+                  } else {
+                    // 주인만 삭제 가능
+                    location.reload();
+                  }
+                })
+                .catch((err) => {
+                  console.log('에러발생');
+                });
+            }
+
+            $('buttion[name=delMsg]').on('click', function () {
+              console.log('value : ', this.value);
+            });
+
+            function profile() {
+              axios({
+                method: 'GET',
+                url: '/user/profile',
+              }).then((res) => {
+                console.log('res', res.data);
+                if (res.data) location.href = '/user/profile';
+                else {
+                  alert('마이페이지 접근 불가 ;ㅁ;');
+                }
+              });
+            }
+            function signOut() {
+              axios({
+                method: 'POST',
+                url: '/home/signout',
+              }).then((res) => {
+                if (res.data.result) location.href = '/home';
+                else {
+                  alert('로그아웃 실패 ;ㅁ;');
+                }
+              });
+            }
+
+            // 자신의 가든이면 메시지 작성기능 제거
+            if ('<%=gardenName%>' == '<%=userName%>') {
+              $('#seedBtn').css('display', 'none');
+            }
+          </script>
+</body>
+
 </html>
