@@ -11,6 +11,8 @@
   /* 이하 애니메이션 스타일 */
   opacity: 1;
   transition: opacity 0.25s ease-out;
+  display: flex;
+  justify-content: center;
 }
 
 .bush {
@@ -131,7 +133,7 @@
 .vine-2,
 .vine-3 {
   position: absolute;
-  z-index: 0;
+  z-index: -1;
   transform: translateX(-50%);
   bottom: 180px;
 }
@@ -144,21 +146,22 @@
 
 .box-vine-set:nth-child(n) {
   animation: VineAnimation 5.5s infinite;
+
   animation-delay: calc(1.6s * var(--i)); /* --i는 각 요소의 인덱스 */
 }
 
-.leaf-sprite-box {
+/* .leaf-sprite-box {
   height: 210px;
   width: 77px;
   opacity: 1;
   background-color: #0072b4;
-}
+} */
 
-.leaf-sprite-1 {
+/* .leaf-sprite-1 {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   animation: popupAnimation 1s linear;
-}
+} */
 
 .leaf {
   width: 100%;
@@ -169,32 +172,32 @@
   justify-content: center;
   /* 가로 줄의 가운데에 두기 */
   top: 50px;
+  opacity: 0;
 }
 
-.vinepart-set .leaves path {
+/* .vinepart-set path.leaves {
   transform-origin: 50% 120%;
-  /* animation: rotation 3s infinite linear; */
+  opacity: 0.1;
+  transition: opacity 0.5s ease-in-out;
+} */
+
+.leaves {
+  transform-origin: 50% 120%;
+  opacity: 0.1;
+  transition: opacity 0.5s ease-in-out;
 }
 
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes PopupAnimation {
 }
 
-@keyframes popupAnimation {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.03);
-  }
-  100% {
-    transform: scaleY(1);
-  }
+/* .box-vine-set .vinepart-set .leaves {
+  transform-origin: 50% 120%;
+  opacity: 0.1;
+  transition: opacity 0.5s ease-in-out;
+} */
+
+.leaves.animate {
+  opacity: 1;
 }
 
 /* @keyframes waveAnimation {
