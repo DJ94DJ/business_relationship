@@ -36,8 +36,6 @@ exports.signInUser = (req, res) => {
               // user_name ,id 세션에 저장 (로그인 시 유 무를 확인 등)
               req.session.userName = result.user_name;
               req.session.userId = result.id;
-              console.log('signInUser : ', result);
-              console.log('session', req.session);
               res.send({ result: true });
             } else {
               res.send({ result: false });
@@ -59,7 +57,6 @@ exports.signInUser = (req, res) => {
 
 // '로그아웃' 버튼 클릭 시
 exports.signOut = (req, res) => {
-  console.log('req.session', req.session);
   req.session.destroy((err) => {
     if (err) throw err;
     res.send({ result: true });
@@ -73,14 +70,12 @@ exports.signUp = (req, res) => {
 
 // 회원가입 -> 아이디 중복체크 버튼 클릭 시
 exports.idCheck = (req, res) => {
-  console.log('req.body.user_id : ', req.body.user_id);
   User.findOne({
     where: {
       user_id: req.body.user_id,
     },
   })
     .then((result) => {
-      console.log('idCheck result : ', result);
       if (result) {
         res.send({ result: false }); // 아이디가 존재할 시 false를 보냄
       } else res.send({ result: true });
@@ -106,7 +101,6 @@ exports.signUpUser = (req, res) => {
         user_mbti: user_mbti,
       })
         .then((result) => {
-          console.log('signUpUser', result);
           res.send({ result: true });
         })
         .catch((error) => {
@@ -159,25 +153,20 @@ exports.garden = (req, res) => {
 
 // 롤링페이퍼 '작성' 버튼 클릭 시
 exports.writeMsg = (req, res) => {
-  console.log('작성 요청', req);
-
   Message.create({
     ...req.body,
   }).then((result) => {
-    console.log('writeMsg : ', result);
     res.send({ result: true });
   });
 };
 
 // 꽃 클릭 시 해당 id 를 받아 메시지 내용들을 불러온다.
 exports.getMes = (req, res) => {
-  console.log(req.query.data);
   Message.findOne({
     where: {
       message_id: req.query.data,
     },
   }).then((result) => {
-    console.log('getMesID', result);
     const mesData = {
       messageId: result.message_id,
       writer: result.writer,
@@ -190,13 +179,10 @@ exports.getMes = (req, res) => {
 
 // 롤링페이퍼 '삭제' 버튼 클릭 시 삭제는 해당 가든의 주인만 가능하다. + 삭제 버튼은 세션이 존재하는 사용자이름과 & 세션의 userName 이 일치하면 생성된다. 아닐 시 존재하지 않는다.
 exports.deleteMsg = (req, res) => {
-  console.log('req.mesId', req.body.mesId);
-  console.log('gdName : ', req.body.gdName);
   if (req.body.gdName == req.session.userName) {
     Message.destroy({
       where: { message_id: req.body.mesId },
     }).then((result) => {
-      console.log('deleteMsg : ', result);
       res.send({ result: true });
     });
   } else res.send({ result: false });
@@ -207,15 +193,12 @@ exports.randomGarden = (req, res) => {
   User.findAll().then((result) => {
     const ranId = Math.floor(Math.random() * result.length) + 1;
     const ranData = result[ranId - 1];
-    console.log('ranData :', ranData);
-    console.log('ranId :', ranId);
     res.send({ data: ranId });
   });
 };
 
 // '산책하기' 페이지 랜더
 exports.ranGardenPage = (req, res) => {
-  console.log('req.params.id :', req.params.id);
   User.findOne({
     where: {
       id: req.params.id,
@@ -232,7 +215,6 @@ exports.ranGardenPage = (req, res) => {
       where: { id: req.params.id },
       include: { model: User },
     }).then((msg) => {
-      console.log('ran-msg :', msg);
       res.render('garden', {
         msg,
         userName: req.session.userName,

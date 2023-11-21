@@ -3,11 +3,10 @@ const pwSalt = require('../model/pwSalt');
 
 // 마이페이지 랜더
 exports.profile = (req, res) => {
-  console.log('req.session.userId', req.session.userId);
+  console.log('마이페이지 이동');
   User.findOne({
     where: { id: req.session.userId },
   }).then((result) => {
-    console.log('result : ', result);
     if (result)
       res.render('profile', {
         data: result,
@@ -23,7 +22,6 @@ exports.editUser = (req, res) => {
   User.update(req.body, {
     where: { id: req.session.userId },
   }).then((result) => {
-    console.log('editUser : ', result);
     if (result[0]) res.send({ result: true });
     else res.send({ result: false });
   });
@@ -34,8 +32,6 @@ exports.deleteUser = (req, res) => {
   User.destroy({
     where: { id: req.session.userId },
   }).then((result) => {
-    console.log('deleteUser : ', result); // 1 or 0 == true or false
-
     if (result) res.send({ result: true });
     else res.send({ result: false });
   });
