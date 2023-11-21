@@ -5,5 +5,13 @@
     "username": "user",
     "password": "qwer1234!",
     "dialect": "mysql"
+  },
+
+  "production": {
+    "host": "",
+    "database": "",
+    "username": "",
+    "password": "",
+    "dialect": "mysql"
   }
 }

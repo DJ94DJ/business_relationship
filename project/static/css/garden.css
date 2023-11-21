@@ -281,3 +281,14 @@ input[type='color'] {
 .closeBtn-container {
   text-align: right;
 }
+
+/* 작성자명 */
+.writerN {
+  padding: 10px;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 25px;
+  background-color: #74b93a; /* 꽃 색상에 맞춰서 */
+  color: #000000;
+  border: none;
+}

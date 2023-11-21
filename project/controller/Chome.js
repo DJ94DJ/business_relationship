@@ -132,7 +132,7 @@ exports.garden = (req, res) => {
       Message.findAll({
         attributes: [
           'message_id',
-          'title',
+          'writer',
           'content',
           'is_public',
           'flower_color',
@@ -180,7 +180,7 @@ exports.getMes = (req, res) => {
     console.log('getMesID', result);
     const mesData = {
       messageId: result.message_id,
-      title: result.title,
+      writer: result.writer,
       content: result.content,
       isPublic: result.is_public,
     };
@@ -224,7 +224,7 @@ exports.ranGardenPage = (req, res) => {
     Message.findAll({
       attributes: [
         'message_id',
-        'title',
+        'writer',
         'content',
         'is_public',
         'flower_color',
