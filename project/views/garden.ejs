@@ -20,13 +20,10 @@
 </head>
 
 <body>
-  <div id="sky">
-    <%-include('test_ani.ejs')%>
-  </div>
+  <div id="sky"><%-include('test_ani.ejs')%></div>
 
   <%-include('navbar.ejs')%>
     <div clas="content">
-
       <span class="flowerCount">자라난 꽃 <%= msg.length %> 송이</span>
 
       <!-- 씨앗 버튼 -->
@@ -110,26 +107,7 @@
                 <%=msg[i].writer%>
               </div>
             </div>
-
-            <!-- 메시지 모달 -->
-            <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <input type="text" id="modalMesId" name="modalMesId" value="<%=msg[i].message_id%>">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title modTitle" id="exampleModalLabel"></h5>
-                    <button class="closeBtn">
-                      <span aria-hidden="true">X</span>
-                    </button>
-                  </div>
-                  <div class="modal-body" id="modBody"></div>
-                  <button type="button" onclick="deleteMsg(this)">삭제하기</button>
-                </div>
-              </div>
-            </div>
           </form>
-
     </div>
     <%}%>
       <%} else {%> 메시지가 없습니다. <%}%>
@@ -138,9 +116,8 @@
           <!-- msgOpen 버튼을 누를 시 해당 폼에 대한 메시지ID = (mesId)를 받아온다 -->
           <!-- axios 요청을 받아서 해당 데이터를 이용해서 모달 창을 구성한다 -->
 
-          <!-- <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
-            <input type="text" id="modalMesId" value="">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -149,11 +126,10 @@
                     <span aria-hidden="true">X</span>
                   </button>
                 </div>
-                <div class="modal-body" id="modBody"></div>
-                <button type="button" onclick="deleteMsg(this)">삭제하기</button>
+                <div class="modal-body" id="modBody" style=""></div>
               </div>
             </div>
-          </div> -->
+          </div>
 
           <script>
             $(document).ready(function () {
@@ -192,7 +168,6 @@
             function msgOpen(button) {
               const form = button.closest('form');
               let mesId = form.querySelector('[name="mesId"]').value;
-              console.log(mesId);
               axios({
                 method: 'get',
                 url: '/home/garden/getMes',
@@ -202,7 +177,7 @@
               }).then((res) => {
                 if (res.data.isPublic) {
                   $('.modTitle').html(res.data.writer);
-                  $('#modBody').html(res.data.content);
+                  $('#modBody').html(res.data.content).css('text-align', 'center');
                   // e.preventDefault();
                   $('#testModal').modal('show');
                 } else if ('<%=gardenName%>' == '<%=userName%>') {
@@ -268,7 +243,6 @@
                   url: '/home/garden',
                   data: msg,
                 }).then((res) => {
-                  console.log('작성 결과', res);
                   if (res.data.result) {
                     alert('메시지 작성 완료');
                     location.reload();
@@ -285,9 +259,6 @@
                 url: '/home/garden/random',
               }).then((res) => {
                 let num = res.data.data;
-                console.log('res : ', res);
-                console.log('res.data : ', res.data);
-                console.log('num : ', num);
                 randomPage(num);
               });
             }
@@ -322,7 +293,6 @@
                 data: delMess,
               })
                 .then((res) => {
-                  console.log('res.data', res.data);
                   if (res.data.result) {
                     alert('삭제되었습니다');
                     location.reload();
@@ -345,7 +315,6 @@
                 method: 'GET',
                 url: '/user/profile',
               }).then((res) => {
-                console.log('res', res.data);
                 if (res.data) location.href = '/user/profile';
                 else {
                   alert('마이페이지 접근 불가 ;ㅁ;');
@@ -365,10 +334,9 @@
             }
 
             // 자신의 가든이면 메시지 작성기능 제거
-            // if ('<%=gardenName%>' == '<%=userName%>') {
-            //   $('#seedBtn').css('display', 'none');
-            // }
-
+            if ('<%=gardenName%>' == '<%=userName%>') {
+              $('#seedBtn').css('display', 'none');
+            }
           </script>
 </body>
 

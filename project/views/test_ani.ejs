@@ -1,132 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/test_ani.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
+    <script src="//code.jquery.com/jquery-3.4.1.js"></script>
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/static/css/test_ani.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
-  <script src="//code.jquery.com/jquery-3.4.1.js"></script>
-  <title>Document</title>
-</head>
+  <body>
+    <div id="animation_sky">
+      <div id="leafContainer"></div>
+      <div class="vines"></div>
+      <div class="bush"></div>
+    </div>
 
-<body>
-  <div id="animation_sky">
-    <div id="leafContainer"></div>
-    <div class="vines"></div>
-    <div class="bush"></div>
-  </div>
+    <script>
+      function calculateDeg(selector) {
+        var tr = $(selector).css('transform');
 
-  <script>
-    function calculateDeg(selector) {
-      var tr = $(selector).css('transform');
+        console.log(tr, tr.split('('));
+        var values = tr.split('(')[1].split(')')[0].split(',');
 
-      console.log(tr, tr.split('('));
-      var values = tr.split('(')[1].split(')')[0].split(',');
+        var a = values[0];
+        var b = values[1];
+        var c = values[2];
+        var d = values[3];
 
-      var a = values[0];
-      var b = values[1];
-      var c = values[2];
-      var d = values[3];
-
-      var scale = Math.sqrt(a * a + b * b);
-      var sin = b / scale;
-      var angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
-      return angle;
-    }
-    function rotate(selector, angle, deg, ms) {
-      $(selector).animate(
-        { a: deg },
-        {
-          duration: ms,
-          step: function (now, fx) {
-            $(this).css('transform', 'rotate(' + (angle + now) + 'deg)');
+        var scale = Math.sqrt(a * a + b * b);
+        var sin = b / scale;
+        var angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+        return angle;
+      }
+      function rotate(selector, angle, deg, ms) {
+        $(selector).animate(
+          { a: deg },
+          {
+            duration: ms,
+            step: function (now, fx) {
+              $(this).css('transform', 'rotate(' + (angle + now) + 'deg)');
+            },
           },
-        },
-      );
-    }
-    // $(document).ready(function () {
-    //   setInterval(function () {
-    //     var angle = calculateDeg('.leaves');
-    //     rotate('#leaves', angle, 35, 1000);
-    //     rotate('#leaves', angle, 0, 1000);
-    //   }, 2000);
-    // });
+        );
+      }
+      // $(document).ready(function () {
+      //   setInterval(function () {
+      //     var angle = calculateDeg('.leaves');
+      //     rotate('#leaves', angle, 35, 1000);
+      //     rotate('#leaves', angle, 0, 1000);
+      //   }, 2000);
+      // });
 
-    function getRandomColor() {
-      var hue = Math.floor(Math.random() * 60) + 90;
-      var saturation = Math.floor(Math.random() * 10) + 30;
-      var lightness = Math.floor(Math.random() * 50) + 20;
-      return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-    }
-    //녹색계열 랜덤컬러 함수
+      function getRandomColor() {
+        var hue = Math.floor(Math.random() * 60) + 90;
+        var saturation = Math.floor(Math.random() * 10) + 30;
+        var lightness = Math.floor(Math.random() * 50) + 20;
+        return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+      }
+      //녹색계열 랜덤컬러 함수
 
-    function getRandomColorleaf1() {
-      var hue = Math.floor(Math.random() * 80) + 100;
-      var saturation = Math.floor(Math.random() * 20) + 90;
-      var lightness = Math.floor(Math.random() * 60) + 20;
-      return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-    }
+      function getRandomColorleaf1() {
+        var hue = Math.floor(Math.random() * 80) + 100;
+        var saturation = Math.floor(Math.random() * 20) + 90;
+        var lightness = Math.floor(Math.random() * 60) + 20;
+        return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+      }
 
-    function getRandomColorleaf2() {
-      var hue = Math.floor(Math.random() * 50) + 90;
-      var saturation = Math.floor(Math.random() * 40) + 40;
-      var lightness = Math.floor(Math.random() * 25) + 20;
-      return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-    }
+      function getRandomColorleaf2() {
+        var hue = Math.floor(Math.random() * 50) + 90;
+        var saturation = Math.floor(Math.random() * 40) + 40;
+        var lightness = Math.floor(Math.random() * 25) + 20;
+        return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+      }
 
-    function createLeafSVG() {
-      const svgNS = 'http://www.w3.org/2000/svg';
-      const svg = document.createElementNS(svgNS, 'svg');
+      function createLeafSVG() {
+        const svgNS = 'http://www.w3.org/2000/svg';
+        const svg = document.createElementNS(svgNS, 'svg');
 
-      svg.setAttribute('width', '140.481');
-      svg.setAttribute('height', '223.477');
-      svg.setAttribute('viewBox', '0 0 140.481 223.477');
-      svg.setAttribute('overflow', 'visible');
+        svg.setAttribute('width', '140.481');
+        svg.setAttribute('height', '223.477');
+        svg.setAttribute('viewBox', '0 0 140.481 223.477');
+        svg.setAttribute('overflow', 'visible');
 
-      const defs = document.createElementNS(svgNS, 'defs');
-      svg.appendChild(defs);
+        const defs = document.createElementNS(svgNS, 'defs');
+        svg.appendChild(defs);
 
-      const linearGradient = document.createElementNS(
-        svgNS,
-        'linearGradient',
-      );
-      const gradientId = 'gradient' + Math.random();
-      linearGradient.setAttribute('id', gradientId);
-      linearGradient.setAttribute('x1', '0.5');
-      linearGradient.setAttribute('x2', '0.5');
-      linearGradient.setAttribute('y2', '1');
-      defs.appendChild(linearGradient);
+        const linearGradient = document.createElementNS(
+          svgNS,
+          'linearGradient',
+        );
+        const gradientId = 'gradient' + Math.random();
+        linearGradient.setAttribute('id', gradientId);
+        linearGradient.setAttribute('x1', '0.5');
+        linearGradient.setAttribute('x2', '0.5');
+        linearGradient.setAttribute('y2', '1');
+        defs.appendChild(linearGradient);
 
-      const stop1 = document.createElementNS(svgNS, 'stop');
-      stop1.setAttribute('offset', '0');
-      stop1.setAttribute('stop-color', getRandomColorleaf1());
-      linearGradient.appendChild(stop1);
+        const stop1 = document.createElementNS(svgNS, 'stop');
+        stop1.setAttribute('offset', '0');
+        stop1.setAttribute('stop-color', getRandomColorleaf1());
+        linearGradient.appendChild(stop1);
 
-      const stop2 = document.createElementNS(svgNS, 'stop');
-      stop2.setAttribute('offset', '1');
-      stop2.setAttribute('stop-color', getRandomColorleaf2());
-      linearGradient.appendChild(stop2);
+        const stop2 = document.createElementNS(svgNS, 'stop');
+        stop2.setAttribute('offset', '1');
+        stop2.setAttribute('stop-color', getRandomColorleaf2());
+        linearGradient.appendChild(stop2);
 
-      const path = document.createElementNS(svgNS, 'path');
-      path.setAttribute(
-        'd',
-        'm166.05,239.73c-1.81-14.35-13.94-25.68-28.41-31.53,12.56-9.26,21.48-23.26,19.66-37.61-1.81-14.35-13.94-25.68-28.41-31.53,12.56-9.26,21.48-23.26,19.66-37.61-1.81-14.35-13.94-25.68-28.41-31.53,12.56-9.26,21.48-23.26,19.66-37.61-1.72-13.63-12.75-24.54-26.25-30.61-11.57-5.2-24.2,2.21-26.33,13.7-2.23-11.02-14.21-18.33-25.63-13.69-13.72,5.57-25.14,16.07-27.36,29.62-2.34,14.27,6.06,28.59,18.26,38.31-14.67,5.31-27.21,16.19-29.55,30.46-2.34,14.27,6.06,28.59,18.26,38.31-14.67,5.31-27.21,16.19-29.55,30.46-2.34,14.27,6.06,28.59,18.26,38.31-14.67,5.31-27.21,16.19-29.55,30.46-3.33,20.31,15.08,40.7,35.27,47.83,2.53,1.13,5.24,1.96,8.1,2.43,12.94,2.12,25.35-3.65,32.32-13.78l10.4-245.25-1.19,236.19c4.43,15.19,19.36,25.34,35.56,23.29,2.88-.36,5.62-1.09,8.18-2.13,20.44-6.37,39.59-26.08,37.01-46.49Z',
-      );
-      path.setAttribute('fill', 'url(#' + gradientId + ')');
-      path.setAttribute('transformOrigin', 'center');
-      path.classList.add('leaves');
+        const path = document.createElementNS(svgNS, 'path');
+        path.setAttribute(
+          'd',
+          'm166.05,239.73c-1.81-14.35-13.94-25.68-28.41-31.53,12.56-9.26,21.48-23.26,19.66-37.61-1.81-14.35-13.94-25.68-28.41-31.53,12.56-9.26,21.48-23.26,19.66-37.61-1.81-14.35-13.94-25.68-28.41-31.53,12.56-9.26,21.48-23.26,19.66-37.61-1.72-13.63-12.75-24.54-26.25-30.61-11.57-5.2-24.2,2.21-26.33,13.7-2.23-11.02-14.21-18.33-25.63-13.69-13.72,5.57-25.14,16.07-27.36,29.62-2.34,14.27,6.06,28.59,18.26,38.31-14.67,5.31-27.21,16.19-29.55,30.46-2.34,14.27,6.06,28.59,18.26,38.31-14.67,5.31-27.21,16.19-29.55,30.46-2.34,14.27,6.06,28.59,18.26,38.31-14.67,5.31-27.21,16.19-29.55,30.46-3.33,20.31,15.08,40.7,35.27,47.83,2.53,1.13,5.24,1.96,8.1,2.43,12.94,2.12,25.35-3.65,32.32-13.78l10.4-245.25-1.19,236.19c4.43,15.19,19.36,25.34,35.56,23.29,2.88-.36,5.62-1.09,8.18-2.13,20.44-6.37,39.59-26.08,37.01-46.49Z',
+        );
+        path.setAttribute('fill', 'url(#' + gradientId + ')');
+        path.setAttribute('transformOrigin', 'center');
+        path.classList.add('leaves');
 
-      svg.appendChild(path);
+        svg.appendChild(path);
 
-      return svg;
-    }
+        return svg;
+      }
 
-    //   자라나는 애니매이션 스크립트
-    //   애니매이션 스크립트
-    window.onload = function () {
-      // 시간정하기
-      /* setTimeout(function () {
+      //   자라나는 애니매이션 스크립트
+      //   애니매이션 스크립트
+      window.onload = function () {
+        // 시간정하기
+        /* setTimeout(function () {
         var animationDiv = document.getElementById('animation_sky');
         animationDiv.style.opacity = '0';
         setTimeout(function () {
@@ -134,324 +133,323 @@
         }, 500);
       }, 5000); */
 
-      const leafContainer = document.querySelector('#leafContainer');
-      for (let i = 0; i < 9; i++) {
-        const leaf = document.createElement('div');
-        leaf.classList.add('leaf');
-        leaf.innerHTML = `
+        const leafContainer = document.querySelector('#leafContainer');
+        for (let i = 0; i < 9; i++) {
+          const leaf = document.createElement('div');
+          leaf.classList.add('leaf');
+          leaf.innerHTML = `
             <div class="leaf-sprite-box">
               <div class="leaf-sprite-1">
               </div>
             </div>
           `;
-        const svg = createLeafSVG();
-        leaf.querySelector('.leaf-sprite-1').appendChild(svg);
-        leafContainer.appendChild(leaf);
-      }
-
-      // 덤불 개수 생성 30개
-      const bush = document.querySelector('.bush');
-
-      for (let i = 0; i < 90; i++) {
-        const bushSpriteBox = document.createElement('div');
-        bushSpriteBox.classList.add('bush-sprite-box');
-        bushSpriteBox.style.setProperty('--i', i);
-        bush.appendChild(bushSpriteBox);
-
-        for (let j = 1; j <= 3; j++) {
-          const bushPart = document.createElement('div');
-          bushPart.classList.add('bushpart', `bushpart-1-${j}`);
-          bushPart.style.setProperty('--z-index', j);
-          bushSpriteBox.appendChild(bushPart);
+          const svg = createLeafSVG();
+          leaf.querySelector('.leaf-sprite-1').appendChild(svg);
+          leafContainer.appendChild(leaf);
         }
-      }
 
-      setTimeout(function () {
-        const bushSpriteBoxes = document.querySelectorAll('.bush-sprite-box');
-        bushSpriteBoxes.forEach((box, index) => {
-          for (let i = 1; i <= 3; i++) {
+        // 덤불 개수 생성 30개
+        const bush = document.querySelector('.bush');
+
+        for (let i = 0; i < 90; i++) {
+          const bushSpriteBox = document.createElement('div');
+          bushSpriteBox.classList.add('bush-sprite-box');
+          bushSpriteBox.style.setProperty('--i', i);
+          bush.appendChild(bushSpriteBox);
+
+          for (let j = 1; j <= 3; j++) {
             const bushPart = document.createElement('div');
-            bushPart.classList.add('bushpart', `bushpart-1-${i}`);
-            bushPart.style.setProperty('--z-index', i); // --z-index 변수 값을 설정
-            box.appendChild(bushPart);
+            bushPart.classList.add('bushpart', `bushpart-1-${j}`);
+            bushPart.style.setProperty('--z-index', j);
+            bushSpriteBox.appendChild(bushPart);
           }
-          box.style.setProperty('--i', index);
+        }
+
+        setTimeout(function () {
+          const bushSpriteBoxes = document.querySelectorAll('.bush-sprite-box');
+          bushSpriteBoxes.forEach((box, index) => {
+            for (let i = 1; i <= 3; i++) {
+              const bushPart = document.createElement('div');
+              bushPart.classList.add('bushpart', `bushpart-1-${i}`);
+              bushPart.style.setProperty('--z-index', i); // --z-index 변수 값을 설정
+              box.appendChild(bushPart);
+            }
+            box.style.setProperty('--i', index);
+          });
+        }, 0);
+
+        const objects = document.querySelectorAll('.vinepart-set .leaves path');
+        objects.forEach((object, index) => {
+          // 각 객체의 초기 각도를 설정
+          object.style.setProperty(`--angle`, `${index * 10}deg`);
         });
-      }, 0);
 
-      const objects = document.querySelectorAll('.vinepart-set .leaves path');
-      objects.forEach((object, index) => {
-        // 각 객체의 초기 각도를 설정
-        object.style.setProperty(`--angle`, `${index * 10}deg`);
-      });
+        // 덩굴 제작기
 
-      // 덩굴 제작기
+        const svgNS = 'http://www.w3.org/2000/svg';
 
-      const svgNS = 'http://www.w3.org/2000/svg';
-
-      const vinepathData = [
-        'm36.24,10l-12.56,20.8c-7.22,11.95-4.99,29.84,4.72,37.87l7.84,6.49c11.96,9.9,11.96,33.55,0,43.45h0c-11.96,9.9-11.96,33.55,0,43.45l12.61,10.44c8.46,7.01,13.63,19.52,13.63,33.01h0c0,13.49-5.17,26-13.63,33.01l-12.61,10.44c-11.96,9.9-11.96,33.55,0,43.45h0c11.96,9.9,11.96,33.55,0,43.45l-12.61,10.44c-8.46,7.01-13.63,19.52-13.63,33.01h0c0,13.49,5.17,26,13.63,33.01l12.61,10.44c11.96,9.9,11.96,33.55,0,43.45h0c-11.96,9.9-11.96,33.55,0,43.45l9.59,7.94c10.34,8.56,16.65,23.84,16.65,40.32h0c0,10.93-2.79,21.53-7.89,29.97l-18.35,30.39',
-        'm36.24,10l-20.17,49.04c-9.59,23.31-5.58,50,10.43,69.46l9.74,11.84c20.76,25.24,20.76,61.65,0,86.89h0c-20.76,25.24-20.76,61.65,0,86.89h0c20.76,25.24,20.76,61.65,0,86.89h0c-20.76,25.24-20.76,61.65,0,86.89l9.74,11.84c16.01,19.46,20.02,46.15,10.43,69.46l-20.17,49.04',
-        'm36.24,10l-14.94,10.59c-8.75,6.2-6.87,19.69,3.23,23.27l12.26,4.35c11.75,4.17,11.75,20.78,0,24.95l-1.11.39c-11.75,4.17-11.75,20.78,0,24.95l1.11.39c11.75,4.17,11.75,20.78,0,24.95l-1.11.39c-11.75,4.17-11.75,20.78,0,24.95l2.03.72c17.21,6.1,23.84,26.94,13.32,41.86l-13.09,18.57c-22.45,31.84-22.45,74.35,0,106.19l10.14,14.39c14.35,20.35,14.45,47.51.24,67.96l-26.82,38.62c-10.49,15.11-3.52,36.07,13.93,41.88h0c11.95,3.98,12.11,20.82.24,25.03h0c-11.75,4.17-11.75,20.78,0,24.95l1.11.39c11.75,4.17,11.75,20.78,0,24.95l-1.11.39c-11.75,4.17-11.75,20.78,0,24.95l12.26,4.35c10.11,3.58,11.98,17.07,3.23,23.27l-14.94,10.59',
-        'm38.68,10l-13.44,16.33c-11.77,14.31-8.13,35.72,7.7,45.35l8.38,5.09c17.8,10.82,22.53,34.56,10.24,51.38l-15.2,20.79c-5.12,7-15.19,8.01-21.6,2.17h0c-6.34-5.78-6.34-15.77,0-21.55h0c6.41-5.85,16.48-4.83,21.6,2.17l20.33,27.81c8.67,11.85,3.04,28.71-11.01,32.98l-7,2.13c-10.73,3.26-10.73,18.46,0,21.72h0c10.73,3.26,10.73,18.46,0,21.72h0c-10.73,3.26-10.73,18.46,0,21.72l11.46,3.48c9.39,2.85,10.98,15.47,2.6,20.56l-8.6,5.22c-3.39,2.06-5.46,5.74-5.46,9.7v28.17c0,19.83-6.68,39.08-18.97,54.64h0c-9.39,11.89-7.81,29.05,3.6,39.02l16.5,14.42c6.15,5.37,15.35,5.28,21.38-.22l.23-.21c6.98-6.37,6.98-17.36,0-23.72h0c-6.13-5.59-15.5-5.59-21.63,0l-8.78,8.01c-14.02,12.78-11.82,35.44,4.39,45.3l15.12,9.19c10.9,6.63,10.9,22.45,0,29.07h0c-7.34,4.46-11.82,12.43-11.82,21.02v18.96c0,6.62,3.45,12.75,9.1,16.19h0c12.14,7.38,12.14,25,0,32.38l-3.65,2.22c-3.39,2.06-5.46,5.74-5.46,9.7v15.34',
-        'm39.9,10l-23.53,98.72c-7.54,31.62,2.7,64.84,26.71,86.74h0c4.94,4.51,12.5,4.51,17.45,0l4.61-4.2c5.63-5.14,5.63-14,0-19.14h0c-6.55-5.97-17.02-3.75-20.58,4.37l-14.56,33.18c-16.12,36.74-12.53,79.14,9.52,112.66h0c22.22,33.76,23.96,77.04,4.52,112.48l-8.15,14.86c-4.03,7.35-13.88,8.99-20.08,3.34l-1.6-1.46c-5.47-4.99-5.65-13.55-.39-18.76l.25-.25c6.05-6,16.14-4.62,20.36,2.78l18.7,32.8c14.32,25.1,17.33,55.09,8.3,82.55l-21.55,65.5',
-        //   필요한 만큼 추가
-      ];
-
-      const container = document.querySelector('.vines'); // 혹은 다른 적절한 부모 요소
-      let usedPaths = [];
-
-      for (let i = 0; i < 3; i++) {
-        const vine = document.createElement('div');
-        vine.classList.add(`vine-${i + 1}`);
-
-        const boxVineSet = document.createElement('div');
-        boxVineSet.classList.add('box-vine-set');
-        vine.appendChild(boxVineSet);
-
-        // 덩굴마다 한번씩 랜덤하게 경로 데이터 선택
-        let randomPathData;
-        do {
-          randomPathData =
-            vinepathData[Math.floor(Math.random() * vinepathData.length)];
-        } while (usedPaths.includes(randomPathData)); // 이미 사용된 경로 데이터를 제외
-        usedPaths.push(randomPathData); // 선택한 경로 데이터를 사용된 경로 데이터 배열에 추가
-
-        const pathColor = [
-          getRandomColor(),
-          getRandomColor(),
-          getRandomColor(),
+        const vinepathData = [
+          'm36.24,10l-12.56,20.8c-7.22,11.95-4.99,29.84,4.72,37.87l7.84,6.49c11.96,9.9,11.96,33.55,0,43.45h0c-11.96,9.9-11.96,33.55,0,43.45l12.61,10.44c8.46,7.01,13.63,19.52,13.63,33.01h0c0,13.49-5.17,26-13.63,33.01l-12.61,10.44c-11.96,9.9-11.96,33.55,0,43.45h0c11.96,9.9,11.96,33.55,0,43.45l-12.61,10.44c-8.46,7.01-13.63,19.52-13.63,33.01h0c0,13.49,5.17,26,13.63,33.01l12.61,10.44c11.96,9.9,11.96,33.55,0,43.45h0c-11.96,9.9-11.96,33.55,0,43.45l9.59,7.94c10.34,8.56,16.65,23.84,16.65,40.32h0c0,10.93-2.79,21.53-7.89,29.97l-18.35,30.39',
+          'm36.24,10l-20.17,49.04c-9.59,23.31-5.58,50,10.43,69.46l9.74,11.84c20.76,25.24,20.76,61.65,0,86.89h0c-20.76,25.24-20.76,61.65,0,86.89h0c20.76,25.24,20.76,61.65,0,86.89h0c-20.76,25.24-20.76,61.65,0,86.89l9.74,11.84c16.01,19.46,20.02,46.15,10.43,69.46l-20.17,49.04',
+          'm36.24,10l-14.94,10.59c-8.75,6.2-6.87,19.69,3.23,23.27l12.26,4.35c11.75,4.17,11.75,20.78,0,24.95l-1.11.39c-11.75,4.17-11.75,20.78,0,24.95l1.11.39c11.75,4.17,11.75,20.78,0,24.95l-1.11.39c-11.75,4.17-11.75,20.78,0,24.95l2.03.72c17.21,6.1,23.84,26.94,13.32,41.86l-13.09,18.57c-22.45,31.84-22.45,74.35,0,106.19l10.14,14.39c14.35,20.35,14.45,47.51.24,67.96l-26.82,38.62c-10.49,15.11-3.52,36.07,13.93,41.88h0c11.95,3.98,12.11,20.82.24,25.03h0c-11.75,4.17-11.75,20.78,0,24.95l1.11.39c11.75,4.17,11.75,20.78,0,24.95l-1.11.39c-11.75,4.17-11.75,20.78,0,24.95l12.26,4.35c10.11,3.58,11.98,17.07,3.23,23.27l-14.94,10.59',
+          'm38.68,10l-13.44,16.33c-11.77,14.31-8.13,35.72,7.7,45.35l8.38,5.09c17.8,10.82,22.53,34.56,10.24,51.38l-15.2,20.79c-5.12,7-15.19,8.01-21.6,2.17h0c-6.34-5.78-6.34-15.77,0-21.55h0c6.41-5.85,16.48-4.83,21.6,2.17l20.33,27.81c8.67,11.85,3.04,28.71-11.01,32.98l-7,2.13c-10.73,3.26-10.73,18.46,0,21.72h0c10.73,3.26,10.73,18.46,0,21.72h0c-10.73,3.26-10.73,18.46,0,21.72l11.46,3.48c9.39,2.85,10.98,15.47,2.6,20.56l-8.6,5.22c-3.39,2.06-5.46,5.74-5.46,9.7v28.17c0,19.83-6.68,39.08-18.97,54.64h0c-9.39,11.89-7.81,29.05,3.6,39.02l16.5,14.42c6.15,5.37,15.35,5.28,21.38-.22l.23-.21c6.98-6.37,6.98-17.36,0-23.72h0c-6.13-5.59-15.5-5.59-21.63,0l-8.78,8.01c-14.02,12.78-11.82,35.44,4.39,45.3l15.12,9.19c10.9,6.63,10.9,22.45,0,29.07h0c-7.34,4.46-11.82,12.43-11.82,21.02v18.96c0,6.62,3.45,12.75,9.1,16.19h0c12.14,7.38,12.14,25,0,32.38l-3.65,2.22c-3.39,2.06-5.46,5.74-5.46,9.7v15.34',
+          'm39.9,10l-23.53,98.72c-7.54,31.62,2.7,64.84,26.71,86.74h0c4.94,4.51,12.5,4.51,17.45,0l4.61-4.2c5.63-5.14,5.63-14,0-19.14h0c-6.55-5.97-17.02-3.75-20.58,4.37l-14.56,33.18c-16.12,36.74-12.53,79.14,9.52,112.66h0c22.22,33.76,23.96,77.04,4.52,112.48l-8.15,14.86c-4.03,7.35-13.88,8.99-20.08,3.34l-1.6-1.46c-5.47-4.99-5.65-13.55-.39-18.76l.25-.25c6.05-6,16.14-4.62,20.36,2.78l18.7,32.8c14.32,25.1,17.33,55.09,8.3,82.55l-21.55,65.5',
+          //   필요한 만큼 추가
         ];
 
-        for (let j = 0; j < 2; j++) {
-          const vinepartSet = document.createElement('div');
-          vinepartSet.classList.add('vinepart-set');
-          boxVineSet.appendChild(vinepartSet);
+        const container = document.querySelector('.vines'); // 혹은 다른 적절한 부모 요소
+        let usedPaths = [];
 
-          const svg = document.createElementNS(
-            'http://www.w3.org/2000/svg',
-            'svg',
-          );
+        for (let i = 0; i < 3; i++) {
+          const vine = document.createElement('div');
+          vine.classList.add(`vine-${i + 1}`);
 
-          svg.setAttribute('width', 'auto');
-          svg.setAttribute('height', '600');
-          svg.setAttribute('viewBox', '0 0 70 630');
-          svg.setAttribute('overflow', 'visible');
+          const boxVineSet = document.createElement('div');
+          boxVineSet.classList.add('box-vine-set');
+          vine.appendChild(boxVineSet);
 
-          // svg.setAttribute('stroke', '0');
-          vinepartSet.appendChild(svg);
+          // 덩굴마다 한번씩 랜덤하게 경로 데이터 선택
+          let randomPathData;
+          do {
+            randomPathData =
+              vinepathData[Math.floor(Math.random() * vinepathData.length)];
+          } while (usedPaths.includes(randomPathData)); // 이미 사용된 경로 데이터를 제외
+          usedPaths.push(randomPathData); // 선택한 경로 데이터를 사용된 경로 데이터 배열에 추가
 
-          const path = document.createElementNS(
-            'http://www.w3.org/2000/svg',
-            'path',
-          );
+          const pathColor = [
+            getRandomColor(),
+            getRandomColor(),
+            getRandomColor(),
+          ];
 
-          path.setAttribute('d', randomPathData); // 선택한 경로 데이터를 적용
-          path.setAttribute('transform', 'translate(-14.769 -9.575)');
-          path.classList.add(j === 0 ? 'vine_one' : 'vine_two');
+          for (let j = 0; j < 2; j++) {
+            const vinepartSet = document.createElement('div');
+            vinepartSet.classList.add('vinepart-set');
+            boxVineSet.appendChild(vinepartSet);
 
-          svg.appendChild(path);
+            const svg = document.createElementNS(
+              'http://www.w3.org/2000/svg',
+              'svg',
+            );
 
-          // 잎사귀 추가 코드
-          // const LEAF_INTERVAL = Math.floor(450); // 잎사귀를 추가할 간격을 설정합니다.
-          const LEAF_INTERVAL = 1; // 잎사귀를 추가할 간격을 설정합니다.
-          const LEAF_count = 400;
-          const LEAF_SIZE = Math.random() * 80 + 60; // 잎사귀의 크기를 설정합니다.
+            svg.setAttribute('width', 'auto');
+            svg.setAttribute('height', '600');
+            svg.setAttribute('viewBox', '0 0 70 630');
+            svg.setAttribute('overflow', 'visible');
 
-          for (let i = 0; i < path.getTotalLength(); i += LEAF_count) {
-            const point1 = path.getPointAtLength(i);
-            const point2 = path.getPointAtLength(i + LEAF_INTERVAL / 2);
+            // svg.setAttribute('stroke', '0');
+            vinepartSet.appendChild(svg);
 
-            const angle =
-              (Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180) /
-              Math.PI;
+            const path = document.createElementNS(
+              'http://www.w3.org/2000/svg',
+              'path',
+            );
 
-            const leaf1 = createLeafSVG(); // 잎사귀 SVG 생성
-            const leaf1angle = angle + Math.random() * 5 - 10;
+            path.setAttribute('d', randomPathData); // 선택한 경로 데이터를 적용
+            path.setAttribute('transform', 'translate(-14.769 -9.575)');
+            path.classList.add(j === 0 ? 'vine_one' : 'vine_two');
 
-            leaf1.classList.add('leaves');
-            leaf1.setAttribute('data-angle', leaf1angle);
-            leaf1.setAttribute('width', LEAF_SIZE);
-            leaf1.setAttribute('height', LEAF_SIZE);
-            leaf1.setAttribute('x', -20); // 잎사귀의 중심이 선 위에 오도록 위치를 조정합니다.
-            leaf1.setAttribute('y', Math.floor(point1.y * 0.7)); // 잎사귀의 중심이 선 위에 오도록 위치를 조정합니다.
+            svg.appendChild(path);
 
-            const leafPath1 = leaf1.querySelector('path'); // 잎사귀 SVG의 path 요소를 선택합니다.
-            leafPath1.setAttribute('transform', `rotate(${leaf1angle})`);
+            // 잎사귀 추가 코드
+            // const LEAF_INTERVAL = Math.floor(450); // 잎사귀를 추가할 간격을 설정합니다.
+            const LEAF_INTERVAL = 1; // 잎사귀를 추가할 간격을 설정합니다.
+            const LEAF_count = 400;
+            const LEAF_SIZE = Math.random() * 80 + 60; // 잎사귀의 크기를 설정합니다.
 
-            svg.appendChild(leaf1);
+            for (let i = 0; i < path.getTotalLength(); i += LEAF_count) {
+              const point1 = path.getPointAtLength(i);
+              const point2 = path.getPointAtLength(i + LEAF_INTERVAL / 2);
 
-            const leaf2 = createLeafSVG(); // 잎사귀 SVG 생성
-            const leaf2angle = Math.random() * 5 - 120;
+              const angle =
+                (Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180) /
+                Math.PI;
 
-            leaf2.classList.add('leaves');
-            leaf2.setAttribute('data-angle', leaf2angle);
-            leaf2.setAttribute('width', LEAF_SIZE);
-            leaf2.setAttribute('height', LEAF_SIZE);
-            leaf2.setAttribute('x', -60); // 잎사귀의 중심이 선 위에 오도록 위치를 조정합니다.
-            leaf2.setAttribute('y', Math.random() * (point1.y * 1.5)); // 잎사귀의 중심이 선 위에 오도록 위치를 조정합니다.
+              const leaf1 = createLeafSVG(); // 잎사귀 SVG 생성
+              const leaf1angle = angle + Math.random() * 5 - 10;
 
-            const leafPath2 = leaf2.querySelector('path'); // 잎사귀 SVG의 path 요소를 선택합니다.
-            leafPath2.setAttribute('transform', `rotate(${leaf2angle})`); // 잎사귀의 각도를 선의 방향에 맞추어 조정합니다.
+              leaf1.classList.add('leaves');
+              leaf1.setAttribute('data-angle', leaf1angle);
+              leaf1.setAttribute('width', LEAF_SIZE);
+              leaf1.setAttribute('height', LEAF_SIZE);
+              leaf1.setAttribute('x', -20); // 잎사귀의 중심이 선 위에 오도록 위치를 조정합니다.
+              leaf1.setAttribute('y', Math.floor(point1.y * 0.7)); // 잎사귀의 중심이 선 위에 오도록 위치를 조정합니다.
 
-            svg.appendChild(leaf2);
+              const leafPath1 = leaf1.querySelector('path'); // 잎사귀 SVG의 path 요소를 선택합니다.
+              leafPath1.setAttribute('transform', `rotate(${leaf1angle})`);
+
+              svg.appendChild(leaf1);
+
+              const leaf2 = createLeafSVG(); // 잎사귀 SVG 생성
+              const leaf2angle = Math.random() * 5 - 120;
+
+              leaf2.classList.add('leaves');
+              leaf2.setAttribute('data-angle', leaf2angle);
+              leaf2.setAttribute('width', LEAF_SIZE);
+              leaf2.setAttribute('height', LEAF_SIZE);
+              leaf2.setAttribute('x', -60); // 잎사귀의 중심이 선 위에 오도록 위치를 조정합니다.
+              leaf2.setAttribute('y', Math.random() * (point1.y * 1.5)); // 잎사귀의 중심이 선 위에 오도록 위치를 조정합니다.
+
+              const leafPath2 = leaf2.querySelector('path'); // 잎사귀 SVG의 path 요소를 선택합니다.
+              leafPath2.setAttribute('transform', `rotate(${leaf2angle})`); // 잎사귀의 각도를 선의 방향에 맞추어 조정합니다.
+
+              svg.appendChild(leaf2);
+            }
+
+            const defs = document.createElementNS(svgNS, 'defs');
+            svg.appendChild(defs);
+
+            const gradient = document.createElementNS(svgNS, 'linearGradient');
+            gradient.setAttribute('id', `gradient-${i}-${j}`);
+            gradient.setAttribute('x1', '0');
+            gradient.setAttribute('y1', '0');
+            gradient.setAttribute('x2', '0');
+            gradient.setAttribute('y2', '100%');
+            defs.appendChild(gradient);
+
+            const stop1 = document.createElementNS(svgNS, 'stop');
+            stop1.setAttribute('offset', '0%');
+            stop1.setAttribute('stop-color', pathColor[1]);
+            gradient.appendChild(stop1);
+
+            const stop2 = document.createElementNS(svgNS, 'stop');
+            stop2.setAttribute('offset', '50%');
+            stop2.setAttribute('stop-color', pathColor[2]);
+            gradient.appendChild(stop2);
+
+            const stop3 = document.createElementNS(svgNS, 'stop');
+            stop3.setAttribute('offset', '100%');
+            stop3.setAttribute('stop-color', pathColor[1]);
+            gradient.appendChild(stop3);
+
+            //그림자 적용 코드 넣기
+
+            const shadowFilter = document.createElementNS(svgNS, 'filter');
+            shadowFilter.setAttribute('id', 'shadow');
+            shadowFilter.setAttribute('x', '-300%');
+            shadowFilter.setAttribute('y', '-300%');
+            shadowFilter.setAttribute('width', '900%');
+            shadowFilter.setAttribute('height', '900%');
+            defs.appendChild(shadowFilter);
+
+            const feGaussianBlur = document.createElementNS(
+              svgNS,
+              'feGaussianBlur',
+            );
+            feGaussianBlur.setAttribute('in', 'SourceAlpha');
+            feGaussianBlur.setAttribute('stdDeviation', '8');
+            shadowFilter.appendChild(feGaussianBlur);
+
+            const feOffset = document.createElementNS(svgNS, 'feOffset');
+            feOffset.setAttribute('dx', '0');
+            feOffset.setAttribute('dy', '0');
+            shadowFilter.appendChild(feOffset);
+
+            const feComponentTransfer = document.createElementNS(
+              svgNS,
+              'feComponentTransfer',
+            );
+            shadowFilter.appendChild(feComponentTransfer);
+
+            const feFuncA = document.createElementNS(svgNS, 'feFuncA');
+            feFuncA.setAttribute('type', 'linear');
+            feFuncA.setAttribute('slope', '0.15');
+            feComponentTransfer.appendChild(feFuncA);
+
+            const feMerge = document.createElementNS(svgNS, 'feMerge');
+            shadowFilter.appendChild(feMerge);
+
+            const feMergeNode1 = document.createElementNS(svgNS, 'feMergeNode');
+            feMerge.appendChild(feMergeNode1);
+
+            const feMergeNode2 = document.createElementNS(svgNS, 'feMergeNode');
+            feMergeNode2.setAttribute('in', 'SourceGraphic');
+            feMerge.appendChild(feMergeNode2);
+
+            // path에 그라데이션 적용
+            path.setAttribute('stroke', `url(#gradient-${i}-${j})`);
+            path.setAttribute('filter', 'url(#shadow)');
           }
 
-          const defs = document.createElementNS(svgNS, 'defs');
-          svg.appendChild(defs);
+          container.appendChild(vine);
 
-          const gradient = document.createElementNS(svgNS, 'linearGradient');
-          gradient.setAttribute('id', `gradient-${i}-${j}`);
-          gradient.setAttribute('x1', '0');
-          gradient.setAttribute('y1', '0');
-          gradient.setAttribute('x2', '0');
-          gradient.setAttribute('y2', '100%');
-          defs.appendChild(gradient);
+          const leaves = document.querySelectorAll('.leaves');
 
-          const stop1 = document.createElementNS(svgNS, 'stop');
-          stop1.setAttribute('offset', '0%');
-          stop1.setAttribute('stop-color', pathColor[1]);
-          gradient.appendChild(stop1);
+          // 나뭇잎을 화면에서 바닥에 가까운 순서로 정렬합니다.
+          const sortedLeaves = Array.from(leaves).sort((a, b) => {
+            const rectA = a.getBoundingClientRect();
+            const rectB = b.getBoundingClientRect();
+            return (
+              (rectB.left - rectA.left + (rectB.bottom - rectA.bottom)) / 2
+            );
+          });
 
-          const stop2 = document.createElementNS(svgNS, 'stop');
-          stop2.setAttribute('offset', '50%');
-          stop2.setAttribute('stop-color', pathColor[2]);
-          gradient.appendChild(stop2);
-
-          const stop3 = document.createElementNS(svgNS, 'stop');
-          stop3.setAttribute('offset', '100%');
-          stop3.setAttribute('stop-color', pathColor[1]);
-          gradient.appendChild(stop3);
-
-          //그림자 적용 코드 넣기
-
-          const shadowFilter = document.createElementNS(svgNS, 'filter');
-          shadowFilter.setAttribute('id', 'shadow');
-          shadowFilter.setAttribute('x', '-300%');
-          shadowFilter.setAttribute('y', '-300%');
-          shadowFilter.setAttribute('width', '900%');
-          shadowFilter.setAttribute('height', '900%');
-          defs.appendChild(shadowFilter);
-
-          const feGaussianBlur = document.createElementNS(
-            svgNS,
-            'feGaussianBlur',
-          );
-          feGaussianBlur.setAttribute('in', 'SourceAlpha');
-          feGaussianBlur.setAttribute('stdDeviation', '8');
-          shadowFilter.appendChild(feGaussianBlur);
-
-          const feOffset = document.createElementNS(svgNS, 'feOffset');
-          feOffset.setAttribute('dx', '0');
-          feOffset.setAttribute('dy', '0');
-          shadowFilter.appendChild(feOffset);
-
-          const feComponentTransfer = document.createElementNS(
-            svgNS,
-            'feComponentTransfer',
-          );
-          shadowFilter.appendChild(feComponentTransfer);
-
-          const feFuncA = document.createElementNS(svgNS, 'feFuncA');
-          feFuncA.setAttribute('type', 'linear');
-          feFuncA.setAttribute('slope', '0.15');
-          feComponentTransfer.appendChild(feFuncA);
-
-          const feMerge = document.createElementNS(svgNS, 'feMerge');
-          shadowFilter.appendChild(feMerge);
-
-          const feMergeNode1 = document.createElementNS(svgNS, 'feMergeNode');
-          feMerge.appendChild(feMergeNode1);
-
-          const feMergeNode2 = document.createElementNS(svgNS, 'feMergeNode');
-          feMergeNode2.setAttribute('in', 'SourceGraphic');
-          feMerge.appendChild(feMergeNode2);
-
-          // path에 그라데이션 적용
-          path.setAttribute('stroke', `url(#gradient-${i}-${j})`);
-          path.setAttribute('filter', 'url(#shadow)');
-        }
-
-        container.appendChild(vine);
-
-        const leaves = document.querySelectorAll('.leaves');
-
-        // 나뭇잎을 화면에서 바닥에 가까운 순서로 정렬합니다.
-        const sortedLeaves = Array.from(leaves).sort((a, b) => {
-          const rectA = a.getBoundingClientRect();
-          const rectB = b.getBoundingClientRect();
-          return (
-            (rectB.left - rectA.left + (rectB.bottom - rectA.bottom)) / 2
-          );
-        });
-
-        // 나뭇잎을 순서대로 나타내는 함수
-        function showLeavesSequentially(index) {
-          if (index < sortedLeaves.length) {
-            const leaf = sortedLeaves[index];
-            leaf.style.opacity = 1; // 나뭇잎을 나타냅니다.
-            setTimeout(() => {
-              showLeavesSequentially(index + 1);
-            }, 300 - index * 15); // 100ms 간격으로 다음 나뭇잎을 나타냅니다.
+          // 나뭇잎을 순서대로 나타내는 함수
+          function showLeavesSequentially(index) {
+            if (index < sortedLeaves.length) {
+              const leaf = sortedLeaves[index];
+              leaf.style.opacity = 1; // 나뭇잎을 나타냅니다.
+              setTimeout(() => {
+                showLeavesSequentially(index + 1);
+              }, 300 - index * 15); // 100ms 간격으로 다음 나뭇잎을 나타냅니다.
+            }
           }
+
+          // 숨겨진 상태로 시작하도록 나뭇잎을 초기화합니다.
+          sortedLeaves.forEach((leaf) => {
+            leaf.style.opacity = 0;
+          });
+
+          // 나뭇잎을 순서대로 나타냅니다.
+          showLeavesSequentially(0);
         }
 
-        // 숨겨진 상태로 시작하도록 나뭇잎을 초기화합니다.
-        sortedLeaves.forEach((leaf) => {
-          leaf.style.opacity = 0;
+        function handleWindowSize() {
+          const screenWidth = window.innerWidth;
+          const vines = document.querySelector('.vines');
+          const leafContainer = document.querySelector('#leafContainer');
+
+          // screenWidth를 기준으로 필요한 가로 비율을 계산합니다.
+          let widthRatio;
+          if (screenWidth >= 850) {
+            // 화면 가로 크기가 850px 이상인 경우
+            widthRatio = '60%';
+          } else {
+            // 화면 가로 크기가 850px 미만인 경우
+            widthRatio = '100%';
+          }
+
+          // 가로 비율을 변경합니다.
+          vines.style.width = widthRatio;
+          leafContainer.style.width = widthRatio;
+        }
+
+        // 초기 실행
+        handleWindowSize();
+
+        // 화면 크기 변경 이벤트를 감지하여 가로 비율을 업데이트합니다.
+        window.addEventListener('resize', handleWindowSize);
+
+        anime({
+          targets: '.vinepart-set:nth-child(1) .vine_one',
+          strokeDashoffset: [anime.setDashoffset, 0],
+          easing: 'linear',
+          duration: 2000,
+          delay: 2000,
+          direction: 'alternate',
+          loop: false,
         });
 
-        // 나뭇잎을 순서대로 나타냅니다.
-        showLeavesSequentially(0);
-      }
-
-      function handleWindowSize() {
-        const screenWidth = window.innerWidth;
-        const vines = document.querySelector('.vines');
-        const leafContainer = document.querySelector('#leafContainer');
-
-        // screenWidth를 기준으로 필요한 가로 비율을 계산합니다.
-        let widthRatio;
-        if (screenWidth >= 850) {
-          // 화면 가로 크기가 850px 이상인 경우
-          widthRatio = '60%';
-        } else {
-          // 화면 가로 크기가 850px 미만인 경우
-          widthRatio = '100%';
-        }
-
-        // 가로 비율을 변경합니다.
-        vines.style.width = widthRatio;
-        leafContainer.style.width = widthRatio;
-      }
-
-      // 초기 실행
-      handleWindowSize();
-
-      // 화면 크기 변경 이벤트를 감지하여 가로 비율을 업데이트합니다.
-      window.addEventListener('resize', handleWindowSize);
-
-      anime({
-        targets: '.vinepart-set:nth-child(1) .vine_one',
-        strokeDashoffset: [anime.setDashoffset, 0],
-        easing: 'linear',
-        duration: 2000,
-        delay: 2000,
-        direction: 'alternate',
-        loop: false,
-      });
-
-      anime({
-        targets: '.vinepart-set:nth-child(2) .vine_two',
-        strokeDashoffset: [anime.setDashoffset, 0],
-        easing: 'linear',
-        duration: 2000,
-        delay: 0,
-        direction: 'alternate',
-        loop: false,
-      });
-    };
-  </script>
-</body>
-
+        anime({
+          targets: '.vinepart-set:nth-child(2) .vine_two',
+          strokeDashoffset: [anime.setDashoffset, 0],
+          easing: 'linear',
+          duration: 2000,
+          delay: 0,
+          direction: 'alternate',
+          loop: false,
+        });
+      };
+    </script>
+  </body>
 </html>
