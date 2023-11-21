@@ -87,14 +87,14 @@
 .vine_one,
 .vine_two {
   fill: none;
-  stroke: #1e8c09;
+  /* stroke: #1e8c09; */
   stroke-width: 23px;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-miterlimit: 10;
 }
 
-@keyframes VineAnimation {
+/* @keyframes VineAnimation {
   0% {
     transform: translateY(100px);
     opacity: 1;
@@ -113,36 +113,18 @@
     transform: translateY(0px);
     opacity: 1;
   }
-}
+} */
 
 .vine-1 {
   left: 25%;
-  opacity: 1;
-}
-
-.vine-1 .vine_one,
-.vine-1 .vine_two {
-  stroke: #007534;
 }
 
 .vine-2 {
   left: 50%;
-  opacity: 0.9;
-}
-
-.vine-2 .vine_one,
-.vine-2 .vine_two {
-  stroke: rgb(73, 122, 17);
 }
 
 .vine-3 {
   left: 75%;
-  opacity: 0.8;
-}
-
-.vine-3 .vine_one,
-.vine-3 .vine_two {
-  stroke: #145c11;
 }
 
 .vine-1,
@@ -169,7 +151,7 @@
   height: 210px;
   width: 77px;
   opacity: 1;
-  transform: rotate(-5deg);
+  background-color: #0072b4;
 }
 
 .leaf-sprite-1 {
@@ -187,6 +169,20 @@
   justify-content: center;
   /* 가로 줄의 가운데에 두기 */
   top: 50px;
+}
+
+.vinepart-set .leaves path {
+  transform-origin: 50% 120%;
+  /* animation: rotation 3s infinite linear; */
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes popupAnimation {

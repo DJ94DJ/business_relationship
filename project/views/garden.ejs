@@ -188,7 +188,6 @@
                     </div>
                     <%- include('pick_color') %>
                       <input type="hidden" name="flowerColor" value="">
-                      <!-- <input type="color" name="flowerColor" id="user_color" class="user_color" required placeholder="색상" style="width:100px;"/> -->
                   </div>
                   <div class="msg-public">
                     <input type="radio" name="isPublic" value="true" id="public" checked />
@@ -219,7 +218,7 @@
               <input type="text" name="mesId" id="mesId" value="<%=msg[i].message_id%>" hidden>
               <div class="flower01-sprite-1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="290.82" height="290.82" viewBox="0 0 290.82 290.82">
-                  <path id="flower_1" data-name="flower 1" class="flower-1"
+                  <path id="flower_1" data-name="flower 1" class="flower-1" style="fill: <%=msg[i].flower_color%>"
                     d="M223.526,82.013a62.23,62.23,0,0,0-17.439,2.651,59.972,59.972,0,0,0,2.735-17.355c0-37.174-28.388-67.31-63.4-67.31s-63.4,30.136-63.4,67.31a62.144,62.144,0,0,0,2.651,17.437A60.042,60.042,0,0,0,67.31,82.013C30.136,82.013,0,110.4,0,145.417s30.136,63.4,67.31,63.4a62.164,62.164,0,0,0,17.439-2.651,59.979,59.979,0,0,0-2.733,17.355c0,37.175,28.386,67.31,63.4,67.31s63.4-30.134,63.4-67.31a62.227,62.227,0,0,0-2.651-17.437,59.961,59.961,0,0,0,17.355,2.733c37.174,0,67.31-28.386,67.31-63.4s-30.136-63.4-67.31-63.4m-78.12,63.393h.023v.021l-.023,0v-.023" />
                 </svg>
               </div>
@@ -306,18 +305,7 @@
             $('#testModal').modal('show');
           }
 
-          // 회원과 비회원을 구분하는 애니메이션 필요
-          function writeMsg() {
-            const form = document.forms['newMsg'];
-
-            const msg = {
-              title: form.elements.title.value,
-              content: form.elements.content.value,
-              is_public: form.elements.isPublic.value,
-              flower_color: form.elements.flowerColor.value,
-              id: form.elements.gardenId.value,
-            };
-          }
+          
           // 메시지 작성 모달창
           $('.seed-sprite-box').on('click', function (e) {
             seedOpen(e);
@@ -336,10 +324,10 @@
           $('.closeBtn').click(function () {
             $('.modal').modal('hide');
           });
+          
           // 회원과 비회원을 구분하는 애니메이션 필요
           function writeMsg() {
             const form = document.forms["newMsg"]
-
 
             const msg = {
               title: form.elements.title.value,
@@ -368,6 +356,7 @@
                 url: "/home/garden",
                 data: msg
               }).then((res) => {
+                console.log('작성 결과', res)
                 if (res.data.result) {
                   alert("메시지 작성 완료")
                   location.reload()
