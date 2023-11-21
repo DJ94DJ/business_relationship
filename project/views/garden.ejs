@@ -7,11 +7,8 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
-  <!-- Bootstrap JS Bundle (Bootstrap JS 및 Popper.js 포함) -->
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
@@ -69,8 +66,7 @@
                     <label for="private">&nbsp;&nbsp;메시지 비공개 </label>
                   </div>
                   <div class="msg-msg">
-                    <input type="textarea" id="user_msg" name="content" class="user_msg"
-                      placeholder="메시지 내용을 입력해주세요..." />
+                    <textarea id="user_msg" name="content" class="user_msg" placeholder="메시지 내용을 입력해주세요..."></textarea>
                   </div>
                 </div>
                 <div>
@@ -117,17 +113,35 @@
 
             <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
-              <input type="text" id="modMesId" name="modMesId" value="">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="seed">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title modTitle" id="exampleModalLabel"></h5>
+                      <button class="closeBtn">
+                        <span aria-hidden="true">X</span>
+                      </button>
+                    </div>
+                    <div class="modal-body" id="modBody"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <input type="text" id="modMesId" name="modMesId" value="" />
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title modTitle" id="exampleModalLabel"></h5>
-                    <button class="closeBtn" data-dismiss="modal">
+                    <button class="closeBtn">
                       <span aria-hidden="true">X</span>
                     </button>
                   </div>
                   <div class="modal-body" id="modBody" style=""></div>
-                  <button type="button" id="mesDelBtn" onclick="deleteMsg(this)">삭제</button>
+                  <button type="button" id="mesDelBtn" onclick="deleteMsg(this)">
+                    삭제
+                  </button>
                 </div>
               </div>
             </div>
@@ -139,7 +153,6 @@
           <script>
             $(document).ready(function () {
               arrangeFlowers();
-
               function arrangeFlowers() {
                 $('.flower01-sprite-box').each(function (index) {
                   var flower = $(this);
@@ -168,28 +181,43 @@
               $('.flower01-sprite-box').on('click', function (button) {
                 msgOpen(button);
               });
+
+              function adjustModalHeight() {
+                var contentHeight = $('#modBody').height();
+                var threshold = 100;
+
+                if (contentHeight > threshold) {
+                  var newHeight = contentHeight + threshold * 1.5;
+
+                  $('#testModal .modal-content').css('height', newHeight + 'px');
+                }
+              }
+
+              $('#testModal').on('shown.bs.modal', function () {
+                adjustModalHeight();
+              });
             });
 
             function msgOpen(button) {
               const form = button.closest('form');
               let mesId = {
-                userId: form.querySelector('[name="mesId"]').value
-              }
+                userId: form.querySelector('[name="mesId"]').value,
+              };
               axios({
                 method: 'post',
                 url: '/home/garden/getMes',
-                data: mesId
+                data: mesId,
               }).then((res) => {
                 if (res.data.isPublic) {
                   $('.modTitle').html(res.data.writer);
                   $('#modBody').html(res.data.content).css('text-align', 'center');
-                  $("#modMesId").val(res.data.messageId);
+                  $('#modMesId').val(res.data.messageId);
                   // e.preventDefault();
                   $('#testModal').modal('show');
                 } else if ('<%=gardenName%>' == '<%=userName%>') {
                   $('.modTitle').html(res.data.writer);
                   $('#modBody').html(res.data.content);
-                  $("#modMesId").val(res.data.messageId);
+                  $('#modMesId').val(res.data.messageId);
                   // e.preventDefault();
                   $('#testModal').modal('show');
                 } else {
@@ -284,8 +312,8 @@
             function deleteMsg(button) {
               const form = button.closest('form');
               let mesId = {
-                userId: form.querySelector('[name="modMesId"]').value
-              }
+                userId: form.querySelector('[name="modMesId"]').value,
+              };
               // const form = document.forms["flowerForm"]
               // let mesId = form.elements.modMesId.value;
               // console.log(
@@ -348,7 +376,7 @@
             if ('<%=gardenName%>' == '<%=userName%>') {
               $('#seedBtn').css('display', 'none');
             } else {
-              $("#mesDelBtn").css('display', 'none');
+              $('#mesDelBtn').css('display', 'none');
             }
           </script>
 </body>
