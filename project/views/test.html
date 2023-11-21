@@ -580,33 +580,19 @@
         loop: false,
       });
 
-      anime({
-        targets: '.vinepart-set:nth-child(1) .vine_three',
-        strokeDashoffset: [anime.setDashoffset, 0],
-        easing: 'linear',
-        duration: 3000,
-        delay: 6000,
-        direction: 'alternate',
-        loop: false,
-      });
-      anime({
-        targets: '.vinepart-set:nth-child(2) .vine_two',
-        strokeDashoffset: [anime.setDashoffset, 0],
-        easing: 'linear',
-        duration: 3000,
-        delay: 3000,
-        direction: 'alternate',
-        loop: false,
-      });
-      anime({
-        targets: '.vinepart-set:nth-child(3) .vine_one',
-        strokeDashoffset: [anime.setDashoffset, 0],
-        easing: 'linear',
-        duration: 3000,
-        delay: 0,
-        direction: 'alternate',
-        loop: false,
-      });
+      const vineparts = 8; // 개체의 수
+
+      for (let i = 0; i < vineparts; i++) {
+        anime({
+          targets: `.vinepart-set:nth-child(${i + 1}) .vine_${vineparts - i}`,
+          strokeDashoffset: [anime.setDashoffset, 0],
+          easing: 'linear',
+          duration: 3000,
+          delay: i * 4000, // 숫자가 작아질수록 딜레이가 3000씩 증가
+          direction: 'alternate',
+          loop: false,
+        });
+      }
       // 덩굴 애니매이션 스크립트 종료
     </script>
   </body>

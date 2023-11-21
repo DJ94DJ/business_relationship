@@ -437,31 +437,31 @@
         });
       };
 
-      // function handleWindowSize() {
-      //   const screenWidth = window.innerWidth;
-      //   const vines = document.querySelector('.vines');
-      //   const leafContainer = document.querySelector('#leafContainer');
+      function handleWindowSize() {
+        const screenWidth = window.innerWidth;
+        const vines = document.querySelector('.vines');
+        const leafContainer = document.querySelector('#leafContainer');
 
-      //   // screenWidth를 기준으로 필요한 가로 비율을 계산합니다.
-      //   let widthRatio;
-      //   if (screenWidth >= 768) {
-      //     // 화면 가로 크기가 768px 이상인 경우
-      //     widthRatio = '60%';
-      //   } else {
-      //     // 화면 가로 크기가 768px 미만인 경우
-      //     widthRatio = '100%';
-      //   }
+        // screenWidth를 기준으로 필요한 가로 비율을 계산합니다.
+        let widthRatio;
+        if (screenWidth >= 768) {
+          // 화면 가로 크기가 768px 이상인 경우
+          widthRatio = '60%';
+        } else {
+          // 화면 가로 크기가 768px 미만인 경우
+          widthRatio = '100%';
+        }
 
-      //   // 가로 비율을 변경합니다.
-      //   vines.style.width = widthRatio;
-      //   leafContainer.style.width = widthRatio;
-      // }
+        // 가로 비율을 변경합니다.
+        vines.style.width = widthRatio;
+        leafContainer.style.width = widthRatio;
+      }
 
-      // // 초기 실행
-      // handleWindowSize();
+      // 초기 실행
+      handleWindowSize();
 
-      // // 화면 크기 변경 이벤트를 감지하여 가로 비율을 업데이트합니다.
-      // window.addEventListener('resize', handleWindowSize);
+      // 화면 크기 변경 이벤트를 감지하여 가로 비율을 업데이트합니다.
+      window.addEventListener('resize', handleWindowSize);
     </script>
   </body>
 </html>

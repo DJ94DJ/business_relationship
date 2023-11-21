@@ -3,12 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/static/css/test_ani.css" />
+    <link rel="stylesheet" href="../static/css/test_ani.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
     <script src="//code.jquery.com/jquery-3.4.1.js"></script>
     <title>Document</title>
   </head>
-
   <body>
     <div id="animation_sky">
       <div id="leafContainer"></div>
@@ -44,6 +43,7 @@
           },
         );
       }
+
       // $(document).ready(function () {
       //   setInterval(function () {
       //     var angle = calculateDeg('.leaves');
@@ -126,12 +126,12 @@
       window.onload = function () {
         // 시간정하기
         /* setTimeout(function () {
-        var animationDiv = document.getElementById('animation_sky');
-        animationDiv.style.opacity = '0';
-        setTimeout(function () {
-          animationDiv.style.display = 'none';
-        }, 500);
-      }, 5000); */
+          var animationDiv = document.getElementById('bush');
+          animationDiv.style.opacity = '0';
+          setTimeout(function () {
+            animationDiv.style.display = 'none';
+          }, 500);
+        }, 5000); */
 
         const leafContainer = document.querySelector('#leafContainer');
         for (let i = 0; i < 9; i++) {
@@ -222,7 +222,7 @@
             getRandomColor(),
           ];
 
-          for (let j = 0; j < 2; j++) {
+          for (let j = 0; j < 5; j++) {
             const vinepartSet = document.createElement('div');
             vinepartSet.classList.add('vinepart-set');
             boxVineSet.appendChild(vinepartSet);
@@ -247,7 +247,32 @@
 
             path.setAttribute('d', randomPathData); // 선택한 경로 데이터를 적용
             path.setAttribute('transform', 'translate(-14.769 -9.575)');
-            path.classList.add(j === 0 ? 'vine_one' : 'vine_two');
+            switch (j) {
+              case 0:
+                path.classList.add('vine_one');
+                break;
+              case 1:
+                path.classList.add('vine_two');
+                break;
+              case 2:
+                path.classList.add('vine_three');
+                break;
+              case 3:
+                path.classList.add('vine_four');
+                break;
+              case 4:
+                path.classList.add('vine_five');
+                break;
+              case 5:
+                path.classList.add('vine_six');
+                break;
+              case 6:
+                path.classList.add('vine_seven');
+                break;
+              case 7:
+                path.classList.add('vine_eight');
+                break;
+            }
 
             svg.appendChild(path);
 
@@ -371,6 +396,8 @@
             path.setAttribute('filter', 'url(#shadow)');
           }
 
+          let bush = document.querySelector('.bush');
+
           container.appendChild(vine);
 
           const leaves = document.querySelectorAll('.leaves');
@@ -380,7 +407,8 @@
             const rectA = a.getBoundingClientRect();
             const rectB = b.getBoundingClientRect();
             return (
-              (rectB.left - rectA.left + (rectB.bottom - rectA.bottom)) / 2
+              (rectB.right - rectA.right) * 0.2 +
+              (rectB.bottom - rectA.bottom) * 2
             );
           });
 
@@ -391,7 +419,7 @@
               leaf.style.opacity = 1; // 나뭇잎을 나타냅니다.
               setTimeout(() => {
                 showLeavesSequentially(index + 1);
-              }, 300 - index * 15); // 100ms 간격으로 다음 나뭇잎을 나타냅니다.
+              }, 100 - index * 0.5);
             }
           }
 
@@ -399,9 +427,6 @@
           sortedLeaves.forEach((leaf) => {
             leaf.style.opacity = 0;
           });
-
-          // 나뭇잎을 순서대로 나타냅니다.
-          showLeavesSequentially(0);
         }
 
         function handleWindowSize() {
@@ -430,25 +455,34 @@
         // 화면 크기 변경 이벤트를 감지하여 가로 비율을 업데이트합니다.
         window.addEventListener('resize', handleWindowSize);
 
-        anime({
-          targets: '.vinepart-set:nth-child(1) .vine_one',
-          strokeDashoffset: [anime.setDashoffset, 0],
-          easing: 'linear',
-          duration: 2000,
-          delay: 2000,
-          direction: 'alternate',
-          loop: false,
-        });
+        const vineClasses = [
+          'one',
+          'two',
+          'three',
+          'four',
+          'five',
+          'six',
+          'seven',
+          'eight',
+        ]; // 클래스 이름 배열
 
-        anime({
-          targets: '.vinepart-set:nth-child(2) .vine_two',
-          strokeDashoffset: [anime.setDashoffset, 0],
-          easing: 'linear',
-          duration: 2000,
-          delay: 0,
-          direction: 'alternate',
-          loop: false,
-        });
+        for (let i = 0; i < vineClasses.length; i++) {
+          anime({
+            targets: `.vinepart-set:nth-child(${i + 1}) .vine_${
+              vineClasses[i]
+            }`,
+            strokeDashoffset: [anime.setDashoffset, 0],
+            easing: 'linear',
+            duration: 2000,
+            delay: (vineClasses.length - i - 1) * 2000, // 딜레이 계산 수정
+            direction: 'alternate',
+            loop: false,
+          });
+        }
+        // 나뭇잎을 순서대로 나타냅니다.
+        setTimeout(() => {
+          showLeavesSequentially(0);
+        }, 6000);
       };
     </script>
   </body>
