@@ -139,9 +139,11 @@
                     </button>
                   </div>
                   <div class="modal-body" id="modBody" style=""></div>
-                  <button type="button" id="mesDelBtn" onclick="deleteMsg(this)">
-                    삭제
-                  </button>
+                  <div>
+                    <button type="button" id="mesDelBtn" onclick="deleteMsg(this)">
+                      삭제
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -376,7 +378,7 @@
             if ('<%=gardenName%>' == '<%=userName%>') {
               $('#seedBtn').css('display', 'none');
             } else {
-              $('#mesDelBtn').css('display', 'none');
+              // $('#mesDelBtn').css('display', 'none');
             }
           </script>
 </body>
