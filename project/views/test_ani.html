@@ -15,12 +15,21 @@
     </div>
 
     <script>
+      function getRandomColor() {
+        var hue = Math.floor(Math.random() * 130) + 30;
+        var saturation = Math.floor(Math.random() * 40) + 60;
+        var lightness = Math.floor(Math.random() * 70) + 5;
+        return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+      }
+      //녹색계열 랜덤컬러 함수
+
       function createLeafSVG() {
         const svgNS = 'http://www.w3.org/2000/svg';
         const svg = document.createElementNS(svgNS, 'svg');
         svg.setAttribute('width', '140.481');
         svg.setAttribute('height', '223.477');
         svg.setAttribute('viewBox', '0 0 140.481 223.477');
+        svg.setAttribute('overflow', 'visible');
 
         const defs = document.createElementNS(svgNS, 'defs');
         svg.appendChild(defs);
@@ -48,9 +57,10 @@
         const path = document.createElementNS(svgNS, 'path');
         path.setAttribute(
           'd',
-          'M76.129,183.788C74.915,170.52,36.255,12.657,36.255,12.657A13.9,13.9,0,0,0,14.111,2.771C5.367,9.275-.83,18.866.091,28.939c.97,10.6,9.6,19.252,20.1,23.922-9.475,6.5-16.394,16.566-15.424,27.17s9.6,19.252,20.1,23.922c-9.475,6.5-16.394,16.566-15.424,27.17s9.6,19.252,20.1,23.922c-9.475,6.5-16.394,16.566-15.424,27.17,1.38,15.088,18.27,26.218,33.975,27.56a24.14,24.14,0,0,0,28.046-25.988',
+          'm166.05,239.73c-1.81-14.35-13.94-25.68-28.41-31.53,12.56-9.26,21.48-23.26,19.66-37.61-1.81-14.35-13.94-25.68-28.41-31.53,12.56-9.26,21.48-23.26,19.66-37.61-1.81-14.35-13.94-25.68-28.41-31.53,12.56-9.26,21.48-23.26,19.66-37.61-1.72-13.63-12.75-24.54-26.25-30.61-11.57-5.2-24.2,2.21-26.33,13.7-2.23-11.02-14.21-18.33-25.63-13.69-13.72,5.57-25.14,16.07-27.36,29.62-2.34,14.27,6.06,28.59,18.26,38.31-14.67,5.31-27.21,16.19-29.55,30.46-2.34,14.27,6.06,28.59,18.26,38.31-14.67,5.31-27.21,16.19-29.55,30.46-2.34,14.27,6.06,28.59,18.26,38.31-14.67,5.31-27.21,16.19-29.55,30.46-3.33,20.31,15.08,40.7,35.27,47.83,2.53,1.13,5.24,1.96,8.1,2.43,12.94,2.12,25.35-3.65,32.32-13.78l10.4-245.25-1.19,236.19c4.43,15.19,19.36,25.34,35.56,23.29,2.88-.36,5.62-1.09,8.18-2.13,20.44-6.37,39.59-26.08,37.01-46.49Z',
         );
         path.setAttribute('fill', 'url(#linear-gradient)');
+        path.setAttribute('transformOrigin', 'center');
         svg.appendChild(path);
 
         return svg;
@@ -115,6 +125,8 @@
 
         // 덩굴 제작기
 
+        const svgNS = 'http://www.w3.org/2000/svg';
+
         const vinepathData = [
           'm36.24,10l-12.56,20.8c-7.22,11.95-4.99,29.84,4.72,37.87l7.84,6.49c11.96,9.9,11.96,33.55,0,43.45h0c-11.96,9.9-11.96,33.55,0,43.45l12.61,10.44c8.46,7.01,13.63,19.52,13.63,33.01h0c0,13.49-5.17,26-13.63,33.01l-12.61,10.44c-11.96,9.9-11.96,33.55,0,43.45h0c11.96,9.9,11.96,33.55,0,43.45l-12.61,10.44c-8.46,7.01-13.63,19.52-13.63,33.01h0c0,13.49,5.17,26,13.63,33.01l12.61,10.44c11.96,9.9,11.96,33.55,0,43.45h0c-11.96,9.9-11.96,33.55,0,43.45l9.59,7.94c10.34,8.56,16.65,23.84,16.65,40.32h0c0,10.93-2.79,21.53-7.89,29.97l-18.35,30.39',
           'm36.24,10l-20.17,49.04c-9.59,23.31-5.58,50,10.43,69.46l9.74,11.84c20.76,25.24,20.76,61.65,0,86.89h0c-20.76,25.24-20.76,61.65,0,86.89h0c20.76,25.24,20.76,61.65,0,86.89h0c-20.76,25.24-20.76,61.65,0,86.89l9.74,11.84c16.01,19.46,20.02,46.15,10.43,69.46l-20.17,49.04',
@@ -143,6 +155,12 @@
           } while (usedPaths.includes(randomPathData)); // 이미 사용된 경로 데이터를 제외
           usedPaths.push(randomPathData); // 선택한 경로 데이터를 사용된 경로 데이터 배열에 추가
 
+          const pathColor = [
+            getRandomColor(),
+            getRandomColor(),
+            getRandomColor(),
+          ];
+
           for (let j = 0; j < 2; j++) {
             const vinepartSet = document.createElement('div');
             vinepartSet.classList.add('vinepart-set');
@@ -157,18 +175,140 @@
             svg.setAttribute('height', '600');
             svg.setAttribute('viewBox', '0 0 70 630');
             svg.setAttribute('overflow', 'visible');
-
+            // svg.setAttribute('stroke', '0');
             vinepartSet.appendChild(svg);
 
             const path = document.createElementNS(
               'http://www.w3.org/2000/svg',
               'path',
             );
+
             path.setAttribute('d', randomPathData); // 선택한 경로 데이터를 적용
             path.setAttribute('transform', 'translate(-14.769 -9.575)');
             path.classList.add(j === 0 ? 'vine_one' : 'vine_two');
+
             svg.appendChild(path);
+
+            // 잎사귀 추가 코드
+            // const LEAF_INTERVAL = Math.floor(450); // 잎사귀를 추가할 간격을 설정합니다.
+            const LEAF_INTERVAL = 10; // 잎사귀를 추가할 간격을 설정합니다.
+            const LEAF_count = 400;
+            const LEAF_SIZE = 160; // 잎사귀의 크기를 설정합니다.
+
+            for (let i = 0; i < path.getTotalLength(); i += LEAF_count) {
+              const point1 = path.getPointAtLength(i);
+              const point2 = path.getPointAtLength(i + LEAF_INTERVAL / 2);
+
+              const angle =
+                (Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180) /
+                Math.PI;
+
+              const leaf1 = createLeafSVG(); // 잎사귀 SVG 생성
+              leaf1.classList.add('leaves');
+              leaf1.setAttribute('width', LEAF_SIZE);
+              leaf1.setAttribute('height', LEAF_SIZE);
+              leaf1.setAttribute('x', -50); // 잎사귀의 중심이 선 위에 오도록 위치를 조정합니다.
+              leaf1.setAttribute('y', Math.floor(point1.y * 0.7)); // 잎사귀의 중심이 선 위에 오도록 위치를 조정합니다.
+
+              const leafPath1 = leaf1.querySelector('path'); // 잎사귀 SVG의 path 요소를 선택합니다.
+              leafPath1.setAttribute(
+                'transform',
+                `rotate(${angle + Math.random() * 10 + 15})`,
+              ); // 잎사귀의 각도를 선의 방향에 맞추어 조정합니다.
+
+              svg.appendChild(leaf1);
+
+              const leaf2 = createLeafSVG(); // 잎사귀 SVG 생성
+              leaf2.classList.add('leaves');
+              leaf2.setAttribute('width', LEAF_SIZE);
+              leaf2.setAttribute('height', LEAF_SIZE);
+              leaf2.setAttribute('x', -50); // 잎사귀의 중심이 선 위에 오도록 위치를 조정합니다.
+              leaf2.setAttribute('y', Math.random() * (point1.y * 1.5)); // 잎사귀의 중심이 선 위에 오도록 위치를 조정합니다.
+
+              const leafPath2 = leaf2.querySelector('path'); // 잎사귀 SVG의 path 요소를 선택합니다.
+              leafPath2.setAttribute(
+                'transform',
+                `rotate(${angle - Math.random() * 10 - 200})`,
+              ); // 잎사귀의 각도를 선의 방향에 맞추어 조정합니다.
+
+              svg.appendChild(leaf2);
+            }
+
+            const defs = document.createElementNS(svgNS, 'defs');
+            svg.appendChild(defs);
+
+            const gradient = document.createElementNS(svgNS, 'linearGradient');
+            gradient.setAttribute('id', `gradient-${i}-${j}`);
+            gradient.setAttribute('x1', '0');
+            gradient.setAttribute('y1', '0');
+            gradient.setAttribute('x2', '0');
+            gradient.setAttribute('y2', '100%');
+            defs.appendChild(gradient);
+
+            const stop1 = document.createElementNS(svgNS, 'stop');
+            stop1.setAttribute('offset', '0%');
+            stop1.setAttribute('stop-color', pathColor[1]);
+            gradient.appendChild(stop1);
+
+            const stop2 = document.createElementNS(svgNS, 'stop');
+            stop2.setAttribute('offset', '50%');
+            stop2.setAttribute('stop-color', pathColor[2]);
+            gradient.appendChild(stop2);
+
+            const stop3 = document.createElementNS(svgNS, 'stop');
+            stop3.setAttribute('offset', '100%');
+            stop3.setAttribute('stop-color', pathColor[1]);
+            gradient.appendChild(stop3);
+
+            //그림자 적용 코드 넣기
+
+            const shadowFilter = document.createElementNS(svgNS, 'filter');
+            shadowFilter.setAttribute('id', 'shadow');
+            shadowFilter.setAttribute('x', '-300%');
+            shadowFilter.setAttribute('y', '-300%');
+            shadowFilter.setAttribute('width', '900%');
+            shadowFilter.setAttribute('height', '900%');
+            defs.appendChild(shadowFilter);
+
+            const feGaussianBlur = document.createElementNS(
+              svgNS,
+              'feGaussianBlur',
+            );
+            feGaussianBlur.setAttribute('in', 'SourceAlpha');
+            feGaussianBlur.setAttribute('stdDeviation', '8');
+            shadowFilter.appendChild(feGaussianBlur);
+
+            const feOffset = document.createElementNS(svgNS, 'feOffset');
+            feOffset.setAttribute('dx', '0');
+            feOffset.setAttribute('dy', '0');
+            shadowFilter.appendChild(feOffset);
+
+            const feComponentTransfer = document.createElementNS(
+              svgNS,
+              'feComponentTransfer',
+            );
+            shadowFilter.appendChild(feComponentTransfer);
+
+            const feFuncA = document.createElementNS(svgNS, 'feFuncA');
+            feFuncA.setAttribute('type', 'linear');
+            feFuncA.setAttribute('slope', '0.15');
+            feComponentTransfer.appendChild(feFuncA);
+
+            const feMerge = document.createElementNS(svgNS, 'feMerge');
+            shadowFilter.appendChild(feMerge);
+
+            const feMergeNode1 = document.createElementNS(svgNS, 'feMergeNode');
+            feMerge.appendChild(feMergeNode1);
+
+            const feMergeNode2 = document.createElementNS(svgNS, 'feMergeNode');
+            feMergeNode2.setAttribute('in', 'SourceGraphic');
+            feMerge.appendChild(feMergeNode2);
+
+            // path에 그라데이션 적용
+            path.setAttribute('stroke', `url(#gradient-${i}-${j})`);
+            path.setAttribute('filter', 'url(#shadow)');
           }
+
           container.appendChild(vine);
         }
 
