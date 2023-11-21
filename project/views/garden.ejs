@@ -58,7 +58,7 @@
                 <div class="msgForm">
                   <!-- 현재 작성자 데이터 받는 부분 없음 (title을 작성자로 교체) -->
                   <div class="msg-name">
-                    <input type="text" name="title" class="user_name" required placeholder="작성자명" />
+                    <input type="text" name="writer" class="user_name" required placeholder="작성자명" />
                   </div>
                   <div class="msg-color">
                     <div class="flo-color">
@@ -114,7 +114,7 @@
                     transform="matrix(0.966, -0.259, 0.259, 0.966, 0, 31.967)" />
                 </svg>
               </div>
-              <div class="user-name" id="flowerName">
+              <div class="user-name">
                 <%=msg[i].writer%>
               </div>
             </div>
@@ -227,7 +227,7 @@
               const form = document.forms['newMsg'];
 
               const msg = {
-                title: form.elements.title.value,
+                writer: form.elements.writer.value,
                 content: form.elements.content.value,
                 is_public: form.elements.isPublic.value,
                 flower_color: form.elements.flowerColor.value,
