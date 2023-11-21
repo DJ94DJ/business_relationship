@@ -297,12 +297,23 @@
                   data: mesId
                 }
               }).then((res) => {
-                $(".modTitle").html(res.data.title)
-                $("#modBody").html(res.data.content)
+                if (res.data.isPublic) {
+                  $(".modTitle").html(res.data.title)
+                  $("#modBody").html(res.data.content)
+                  // e.preventDefault();
+                  $('#testModal').modal('show');
+                } else if ("<%=gardenName%>" == "<%=userName%>") {
+                  $(".modTitle").html(res.data.title)
+                  $("#modBody").html(res.data.content)
+                  // e.preventDefault();
+                  $('#testModal').modal('show');
+                }
+                else {
+                  alert("비공개 메시지입니다.");
+                }
 
               })
-              // e.preventDefault();
-              $('#testModal').modal('show');
+
             }
 
 
