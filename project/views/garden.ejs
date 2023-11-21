@@ -110,7 +110,26 @@
                 <%=msg[i].writer%>
               </div>
             </div>
+
+            <!-- 메시지 모달 -->
+            <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <input type="text" id="modalMesId" name="modalMesId" value="<%=msg[i].message_id%>">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title modTitle" id="exampleModalLabel"></h5>
+                    <button class="closeBtn">
+                      <span aria-hidden="true">X</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" id="modBody"></div>
+                  <button type="button" onclick="deleteMsg(this)">삭제하기</button>
+                </div>
+              </div>
+            </div>
           </form>
+
     </div>
     <%}%>
       <%} else {%> 메시지가 없습니다. <%}%>
@@ -119,8 +138,9 @@
           <!-- msgOpen 버튼을 누를 시 해당 폼에 대한 메시지ID = (mesId)를 받아온다 -->
           <!-- axios 요청을 받아서 해당 데이터를 이용해서 모달 창을 구성한다 -->
 
-          <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          <!-- <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
+            <input type="text" id="modalMesId" value="">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -130,9 +150,10 @@
                   </button>
                 </div>
                 <div class="modal-body" id="modBody"></div>
+                <button type="button" onclick="deleteMsg(this)">삭제하기</button>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <script>
             $(document).ready(function () {
@@ -282,14 +303,15 @@
             }
 
             // 메시지 삭제
-            function deleteMsg(id) {
-              // const form = button.closest("form")
-              console.log(
-                '메시지ID : ',
-                document.getElementById((name = 'mesId')).value,
-              );
+            function deleteMsg(button) {
+              const form = document.forms["flowerForm"]
+              let mesId = form.elements.modalMesId.value;
+              // console.log(
+              //   '메시지ID : ',
+              //   document.getElementById((name = 'modalMesId')).value,
+              // );
               let delMess = {
-                mesId: document.getElementById((name = 'mesId')).value,
+                mesId: form.querySelector('[name="modalMesId"]').value,
                 gdName: '<%=userName%>',
               };
 
@@ -343,9 +365,9 @@
             }
 
             // 자신의 가든이면 메시지 작성기능 제거
-            if ('<%=gardenName%>' == '<%=userName%>') {
-              $('#seedBtn').css('display', 'none');
-            }
+            // if ('<%=gardenName%>' == '<%=userName%>') {
+            //   $('#seedBtn').css('display', 'none');
+            // }
 
           </script>
 </body>
