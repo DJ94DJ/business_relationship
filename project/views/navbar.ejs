@@ -115,7 +115,7 @@
     <!-- nav바  -->
     <header class="header1">
         <ul class="menus">
-            <li onclick="shareLink()"><a href=""><img src="../static/img/share.svg" alt=""></a></li>
+            <li onclick="shareLink()"><a href=""><img src="/static/img/share.svg" alt="" /></a></li>
             <li>
                 <%if(gardenName) {%>
                     <a href="/home">
@@ -128,7 +128,7 @@
                         </a>
                         <%}%>
             </li>
-            <li><a id="#mask" class="openMask"><img src="../static/img/menubar.svg" alt="" /></a></li>
+            <li><a id="#mask" class="openMask"><img src="/static/img/menubar.svg" alt="" /></a></li>
         </ul>
     </header>
 
@@ -229,7 +229,7 @@
             console.log('매개변수: ', id);
             axios({
                 method: 'GET',
-                url: `/home/garden/random/${id}`,
+                url: `/home/garden/${id}`,
             }).then((res) => {
                 location.href = `/home/garden/${id}`;
             });
