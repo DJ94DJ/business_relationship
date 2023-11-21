@@ -56,8 +56,10 @@
 }
 
 .flowerCount {
+  position: relative;
+  top: 80px;
+  z-index: 2;
   font-size: 20px;
-  line-height: 50px;
   margin: 15px;
   color: #ffffff;
   text-shadow: -2px 0 #000000, 0 2px #000000, 2px 0 #000000, 0 -2px #000000;

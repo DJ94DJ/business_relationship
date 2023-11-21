@@ -20,35 +20,14 @@
 </head>
 
 <body>
-  <div id="sky"></div>
+  <div id="sky">
+    <%-include('test_ani.ejs')%>
+  </div>
 
   <%-include('navbar.ejs')%>
     <div clas="content">
 
       <span class="flowerCount">자라난 꽃 <%= msg.length %> 송이</span>
-      <div>
-        <button id="infoButton">정원 소개</button>
-      </div>
-
-      <div id="mask2">
-        <div class="window2">
-          <div class="container">
-            <div class="modal2">
-              <div class="closeBtn-container">
-                <button class="closeBtn">X</button>
-              </div>
-
-              <div class="content">
-                자라나라 새싹나라는 <br />
-                정원을 통해 메시지를 주고 받는 <br />
-                롤링페이퍼 서비스입니다.<br />
-                <br />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
 
       <!-- 씨앗 버튼 -->
       <div class="seed-sprite-box" id="seedBtn">
@@ -368,45 +347,6 @@
               $('#seedBtn').css('display', 'none');
             }
 
-            // 정원 소개
-            function wrapWindowByMask() {
-              var $mask = $('#mask2');
-              var $window = $('.window2');
-
-              if ($mask.is(':visible')) {
-                $mask.hide();
-                $window.hide();
-              } else {
-                var maskHeight = $(document).height();
-                var maskWidth = $(window).width();
-
-                $mask.css({ 'width': maskWidth, 'height': maskHeight - 50 });
-
-                $mask.fadeIn(100);
-                $window.show();
-              }
-            }
-
-            $(document).ready(function () {
-              //검은 막 띄우기
-              $('.openMask').click(function (e) {
-                e.preventDefault();
-                wrapWindowByMask();
-              });
-
-              //닫기 버튼을 눌렀을 때
-              $('.window2 .close').click(function (e) {
-                //링크 기본동작은 작동하지 않도록 한다.
-                e.preventDefault();
-                $('#mask2, .window2').hide();
-              });
-
-              //검은 막을 눌렀을 때
-              $('#mask2').click(function () {
-                $(this).hide();
-                $('.window2').hide();
-              });
-            });
           </script>
 </body>
 
