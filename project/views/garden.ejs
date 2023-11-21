@@ -149,8 +149,8 @@
 
   <div id="sky"></div>
 
-  <div clas="content">
-    <%-include('navbar.ejs')%>
+  <%-include('navbar.ejs')%>
+    <div clas="content">
       <!-- 마이페이지 이동 버튼 -->
       <button type="button" class="my-page-btn" onclick="profile()">마이페이지</button>
       <button type="button" class="my-page-btn" onclick="randomWalk()">산책하기</button>
@@ -159,7 +159,7 @@
       <div> 도착한 메시지 <%= msg.length %> 통 </div>
 
       <!-- 씨앗 버튼 -->
-      <div class="seed-sprite-box">
+      <div class="seed-sprite-box" id="seedBtn">
         <div class="seed-sprite-1"></div>
         <div class="seed-sprite-2"></div>
       </div>
@@ -230,220 +230,225 @@
                     transform="matrix(0.966, -0.259, 0.259, 0.966, 0, 31.967)" />
                 </svg>
               </div>
+              <div class="user-name">From. 닉넴</div>
+            </div>
           </form>
-          <!-- <div class="user-name">From. </div> -->
-  </div>
-  <%}%>
-    <%} else {%>
-      메시지가 없습니다.
-      <%}%>
-        <!-- </div> -->
+    </div>
+    <%}%>
+      <%} else {%>
+        메시지가 없습니다.
+        <%}%>
+          <!-- </div> -->
 
-        <!-- msgOpen 버튼을 누를 시 해당 폼에 대한 메시지ID = (mesId)를 받아온다 -->
-        <!-- axios 요청을 받아서 해당 데이터를 이용해서 모달 창을 구성한다 -->
+          <!-- msgOpen 버튼을 누를 시 해당 폼에 대한 메시지ID = (mesId)를 받아온다 -->
+          <!-- axios 요청을 받아서 해당 데이터를 이용해서 모달 창을 구성한다 -->
 
-        <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title modTitle" id="exampleModalLabel">
-                </h5>
-                <button class="closeBtn">
-                  <span aria-hidden="true">X</span>
-                </button>
-              </div>
-              <div class="modal-body" id="modBody">
+          <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title modTitle" id="exampleModalLabel">
+                  </h5>
+                  <button class="closeBtn">
+                    <span aria-hidden="true">X</span>
+                  </button>
+                </div>
+                <div class="modal-body" id="modBody">
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
 
-        <script>
-          $(document).ready(function () {
-            arrangeFlowers();
-
-            function arrangeFlowers() {
-              $('.flower01-sprite-box').each(function (index) {
-                var flower = $(this);
-                var screenWidth = $(window).width();
-
-                var posX = index % 2 === 0 ? screenWidth - flower.width() : 0;
-                var posY = index * flower.height() + 70;
-
-                flower.css({ top: posY, left: posX });
-              });
-            }
-
-            $(window).on('resize', function () {
+          <script>
+            $(document).ready(function () {
               arrangeFlowers();
+
+              function arrangeFlowers() {
+                $('.flower01-sprite-box').each(function (index) {
+                  var flower = $(this);
+                  var screenWidth = $(window).width();
+
+                  var posX = index % 2 === 0 ? screenWidth - flower.width() : 0;
+                  var posY = index * flower.height() + 70;
+
+                  flower.css({ top: posY, left: posX });
+                });
+              }
+
+              $(window).on('resize', function () {
+                arrangeFlowers();
+              });
+
+              $('.flower01-sprite-box').on('click', function (button) {
+                msgOpen(button);
+              });
             });
 
-            $('.flower01-sprite-box').on('click', function (button) {
-              msgOpen(button);
+            function msgOpen(button) {
+              const form = button.closest("form")
+              let mesId = form.querySelector('[name="mesId"]').value
+              console.log(mesId)
+              axios({
+                method: 'get',
+                url: '/home/garden/getMes',
+                params: {
+                  data: mesId
+                }
+              }).then((res) => {
+                $(".modTitle").html(res.data.title)
+                $("#modBody").html(res.data.content)
+
+              })
+              // e.preventDefault();
+              $('#testModal').modal('show');
+            }
+
+
+            // 메시지 작성 모달창
+            $('.seed-sprite-box').on('click', function (e) {
+              seedOpen(e);
             });
-          });
 
-          function msgOpen(button) {
-            const form = button.closest("form")
-            let mesId = form.querySelector('[name="mesId"]').value
-            console.log(mesId)
-            axios({
-              method: 'get',
-              url: '/home/garden/getMes',
-              params: {
-                data: mesId
-              }
-            }).then((res) => {
-              $(".modTitle").html(res.data.title)
-              $("#modBody").html(res.data.content)
-
-            })
-            // e.preventDefault();
-            $('#testModal').modal('show');
-          }
-
-          
-          // 메시지 작성 모달창
-          $('.seed-sprite-box').on('click', function (e) {
-            seedOpen(e);
-          });
-
-          function seedOpen(e) {
-            e.preventDefault();
-            $('#seedModal').modal('show');
-          }
-
-          $('.closeBtn').click(function () {
-            $('#seedModal').modal('hide');
-          });
-
-          // 모달창 닫기 버튼 활성화
-          $('.closeBtn').click(function () {
-            $('.modal').modal('hide');
-          });
-          
-          // 회원과 비회원을 구분하는 애니메이션 필요
-          function writeMsg() {
-            const form = document.forms["newMsg"]
-
-            const msg = {
-              title: form.elements.title.value,
-              content: form.elements.content.value,
-              is_public: form.elements.isPublic.value,
-              flower_color: form.elements.flowerColor.value,
-              id: form.elements.gardenId.value
+            function seedOpen(e) {
+              e.preventDefault();
+              $('#seedModal').modal('show');
             }
 
-            if ("<%=userName%>") { // 세션에 아이디가 있을 때(로그인 O)
+            $('.closeBtn').click(function () {
+              $('#seedModal').modal('hide');
+            });
+
+            // 모달창 닫기 버튼 활성화
+            $('.closeBtn').click(function () {
+              $('.modal').modal('hide');
+            });
+
+            // 회원과 비회원을 구분하는 애니메이션 필요
+            function writeMsg() {
+              const form = document.forms["newMsg"]
+
+              const msg = {
+                title: form.elements.title.value,
+                content: form.elements.content.value,
+                is_public: form.elements.isPublic.value,
+                flower_color: form.elements.flowerColor.value,
+                id: form.elements.gardenId.value
+              }
+
+              if ("<%=userName%>") { // 세션에 아이디가 있을 때(로그인 O)
+                axios({
+                  method: "POST",
+                  url: "/home/garden",
+                  data: msg
+                }).then((res) => {
+                  if (res.data.result) {
+                    alert("메시지 작성 완료")
+                    location.reload()
+                  } else {
+                    alert("메시지 작성 실패 ㅜㅜ")
+                  }
+                })
+              } else { // 세션에 아이디가 없을 때(로그인 X)
+                axios({
+                  method: "POST",
+                  url: "/home/garden",
+                  data: msg
+                }).then((res) => {
+                  console.log('작성 결과', res)
+                  if (res.data.result) {
+                    alert("메시지 작성 완료")
+                    location.reload()
+                  } else {
+                    alert("메시지 작성 실패 ㅜㅜ")
+                  }
+                })
+              }
+            }
+
+            function randomWalk() {
               axios({
-                method: "POST",
-                url: "/home/garden",
-                data: msg
+                method: "GET",
+                url: '/home/garden/random'
               }).then((res) => {
-                if (res.data.result) {
-                  alert("메시지 작성 완료")
-                  location.reload()
-                } else {
-                  alert("메시지 작성 실패 ㅜㅜ")
-                }
-              })
-            } else { // 세션에 아이디가 없을 때(로그인 X)
-              axios({
-                method: "POST",
-                url: "/home/garden",
-                data: msg
-              }).then((res) => {
-                console.log('작성 결과', res)
-                if (res.data.result) {
-                  alert("메시지 작성 완료")
-                  location.reload()
-                } else {
-                  alert("메시지 작성 실패 ㅜㅜ")
-                }
+                let num = res.data.data
+                console.log("res : ", res)
+                console.log("res.data : ", res.data)
+                console.log("num : ", num)
+                randomPage(num)
               })
             }
-          }
 
-          function randomWalk() {
-            axios({
-              method: "GET",
-              url: '/home/garden/random'
-            }).then((res) => {
-              let num = res.data.data
-              console.log("res : ", res)
-              console.log("res.data : ", res.data)
-              console.log("num : ", num)
-              randomPage(num)
-            })
-          }
-
-          function randomPage(id) {
-            console.log("매개변수: ", id)
-            axios({
-              method: "GET",
-              url: `/home/garden/${id}`
-            }).then((res) => {
-              location.href = `/home/garden/${id}`
-            })
-          }
-
-
-          // 메시지 삭제
-          function deleteMsg(button) {
-            const form = button.closest("form")
-            let delMess = {
-              mesId: form.querySelector('[name="mesId"]').value,
-              gdName: "<%=userName%>"
+            function randomPage(id) {
+              console.log("매개변수: ", id)
+              axios({
+                method: "GET",
+                url: `/home/garden/${id}`
+              }).then((res) => {
+                location.href = `/home/garden/${id}`
+              })
             }
-            console.log("mesId : ", delMess.mesId)
-            console.log("gardenId : ", delMess.gardenId)
 
-            axios({
-              method: "DELETE",
-              url: "/home/garden",
-              data: delMess
-            }).then((res) => {
-              console.log("res.data", res.data)
-              if (res.data.result) {
-                alert("삭제되었습니다")
-                location.reload()
-              } else {
-                // 주인만 삭제 가능
-                location.reload()
+
+            // 메시지 삭제
+            function deleteMsg(id) {
+              // const form = button.closest("form")
+              console.log("메시지ID : ", document.getElementById(name = "mesId").value)
+              let delMess = {
+                mesId: document.getElementById(name = "mesId").value,
+                gdName: "<%=userName%>"
               }
-            }).catch((err) => {
-              console.log("에러발생")
+
+              console.log("mesId : ", delMess.mesId)
+              axios({
+                method: "DELETE",
+                url: "/home/garden",
+                data: delMess
+              }).then((res) => {
+                console.log("res.data", res.data)
+                if (res.data.result) {
+                  alert("삭제되었습니다")
+                  location.reload()
+                } else {
+                  // 주인만 삭제 가능
+                  location.reload()
+                }
+              }).catch((err) => {
+                console.log("에러발생")
+              })
+
+            }
+
+            $("buttion[name=delMsg]").on("click", function () {
+              console.log("value : ", this.value)
             })
 
-          }
+            function profile() {
+              axios({
+                method: "GET",
+                url: "/user/profile"
+              }).then((res) => {
+                console.log('res', res.data)
+                if (res.data) location.href = '/user/profile'
+                else { alert("마이페이지 접근 불가 ;ㅁ;") }
+              })
+            }
+            function signOut() {
+              axios({
+                method: "POST",
+                url: "/home/signout",
+              }).then((res) => {
+                if (res.data.result) location.href = '/home'
+                else { alert("로그아웃 실패 ;ㅁ;") }
+              })
+            }
 
-
-          $("buttion[name=delMsg]").on("click", function () {
-            console.log("value : ", this.value)
-          })
-
-          function profile() {
-            axios({
-              method: "GET",
-              url: "/user/profile"
-            }).then((res) => {
-              console.log('res', res.data)
-              if (res.data) location.href = '/user/profile'
-              else { alert("마이페이지 접근 불가 ;ㅁ;") }
-            })
-          }
-          function signOut() {
-            axios({
-              method: "POST",
-              url: "/home/signout",
-            }).then((res) => {
-              if (res.data.result) location.href = '/home'
-              else { alert("로그아웃 실패 ;ㅁ;") }
-            })
-          }
-        </script>
+            // 자신의 가든이면 메시지 작성기능 제거
+            if ("<%=gardenName%>" == "<%=userName%>") {
+              $("#seedBtn").css("display", "none")
+            }
+          </script>
 </body>
 
 </html>
