@@ -36,7 +36,7 @@ exports.signInUser = (req, res) => {
               // user_name ,id 세션에 저장 (로그인 시 유 무를 확인 등)
               req.session.userName = result.user_name;
               req.session.userId = result.id;
-              res.send({ result: true });
+              res.send({ result: true, userId: result.id });
             } else {
               res.send({ result: false });
             }

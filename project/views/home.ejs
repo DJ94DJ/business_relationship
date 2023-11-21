@@ -111,7 +111,7 @@
         })
           .then((res) => {
             if (res.data) {
-              location.href = '/home/garden';
+              location.href = `/home/garden`;
             }
           })
           .catch((error) => {
@@ -134,51 +134,9 @@
           url: '/home/garden/random',
         }).then((res) => {
           let num = res.data.data;
-          randomPage(num);
-        });
-      }
-
-      function randomPage(id) {
-        console.log('매개변수: ', id);
-        axios({
-          method: 'GET',
-          url: `/home/garden/random/${id}`,
-        }).then((res) => {
-          location.href = `/home/garden/${id}`;
-        });
-      }
-
-      function signOut() {
-        axios({
-          method: 'POST',
-          url: '/home/signout',
-        })
-          .then((res) => {
-            if (res.data.result) location.href = '/home';
-            else {
-              alert('로그아웃 실패 ;ㅁ;');
-            }
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      }
-
-      function mvSignUp() {
-        axios({
-          method: 'GET',
-          url: '/home/signup',
-        }).then((res) => {
-          location.href = '/home/signup';
-        });
-      }
-
-      function randomWalk() {
-        axios({
-          method: 'GET',
-          url: '/home/garden/random',
-        }).then((res) => {
-          let num = res.data.data;
+          console.log('res : ', res);
+          console.log('res.data : ', res.data);
+          console.log('num : ', num);
           randomPage(num);
         });
       }
