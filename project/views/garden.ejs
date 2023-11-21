@@ -159,7 +159,7 @@
       <div> 도착한 메시지 <%= msg.length %> 통 </div>
 
       <!-- 씨앗 버튼 -->
-      <div class="seed-sprite-box">
+      <div class="seed-sprite-box" id="seedBtn">
         <div class="seed-sprite-1"></div>
         <div class="seed-sprite-2"></div>
       </div>
@@ -231,6 +231,7 @@
                     transform="matrix(0.966, -0.259, 0.259, 0.966, 0, 31.967)" />
                 </svg>
               </div>
+              <button type="button" onclick="deleteMsg(this)">삭제하기</button>
           </form>
           <!-- <div class="user-name">From. </div> -->
   </div>
@@ -402,12 +403,14 @@
 
 
           // 메시지 삭제
-          function deleteMsg(button) {
-            const form = button.closest("form")
+          function deleteMsg(id) {
+            // const form = button.closest("form")
+            console.log("메시지ID : ", document.getElementById(name = "mesId").value)
             let delMess = {
-              mesId: form.querySelector('[name="mesId"]').value,
+              mesId: document.getElementById(name = "mesId").value,
               gdName: "<%=userName%>"
             }
+
             console.log("mesId : ", delMess.mesId)
             console.log("gardenId : ", delMess.gardenId)
 
@@ -429,7 +432,6 @@
             })
 
           }
-
 
           $("buttion[name=delMsg]").on("click", function () {
             console.log("value : ", this.value)
@@ -453,6 +455,10 @@
               if (res.data.result) location.href = '/home'
               else { alert("로그아웃 실패 ;ㅁ;") }
             })
+          }
+
+          if ("<%=gardenName%>" == "<%=userName%>") {
+            $("#seedBtn").css("display", "none")
           }
         </script>
 </body>
