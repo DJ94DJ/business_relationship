@@ -46,12 +46,14 @@
     }
 
     .header1 {
+        position: fixed;
         display: flex;
         /* position: absolute; */
         justify-content: space-between;
         width: 100%;
         height: 60px;
         background-color: #ffffff;
+        z-index: 3;
     }
 
     .header1 li {
@@ -132,6 +134,7 @@
         </ul>
     </header>
 
+
     <div id="mask">
         <div class="window">
             <div class="maskText">
@@ -150,9 +153,6 @@
     </div>
 
     <script>
-        // if ("<%=userName%>") {
-        //     $("#navLogo").html(`<%=userName%>의 가든`)
-        // } else $("#navLogo").html("새싹나라")
 
         function wrapWindowByMask() {
             var $mask = $('#mask');

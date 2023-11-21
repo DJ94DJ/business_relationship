@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/css/test_ani.css" />
+    <link rel="stylesheet" href="/static/css/test_ani.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
     <script src="//code.jquery.com/jquery-3.4.1.js"></script>
     <title>Document</title>
   </head>
+
   <body>
     <div id="animation_sky">
       <div id="leafContainer"></div>
@@ -125,12 +126,12 @@
       window.onload = function () {
         // 시간정하기
         /* setTimeout(function () {
-          var animationDiv = document.getElementById('animation_sky');
-          animationDiv.style.opacity = '0';
-          setTimeout(function () {
-            animationDiv.style.display = 'none';
-          }, 500);
-        }, 5000); */
+        var animationDiv = document.getElementById('animation_sky');
+        animationDiv.style.opacity = '0';
+        setTimeout(function () {
+          animationDiv.style.display = 'none';
+        }, 500);
+      }, 5000); */
 
         const leafContainer = document.querySelector('#leafContainer');
         for (let i = 0; i < 9; i++) {

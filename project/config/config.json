@@ -3,7 +3,7 @@
     "host": "localhost",
     "database": "db_business",
     "username": "user",
-    "password": "rr212529!!r",
+    "password": "qwer1234!",
     "dialect": "mysql"
   },
 
@@ -12,6 +12,7 @@
     "database": "",
     "username": "",
     "password": "",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "logging": "false"
   }
 }
