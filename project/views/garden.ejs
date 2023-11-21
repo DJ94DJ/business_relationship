@@ -248,7 +248,7 @@
         }).then((res) => {
           if (res.data.isPublic) {
             $('.modTitle').html(res.data.writer);
-            $('#modBody').html(res.data.content);
+            $('#modBody').html(res.data.content).css('text-align', 'center');
             // e.preventDefault();
             $('#testModal').modal('show');
           } else if ('<%=gardenName%>' == '<%=userName%>') {
