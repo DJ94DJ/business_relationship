@@ -12,6 +12,7 @@
     "database": "",
     "username": "",
     "password": "",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "logging": "false"
   }
 }
