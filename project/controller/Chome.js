@@ -57,6 +57,7 @@ exports.signInUser = (req, res) => {
 
 // '로그아웃' 버튼 클릭 시
 exports.signOut = (req, res) => {
+  console.log('로그아웃');
   req.session.destroy((err) => {
     if (err) throw err;
     res.send({ result: true });
@@ -65,6 +66,7 @@ exports.signOut = (req, res) => {
 
 // 회원 가입 페이지 랜더
 exports.signUp = (req, res) => {
+  console.log('회원가입 페이지 이동');
   res.render('signup', { userName: false, gardenName: false });
 };
 
@@ -115,8 +117,8 @@ exports.signUpUser = (req, res) => {
 };
 
 // 개인 정원(롤링페이퍼) 페이지 랜더
-// 로그인 후, 정원 랜더 시 해당 user_id에 해당하는 메시지도 함께 응답에 담아 보냄
 exports.garden = (req, res) => {
+  console.log('개인 정원 이동');
   User.findOne({
     where: {
       id: req.session.userId,
@@ -134,7 +136,6 @@ exports.garden = (req, res) => {
         where: { id: req.session.userId },
         include: { model: User },
       }).then((msg) => {
-        console.log('msg :', msg);
         res.render('garden', {
           result,
           msg,

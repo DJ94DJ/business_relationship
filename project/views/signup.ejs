@@ -206,8 +206,6 @@
               user_id: form.user_id.value,
             },
           }).then((res) => {
-            // true 값이 들어오면 아이디가 존재하지 않는다는 뜻
-            console.log('idCheck res :', res);
             if (res.data.result) {
               $('#user_id').attr('disabled', true);
               $('#userIdCk').attr('disabled', true);
