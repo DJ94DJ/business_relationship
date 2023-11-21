@@ -272,7 +272,7 @@
                 var screenWidth = $(window).width();
 
                 var posX = index % 2 === 0 ? screenWidth - flower.width() : 0;
-                var posY = index * flower.height();
+                var posY = index * flower.height() + 70;
 
                 flower.css({ top: posY, left: posX });
               });
