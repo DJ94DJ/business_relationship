@@ -199,6 +199,27 @@
   position: absolute;
 }
 
+.modal-content2 {
+  top: 57%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 378px;
+  height: 400px;
+  background: #ffffff;
+  border: 13px solid #f5c703;
+  border-radius: 36px;
+  opacity: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  position: absolute;
+  overflow-y: auto;
+}
+
+/* #mesDelBtn {
+  position: absolute;
+  text-align: center;
+} */
+
 .submitBtn {
   position: absolute;
   bottom: 2%;
@@ -459,4 +480,8 @@ top: 10%; */
     font-size: 20px;
     text-align: center;
   }
+}
+
+.msgContentForm > #modbody > .modal-Body {
+  height: 200px !important;
 }
