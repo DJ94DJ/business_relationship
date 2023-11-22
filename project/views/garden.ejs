@@ -187,22 +187,27 @@
           >
             <input type="text" id="modMesId" name="modMesId" value="" hidden />
             <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content2">
+              <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title modTitle" id="exampleModalLabel"></h5>
                   <button class="closeBtn">
                     <span aria-hidden="true">X</span>
                   </button>
                 </div>
-                <div class="modal-body" id="modBody">
+                <div class="modal-body">
                   <textarea
-                    name="lalalala"
-                    id="lalalala"
+                    name="modBody"
+                    id="modBody"
                     cols="24"
                     rows="8"
                   ></textarea>
                 </div>
-                <button type="button" id="mesDelBtn" onclick="deleteMsg(this)">
+                <button
+                  type="button"
+                  class="mesDelBtn"
+                  id="mesDelBtn"
+                  onclick="deleteMsg(this)"
+                >
                   삭제
                 </button>
               </div>
@@ -275,7 +280,7 @@
         }).then((res) => {
           if (res.data.isPublic) {
             $('.modTitle').html(res.data.writer);
-            $('#lalalala').html(res.data.content);
+            $('#modBody').html(res.data.content);
             $('#modMesId').val(res.data.messageId);
             // e.preventDefault();
             $('#testModal').modal('show');

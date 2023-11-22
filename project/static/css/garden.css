@@ -53,10 +53,10 @@
   fill: #cb6767;
 }
 
-.msg-btn {
-  /* display: none; */
-  /* cursor: pointer; */
-}
+/* .msg-btn { */
+/* display: none; */
+/* cursor: pointer; */
+/* } */
 
 .flowerCount {
   position: relative;
@@ -363,7 +363,18 @@ top: 10%; */
   cursor: pointer;
 }
 
-#lalalala {
+.mesDelBtn {
+  font-size: 15px;
+  border-radius: 25px;
+  width: 70px;
+  height: 30px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  z-index: 9000;
+}
+
+#modBody {
   border: none;
   overflow: hidden;
 }
@@ -490,6 +501,11 @@ top: 10%; */
   }
 }
 
-.msgContentForm > #modbody > .modal-Body {
+/* .msgContentForm > #modbody > .modal-Body {
   height: 200px !important;
+} */
+
+.modal-Body {
+  word-break: break-all;
+  word-wrap: normal;
 }
