@@ -220,6 +220,11 @@
   text-align: center;
 } */
 
+.modal-footer {
+  text-align: right;
+  margin-top: 10px;
+}
+
 .submitBtn {
   position: absolute;
   bottom: 2%;
@@ -361,6 +366,17 @@ top: 10%; */
 
 .maskText2 > div {
   cursor: pointer;
+}
+
+.mesDelBtn {
+  font-size: 15px;
+  border-radius: 25px;
+  width: 70px;
+  height: 30px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  z-index: 9000;
 }
 
 /* iPhone SE */
