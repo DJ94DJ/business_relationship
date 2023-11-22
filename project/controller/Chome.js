@@ -136,6 +136,7 @@ exports.garden = (req, res) => {
         where: { id: req.session.userId },
         include: { model: User },
       }).then((msg) => {
+        console.log('person result: ', result);
         res.render('garden', {
           result,
           msg,
@@ -143,6 +144,8 @@ exports.garden = (req, res) => {
           gardenId: req.session.userId,
           gardenName: result.user_name,
           flowerColor: result.flower_color,
+          user_intro_self: result.user_intro_self,
+          user_mbti: result.user_mbti,
         });
       });
     })
@@ -219,11 +222,14 @@ exports.ranGardenPage = (req, res) => {
       where: { id: req.params.id },
       include: { model: User },
     }).then((msg) => {
+      console.log('산책하기 result', result);
       res.render('garden', {
         msg,
         userName: req.session.userName,
         gardenId: req.params.id,
         gardenName: result.user_name,
+        user_intro_self: result.user_intro_self,
+        user_mbti: result.user_mbti,
       });
     });
   });
