@@ -1,31 +1,23 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://code.jquery.com/jquery-3.7.1.min.js"
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-      crossorigin="anonymous"
-    ></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    <title>profile(마이페이지)</title>
-    <link rel="stylesheet" href="../static/css/profile.css" />
-  </head>
 
-  <body>
-    <%-include('navbar.ejs')%>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <title>profile(마이페이지)</title>
+  <link rel="stylesheet" href="../static/css/profile.css" />
+</head>
+
+<body>
+  <%-include('navbar.ejs')%>
     <div class="sky">
       <div class="title-border">
         <h3 class="title">회원정보 수정</h3>
@@ -35,54 +27,25 @@
           <div>
             <!-- 아이디는 변경 불가능 -->
             아이디
-            <input
-              type="text"
-              class="user-id"
-              name="user_id"
-              value="<%=data.user_id%>"
-              readonly
-            />
+            <input type="text" class="user-id" name="user_id" value="<%=data.user_id%>" readonly />
           </div>
           <div>
             닉네임
-            <input
-              type="text"
-              name="user_name"
-              class="user-nk"
-              value="<%=data.user_name%>"
-            />
+            <input type="text" name="user_name" class="user-nk" value="<%=data.user_name%>" />
           </div>
           <div>
             내 MBTI
-            <input
-              type="text"
-              name="user_mbti"
-              class="user-mb"
-              value="<%=data.user_mbti%>"
-            />
+            <input type="text" name="user_mbti" class="user-mb" value="<%=data.user_mbti%>" />
           </div>
           <div>
             자기소개
-            <input
-              class="user-self"
-              type="textarea"
-              name="user_intro_self"
-              value="<%=data.user_intro_self%>"
-            />
+            <input class="user-self" type="textarea" name="user_intro_self" value="<%=data.user_intro_self%>" />
           </div>
           <div>
             <div id="pw_check"></div>
             비밀번호 확인
-            <input
-              type="password"
-              name="user_pw"
-              class="user-pw"
-              id="user-pw"
-              value=""
-              oninput="pwCheck()"
-              pattern="^(?=.*[0-9])(?=.*[a-zA-Z]).{4,12}$"
-              title="숫자와 영문을 포함하여 4~12자 이내로 작성해 주세요."
-            />
+            <input type="password" name="user_pw" class="user-pw" id="user-pw" value="" oninput="pwCheck()"
+              pattern="^(?=.*[0-9])(?=.*[a-zA-Z]).{4,12}$" title="숫자와 영문을 포함하여 4~12자 이내로 작성해 주세요." />
           </div>
           <br />
           <div class="btn-container">
@@ -112,7 +75,9 @@
           data: user,
         }).then((res) => {
           if (res.data.result) {
-            deleteUser();
+            if (confirm("정말 탈퇴하시겠습니까 ?")) {
+              deleteUser();
+            }
           } else {
             alert('탈퇴를 위해선 비밀번호가 필요합니다.');
             document.getElementById('user-pw').value = '';
@@ -126,6 +91,7 @@
           url: '/user/profile',
         }).then((res) => {
           if (res.data.result) {
+
             alert('탈퇴 완료');
             location.href = '/home';
           } else alert('탈퇴 실패');
@@ -176,5 +142,6 @@
         });
       }
     </script>
-  </body>
+</body>
+
 </html>
