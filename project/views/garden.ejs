@@ -111,25 +111,28 @@
 
             <!-- msgOpen 버튼을 누를 시 해당 폼에 대한 메시지ID = (mesId)를 받아온다 -->
             <!-- axios 요청을 받아서 해당 데이터를 이용해서 모달 창을 구성한다 -->
-
-            <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <input type="text" id="modMesId" name="modMesId" value="" hidden>
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title modTitle" id="exampleModalLabel"></h5>
-                    <button class="closeBtn">
-                      <span aria-hidden="true">X</span>
+            <form class="msgContentForm">
+              <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <input type="text" id="modMesId" name="modMesId" value="" hidden>
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content2">
+                    <div class="modal-header">
+                      <h5 class="modal-title modTitle" id="exampleModalLabel"></h5>
+                      <button class="closeBtn">
+                        <span aria-hidden="true">X</span>
+                      </button>
+                    </div>
+                    <div class="modal-body" id="modBody">
+                    </div>
+                    <button type="button" id="mesDelBtn" onclick="deleteMsg(this)">
+                      삭제
                     </button>
                   </div>
-                  <div class="modal-body" id="modBody"></div>
-                  <button type="button" id="mesDelBtn" onclick="deleteMsg(this)">
-                    삭제
-                  </button>
                 </div>
               </div>
-            </div>
+            </form> <!-- 메시지 폼 -->
+
           </form>
     </div>
     <%}%>
@@ -362,7 +365,7 @@
             if ('<%=gardenName%>' == '<%=userName%>') {
               $('#seedBtn').css('display', 'none');
             } else {
-              // $('#mesDelBtn').css('display', 'none');
+              $('#mesDelBtn').css('display', 'none');
             }
           </script>
 </body>
