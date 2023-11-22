@@ -111,71 +111,37 @@
     .maskText>div {
         cursor: pointer;
     }
-
-    .bubble 
-	{
-	z-index:100;
-	position: relative;
-	height: auto;
-	padding: 10px 10px 10px 10px;
-	background: #FFFFFF;
-	border-radius: 5px;
-	border: #7F7F7F solid 1px;
-	position: absolute;
-	font-size: 16px;
-	text-align: left;
-	}
 	
-	.bubble:after 
+	.introSelf 
 	{
-	content: '';
 	position: absolute;
 	border-style: solid;
 	border-width: 0 16px 20px 17.5px;
 	border-color: #FFFFFF transparent;
-	display: block;
-	width: 0;
+	width: 300px;
 	z-index: 1;
-	top: -18.5px; 
-	left: 49px; 
+	/* top: -18.5px;  */
+	/* left: 49px; */
 	}
 	
-	.bubble:before 
-	{
-	content: '';
-	position: absolute;
-	border-style: solid;
-	border-width: 0 16px 20px 17.5px;
-	border-color: #7F7F7F transparent;
-	display: block;
-	width: 0;
-	z-index: 0;
-	top: -20px;
-	left: 49px;
-	}
 </style>
 
 <body>
-    <div class="bubble"> 
-        <%=user_intro_self%>
-        <%=user_mbti%>
-    </div>
-
     <!-- nav바  -->
     <header class="header1">
         <ul class="menus">
             <li onclick="shareLink()"><a href=""><img src="/static/img/share.svg" alt="" /></a></li>
             <li>
                 <%if(gardenName) {%>
-                    <a href="/home">
+                    <div class="gardenName">
                         <%=gardenName%>의 정원
-                    </a>
+                    </div>
                     <%} else {%>
                         <a href="/home">
                             자라나라<br>
                             새싹나라
                         </a>
-                        <%}%>
+                    <%}%>
             </li>
             <li><a id="#mask" class="openMask"><img src="/static/img/menubar.svg" alt="" /></a></li>
         </ul>
@@ -197,6 +163,11 @@
                         <%}%>
             </div>
         </div>
+    </div>
+
+    <div class="introSelf" >
+        <%= user_intro_self%>
+        <%=user_mbti%>
     </div>
 
     <script>
