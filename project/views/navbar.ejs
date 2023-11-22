@@ -112,27 +112,69 @@
         cursor: pointer;
     }
 
-    .containerInfo {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    position: relative;
-    z-index: 999;
-}
-	
-    .modalInfo {
-    /* display: none; */
-    width: 70vw;
-    height: auto;
-    background-color: white;
-    border: 7px solid #f5c703;
-    border-radius: 20px;
-    padding: 5px;
-    position: fixed;
-    top: 40%;
+    /* .introSelf {
+        position: absolute;
+        border-style: solid;
+        border-width: 0 16px 20px 17.5px;
+        border-color: #FFFFFF transparent;
+        width: 300px;
+        z-index: 1;
     }
-	
+
+    .modalInfo {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    } */
+
+    /* ----------------------- */
+
+    .introModal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 20;
+        width: 100%;
+        height: 100%;
+        z-index: 10001;
+        display: none;
+
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal.show {
+        display: block;
+    }
+
+    .introModalBody {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        width: 300px;
+        height: auto;
+        padding: 20px;
+        text-align: center;
+        background-color: rgb(255, 255, 255);
+        border-radius: 30px;
+        border: 10px solid #f5c703;
+        box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+    .closeBtn {
+        font-size: 10px;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        background-color: #000000;
+        color: #ffffff;
+        border: none;
+    }
 </style>
 
 <body>
@@ -140,33 +182,21 @@
     <header class="header1">
         <ul class="menus">
             <li onclick="shareLink()"><a href=""><img src="/static/img/share.svg" alt="" /></a></li>
-            <li class="gardenN">
-                <%if(gardenName != userName) {%>
-                    <div class="containerInfo">
-                        <div class="gardenName" id="gardenNameId">
+            <li>
+                <%if(gardenName) {%>
+                    <div class="gardenName introOpBtn" id="gardenNameId">
                         <%=gardenName%>의 정원
                     </div>
-                    </div>
-                    <% else if (gardenName == userName ) {%>
-                        <a href="/home"><%=gardenName%>의 정원</a>
-                    <%}%>
-                        <%} else {%>
-                            <a href="/home">
-                                자라나라<br>
-                                새싹나라
-                            </a>
+                    <%} else {%>
+                        <a href="/home">
+                            자라나라<br>
+                            새싹나라
+                        </a>
                         <%}%>
             </li>
             <li><a id="#mask" class="openMask"><img src="/static/img/menubar.svg" alt="" /></a></li>
         </ul>
     </header>
-
-    <!-- 자기소개 모달 -->
-    <div class="modalInfo" id="modalInfo">
-        <p> <%=gardenName%> 님의 정원을 소개합니다. </p>
-        <p> <%=userIntroSelf%> </p>
-        <p> <%=userMbti%> </p>
-    </div>
 
     <div id="mask">
         <div class="window">
@@ -185,18 +215,50 @@
         </div>
     </div>
 
-    <script>
-        $('.gardenN').click(function() {
-            const $modal = $('.modalInfo')
+    <div class="introModal">
+        <div class="introModalBody">
+            <div style="font-size: 24px;">
+                <a style="color: #01552c;">
+                    <%=gardenName%>
+                </a> 소개 <button class="introCloseBtn closeBtn">X
+                </button>
+            </div>
+            <br />
+            <div>
+                <span style="font-size: 22px;">
+                    <%=user_mbti%>
+                </span>
+            </div>
+            <br />
+            <div style="font-size: 18px;">
+                <%=user_intro_self%>
+            </div>
+        </div>
+    </div>
 
-            if ($modal.is (':visible')) {
-                $modal.hide();
+    <script>
+        const body = document.querySelector('body');
+        const modal = document.querySelector('.introModal');
+        const btnOpenPopup = document.querySelector('.introOpBtn');
+        const btnClosePopup = document.querySelector('.introCloseBtn');
+
+        btnOpenPopup.addEventListener('click', () => {
+            if ("<%=gardenName%>" == "<%=userName%>") {
+                location.href = '/home'
             } else {
-                $modal.fadeIn(100)
+                modal.style.display = 'block';
+
+                if (modal.classList.contains('show')) {
+                    body.style.overflow = 'hidden'
+                }
             }
         })
 
+        btnClosePopup.addEventListener('click', () => {
+            modal.style.display = 'none';
+        })
 
+        // 원래의것
         function wrapWindowByMask() {
             var $mask = $('#mask');
             var $window = $('.window');

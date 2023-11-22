@@ -67,7 +67,12 @@ exports.signOut = (req, res) => {
 // 회원 가입 페이지 랜더
 exports.signUp = (req, res) => {
   console.log('회원가입 페이지 이동');
-  res.render('signup', { userName: false, gardenName: false });
+  res.render('signup', {
+    userName: false,
+    gardenName: false,
+    user_mbti: false,
+    user_intro_self: false,
+  });
 };
 
 // 회원가입 -> 아이디 중복체크 버튼 클릭 시
@@ -136,6 +141,7 @@ exports.garden = (req, res) => {
         where: { id: req.session.userId },
         include: { model: User },
       }).then((msg) => {
+        console.log('person result: ', result);
         res.render('garden', {
           result,
           msg,
@@ -143,8 +149,8 @@ exports.garden = (req, res) => {
           gardenId: req.session.userId,
           gardenName: result.user_name,
           flowerColor: result.flower_color,
-          userIntroSelf: result.user_intro_self,
-          userMbti: result.user_mbti,
+          user_intro_self: result.user_intro_self,
+          user_mbti: result.user_mbti,
         });
       });
     })
@@ -221,13 +227,14 @@ exports.ranGardenPage = (req, res) => {
       where: { id: req.params.id },
       include: { model: User },
     }).then((msg) => {
+      console.log('산책하기 result', result);
       res.render('garden', {
         msg,
         userName: req.session.userName,
         gardenId: req.params.id,
         gardenName: result.user_name,
-        userIntroSelf: result.user_intro_self,
-        userMbti: result.user_mbti,
+        user_intro_self: result.user_intro_self,
+        user_mbti: result.user_mbti,
       });
     });
   });
