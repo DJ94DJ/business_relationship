@@ -139,6 +139,8 @@ exports.garden = (req, res) => {
         res.render('garden', {
           result,
           msg,
+          user_intro_self: result.user_intro_self,
+          user_mbti: result.user_mbti,
           userName: req.session.userName,
           gardenId: req.session.userId,
           gardenName: result.user_name,
@@ -221,6 +223,8 @@ exports.ranGardenPage = (req, res) => {
     }).then((msg) => {
       res.render('garden', {
         msg,
+        user_intro_self: result.user_intro_self,
+        user_mbti: result.user_mbti,
         userName: req.session.userName,
         gardenId: req.params.id,
         gardenName: result.user_name,
