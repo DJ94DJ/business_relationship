@@ -10,6 +10,8 @@ exports.profile = (req, res) => {
       res.render('profile', {
         data: result,
         gardenName: false,
+        user_mbti: false,
+        user_intro_self: false,
         userName: result.user_name,
       });
     else res.send({ result: false });
