@@ -111,28 +111,26 @@
     .maskText>div {
         cursor: pointer;
     }
-	
-	.introSelf 
-	{
-	position: absolute;
-	border-style: solid;
-	border-width: 0 16px 20px 17.5px;
-	border-color: #FFFFFF transparent;
-	width: 300px;
-	z-index: 1;
-	/* top: -18.5px;  */
-	/* left: 49px; */
-	}
 
+    .containerInfo {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    position: relative;
+    z-index: 999;
+}
+	
     .modalInfo {
-    display: none;
+    /* display: none; */
+    width: 70vw;
+    height: auto;
+    background-color: white;
+    border: 7px solid #f5c703;
+    border-radius: 20px;
+    padding: 5px;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
+    top: 40%;
     }
 	
 </style>
@@ -142,28 +140,32 @@
     <header class="header1">
         <ul class="menus">
             <li onclick="shareLink()"><a href=""><img src="/static/img/share.svg" alt="" /></a></li>
-            <li>
-                <%if(gardenName) {%>
-                    <div class="gardenName" id="gardenNameId">
+            <li class="gardenN">
+                <%if(gardenName != userName) {%>
+                    <div class="containerInfo">
+                        <div class="gardenName" id="gardenNameId">
                         <%=gardenName%>의 정원
                     </div>
-                    <%} else {%>
-                        <a href="/home">
-                            자라나라<br>
-                            새싹나라
-                        </a>
+                    </div>
+                    <% else if (gardenName == userName ) {%>
+                        <a href="/home"><%=gardenName%>의 정원</a>
                     <%}%>
+                        <%} else {%>
+                            <a href="/home">
+                                자라나라<br>
+                                새싹나라
+                            </a>
+                        <%}%>
             </li>
             <li><a id="#mask" class="openMask"><img src="/static/img/menubar.svg" alt="" /></a></li>
         </ul>
     </header>
 
+    <!-- 자기소개 모달 -->
     <div class="modalInfo" id="modalInfo">
-        <div class="introSelf" id="introSelf">
-            <span class="closeModal" id="closeModal">&times;</span>
-            <p> 내용 </p>
-            <p> 내용 </p>
-        </div>
+        <p> <%=gardenName%> 님의 정원을 소개합니다. </p>
+        <p> <%=userIntroSelf%> </p>
+        <p> <%=userMbti%> </p>
     </div>
 
     <div id="mask">
@@ -184,6 +186,16 @@
     </div>
 
     <script>
+        $('.gardenN').click(function() {
+            const $modal = $('.modalInfo')
+
+            if ($modal.is (':visible')) {
+                $modal.hide();
+            } else {
+                $modal.fadeIn(100)
+            }
+        })
+
 
         function wrapWindowByMask() {
             var $mask = $('#mask');
@@ -304,23 +316,6 @@
 
             alert('URL이 복사되었습니다.'); // 알림창
         }
-
-        document.ready(function() {
-            $('.gardenName').click(function() {
-                $('#modalInfo').fadeIn();
-            });
-
-            // Function to close the modal
-            $('#modalInfo').click(function(event) {
-                if (event.target.id === 'modalInfo') {
-                    $('#modalInfo').fadeOut();
-                }
-            });
-
-            $('#closeModal').click(function() {
-                $('#modalInfo').fadeOut();
-            });
-        })
     </script>
 </body>
 

@@ -143,6 +143,8 @@ exports.garden = (req, res) => {
           gardenId: req.session.userId,
           gardenName: result.user_name,
           flowerColor: result.flower_color,
+          userIntroSelf: result.user_intro_self,
+          userMbti: result.user_mbti,
         });
       });
     })
@@ -224,6 +226,8 @@ exports.ranGardenPage = (req, res) => {
         userName: req.session.userName,
         gardenId: req.params.id,
         gardenName: result.user_name,
+        userIntroSelf: result.user_intro_self,
+        userMbti: result.user_mbti,
       });
     });
   });
