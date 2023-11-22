@@ -419,7 +419,7 @@
               leaf.style.opacity = 1; // 나뭇잎을 나타냅니다.
               setTimeout(() => {
                 showLeavesSequentially(index + 1);
-              }, 100 - index * 0.5);
+              }, 30 - index * 1);
             }
           }
 
@@ -473,8 +473,8 @@
             }`,
             strokeDashoffset: [anime.setDashoffset, 0],
             easing: 'linear',
-            duration: 2000,
-            delay: (vineClasses.length - i - 1) * 2000, // 딜레이 계산 수정
+            duration: 1500,
+            delay: (vineClasses.length - i - 1) * 1500, // 딜레이 계산 수정
             direction: 'alternate',
             loop: false,
           });
@@ -482,7 +482,7 @@
         // 나뭇잎을 순서대로 나타냅니다.
         setTimeout(() => {
           showLeavesSequentially(0);
-        }, 6000);
+        }, 7000);
       };
     </script>
   </body>
