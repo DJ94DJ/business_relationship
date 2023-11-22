@@ -95,6 +95,7 @@
                 </svg>
               </div>
 
+
               <div class="flower01-sprite-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="151.268" height="151.268" viewBox="0 0 151.268 151.268"
                   class="flower2-svg">
@@ -124,7 +125,7 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <textarea name="modBody" id="modBody" cols="24" rows="8"></textarea>
+                      <textarea name="modBody" id="modBody" style="width: 100%; height: 100%"></textarea>
                     </div>
                     <button type="button" class="mesDelBtn" id="mesDelBtn" onclick="deleteMsg(this)">
                       삭제
@@ -287,6 +288,110 @@
                 randomPage(num);
               });
             }
+          });
+        }
+
+        $(window).on('resize', function () {
+          arrangeFlowers();
+        });
+
+        $('.flower01-sprite-box').on('click', function (button) {
+          msgOpen(button);
+        });
+
+        function autoResize(textarea) {
+          textarea.style.height = 'auto';
+          textarea.style.height = textarea.scrollHeight + 'px';
+        }
+
+        // 창 수정
+        // function adjustModalHeight() {
+        //   var contentHeight = $('#modBody').height();
+        //   var threshold = 100;
+
+        //   if (contentHeight > threshold) {
+        //     var newHeight = contentHeight + threshold * 1.5;
+
+        //     $('#testModal .modal-content').css('height', newHeight + 'px');
+        //   }
+        // }
+
+        $('#testModal').on('shown.bs.modal', function () {
+          adjustModalHeight();
+        });
+      });
+
+      function msgOpen(button) {
+        const form = button.closest('form');
+        let mesId = {
+          userId: form.querySelector('[name="mesId"]').value,
+        };
+        axios({
+          method: 'post',
+          url: '/home/garden/getMes',
+          data: mesId,
+        }).then((res) => {
+          if (res.data.isPublic) {
+            $('.modTitle').html(res.data.writer);
+            $('#modBody').html(res.data.content);
+            $('#modMesId').val(res.data.messageId);
+            // e.preventDefault();
+            $('#testModal').modal('show');
+          } else if ('<%=gardenName%>' == '<%=userName%>') {
+            $('.modTitle').html(res.data.writer);
+            $('#modBody').html(res.data.content);
+            $('#modMesId').val(res.data.messageId);
+            // e.preventDefault();
+            $('#testModal').modal('show');
+          } else {
+            alert('비공개 메시지입니다.');
+          }
+        });
+      }
+
+      // 메시지 작성 모달창
+      $('.seed-sprite-box').on('click', function (e) {
+        seedOpen(e);
+      });
+
+      function seedOpen(e) {
+        e.preventDefault();
+        $('#seedModal').modal('show');
+      }
+
+      $('.closeBtn').click(function () {
+        $('#seedModal').modal('hide');
+      });
+
+      // 모달창 닫기 버튼 활성화
+      $('.closeBtn').click(function () {
+        $('.modal').modal('hide');
+      });
+
+      // 회원과 비회원을 구분하는 애니메이션 필요
+      function writeMsg() {
+        const form = document.forms['newMsg'];
+
+        const msg = {
+          writer: form.elements.writer.value,
+          content: form.elements.content.value,
+          is_public: form.elements.isPublic.value,
+          flower_color: form.elements.flowerColor.value,
+          id: form.elements.gardenId.value,
+        };
+
+        if ('<%=userName%>') {
+          // 세션에 아이디가 있을 때(로그인 O)
+          axios({
+            method: 'POST',
+            url: '/home/garden',
+            data: msg,
+          }).then((res) => {
+            if (res.data.result) {
+              alert('메시지 작성 완료');
+              location.reload();
+            } else {
+              alert('메시지 작성 실패 ㅜㅜ');
 
             function randomPage(id) {
               console.log('매개변수: ', id);
