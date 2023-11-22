@@ -67,7 +67,12 @@ exports.signOut = (req, res) => {
 // 회원 가입 페이지 랜더
 exports.signUp = (req, res) => {
   console.log('회원가입 페이지 이동');
-  res.render('signup', { userName: false, gardenName: false });
+  res.render('signup', {
+    userName: false,
+    gardenName: false,
+    user_mbti: false,
+    user_intro_self: false,
+  });
 };
 
 // 회원가입 -> 아이디 중복체크 버튼 클릭 시
@@ -140,8 +145,6 @@ exports.garden = (req, res) => {
         res.render('garden', {
           result,
           msg,
-          user_intro_self: result.user_intro_self,
-          user_mbti: result.user_mbti,
           userName: req.session.userName,
           gardenId: req.session.userId,
           gardenName: result.user_name,
@@ -227,8 +230,6 @@ exports.ranGardenPage = (req, res) => {
       console.log('산책하기 result', result);
       res.render('garden', {
         msg,
-        user_intro_self: result.user_intro_self,
-        user_mbti: result.user_mbti,
         userName: req.session.userName,
         gardenId: req.params.id,
         gardenName: result.user_name,
