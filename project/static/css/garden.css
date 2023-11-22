@@ -10,6 +10,12 @@
   font-family: 'DNFBitBitv2';
 }
 
+body {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  touch-action: pan-y;
+}
+
 #sky {
   position: fixed;
   top: 0;
