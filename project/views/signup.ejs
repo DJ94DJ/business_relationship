@@ -29,15 +29,15 @@
           <div class="realForm">
             <!-- 1~10자 이내, 영문(대소문자)+숫자 포함 -->
             <div class="btn-id">
-              <input type="text" name="user_id" class="id-form" pattern="^[a-zA-Z0-9]{1,10}$"
-                title="영문 또는 숫자를 사용하여 1~10자 이내로 작성해 주세요." required placeholder="아이디" />
-              <button type="button" class="check-id" name="userIdCk" onclick="userIdCheck()">
+              <input type="text" name="user_id" class="id-form" pattern="^[a-zA-Z0-9]{1,13}$"
+                title="영문 또는 숫자를 사용하여 1~12자 이내로 작성해 주세요." required placeholder="아이디" />
+              <button type="button" class="check-id" id="idCheckBtn" name="userIdCk" onclick="userIdCheck()">
                 중복 확인
               </button>
             </div>
             <div>
-              <input type="text" name="user_name" id="user_name" class="nk-form" oninput="" required
-                placeholder="닉네임" />
+              <input type="text" name="user_name" id="user_name" class="nk-form" maxlength="6" oninput="" required
+                placeholder="닉네임 (6자 이내)" />
             </div>
             <!-- 4~12자 이내, 숫자, 영어 포함 -->
             <div>
@@ -57,10 +57,11 @@
                 pattern="^[a-zA-Z]{4}$" title="" required />
             </div>
             <div>
-              <input type="textarea" id="user_intro_self" name="user_intro_self" class="self-form" placeholder="자기소개" />
+              <textarea id="user_intro_self" name="user_intro_self" class="self-form" placeholder="자기소개"
+                style="padding: 15px;"></textarea>
             </div>
             <div>
-              <button type="button" id="signUpBtn" onclick="userSignUp()" class="btn-signup" disabled>
+              <button type=" button" id="signUpBtn" onclick="userSignUp()" class="btn-signup" disabled>
                 가입하기
               </button>
             </div>
