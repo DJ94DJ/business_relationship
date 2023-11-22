@@ -21,6 +21,17 @@
   overflow-y: scroll;
 }
 
+.flowerbed {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
 .flower01-sprite-box {
   height: 290px;
   width: 290px;
@@ -28,13 +39,17 @@
   position: absolute;
   transform: rotate(0deg);
   white-space: nowrap;
-  display: inline;
+  display: inline-block;
   cursor: pointer;
 }
 
 .flower01-sprite-1 {
   position: relative;
   z-index: 1;
+}
+
+.flower01-sprite-1 svg {
+  filter: drop-shadow(0px 0px 15px rgba(2, 42, 5, 0.3)); /* 그림자 설정 */
 }
 
 .flower01-sprite-2 {
@@ -45,8 +60,12 @@
   z-index: 2;
 }
 
+.flower01-sprite-2 svg {
+  filter: drop-shadow(0px 0px 30px rgba(255, 225, 255, 0.8));
+}
+
 .flower-2 {
-  fill: #f5c703;
+  fill: #ffdb39;
 }
 
 .flower-1 {
