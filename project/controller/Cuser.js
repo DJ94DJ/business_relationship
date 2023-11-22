@@ -31,8 +31,12 @@ exports.deleteUser = (req, res) => {
   User.destroy({
     where: { id: req.session.userId },
   }).then((result) => {
-    if (result) res.send({ result: true });
-    else res.send({ result: false });
+    if (result) {
+      req.session.destroy((err) => {
+        if (err) throw err;
+        res.send({ result: true });
+      });
+    } else res.send({ result: false });
   });
 };
 
