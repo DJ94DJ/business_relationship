@@ -111,9 +111,53 @@
     .maskText>div {
         cursor: pointer;
     }
+
+    .bubble 
+	{
+	z-index:100;
+	position: relative;
+	height: auto;
+	padding: 10px 10px 10px 10px;
+	background: #FFFFFF;
+	border-radius: 5px;
+	border: #7F7F7F solid 1px;
+	position: absolute;
+	font-size: 16px;
+	text-align: left;
+	}
+	
+	.bubble:after 
+	{
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-width: 0 16px 20px 17.5px;
+	border-color: #FFFFFF transparent;
+	display: block;
+	width: 0;
+	z-index: 1;
+	top: -18.5px; 
+	left: 49px; 
+	}
+	
+	.bubble:before 
+	{
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-width: 0 16px 20px 17.5px;
+	border-color: #7F7F7F transparent;
+	display: block;
+	width: 0;
+	z-index: 0;
+	top: -20px;
+	left: 49px;
+	}
 </style>
 
 <body>
+    <div class="bubble">말풍선에 쓸내용을 넣으시면 됩니다.^^ </div>
+    
     <!-- nav바  -->
     <header class="header1">
         <ul class="menus">

@@ -143,6 +143,8 @@ exports.garden = (req, res) => {
           gardenId: req.session.userId,
           gardenName: result.user_name,
           flowerColor: result.flower_color,
+          user_intro_self: result.user_intro_self,
+          user_mbti: result.user_mbti,
         });
       });
     })
