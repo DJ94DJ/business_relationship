@@ -31,7 +31,7 @@
             <div class="btn-id">
               <input type="text" name="user_id" class="id-form" pattern="^[a-zA-Z0-9]{1,13}$"
                 title="영문 또는 숫자를 사용하여 1~12자 이내로 작성해 주세요." required placeholder="아이디" />
-              <button type="button" class="check-id" id="idCheckBtn" name="userIdCk" onclick="userIdCheck()">
+              <button type="button" class="check-id" name="userIdCk" onclick="userIdCheck()">
                 중복 확인
               </button>
             </div>
@@ -61,7 +61,7 @@
                 style="padding: 15px;"></textarea>
             </div>
             <div>
-              <button type=" button" id="signUpBtn" onclick="userSignUp()" class="btn-signup" disabled>
+              <button type="button" id="signUpBtn" onclick="userSignUp()" class="btn-signup">
                 가입하기
               </button>
             </div>
@@ -127,7 +127,9 @@
           } else {
             alert('알 수 없는 오류가 발생했습니다.');
           }
-        });
+        }).catch((err) => {
+          console.log("회원가입 에러입니다", err)
+        })
       }
 
       // 아이디 중복 확인 버튼 클릭 시
