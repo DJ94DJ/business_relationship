@@ -198,8 +198,7 @@
                   <textarea
                     name="modBody"
                     id="modBody"
-                    cols="24"
-                    rows="8"
+                    style="width: 100%; height: 100%"
                   ></textarea>
                 </div>
                 <button
@@ -250,6 +249,11 @@
         $('.flower01-sprite-box').on('click', function (button) {
           msgOpen(button);
         });
+
+        function autoResize(textarea) {
+          textarea.style.height = 'auto';
+          textarea.style.height = textarea.scrollHeight + 'px';
+        }
 
         // 창 수정
         // function adjustModalHeight() {
