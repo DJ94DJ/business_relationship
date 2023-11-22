@@ -111,33 +111,23 @@ button {
 }
 
 /* iPhone SE */
-@media screen and (max-width: 400px) and (max-height: 700px) and (min-width: 300px) and (min-height: 600px) {
+@media screen and (max-width: 410px) and (max-height: 700px) {
   #logo {
     width: 200px;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 30px;
-  }
-  .btnForm {
-    top: -140px;
-  }
-}
-
-@media screen and (max-height: 600px) {
-  #logo {
-    width: 180px;
     position: absolute;
     transform: translate(-50%, -50%);
     top: -10px;
   }
   .btnForm {
-    top: -120px;
+    top: -140px;
   }
   #signinButton,
   #signupButton,
   #walkButton,
-  #infoButton {
-    margin-top: 10px;
+  #infoButton,
+  #gardenButton,
+  #signoutButton {
+    margin-top: 25px;
   }
   .green {
     height: 65%;
@@ -162,7 +152,9 @@ button {
   #signinButton,
   #signupButton,
   #walkButton,
-  #infoButton {
+  #infoButton,
+  #gardenButton,
+  #signoutButton {
     width: 230px;
     height: 80px;
     position: relative;
@@ -213,8 +205,9 @@ button {
 }
 
 /* Nest Hub, desktop */
-@media screen and (min-width: 1000px) and (max-width: 1900px) and (max-height: 700px) {
+@media screen and (min-width: 1000px) and (max-height: 900px) {
   #logo {
+    width: 250px;
     position: absolute;
     transform: translate(-50%, -50%);
     top: 20px;
@@ -222,9 +215,11 @@ button {
   #signinButton,
   #signupButton,
   #walkButton,
-  #infoButton {
-    margin-top: 20px;
-    top: 85px;
+  #infoButton,
+  #gardenButton,
+  #signoutButton {
+    margin-top: 15px;
+    top: 100px;
   }
 }
 
