@@ -187,47 +187,28 @@
           >
             <input type="text" id="modMesId" name="modMesId" value="" hidden />
             <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
+              <div class="modal-content2">
                 <div class="modal-header">
                   <h5 class="modal-title modTitle" id="exampleModalLabel"></h5>
                   <button class="closeBtn">
                     <span aria-hidden="true">X</span>
                   </button>
                 </div>
-                <div class="modal-body" id="modBody"></div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    id="mesDelBtn"
-                    onclick="deleteMsg(this)"
-                  >
-                    삭제
-                  </button>
+                <div class="modal-body" id="modBody">
+                  <textarea
+                    name="lalalala"
+                    id="lalalala"
+                    cols="24"
+                    rows="8"
+                  ></textarea>
                 </div>
+                <button type="button" id="mesDelBtn" onclick="deleteMsg(this)">
+                  삭제
+                </button>
               </div>
             </div>
           </div>
         </form>
-
-        <!-- <form class="msgContentForm">
-          <div
-            class="modal fade"
-            id="seedModal"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <input type="text" id="modMesId" name="modMesId" value="" hidden />
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="closeBtn-container">
-                  <button class="closeBtn">X</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form> -->
         <!-- 메시지 폼 -->
       </form>
     </div>
@@ -277,9 +258,9 @@
         //   }
         // }
 
-        // $('#testModal').on('shown.bs.modal', function () {
-        //   adjustModalHeight();
-        // });
+        $('#testModal').on('shown.bs.modal', function () {
+          adjustModalHeight();
+        });
       });
 
       function msgOpen(button) {
