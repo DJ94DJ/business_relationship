@@ -131,13 +131,7 @@ exports.garden = (req, res) => {
   })
     .then((result) => {
       Message.findAll({
-        attributes: [
-          'message_id',
-          'writer',
-          'content',
-          'is_public',
-          'flower_color',
-        ],
+        attributes: ['message_id', 'writer', 'is_public', 'flower_color'],
         where: { id: req.session.userId },
         include: { model: User },
       }).then((msg) => {
@@ -204,10 +198,12 @@ exports.deleteMsg = (req, res) => {
 exports.randomGarden = (req, res) => {
   User.findAll().then((result) => {
     const gdId = req.query.gardenId;
+    console.log('gdId 값!!!', gdId);
     while (true) {
       const ranId = Math.floor(Math.random() * result.length);
       const ranData = result[ranId].id;
-      if (gdId !== ranData) {
+      console.log('ranData 값임', ranData);
+      if (gdId != ranData) {
         res.send({ data: ranData });
         break;
       }
@@ -234,7 +230,7 @@ exports.ranGardenPage = (req, res) => {
       where: { id: req.params.id },
       include: { model: User },
     }).then((msg) => {
-      console.log('산책하기 result', result);
+      // console.log('산책하기 result', result);
       res.render('garden', {
         msg,
         userName: req.session.userName,

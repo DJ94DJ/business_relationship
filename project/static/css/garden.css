@@ -402,6 +402,7 @@ top: 10%; */
 #modBody {
   border: none;
   overflow: hidden;
+  width: 100%;
 }
 
 /* iPhone SE */
@@ -428,7 +429,7 @@ top: 10%; */
     height: 75%;
   }
   .msgForm {
-    margin-top: 58%;
+    margin-top: 70%;
     text-align: center;
     position: absolute;
   }
@@ -436,7 +437,7 @@ top: 10%; */
   .msg-color,
   .user_name {
     background-color: white;
-    width: 90%;
+    width: 93%;
     display: flex;
     align-items: center;
     justify-content: center;
