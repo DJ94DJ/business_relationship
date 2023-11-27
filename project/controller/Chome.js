@@ -203,14 +203,21 @@ exports.deleteMsg = (req, res) => {
 // '산책하기' 버튼 클릭 시
 exports.randomGarden = (req, res) => {
   User.findAll().then((result) => {
-    const ranId = Math.floor(Math.random() * result.length) + 1;
-    const ranData = result[ranId - 1];
-    res.send({ data: ranId });
+    const gdId = req.query.gardenId;
+    while (true) {
+      const ranId = Math.floor(Math.random() * result.length);
+      const ranData = result[ranId].id;
+      if (gdId !== ranData) {
+        res.send({ data: ranData });
+        break;
+      }
+    }
   });
 };
 
 // '산책하기' 페이지 랜더
 exports.ranGardenPage = (req, res) => {
+  console.log('파라미터 값입니다. : ', req.params.id);
   User.findOne({
     where: {
       id: req.params.id,

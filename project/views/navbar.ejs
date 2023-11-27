@@ -324,11 +324,13 @@
             axios({
                 method: 'GET',
                 url: '/home/garden/random',
+                params: {
+                    gardenId: "<%=gardenId%>" // 추가
+                }
             }).then((res) => {
                 let num = res.data.data;
-                console.log('res : ', res);
-                console.log('res.data : ', res.data);
                 console.log('num : ', num);
+                // console.log("넘아이디", num.id)
                 randomPage(num);
             });
         }
