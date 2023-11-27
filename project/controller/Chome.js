@@ -203,7 +203,7 @@ exports.randomGarden = (req, res) => {
       const ranId = Math.floor(Math.random() * result.length);
       const ranData = result[ranId].id;
       console.log('ranData 값임', ranData);
-      if (gdId != ranData) {
+      if (gdId !== ranData) {
         res.send({ data: ranData });
         break;
       }
